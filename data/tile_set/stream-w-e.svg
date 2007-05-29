@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="64"
+   height="64"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.45"
+   version="1.0"
+   sodipodi:docname="stream-w-e.svg"
+   sodipodi:docbase="/home/mark/projects/questar/trunk/data/tileset"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   sodipodi:modified="true">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="3.9525416"
+     inkscape:cx="50.05603"
+     inkscape:cy="31.004711"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:window-width="922"
+     inkscape:window-height="628"
+     inkscape:window-x="58"
+     inkscape:window-y="48"
+     width="64px"
+     height="64px" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-860.36218)">
+    <g
+       id="g7309"
+       transform="matrix(1,0,0,0.9830825,0,15.388361)">
+      <path
+         sodipodi:nodetypes="cccsssccsssc"
+         id="path7307"
+         d="M 17,877.78128 C 11.390288,878.38399 3.5906269,878.36325 0,878.36325 L 0,910.37509 C 7.0601943,910.37509 11.740218,907.96878 17,907.96878 C 22.97484,907.96878 25.02516,909.96878 31,909.96878 C 36.97484,909.96878 41.21266,909.46878 47.1875,909.46878 C 53.15168,909.46878 58.03964,910.36969 64,910.37509 L 64,878.36325 C 59.982539,878.36325 59.61088,879.06235 55.75,879.53128 C 51.96759,879.99068 47.10124,878.31253 44.75,878.31253 C 39.92291,878.31253 36.41255,880.53799 31,879.78128 C 25.824134,879.05766 25.748067,877.54007 17,877.78128 z "
+         style="opacity:1;fill:#204a87;fill-opacity:1;stroke:none;stroke-width:0.99999994;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         style="opacity:1;fill:#204a87;fill-opacity:1;stroke:none;stroke-width:0.99999994;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 17,873.78128 C 11.390288,874.38399 3.5906269,874.36325 0,874.36325 L 0,906.37509 C 7.0601943,906.37509 11.740218,903.96878 17,903.96878 C 22.97484,903.96878 25.02516,905.96878 31,905.96878 C 36.97484,905.96878 41.21266,905.46878 47.1875,905.46878 C 53.15168,905.46878 58.03964,906.36969 64,906.37509 L 64,874.36325 C 59.982539,874.36325 59.61088,875.06235 55.75,875.53128 C 51.96759,875.99068 47.10124,874.31253 44.75,874.31253 C 39.92291,874.31253 36.41255,876.53799 31,875.78128 C 25.824134,875.05766 25.748067,873.54007 17,873.78128 z "
+         id="path7305"
+         sodipodi:nodetypes="cccsssccsssc" />
+      <path
+         sodipodi:nodetypes="cccsssccsssc"
+         id="rect3149"
+         d="M 17,875.78128 C 11.390288,876.38399 3.5906269,876.36325 0,876.36325 L 0,908.37509 C 7.0601943,908.37509 11.740218,905.96878 17,905.96878 C 22.97484,905.96878 25.02516,907.96878 31,907.96878 C 36.97484,907.96878 41.21266,907.46878 47.1875,907.46878 C 53.15168,907.46878 58.03964,908.36969 64,908.37509 L 64,876.36325 C 59.982539,876.36325 59.61088,877.06235 55.75,877.53128 C 51.96759,877.99068 47.10124,876.31253 44.75,876.31253 C 39.92291,876.31253 36.41255,878.53799 31,877.78128 C 25.824134,877.05766 25.748067,875.54007 17,875.78128 z "
+         style="opacity:1;fill:#729fcf;fill-opacity:1;stroke:none;stroke-width:0.99999994;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+  </g>
+</svg>

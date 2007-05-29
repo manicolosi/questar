@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="64"
+   height="64"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.45"
+   version="1.0"
+   sodipodi:docname="default.svg"
+   sodipodi:docbase="/home/mark/projects/questar/trunk/data/tileset"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   sodipodi:modified="true">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="5.4679048"
+     inkscape:cx="50.620698"
+     inkscape:cy="31.922793"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     width="64px"
+     height="64px"
+     inkscape:window-width="922"
+     inkscape:window-height="628"
+     inkscape:window-x="51"
+     inkscape:window-y="57" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       y="0"
+       x="0"
+       height="1"
+       width="64"
+       id="rect5080"
+       style="fill:#fcaf3e;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <rect
+       style="fill:#ad7fa8;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="rect4109"
+       width="64"
+       height="1"
+       x="0"
+       y="63" />
+    <rect
+       style="fill:#729fcf;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="rect5082"
+       width="64"
+       height="1"
+       x="-64"
+       y="0"
+       transform="matrix(0,-1,1,0,0,0)" />
+    <rect
+       transform="matrix(0,-1,1,0,0,0)"
+       y="63"
+       x="-64"
+       height="1"
+       width="64"
+       id="rect5084"
+       style="fill:#fce94f;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       transform="matrix(6.5032465,0,0,6.5032465,-22.115394,-117.82904)"
+       style="fill:#8ae234"
+       d="M 7.4160156,26.003959 L 8.6054688,26.003959 L 8.6054688,27.49224 L 7.4160156,27.49224 L 7.4160156,26.003959 M 8.5703125,25.142631 L 7.4511719,25.142631 L 7.4511719,24.240287 C 7.4511695,23.845759 7.505857,23.521541 7.6152344,23.267631 C 7.7246068,23.013729 7.9550753,22.718807 8.3066406,22.382865 L 8.8339844,21.861381 C 9.0566367,21.654355 9.2167928,21.459043 9.3144531,21.275443 C 9.4160113,21.091856 9.4667925,20.904356 9.4667969,20.712943 C 9.4667925,20.365294 9.3378864,20.084044 9.0800781,19.869193 C 8.8261682,19.654357 8.4882779,19.546935 8.0664062,19.546927 C 7.7578099,19.546935 7.4277321,19.615295 7.0761719,19.752006 C 6.728514,19.888732 6.3652331,20.08795 5.9863281,20.349662 L 5.9863281,19.248099 C 6.3535144,19.025452 6.7246078,18.859436 7.0996094,18.750052 C 7.4785133,18.640686 7.8691379,18.585999 8.2714844,18.58599 C 8.9902305,18.585999 9.5664018,18.775452 10,19.154349 C 10.437495,19.533264 10.656244,20.033263 10.65625,20.654349 C 10.656244,20.951231 10.585932,21.234434 10.445312,21.503959 C 10.304682,21.769589 10.058589,22.07037 9.7070312,22.406302 L 9.1914062,22.910209 C 9.0078086,23.093807 8.8769494,23.238338 8.7988281,23.343802 C 8.7246058,23.445369 8.6718715,23.544978 8.640625,23.642631 C 8.617184,23.724666 8.5996059,23.824275 8.5878906,23.941459 C 8.5761684,24.05865 8.5703091,24.218806 8.5703125,24.421927 L 8.5703125,25.142631"
+       id="flowRoot2161" />
+  </g>
+</svg>

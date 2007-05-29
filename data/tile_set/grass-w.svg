@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="64"
+   height="64"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.45"
+   version="1.0"
+   sodipodi:docbase="/home/mark/projects/questar/trunk/data/tileset"
+   sodipodi:docname="grass-w.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   sodipodi:modified="true">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="5.5730837"
+     inkscape:cx="53.894882"
+     inkscape:cy="26.783238"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:window-width="922"
+     inkscape:window-height="628"
+     inkscape:window-x="46"
+     inkscape:window-y="60"
+     showgrid="false" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-196.64285,-471.71934)">
+    <path
+       sodipodi:nodetypes="ccsssssssccc"
+       id="path2188"
+       d="M 198.64285,471.71934 C 209.59803,471.71934 220.5532,471.71934 231.50837,471.71934 C 231.62587,473.3478 231.75828,474.97531 231.86087,476.60472 C 231.98637,478.59796 232.03089,480.59701 232.19264,482.58729 C 232.45056,485.76103 230.61435,488.92581 230.6078,492.09679 C 230.60041,495.67913 232.51971,499.26854 232.15082,502.84726 C 231.82876,505.97164 231.25568,509.07562 231.04704,512.2061 C 230.82459,515.54383 229.3204,517.84435 229.06323,521.17529 C 228.88835,523.44036 229.85242,526.7349 229.75089,528.99412 C 229.65068,531.22405 230.08518,533.4776 230.25233,535.71934 C 219.29716,535.71934 209.59802,535.71934 198.64285,535.71934 C 198.64285,514.38601 198.64285,493.05267 198.64285,471.71934 z "
+       style="fill:#73d216;fill-rule:evenodd;stroke:none;stroke-width:0.67166418px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       style="fill:#8ae234;fill-rule:evenodd;stroke:none;stroke-width:0.67166418px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 196.64285,471.71934 C 207.59803,471.71934 218.5532,471.71934 229.50837,471.71934 C 229.62587,473.3478 229.75828,474.97531 229.86087,476.60472 C 229.98637,478.59796 230.03089,480.59701 230.19264,482.58729 C 230.45056,485.76103 228.61435,488.92581 228.6078,492.09679 C 228.60041,495.67913 230.51971,499.26854 230.15082,502.84726 C 229.82876,505.97164 229.25568,509.07562 229.04704,512.2061 C 228.82459,515.54383 227.3204,517.84435 227.06323,521.17529 C 226.88835,523.44036 227.85242,526.7349 227.75089,528.99412 C 227.65068,531.22405 228.08518,533.4776 228.25233,535.71934 C 217.29716,535.71934 207.59802,535.71934 196.64285,535.71934 C 196.64285,514.38601 196.64285,493.05267 196.64285,471.71934 z "
+       id="rect2279"
+       sodipodi:nodetypes="ccsssssssccc" />
+  </g>
+</svg>

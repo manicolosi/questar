@@ -1,0 +1,7 @@
+using System.Reflection;
+using System.Runtime.CompilerServices;
+
+[assembly: AssemblyVersion ("@VERSION@.*")]
+[assembly: AssemblyTitle ("Questar")]
+[assembly: AssemblyDescription ("Questar Roguelike Game")]
+[assembly: AssemblyCopyright ("Copyright \x00a9 2006-2007 Mark A. Nicolosi")]

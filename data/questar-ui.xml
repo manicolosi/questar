@@ -1,0 +1,28 @@
+<ui>
+    <menubar name='MenuBar'>
+        <menu action='GameMenu'>
+            <menuitem action='Quit' />
+        </menu>
+        <menu action='EditMenu'>
+            <menuitem action='Preferences' />
+        </menu>
+        <menu action='ViewMenu'>
+            <menuitem action='ShowMessages' />
+            <menuitem action='ShowGridLines' />
+            <separator />
+            <menuitem action='ZoomIn' />
+            <menuitem action='ZoomOut' />
+            <menuitem action='NormalSize' />
+        </menu>
+        <menu action='HelpMenu'>
+            <menuitem action='About' />
+        </menu>
+    </menubar>
+    <popup name='MapViewPopup'>
+        <menuitem action='MoveHere' />
+        <separator />
+        <menuitem action='Target' />
+        <menuitem action='Examine' />
+    </popup>
+</ui>
+
