@@ -34,9 +34,14 @@ namespace Questar.Base
             return new Point (random.Next (width), random.Next (height));
         }
 
-        public object Clone ()
+        public override string ToString ()
         {
-            return this.MemberwiseClone ();
+            return String.Format ("({0},{1})", X, Y);
+        }
+
+        public override int GetHashCode ()
+        {
+            return ToString ().GetHashCode ();
         }
 
         public override bool Equals (object o)
@@ -49,16 +54,6 @@ namespace Questar.Base
                 return false;
 
             return true;
-        }
-
-        public override int GetHashCode ()
-        {
-            return ToString ().GetHashCode ();
-        }
-
-        public override string ToString ()
-        {
-            return String.Format ("({0},{1})", X, Y);
         }
 
         public static bool operator == (Point a, Point b)
@@ -79,6 +74,11 @@ namespace Questar.Base
         public static Point operator + (Point a, Point b)
         {
             return new Point (a.X + b.X, a.Y + b.Y);
+        }
+
+        public object Clone ()
+        {
+            return this.MemberwiseClone ();
         }
     }
 }
