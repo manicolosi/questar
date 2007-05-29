@@ -2,9 +2,9 @@ using NUnit.Framework;
 using System;
 
 using Questar.Base;
-using Questar.Tests;
+using Questar.UnitTests;
 
-namespace Questar.Tests
+namespace Questar.UnitTests
 {
     [TestFixture]
     public class TestWorld

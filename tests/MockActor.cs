@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Questar.Actors;
 using Questar.Base;
 
-namespace Questar.Tests
+namespace Questar.UnitTests
 {
     public class MockActor : Actor
     {
