@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 
 using Questar.Base;
+using Questar.Configuration;
 
 namespace Questar.Gui
 {
@@ -21,12 +22,14 @@ namespace Questar.Gui
 
         private int width;
         private int height;
-        private int zoom = Normal;
+        private int zoom;
 
         public event EventHandler<EventArgs> ZoomChanged;
 
         public TileSet ()
         {
+            zoom = UISchema.Zoom.Get ();
+
             LoadPixbufs ();
 
             UIActions.Instance["ZoomIn"].Activated += delegate {
@@ -62,6 +65,8 @@ namespace Questar.Gui
                     zoom != Largest;
                 UIActions.Instance["ZoomOut"].Sensitive =
                     zoom != Smallest;
+
+                UISchema.Zoom.Set (zoom);
             }
         }
 
