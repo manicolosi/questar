@@ -35,7 +35,7 @@ namespace Questar.Gui
             SetupGlade ();
             BuildWindow ();
             SetupHandlers ();
-            SetSizeAndPosition ();
+            LoadSettings ();
         }
 
         private void SetupGlade ()
@@ -54,19 +54,19 @@ namespace Questar.Gui
             map_view_container.Add (new MapView (World.Instance.Map));
 
             base.Add (main_container);
-
             base.ShowAll ();
         }
 
-        private void SetSizeAndPosition ()
+        private void LoadSettings ()
         {
-            int x = UISchema.XPos.Get ();
-            int y = UISchema.YPos.Get ();
             int width = UISchema.Width.Get ();
             int height = UISchema.Height.Get ();
 
             if (width != 0 && height != 0)
                 base.Resize (width, height);
+
+            int x = UISchema.XPos.Get ();
+            int y = UISchema.YPos.Get ();
 
             if (x == 0 && y == 0)
                 base.SetPosition (WindowPosition.Center);
@@ -138,7 +138,7 @@ namespace Questar.Gui
             EntryPoint.Quit ();
         }
 
-        // FIXME: Gtk.Action[s] don't seem to work with accelerator's without
+        // HACK: Gtk.Action[s] don't seem to work with accelerator's without
         // modifier keys, for instance Gdk.Key.Up. The work around is to bind
         // to them using Gtk.BindingAttribute and manually Activate () them.
 #pragma warning disable 0169
