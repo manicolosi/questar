@@ -7,7 +7,7 @@ using Questar.Actors;
 using Questar.Gui;
 using Questar.Maps;
 
-namespace Questar.Base
+namespace Questar
 {
     public class EntryPoint
     {
