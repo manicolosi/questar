@@ -24,6 +24,7 @@ SOURCES =                              \
 	$(srcdir)/MessageView.cs           \
 	$(srcdir)/Monster.cs               \
 	$(srcdir)/MoveAction.cs            \
+	$(srcdir)/NativeMethods.cs         \
 	$(srcdir)/Point.cs                 \
 	$(srcdir)/ProgramInformation.cs    \
 	$(srcdir)/SchemaEntry.cs           \

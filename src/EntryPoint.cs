@@ -1,9 +1,8 @@
 using Gtk;
 using System;
-using System.Runtime.InteropServices;
-using Mono.Unix.Native;
 
 using Questar.Actors;
+using Questar.Base;
 using Questar.Gui;
 using Questar.Maps;
 
@@ -37,14 +36,10 @@ namespace Questar
             world.Start ();
         }
 
-        [DllImport ("libc")]
-        private static extern int prctl (int option, string name,
-            ulong arg3, ulong arg4, ulong arg5);
-
         private static string ProcessName
         {
             set {
-                prctl (15 /* PR_SET_NAME */, value, 0, 0, 0);
+                NativeMethods.prctl (15 /* PR_SET_NAME */, value, 0, 0, 0);
             }
         }
     }
