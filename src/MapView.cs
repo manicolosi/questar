@@ -97,8 +97,8 @@ namespace Questar.Gui
         protected override void OnSizeRequested
             (ref Gtk.Requisition requisition)
         {
-            requisition.Width  = tileset.Width * 9;
-            requisition.Height = tileset.Height * 7;
+            requisition.Width  = 640;
+            requisition.Height = 480;
         }
 
         Color fill_color;
