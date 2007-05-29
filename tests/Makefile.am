@@ -1,3 +1,5 @@
+ASSEMBLY = Questar.UnitTests.dll
+
 SOURCES =                              \
 	$(srcdir)/MockActor.cs             \
 	$(srcdir)/TestWorld.cs
@@ -6,22 +8,22 @@ ASSEMBLIES =                           \
 	-pkg:nunit-2.2                     \
 	-r:../src/Questar.exe
 
-QuestarTests.dll: $(SOURCES) 
+$(ASSEMBLY): $(SOURCES) 
 	$(MCS) -target:library -out:$@ $(SOURCES) $(ASSEMBLIES) 
 
-all: QuestarTests.dll
+all: $(ASSEMBLY)
 
 tests: all
 
 run-tests: tests
-	MONO_PATH=../src nunit-console /nologo QuestarTests.dll
+	MONO_PATH=../src nunit-console /nologo $(ASSEMBLY)
 
 EXTRA_DIST =                           \
 	$(SOURCES)
 
 CLEANFILES =                           \
-	QuestarTests.dll                   \
-	QuestarTests.dll.mdb
+	$(ASSEMBLY)                        \
+	$(ASSEMBLY).mdb
 
 MAINTAINERCLEANFILES =                 \
 	Makefile.in
