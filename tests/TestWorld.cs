@@ -45,21 +45,25 @@ namespace Questar.UnitTests
             world.Start ();
 
             // Nobody should have taken a turn at this point.
-            Assert.AreEqual (false, actor1.TookTurnInRound (0));
-            Assert.AreEqual (false, actor2.TookTurnInRound (0));
+            Assert.IsFalse (actor1.TookTurnInRound (0));
+            Assert.IsFalse (actor2.TookTurnInRound (0));
             Assert.AreSame (actor1, world.CurrentActor);
 
             // Make actor1 take it's turn.
             actor1.MakeTurnReady ();
-            Assert.AreEqual (true, actor1.TookTurnInRound (0));
-            Assert.AreEqual (false, actor2.TookTurnInRound (0));
+
+            // Only actor1 should have taken a turn at this point.
+            Assert.IsTrue (actor1.TookTurnInRound (0));
+            Assert.IsFalse (actor2.TookTurnInRound (0));
             Assert.AreSame (actor2, world.CurrentActor);
 
-            // Make actor2 take it's turn. world.Round must now be 1.
+            // Make actor2 take it's turn.
             actor2.MakeTurnReady ();
-            Assert.AreEqual (true, actor1.TookTurnInRound (0));
-            Assert.AreEqual (true, actor2.TookTurnInRound (0));
-            Assert.AreSame (actor2, world.CurrentActor);
+
+            // Both actor should have taken a turn now.
+            Assert.IsTrue (actor1.TookTurnInRound (0));
+            Assert.IsTrue (actor2.TookTurnInRound (0));
+            Assert.AreSame (actor1, world.CurrentActor);
         }
 
         [Test]
