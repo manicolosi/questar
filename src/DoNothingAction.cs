@@ -1,6 +1,6 @@
 using System;
 
-namespace Questar.Actors
+namespace Questar.Actors.Actions
 {
     public class DoNothingAction : IAction
     {

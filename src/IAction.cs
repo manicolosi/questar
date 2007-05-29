@@ -1,4 +1,4 @@
-namespace Questar.Actors
+namespace Questar.Actors.Actions
 {
     public interface IAction
     {

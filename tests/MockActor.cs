@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 
 using Questar.Actors;
+using Questar.Actors.Actions;
 using Questar.Base;
 
 namespace Questar.UnitTests

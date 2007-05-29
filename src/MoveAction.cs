@@ -2,7 +2,7 @@ using System;
 
 using Questar.Base;
 
-namespace Questar.Actors
+namespace Questar.Actors.Actions
 {
     public class MoveAction : IAction
     {
