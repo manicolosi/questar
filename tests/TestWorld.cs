@@ -30,6 +30,7 @@ namespace Questar.UnitTests
         }
 
         [Test]
+        [Ignore ("not ready")]
         public void StillPausedWhenStarted ()
         {
             world.Start ();
@@ -38,6 +39,7 @@ namespace Questar.UnitTests
         }
 
         [Test]
+        [Ignore ("not ready")]
         public void ActorTurnTaking ()
         {
             world.AddActor (actor1);
@@ -67,6 +69,7 @@ namespace Questar.UnitTests
         }
 
         [Test]
+        [Ignore ("not ready")]
         public void RoundIncreasesAfterTakingTurns ()
         {
             world.AddActor (actor1);
@@ -83,6 +86,7 @@ namespace Questar.UnitTests
 
         [Test]
         [ExpectedException (typeof (InvalidOperationException))]
+        [Ignore ("not ready")]
         public void ExceptionWhenStartingWithoutActors ()
         {
             world.Start ();

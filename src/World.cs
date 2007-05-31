@@ -37,8 +37,8 @@ namespace Questar.Base
         private Map map;
 
         private int turn_index = 0;
-        private int round;
-        private bool is_paused;
+        private int round = 0;
+        private bool is_paused = true;
 
         public event EventHandler<WorldActorAddedEventArgs> ActorAdded;
         public event EventHandler<WorldNewRoundEventArgs> NewRound;
@@ -49,7 +49,6 @@ namespace Questar.Base
 
         public void Start ()
         {
-            Round = 0;
             IsPaused = false;
         }
 
