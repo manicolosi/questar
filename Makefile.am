@@ -5,7 +5,7 @@ run:
 
 test:
 	pushd $(top_builddir)/tests;       \
-	make run-tests;                    \
+	make test;                         \
 	popd;
 
 SUBDIRS =                              \
