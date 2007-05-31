@@ -77,7 +77,8 @@ namespace Questar.Gui
             }
             tiles.Clear ();
 
-            string [] files = Directory.GetFiles ("../data/tile_set", "*.svg");
+            string [] files = Directory.GetFiles (
+                "../tilesets/default", "*.svg");
 
             foreach (string file in files) {
                 string key = Path.GetFileNameWithoutExtension (file);
