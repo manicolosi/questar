@@ -77,7 +77,9 @@ namespace Questar.Gui
             p.X -= offset_x;
             p.Y -= offset_y;
 
-            base.QueueDrawArea (p.X * tileset.Width, p.Y * tileset.Height,
+            base.QueueDrawArea (
+                p.X * tileset.Width - poffset_x,
+                p.Y * tileset.Height - poffset_y,
                 tileset.Width, tileset.Height);
         }
 
