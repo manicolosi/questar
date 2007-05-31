@@ -1,4 +1,5 @@
 ASSEMBLY = Questar.UnitTests.dll
+NUNIT_CONSOLE_PATH = ~/source/nunit-bin/bin
 
 SOURCES =                              \
 	$(srcdir)/MockActor.cs             \
@@ -16,7 +17,7 @@ all: $(ASSEMBLY)
 tests: all
 
 run-tests: tests
-	MONO_PATH=../src nunit-console /nologo $(ASSEMBLY)
+	MONO_PATH=../src:$(NUNIT_CONSOLE_PATH) $(NUNIT_CONSOLE_PATH)/nunit-console.exe -nologo -labels $(ASSEMBLY)
 
 EXTRA_DIST =                           \
 	$(SOURCES)
