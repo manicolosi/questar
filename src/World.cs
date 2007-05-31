@@ -32,6 +32,11 @@ namespace Questar.Base
             }
         }
 
+        public static void RecreateInstanceForTesting ()
+        {
+            instance = null;
+        }
+
         private List<IActor> actors = new List<IActor> ();
         private IActor hero;
         private Map map;
@@ -80,15 +85,16 @@ namespace Questar.Base
         {
             get { return is_paused; }
             set {
-                is_paused = value;
-
-                if (!is_paused) {
+                if (!value) {
                     if (actors.Count == 0)
                         throw new InvalidOperationException (
-                            "Actors must be added to the World before starting or unpausing it.");
+                            "Actors must be added to the World before " +
+                            "starting or unpausing it.");
 
                     Idle.Add (NextTurn);
                 }
+
+                is_paused = value;
             }
         }
 

@@ -46,7 +46,7 @@ namespace Questar.UnitTests
 
         public bool TookTurnInRound (int round)
         {
-            return turns[round];
+            return turns.ContainsKey (round);
         }
     }
 }

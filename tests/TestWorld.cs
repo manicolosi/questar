@@ -19,6 +19,7 @@ namespace Questar.UnitTests
             actor1 = new MockActor ("Mock Actor 1");
             actor2 = new MockActor ("Mock Actor 2");
 
+            World.RecreateInstanceForTesting ();
             world = World.Instance;
         }
 
@@ -30,16 +31,23 @@ namespace Questar.UnitTests
         }
 
         [Test]
-        [Ignore ("not ready")]
-        public void StillPausedWhenStarted ()
+        public void NotPausedWhenStarted ()
         {
+            world.AddActor (actor1);
+
             world.Start ();
-            Assert.AreEqual (0, world.Round);
-            Assert.AreEqual (true, world.IsPaused);
+            Assert.IsFalse (world.IsPaused);
         }
 
         [Test]
-        [Ignore ("not ready")]
+        [ExpectedException (typeof (InvalidOperationException))]
+        public void ExceptionWhenStartingWithoutActors ()
+        {
+            world.Start ();
+        }
+
+        [Test]
+        [Ignore ("This won't work until we have a way to control the timer.")]
         public void ActorTurnTaking ()
         {
             world.AddActor (actor1);
@@ -69,7 +77,7 @@ namespace Questar.UnitTests
         }
 
         [Test]
-        [Ignore ("not ready")]
+        [Ignore ("This won't work until we have a way to control the timer.")]
         public void RoundIncreasesAfterTakingTurns ()
         {
             world.AddActor (actor1);
@@ -82,14 +90,6 @@ namespace Questar.UnitTests
             actor2.MakeTurnReady ();
 
             Assert.AreEqual (1, world.Round);
-        }
-
-        [Test]
-        [ExpectedException (typeof (InvalidOperationException))]
-        [Ignore ("not ready")]
-        public void ExceptionWhenStartingWithoutActors ()
-        {
-            world.Start ();
         }
     }
 }
