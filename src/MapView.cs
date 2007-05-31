@@ -59,7 +59,6 @@ namespace Questar.Gui
                 else {
                     foreach (Point grid in redraw_grids)
                         QueueDrawGrid (grid);
-
                 }
 
                 redraw_grids.Clear ();
