@@ -28,7 +28,7 @@ namespace Questar.Gui
         private UIActions ()
         {
             PopulateActionGroups ();
-            ui.AddUiFromFile ("../data/questar-ui.xml");
+            ui.AddUiFromResource ("questar-ui.xml");
         }
 
         private void PopulateActionGroups ()

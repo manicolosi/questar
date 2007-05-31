@@ -2,6 +2,7 @@ using Gdk;
 using Glade;
 using Gtk;
 using System;
+using System.Reflection;
 
 using Questar.Base;
 using Questar.Configuration;
@@ -40,14 +41,14 @@ namespace Questar.Gui
 
         private void SetupGlade ()
         {
-            string path = "../data/questar.glade";
-            Glade.XML gxml = new Glade.XML (path, "main_container", null);
+            Glade.XML gxml = new Glade.XML ("questar.glade", "main_container");
             gxml.Autoconnect (this);
         }
 
         private void BuildWindow ()
         {
-            Window.SetDefaultIconFromFile ("../data/questar.svg");
+            Assembly assembly = Assembly.GetExecutingAssembly ();
+            Window.DefaultIcon = new Pixbuf (assembly, "questar.svg");
 
             menubar_container.Add (UIActions.Instance.MenuBar);
             message_view_container.Add (new MessageView ());

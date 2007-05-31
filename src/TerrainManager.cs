@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using System.Xml;
 
 namespace Questar.Maps
@@ -12,7 +14,9 @@ namespace Questar.Maps
         {
             terrains = new Dictionary<string,Terrain> ();
 
-            XmlTextReader reader = new XmlTextReader ("../data/terrains.xml");
+            Assembly assembly = Assembly.GetExecutingAssembly ();
+            Stream stream = assembly.GetManifestResourceStream ("terrains.xml");
+            XmlTextReader reader = new XmlTextReader (stream);
 
             while (reader.Read ()) {
                 if ((reader.NodeType == XmlNodeType.Element) &&

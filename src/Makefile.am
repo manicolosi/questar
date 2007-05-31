@@ -44,8 +44,14 @@ ASSEMBLIES =                           \
 	-r:Mono.Cairo                      \
 	-r:Mono.Posix
 
+RESOURCES = \
+	-resource:$(top_srcdir)/resources/questar-ui.xml \
+	-resource:$(top_srcdir)/resources/questar.glade \
+	-resource:$(top_srcdir)/resources/questar.svg \
+	-resource:$(top_srcdir)/resources/terrains.xml
+
 $(ASSEMBLY): $(SOURCES)
-	$(MCS) -target:exe -out:$@ $(SOURCES) $(ASSEMBLIES)
+	$(MCS) -target:exe -out:$@ $(SOURCES) $(ASSEMBLIES) $(RESOURCES)
 
 all: $(ASSEMBLY)
 
