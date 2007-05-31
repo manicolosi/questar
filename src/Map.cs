@@ -13,8 +13,8 @@ namespace Questar.Maps
 
     public class Map
     {
-        private int width  = 256;
-        private int height = 256;
+        private int width  = 48;
+        private int height = 48;
 
         private Grid [,] grids;
 
