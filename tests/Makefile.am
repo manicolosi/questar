@@ -16,7 +16,7 @@ all: $(ASSEMBLY)
 
 tests: all
 
-run-tests: tests
+test: tests
 	MONO_PATH=../src:$(NUNIT_CONSOLE_PATH) $(NUNIT_CONSOLE_PATH)/nunit-console.exe -nologo -labels $(ASSEMBLY)
 
 EXTRA_DIST =                           \

@@ -3,7 +3,7 @@ run:
 	make run;                          \
 	popd;
 
-run-tests:
+test:
 	pushd $(top_builddir)/tests;       \
 	make run-tests;                    \
 	popd;
