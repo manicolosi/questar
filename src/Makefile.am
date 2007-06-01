@@ -26,6 +26,7 @@ SOURCES =                              \
 	$(srcdir)/MoveAction.cs            \
 	$(srcdir)/NativeMethods.cs         \
 	$(srcdir)/Point.cs                 \
+	$(srcdir)/PreferenceDialog.cs      \
 	$(srcdir)/ProgramInformation.cs    \
 	$(srcdir)/SchemaEntry.cs           \
 	$(srcdir)/Terrain.cs               \

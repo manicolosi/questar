@@ -22,6 +22,20 @@ namespace Questar.Gui
         private const int Large    = 125;
         private const int Largest  = 150;
 
+        private const string tile_set_directory = "../tilesets";
+
+        public static IEnumerable<string> AvailableTileSets
+        {
+            get {
+                string [] directories =
+                    Directory.GetDirectories (tile_set_directory);
+
+                foreach (string directory in directories) {
+                    yield return Path.GetFileName (directory);
+                }
+            }
+        }
+
         private Dictionary<string, Tile> tiles =
             new Dictionary<string, Tile> ();
 
@@ -117,7 +131,7 @@ namespace Questar.Gui
 
         private string TileSetDirectory
         {
-            get { return Path.Combine ("../tilesets", Name); }
+            get { return Path.Combine (tile_set_directory, Name); }
         }
 
         private void LoadPixbufs ()

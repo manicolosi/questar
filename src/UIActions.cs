@@ -45,7 +45,10 @@ namespace Questar.Gui
 
                 new ActionEntry ("EditMenu", null, "_Edit", null, null, null),
                 new ActionEntry ("Preferences", Stock.Preferences,
-                    "_Preferences", null, null, null),
+                    "_Preferences", null, null, delegate {
+                        PreferenceDialog dialog = new PreferenceDialog ();
+                        dialog.Run ();
+                    }),
 
                 new ActionEntry ("ViewMenu", null, "_View", null, null, null),
                 new ActionEntry ("ZoomIn", Stock.ZoomIn, "Zoom _In",
