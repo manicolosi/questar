@@ -111,15 +111,6 @@ namespace Questar.Gui
             get { return ((int) zoom) / 100.0; }
         }
 
-        public string Name
-        {
-            get { return name; }
-            set {
-                name = value;
-                UISchema.TileSet.Set (name);
-            }
-        }
-
         public Tile this[string key]
         {
             get {
@@ -141,6 +132,15 @@ namespace Questar.Gui
             set {
                 zoom = value;
                 UISchema.Zoom.Set (zoom);
+            }
+        }
+
+        private string Name
+        {
+            get { return name; }
+            set {
+                name = value;
+                UISchema.TileSet.Set (name);
             }
         }
 
