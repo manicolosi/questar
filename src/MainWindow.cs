@@ -93,12 +93,6 @@ namespace Questar.Gui
                 Close ();
             };
 
-            UIActions.Instance["About"].Activated += delegate {
-                Dialog about = new AboutDialog ();
-                about.Run ();
-                about.Destroy ();
-            };
-
             ConfigurationClient.SyncToggleAction ("ShowMessages",
                 UISchema.ShowMessages,
                 delegate (ToggleAction action, SchemaEntry<bool> entry) {

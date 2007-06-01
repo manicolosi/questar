@@ -33,9 +33,8 @@ namespace Questar.Gui
                 string [] directories =
                     Directory.GetDirectories (tile_set_directory);
 
-                foreach (string directory in directories) {
+                foreach (string directory in directories)
                     yield return Path.GetFileName (directory);
-                }
             }
         }
 

@@ -64,7 +64,11 @@ namespace Questar.Gui
 
                 new ActionEntry ("HelpMenu", null, "_Help", null, null, null),
                 new ActionEntry ("About", Stock.About, "_About",
-                    null, null, null),
+                    null, null, delegate {
+                        Dialog dialog = new AboutDialog ();
+                        dialog.Run ();
+                        dialog.Destroy ();
+                    }),
             });
 
             toggle_actions.Add (new ToggleActionEntry []
