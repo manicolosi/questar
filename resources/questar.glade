@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.2.0 on Fri Jun  1 03:09:25 2007 by mark@lothlorien-->
+<!--Generated with glade3 3.2.0 on Fri Jun  1 06:40:10 2007 by mark@lothlorien-->
 <glade-interface>
   <widget class="GtkWindow" id="main_window">
     <child>
@@ -185,6 +185,7 @@
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                 <property name="label" translatable="yes">gtk-help</property>
                 <property name="use_stock">True</property>
+                <property name="response_id">-11</property>
               </widget>
               <packing>
                 <property name="secondary">True</property>
@@ -198,6 +199,7 @@
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                 <property name="label" translatable="yes">gtk-close</property>
                 <property name="use_stock">True</property>
+                <property name="response_id">-7</property>
               </widget>
               <packing>
                 <property name="position">1</property>

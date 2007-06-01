@@ -27,7 +27,17 @@ namespace Questar.Gui
 
         public ResponseType Run ()
         {
-            return (ResponseType) dialog.Run ();
+            ResponseType response;
+
+            do {
+                response = (ResponseType) dialog.Run ();
+
+                // FIXME: Handler help response.
+            } while (response != ResponseType.Close &&
+                response != ResponseType.DeleteEvent);
+
+            dialog.Destroy ();
+            return response;
         }
 
         private void SetupGlade ()

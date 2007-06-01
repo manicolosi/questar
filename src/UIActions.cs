@@ -5,6 +5,8 @@
 
 using Gdk;
 using Gtk;
+using System;
+
 using Key = Gdk.Key;
 
 namespace Questar.Gui
