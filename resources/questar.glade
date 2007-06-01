@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.2.0 on Fri Jun  1 07:11:17 2007 by mark@lothlorien-->
+<!--Generated with glade3 3.2.0 on Fri Jun  1 18:11:52 2007 by mark@lothlorien-->
 <glade-interface>
   <widget class="GtkWindow" id="main_window">
     <child>
@@ -129,6 +129,7 @@
                             <property name="xalign">0</property>
                             <property name="label" translatable="yes">_Tile set:</property>
                             <property name="use_underline">True</property>
+                            <property name="mnemonic_widget">tile_set_combobox</property>
                           </widget>
                           <packing>
                             <property name="expand">False</property>
