@@ -98,6 +98,11 @@ namespace Questar.Gui
                 delegate (ToggleAction action, SchemaEntry<bool> entry) {
                     message_view_container.Visible = action.Active;
                 });
+
+            UISchema.ShowMessages.Changed += delegate {
+                (UIActions.Instance["ShowMessages"] as ToggleAction).Active =
+                    UISchema.ShowMessages.Get ();
+            };
         }
 
         protected override bool OnDeleteEvent (Event args)
