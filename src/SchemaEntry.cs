@@ -4,16 +4,22 @@
 //
 
 // Mostly stolen from Banshee.
+using GConf;
+using System;
+
+using Questar.Base;
 
 namespace Questar.Configuration
 {
-    public struct SchemaEntry<T>
+    public class SchemaEntry<T>
     {
         public readonly string Namespace;
         public readonly string Key;
         public readonly T DefaultValue;
         public readonly string ShortDescription;
         public readonly string LongDescription;
+
+        public event EventHandler<EventArgs> Changed;
 
         public SchemaEntry (string namespce, string key, T default_value,
             string short_description, string long_description)
@@ -23,6 +29,10 @@ namespace Questar.Configuration
             DefaultValue = default_value;
             ShortDescription = short_description;
             LongDescription = long_description;
+
+            ConfigurationClient.Instance.AddNotify (this, delegate {
+                Events.FireEvent (this, Changed);
+            });
         }
 
         public T Get ()

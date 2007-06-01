@@ -34,6 +34,12 @@ namespace Questar.Configuration
             client = new Client ();
         }
 
+        public void AddNotify<T> (SchemaEntry<T> entry, NotifyEventHandler handler)
+        {
+            client.AddNotify (base_key + entry.Namespace + "/" + entry.Key,
+                handler);
+        }
+
         public T Get<T> (SchemaEntry<T> entry)
         {
             string key = base_key + entry.Namespace + "/" + entry.Key;

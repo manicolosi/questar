@@ -45,7 +45,7 @@ namespace Questar.Gui
             tile_set_combobox.Changed += delegate {
                 TreeIter iter;
                 tile_set_combobox.GetActiveIter (out iter);
-                Console.WriteLine (tile_set_combobox.Model.GetValue (iter, 0));
+                UISchema.TileSet.Set (tile_set_combobox.Model.GetValue (iter, 0) as string);
             };
         }
 

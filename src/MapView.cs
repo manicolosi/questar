@@ -40,7 +40,7 @@ namespace Questar.Gui
 
         private void SetupHandlers ()
         {
-            tileset.ZoomChanged += delegate {
+            tileset.TileSetChanged += delegate {
                 base.QueueDraw ();
             };
 

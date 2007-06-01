@@ -45,15 +45,33 @@ namespace Questar.Gui
 
         private string name;
 
-        public event EventHandler<EventArgs> ZoomChanged;
+        public event EventHandler<EventArgs> TileSetChanged;
 
         public TileSet ()
         {
             zoom = UISchema.Zoom.Get ();
             name = UISchema.TileSet.Get ();
 
+            SetupHandlers ();
             LoadPixbufs ();
+        }
 
+        private void SetupHandlers ()
+        {
+            // Schema Notify Events
+            UISchema.TileSet.Changed +=
+                delegate (object sender, EventArgs args) {
+                    SchemaEntry<string> entry = sender as SchemaEntry<string>;
+
+                    Console.WriteLine ("TileSet.Notify: {0}: {1}",
+                        entry.Key, entry.Get ());
+
+                    name = entry.Get () as string;
+                    LoadPixbufs ();
+                    Events.FireEvent (this, TileSetChanged);
+                };
+
+            // UI Action Events
             UIActions.Instance["ZoomIn"].Activated += delegate {
                 if (zoom != Largest) {
                     Zoom += 25;
@@ -118,7 +136,7 @@ namespace Questar.Gui
 
                 LoadPixbufs ();
 
-                Events.FireEvent (this, ZoomChanged);
+                Events.FireEvent (this, TileSetChanged);
 
                 UIActions.Instance["ZoomIn"].Sensitive  =
                     zoom != Largest;
