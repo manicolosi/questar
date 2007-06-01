@@ -1,3 +1,8 @@
+//
+// AssemblyInfo.cs: This file is generated from AssemblyInfo.cs.in
+// Author: Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
+//
+
 using System.Reflection;
 using System.Runtime.CompilerServices;
 

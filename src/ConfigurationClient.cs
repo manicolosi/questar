@@ -1,3 +1,8 @@
+//
+// ConfigurationClient.cs: Description Goes Here
+// Author: Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
+//
+
 // Mostly stolen from Banshee.
 using GConf;
 using Gtk;

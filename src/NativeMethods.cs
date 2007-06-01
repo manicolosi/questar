@@ -1,3 +1,8 @@
+//
+// NativeMethods.cs: Description Goes Here
+// Author: Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
+//
+
 using System.Runtime.InteropServices;
 using Mono.Unix.Native;
 

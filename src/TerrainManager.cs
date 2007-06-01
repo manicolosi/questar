@@ -1,3 +1,8 @@
+//
+// TerrainManager.cs: Description Goes Here
+// Author: Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
+//
+
 using System;
 using System.Collections.Generic;
 using System.IO;
