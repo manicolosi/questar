@@ -103,6 +103,14 @@ namespace Questar.Gui
                 (UIActions.Instance["ShowMessages"] as ToggleAction).Active =
                     UISchema.ShowMessages.Get ();
             };
+            EventHandler<EventArgs> load_settings = delegate {
+                LoadSettings ();
+            };
+            UISchema.Width.Changed     += load_settings;
+            UISchema.Height.Changed    += load_settings;
+            UISchema.XPos.Changed      += load_settings;
+            UISchema.YPos.Changed      += load_settings;
+            UISchema.Maximized.Changed += load_settings;
         }
 
         protected override bool OnDeleteEvent (Event args)
@@ -123,17 +131,18 @@ namespace Questar.Gui
 
         protected override bool OnConfigureEvent (EventConfigure args)
         {
-            if ((base.GdkWindow.State & WindowState.Maximized) == 0) {
-                int x, y, width, height;
+            if (UISchema.Maximized.Get ())
+                return false;
 
-                base.GetPosition (out x, out y);
-                base.GetSize (out width, out height);
+            int x, y, width, height;
 
-                UISchema.XPos.Set (x);
-                UISchema.YPos.Set (y);
-                UISchema.Width.Set (width);
-                UISchema.Height.Set (height);
-            }
+            base.GetPosition (out x, out y);
+            base.GetSize (out width, out height);
+
+            UISchema.XPos.Set (x);
+            UISchema.YPos.Set (y);
+            UISchema.Width.Set (width);
+            UISchema.Height.Set (height);
 
             return base.OnConfigureEvent (args);
         }
