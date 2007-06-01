@@ -14,7 +14,7 @@ namespace Questar.Actors
 
         public Hero (Map map)
         {
-            base.Tile = "newdude";
+            base.Tile = "hero";
             base.Name = "Hero";
             base.Map = map;
 
