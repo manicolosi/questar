@@ -3,6 +3,8 @@
 // Author: Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
 //
 
+using Questar.Gui;
+
 namespace Questar.Configuration
 {
     public static class UISchema
@@ -38,9 +40,9 @@ namespace Questar.Configuration
                 "otherwise false."
             );
 
-        public static readonly SchemaEntry<string> Zoom =
-            new SchemaEntry<string> ("user_interface", "zoom", "normal",
-                "Tile Set Zoom",
+        public static readonly SchemaEntry<ZoomSetting> Zoom =
+            new SchemaEntry<ZoomSetting> ("user_interface", "zoom",
+                ZoomSetting.Normal, "Tile Set Zoom",
                 "Zoom of the tile set. Must be one of Smallest, Small, " +
                 "Normal, Large, or Largest."
             );

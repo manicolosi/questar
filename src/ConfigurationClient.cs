@@ -45,8 +45,18 @@ namespace Questar.Configuration
             string key = base_key + entry.Namespace + "/" + entry.Key;
 
             try {
-                return (T) client.Get (key);
-            } catch (NoSuchKeyException) {
+                object value = client.Get (key);
+
+                if (typeof (T).IsEnum)
+                    value = Enum.Parse (typeof (T), value as string, true);                    
+
+                return (T) value;
+            }
+            catch (NoSuchKeyException) {
+                Set<T> (entry, entry.DefaultValue);
+                return entry.DefaultValue;
+            }
+            catch (ArgumentException) {
                 Set<T> (entry, entry.DefaultValue);
                 return entry.DefaultValue;
             }
@@ -54,8 +64,13 @@ namespace Questar.Configuration
 
         public void Set<T> (SchemaEntry<T> entry, T value)
         {
+            object real_value = value;
             string key = base_key + entry.Namespace + "/" + entry.Key;
-            client.Set (key, value);
+
+            if (typeof (T).IsEnum)
+                real_value = value.ToString ();
+
+            client.Set (key, real_value);
         }
 
         public delegate void SyncToggleActionHandler (ToggleAction action,

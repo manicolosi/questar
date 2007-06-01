@@ -14,17 +14,17 @@ using Questar.Configuration;
 
 namespace Questar.Gui
 {
+    public enum ZoomSetting
+    {
+        Smallest = 50,
+        Small    = 75,
+        Normal   = 100,
+        Large    = 125,
+        Largest  = 150
+    }
+
     public class TileSet
     {
-        public enum ZoomSetting
-        {
-            Smallest = 50,
-            Small    = 75,
-            Normal   = 100,
-            Large    = 125,
-            Largest  = 150
-        }
-
         private const string tile_set_directory = "../tilesets";
 
         public static IEnumerable<string> AvailableTileSets
@@ -52,8 +52,7 @@ namespace Questar.Gui
 
         public TileSet ()
         {
-            zoom = (ZoomSetting) Enum.Parse (typeof (ZoomSetting),
-                UISchema.Zoom.Get (), true);
+            zoom = UISchema.Zoom.Get ();
             name = UISchema.TileSet.Get ();
 
             SetupHandlers ();
@@ -69,8 +68,7 @@ namespace Questar.Gui
                 Events.FireEvent (this, TileSetChanged);
             };
             UISchema.Zoom.Changed += delegate {
-                zoom = (ZoomSetting) Enum.Parse (typeof (ZoomSetting),
-                    UISchema.Zoom.Get (), true);
+                zoom = UISchema.Zoom.Get ();
                 LoadPixbufs ();
                 Events.FireEvent (this, TileSetChanged);
 
@@ -143,7 +141,7 @@ namespace Questar.Gui
             }
             set {
                 zoom = value;
-                UISchema.Zoom.Set (zoom.ToString ());
+                UISchema.Zoom.Set (zoom);
             }
         }
 
