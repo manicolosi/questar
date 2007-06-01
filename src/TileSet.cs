@@ -49,6 +49,34 @@ namespace Questar.Gui
             };
         }
 
+        public int Width
+        {
+            get { return width; }
+        }
+
+        public int Height
+        {
+            get { return height; }
+        }
+
+        public double ZoomPercentage
+        {
+            get { return ((int) zoom) / 100.0; }
+        }
+
+        public Tile this[string key]
+        {
+            get {
+                Tile value;
+
+                if (!tiles.TryGetValue (key, out value))
+                    throw new ArgumentOutOfRangeException ("key",
+                        String.Format ("'{0}' is an invalid tile key.", key));
+
+                return value;
+            }
+        }
+
         private int Zoom
         {
             get {
@@ -87,34 +115,6 @@ namespace Questar.Gui
 
             width = tiles["default"].Pixbuf.Width;
             height = tiles["default"].Pixbuf.Height;
-        }
-
-        public Tile this[string key]
-        {
-            get {
-                Tile value;
-
-                if (!tiles.TryGetValue (key, out value))
-                    throw new ArgumentOutOfRangeException ("key",
-                        String.Format ("'{0}' is an invalid tile key.", key));
-
-                return value;
-            }
-        }
-
-        public int Width
-        {
-            get { return width; }
-        }
-
-        public int Height
-        {
-            get { return height; }
-        }
-
-        public double ZoomPercentage
-        {
-            get { return ((int) zoom) / 100.0; }
         }
     }
 }
