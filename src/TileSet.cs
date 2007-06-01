@@ -24,11 +24,14 @@ namespace Questar.Gui
         private int height;
         private int zoom;
 
+        private string name;
+
         public event EventHandler<EventArgs> ZoomChanged;
 
         public TileSet ()
         {
             zoom = UISchema.Zoom.Get ();
+            name = UISchema.TileSet.Get ();
 
             LoadPixbufs ();
 
@@ -62,6 +65,15 @@ namespace Questar.Gui
         public double ZoomPercentage
         {
             get { return ((int) zoom) / 100.0; }
+        }
+
+        public string Name
+        {
+            get { return name; }
+            set {
+                name = value;
+                UISchema.TileSet.Set (name);
+            }
         }
 
         public Tile this[string key]
@@ -98,6 +110,11 @@ namespace Questar.Gui
             }
         }
 
+        private string TileSetDirectory
+        {
+            get { return Path.Combine ("../tilesets", Name); }
+        }
+
         private void LoadPixbufs ()
         {
             foreach (Tile tile in tiles.Values) {
@@ -105,8 +122,11 @@ namespace Questar.Gui
             }
             tiles.Clear ();
 
-            string [] files = Directory.GetFiles (
-                "../tilesets/default", "*.svg");
+            if (!Directory.Exists (TileSetDirectory)) {
+                Name = UISchema.TileSet.DefaultValue;
+            }
+
+            string [] files = Directory.GetFiles (TileSetDirectory, "*.svg");
 
             foreach (string file in files) {
                 string key = Path.GetFileNameWithoutExtension (file);
