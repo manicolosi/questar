@@ -38,10 +38,11 @@ namespace Questar.Configuration
                 "otherwise false."
             );
 
-        public static readonly SchemaEntry<int> Zoom =
-            new SchemaEntry<int> ("user_interface", "zoom", 100,
+        public static readonly SchemaEntry<string> Zoom =
+            new SchemaEntry<string> ("user_interface", "zoom", "normal",
                 "Tile Set Zoom",
-                "Zoom of the tile set (percentage)."
+                "Zoom of the tile set. Must be one of Smallest, Small, " +
+                "Normal, Large, or Largest."
             );
 
         public static readonly SchemaEntry<string> TileSet =

@@ -16,11 +16,14 @@ namespace Questar.Gui
 {
     public class TileSet
     {
-        private const int Smallest = 50;
-        private const int Small    = 75;
-        private const int Normal   = 100;
-        private const int Large    = 125;
-        private const int Largest  = 150;
+        public enum ZoomSetting
+        {
+            Smallest = 50,
+            Small    = 75,
+            Normal   = 100,
+            Large    = 125,
+            Largest  = 150
+        }
 
         private const string tile_set_directory = "../tilesets";
 
@@ -41,7 +44,7 @@ namespace Questar.Gui
 
         private int width;
         private int height;
-        private int zoom;
+        private ZoomSetting zoom;
 
         private string name;
 
@@ -49,7 +52,8 @@ namespace Questar.Gui
 
         public TileSet ()
         {
-            zoom = UISchema.Zoom.Get ();
+            zoom = (ZoomSetting) Enum.Parse (typeof (ZoomSetting),
+                UISchema.Zoom.Get (), true);
             name = UISchema.TileSet.Get ();
 
             SetupHandlers ();
@@ -59,32 +63,38 @@ namespace Questar.Gui
         private void SetupHandlers ()
         {
             // Schema Notify Events
-            UISchema.TileSet.Changed +=
-                delegate (object sender, EventArgs args) {
-                    SchemaEntry<string> entry = sender as SchemaEntry<string>;
+            UISchema.TileSet.Changed += delegate {
+                name = UISchema.TileSet.Get ();
+                LoadPixbufs ();
+                Events.FireEvent (this, TileSetChanged);
+            };
+            UISchema.Zoom.Changed += delegate {
+                zoom = (ZoomSetting) Enum.Parse (typeof (ZoomSetting),
+                    UISchema.Zoom.Get (), true);
+                LoadPixbufs ();
+                Events.FireEvent (this, TileSetChanged);
 
-                    Console.WriteLine ("TileSet.Notify: {0}: {1}",
-                        entry.Key, entry.Get ());
+                UIActions.Instance["ZoomIn"].Sensitive  =
+                    zoom != ZoomSetting.Largest;
+                UIActions.Instance["ZoomOut"].Sensitive =
+                    zoom != ZoomSetting.Smallest;
 
-                    name = entry.Get () as string;
-                    LoadPixbufs ();
-                    Events.FireEvent (this, TileSetChanged);
-                };
+            };
 
             // UI Action Events
             UIActions.Instance["ZoomIn"].Activated += delegate {
-                if (zoom != Largest) {
-                    Zoom += 25;
+                if (zoom != ZoomSetting.Largest) {
+                    Zoom += (int) 25;
                 }
             };
             UIActions.Instance["ZoomOut"].Activated += delegate {
-                if (zoom != Smallest) {
+                if (zoom != ZoomSetting.Smallest) {
                     Zoom -= 25;
                 }
             };
             UIActions.Instance["NormalSize"].Activated += delegate {
-                if (zoom != Normal) {
-                    Zoom = Normal;
+                if (zoom != ZoomSetting.Normal) {
+                    Zoom = ZoomSetting.Normal;
                 }
             };
         }
@@ -126,24 +136,14 @@ namespace Questar.Gui
             }
         }
 
-        private int Zoom
+        private ZoomSetting Zoom
         {
             get {
                 return zoom;
             }
             set {
                 zoom = value;
-
-                LoadPixbufs ();
-
-                Events.FireEvent (this, TileSetChanged);
-
-                UIActions.Instance["ZoomIn"].Sensitive  =
-                    zoom != Largest;
-                UIActions.Instance["ZoomOut"].Sensitive =
-                    zoom != Smallest;
-
-                UISchema.Zoom.Set (zoom);
+                UISchema.Zoom.Set (zoom.ToString ());
             }
         }
 
