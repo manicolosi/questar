@@ -4,6 +4,9 @@ run:
 	popd;
 
 test:
+	pushd $(top_builddir)/src;         \
+	make;                              \
+	popd;                              \
 	pushd $(top_builddir)/tests;       \
 	make test;                         \
 	popd;

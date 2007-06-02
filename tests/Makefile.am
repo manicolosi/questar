@@ -1,12 +1,13 @@
 ASSEMBLY = Questar.UnitTests.dll
-NUNIT_CONSOLE_PATH = ~/source/nunit-bin/bin
+NUNIT_PATH = /home/mark/source/nunit-bin/bin
 
 SOURCES =                              \
+	$(srcdir)/HitPointsTest.cs         \
 	$(srcdir)/MockActor.cs             \
 	$(srcdir)/TestWorld.cs
 
 ASSEMBLIES =                           \
-	-pkg:nunit-2.2                     \
+	-r:$(NUNIT_PATH)/nunit.framework.dll    \
 	-r:../src/Questar.exe
 
 $(ASSEMBLY): $(SOURCES) 
@@ -17,7 +18,7 @@ all: $(ASSEMBLY)
 tests: all
 
 test: tests
-	MONO_PATH=../src:$(NUNIT_CONSOLE_PATH) $(NUNIT_CONSOLE_PATH)/nunit-console.exe -nologo -labels $(ASSEMBLY)
+	MONO_PATH=../src:$(NUNIT_PATH) $(NUNIT_PATH)/nunit-console.exe -nologo -labels $(ASSEMBLY)
 
 EXTRA_DIST =                           \
 	$(SOURCES)

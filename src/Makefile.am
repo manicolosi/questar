@@ -13,6 +13,7 @@ SOURCES =                              \
 	$(srcdir)/Grid.cs                  \
 	$(srcdir)/GridInformation.cs       \
 	$(srcdir)/Hero.cs                  \
+	$(srcdir)/HitPoints.cs             \
 	$(srcdir)/IActionable.cs           \
 	$(srcdir)/IAction.cs               \
 	$(srcdir)/IActor.cs                \
