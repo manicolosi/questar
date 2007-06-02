@@ -26,14 +26,18 @@ namespace Questar.Actors
 
         public HitPoints (int current, int max)
         {
-            this.current = current;
-            this.max = max;
+            Max = max;
+            Current = current;
         }
 
         public int Current
         {
             get { return current; }
             set {
+                if (value > max)
+                    throw new ArgumentException (
+                        "Current must be less than Max.");
+
                 HitPoints old = Clone () as HitPoints;
                 current = value;
 
@@ -48,6 +52,10 @@ namespace Questar.Actors
         {
             get { return max; }
             set {
+                if (value < current)
+                    throw new ArgumentException (
+                        "Max must be greater than Current.");
+
                 HitPoints old = Clone () as HitPoints;
                 max = value;
 
@@ -66,6 +74,33 @@ namespace Questar.Actors
         public object Clone ()
         {
             return base.MemberwiseClone ();
+        }
+
+        public override int GetHashCode ()
+        {
+            return ToString ().GetHashCode ();
+        }
+
+        public override bool Equals (object o)
+        {
+            HitPoints hp = (HitPoints) o;
+
+            if (Current != hp.Current)
+                return false;
+            if (Max != hp.Max)
+                return false;
+
+            return true;
+        }
+
+        public static bool operator == (HitPoints a, HitPoints b)
+        {
+            return a.Equals (b);
+        }
+
+        public static bool operator != (HitPoints a, HitPoints b)
+        {
+            return !a.Equals (b);
         }
     }
 }

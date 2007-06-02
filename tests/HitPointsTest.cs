@@ -30,6 +30,13 @@ namespace Questar.UnitTests
         }
 
         [Test]
+        [ExpectedException (typeof (ArgumentException))]
+        public void CreationWithBadArguments ()
+        {
+            hp = new HitPoints (10, 5);
+        }
+
+        [Test]
         public void HPToString ()
         {
             StringAssert.IsMatch ("25/30", hp.ToString ());
@@ -53,6 +60,23 @@ namespace Questar.UnitTests
             hp.Max -= 5;
             Assert.AreEqual (25, hp.Max);
             Assert.IsTrue (changed);
+        }
+
+        [Test]
+        public void Equality ()
+        {
+            Assert.IsTrue (new HitPoints (10, 15) == new HitPoints (10, 15));
+            Assert.IsTrue (new HitPoints (10, 15) != new HitPoints (50, 85));
+        }
+
+        [Test]
+        public void HitPointsEventArgs ()
+        {
+            HitPoints old = hp.Clone () as HitPoints;
+            hp.Changed += delegate (object sender, HitPointsEventArgs args) {
+                Assert.AreEqual (old, args.OldHitPoints);
+            };
+            hp.Current += 5;
         }
     }
 }
