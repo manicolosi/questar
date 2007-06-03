@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Questar.Actors;
 using Questar.Actors.Actions;
 using Questar.Base;
+using Questar.Maps;
 
 namespace Questar.UnitTests
 {
@@ -17,7 +18,7 @@ namespace Questar.UnitTests
             base.Name = name;
             base.Tile = "Blah";
             base.Location = new Point (0, 0);
-            base.Map = null;
+            base.Map = new Map ();
         }
 
         public override bool IsTurnReady
