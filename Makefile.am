@@ -24,6 +24,13 @@ SUBDIRS =                              \
 	tests                              \
 	tilesets
 
+EXTRA_DIST =                           \
+	AUTHORS                            \
+	ChangeLog                          \
+	COPYING                            \
+	NEWS                               \
+	README
+
 MAINTAINERCLEANFILES =                 \
 	Makefile.in                        \
 	config.guess                       \
