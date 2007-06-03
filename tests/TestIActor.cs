@@ -21,7 +21,7 @@ namespace Questar.UnitTests
         [SetUp]
         public void Setup ()
         {
-            actor = new MockActor ("Tom", null);
+            actor = new MockActor ("Tom");
         }
 
         [Test]

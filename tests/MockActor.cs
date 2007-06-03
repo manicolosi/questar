@@ -35,6 +35,10 @@ namespace Questar.UnitTests
             this.loop = loop;
         }
 
+        public MockActor (string name) : this (name, null)
+        {
+        }
+
         public override bool IsTurnReady
         {
             get { return is_turn_ready; }
