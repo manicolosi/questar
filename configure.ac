@@ -29,5 +29,8 @@ resources/Makefile
 src/Makefile
 src/AssemblyInfo.cs
 tests/Makefile
+tilesets/Makefile
+tilesets/ascii/Makefile
+tilesets/default/Makefile
 ])
 

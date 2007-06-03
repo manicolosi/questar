@@ -21,7 +21,8 @@ test:
 SUBDIRS =                              \
 	resources                          \
 	src                                \
-	tests
+	tests                              \
+	tilesets
 
 MAINTAINERCLEANFILES =                 \
 	Makefile.in                        \
