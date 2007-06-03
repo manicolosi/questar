@@ -2,9 +2,9 @@ ASSEMBLY = Questar.UnitTests.dll
 NUNIT_PATH = /home/mark/source/nunit-bin/bin
 
 SOURCES =                              \
-	$(srcdir)/HitPointsTest.cs         \
+	$(srcdir)/TestHitPoints.cs         \
 	$(srcdir)/MockActor.cs             \
-	$(srcdir)/SchemaEntryTest.cs       \
+	$(srcdir)/TestSchemaEntry.cs       \
 	$(srcdir)/TestWorld.cs
 
 ASSEMBLIES =                                \
