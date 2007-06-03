@@ -25,6 +25,7 @@ SUBDIRS =                              \
 	tilesets
 
 EXTRA_DIST =                           \
+	autogen.sh                         \
 	AUTHORS                            \
 	ChangeLog                          \
 	COPYING                            \
