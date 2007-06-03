@@ -6,12 +6,6 @@
         <tile>grass</tile>
     </terrain>
     
-    <terrain key="dirt">
-        <name>Dirt</name>
-        <description>It's dirty.</description>
-        <tile>dirt</tile>
-    </terrain>
-
     <terrain key="tree">
         <name>Tree</name>
         <description>They're big.</description>
@@ -20,18 +14,11 @@
         <blocks>true</blocks>
     </terrain>
 
-    <terrain key="stream">
-        <name>Stream</name>
-        <description></description>
-        <tile>grass</tile>
-        <tile>stream-n-s</tile>
-    </terrain>
-
     <terrain key="flower">
         <name>Flower</name>
         <description>A Pretty flower.</description>
         <tile>grass</tile>
-        <tile>flower-1</tile>
+        <tile>flower</tile>
     </terrain>
 </terrains>
 
