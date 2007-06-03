@@ -30,7 +30,7 @@ namespace Questar.UnitTests
             base.HitPoints = new HitPoints (0, 0);
             base.Tile = "Blah";
             base.Location = new Point (0, 0);
-            base.Map = new Map ();
+            base.Map = null;
 
             this.loop = loop;
         }
