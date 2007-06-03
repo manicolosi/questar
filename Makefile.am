@@ -1,3 +1,10 @@
+################################################################################
+#   Makefile.am: Main automake source file for building Questar.
+#
+#   Copyright (C) 2007
+#   Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
+################################################################################
+
 run:
 	pushd $(top_builddir)/src;         \
 	make run;                          \
@@ -12,6 +19,7 @@ test:
 	popd;
 
 SUBDIRS =                              \
+	resources                          \
 	src                                \
 	tests
 
