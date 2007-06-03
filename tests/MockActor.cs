@@ -1,3 +1,12 @@
+/*******************************************************************************
+ *  MockActor.cs: Mock object that implements the IActor interface, used
+ *  for unit tests.
+ *
+ *  Copyright (C) 2007
+ *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
+ ******************************************************************************/
+
+using GLib;
 using System;
 using System.Collections.Generic;
 
@@ -13,13 +22,17 @@ namespace Questar.UnitTests
         bool is_turn_ready = false;
         Dictionary<int, bool> turns = new Dictionary<int, bool> ();
 
-        public MockActor (string name)
+        MainLoop loop;
+
+        public MockActor (string name, MainLoop loop)
         {
             base.Name = name;
             base.HitPoints = new HitPoints (0, 0);
             base.Tile = "Blah";
             base.Location = new Point (0, 0);
             base.Map = new Map ();
+
+            this.loop = loop;
         }
 
         public override bool IsTurnReady
@@ -37,7 +50,7 @@ namespace Questar.UnitTests
                 is_turn_ready = false;
                 turns.Add (World.Instance.Round, true);
 
-                TestWorld.Loop.Quit ();
+                loop.Quit ();
 
                 return new DoNothingAction (this);
             }

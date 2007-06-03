@@ -1,3 +1,11 @@
+/*******************************************************************************
+ *  TestWorld.cs: Unit Tests for World class.
+ *
+ *  Copyright (C) 2007
+ *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
+ ******************************************************************************/
+
+using GLib;
 using NUnit.Framework;
 using System;
 
@@ -13,15 +21,15 @@ namespace Questar.UnitTests
         MockActor actor1;
         MockActor actor2;
 
-        public static GLib.MainLoop Loop;
+        private MainLoop loop;
 
         [SetUp]
         public void SetupWorldTests ()
         {
-            Loop = new GLib.MainLoop ();
+            loop = new MainLoop ();
 
-            actor1 = new MockActor ("Mock Actor 1");
-            actor2 = new MockActor ("Mock Actor 2");
+            actor1 = new MockActor ("Mock Actor 1", loop);
+            actor2 = new MockActor ("Mock Actor 2", loop);
 
             World.RecreateInstanceForTesting ();
             world = World.Instance;
@@ -65,7 +73,7 @@ namespace Questar.UnitTests
 
             // Make actor1 take it's turn.
             actor1.MakeTurnReady ();
-            Loop.Run ();
+            loop.Run ();
 
             // Only actor1 should have taken a turn at this point.
             Assert.IsTrue (actor1.TookTurnInRound (0));
@@ -74,7 +82,7 @@ namespace Questar.UnitTests
 
             // Make actor2 take it's turn.
             actor2.MakeTurnReady ();
-            Loop.Run ();
+            loop.Run ();
 
             // Both actor should have taken a turn now.
             Assert.IsTrue (actor1.TookTurnInRound (0));
@@ -93,7 +101,7 @@ namespace Questar.UnitTests
 
             actor1.MakeTurnReady ();
             actor2.MakeTurnReady ();
-            Loop.Run ();
+            loop.Run ();
 
             Assert.AreEqual (1, world.Round);
         }
