@@ -78,6 +78,22 @@ namespace Questar.UnitTests
             };
             hp.Current += 5;
         }
+
+        [Test]
+        public void IsEmpty ()
+        {
+            Assert.IsFalse (hp.IsEmpty);
+            hp.Current = 0;
+            Assert.IsTrue (hp.IsEmpty);
+        }
+
+        [Test]
+        public void IsFull ()
+        {
+            Assert.IsFalse (hp.IsFull);
+            hp.Current = hp.Max;
+            Assert.IsTrue (hp.IsFull);
+        }
     }
 }
 

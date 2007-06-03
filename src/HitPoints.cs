@@ -66,6 +66,16 @@ namespace Questar.Actors
             }
         }
 
+        public bool IsEmpty
+        {
+            get { return current == 0; }
+        }
+
+        public bool IsFull
+        {
+            get { return current == max; }
+        }
+
         public override string ToString ()
         {
             return String.Format ("{0}/{1}", Current, Max);
