@@ -10,6 +10,7 @@ SOURCES =                              \
 	$(srcdir)/DoNothingAction.cs       \
 	$(srcdir)/EntryPoint.cs            \
 	$(srcdir)/Events.cs                \
+	$(srcdir)/GladeDialog.cs           \
 	$(srcdir)/Grid.cs                  \
 	$(srcdir)/GridInformation.cs       \
 	$(srcdir)/Hero.cs                  \

@@ -11,47 +11,14 @@ using Questar.Configuration;
 
 namespace Questar.Gui
 {
-    public class PreferenceDialog
+    public class PreferenceDialog : GladeDialog
     {
-        Dialog dialog;
-        Glade.XML glade;
-
         [Glade.Widget] private ComboBox tile_set_combobox;
 
-        public PreferenceDialog ()
+        public PreferenceDialog () : base ("preference_dialog")
         {
-            SetupGlade ();
             SetupHandlers ();
             PopulateTileSetComboBox ();
-        }
-
-        public ResponseType Run ()
-        {
-            ResponseType response;
-
-            do {
-                response = (ResponseType) dialog.Run ();
-
-                // FIXME: Handler help response.
-            } while (response != ResponseType.Close &&
-                response != ResponseType.DeleteEvent);
-
-            return response;
-        }
-
-        public void Destroy ()
-        {
-            dialog.Destroy ();
-        }
-
-        private void SetupGlade ()
-        {
-            string name = "preference_dialog";
-
-            glade = new Glade.XML ("questar.glade", name);
-            glade.Autoconnect (this);
-
-            dialog = glade[name] as Dialog;
         }
 
         private void SetupHandlers ()
