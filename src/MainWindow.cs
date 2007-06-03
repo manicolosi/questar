@@ -65,21 +65,21 @@ namespace Questar.Gui
 
         private void LoadSettings ()
         {
-            int width = UISchema.Width.Get ();
-            int height = UISchema.Height.Get ();
+            int width = UISchema.Width.Value;
+            int height = UISchema.Height.Value;
 
             if (width != 0 && height != 0)
                 base.Resize (width, height);
 
-            int x = UISchema.XPos.Get ();
-            int y = UISchema.YPos.Get ();
+            int x = UISchema.XPos.Value;
+            int y = UISchema.YPos.Value;
 
             if (x == 0 && y == 0)
                 base.SetPosition (WindowPosition.Center);
             else
                 base.Move (x, y);
 
-            if (UISchema.Maximized.Get ())
+            if (UISchema.Maximized.Value)
                 base.Maximize ();
             else
                 base.Unmaximize ();
@@ -101,7 +101,7 @@ namespace Questar.Gui
 
             UISchema.ShowMessages.Changed += delegate {
                 (UIActions.Instance["ShowMessages"] as ToggleAction).Active =
-                    UISchema.ShowMessages.Get ();
+                    UISchema.ShowMessages.Value;
             };
             EventHandler<EventArgs> load_settings = delegate {
                 LoadSettings ();
@@ -124,14 +124,14 @@ namespace Questar.Gui
             WindowState state = args.NewWindowState;
 
             if ((state & WindowState.Withdrawn) == 0)
-                UISchema.Maximized.Set ((state & WindowState.Maximized) != 0);
+                UISchema.Maximized.Value = (state & WindowState.Maximized) != 0;
 
             return base.OnWindowStateEvent (args);
         }
 
         protected override bool OnConfigureEvent (EventConfigure args)
         {
-            if (UISchema.Maximized.Get ())
+            if (UISchema.Maximized.Value)
                 return false;
 
             int x, y, width, height;
@@ -139,10 +139,10 @@ namespace Questar.Gui
             base.GetPosition (out x, out y);
             base.GetSize (out width, out height);
 
-            UISchema.XPos.Set (x);
-            UISchema.YPos.Set (y);
-            UISchema.Width.Set (width);
-            UISchema.Height.Set (height);
+            UISchema.XPos.Value = x;
+            UISchema.YPos.Value = y;
+            UISchema.Width.Value = width;
+            UISchema.Height.Value = height;
 
             return base.OnConfigureEvent (args);
         }

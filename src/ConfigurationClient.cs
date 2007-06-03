@@ -36,12 +36,12 @@ namespace Questar.Configuration
         {
             ToggleAction action = UIActions.Instance[action_name]
                 as ToggleAction;
-            action.Active = entry.Get ();
+            action.Active = entry.Value;
 
             handler (action, entry);
 
             action.Activated += delegate {
-                entry.Set (action.Active);
+                entry.Value = action.Active;
                 handler (action, entry);
             };
         }

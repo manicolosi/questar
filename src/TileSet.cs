@@ -51,8 +51,8 @@ namespace Questar.Gui
 
         public TileSet ()
         {
-            zoom = UISchema.Zoom.Get ();
-            name = UISchema.TileSet.Get ();
+            zoom = UISchema.Zoom.Value;
+            name = UISchema.TileSet.Value;
 
             SetupHandlers ();
             LoadPixbufs ();
@@ -62,12 +62,12 @@ namespace Questar.Gui
         {
             // Schema Notify Events
             UISchema.TileSet.Changed += delegate {
-                name = UISchema.TileSet.Get ();
+                name = UISchema.TileSet.Value;
                 LoadPixbufs ();
                 Events.FireEvent (this, TileSetChanged);
             };
             UISchema.Zoom.Changed += delegate {
-                zoom = UISchema.Zoom.Get ();
+                zoom = UISchema.Zoom.Value;
                 LoadPixbufs ();
                 Events.FireEvent (this, TileSetChanged);
 
@@ -131,7 +131,7 @@ namespace Questar.Gui
             }
             set {
                 zoom = value;
-                UISchema.Zoom.Set (zoom);
+                UISchema.Zoom.Value = zoom;
             }
         }
 
@@ -140,7 +140,7 @@ namespace Questar.Gui
             get { return name; }
             set {
                 name = value;
-                UISchema.TileSet.Set (name);
+                UISchema.TileSet.Value = name;
             }
         }
 

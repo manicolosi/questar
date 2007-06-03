@@ -37,18 +37,12 @@ namespace Questar.Configuration
 
         public T Value
         {
-            get { return Get (); }
-            set { Set (value); }
-        }
-
-        public T Get ()
-        {
-            return ConfigurationClient.Instance.Get<T> (this);
-        }
-
-        public void Set (T value)
-        {
-            ConfigurationClient.Instance.Set<T> (this, value);
+            get {
+                return ConfigurationClient.Instance.Get<T> (this);
+            }
+            set {
+                ConfigurationClient.Instance.Set<T> (this, value);
+            }
         }
     }
 }
