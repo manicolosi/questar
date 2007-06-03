@@ -14,6 +14,7 @@ namespace Questar.Actors
     public abstract class Actor : IActor, IActionable
     {
         private string name;
+        private HitPoints hit_points;
         private string tile;
         private Map map;
         private Point location;
@@ -30,6 +31,12 @@ namespace Questar.Actors
         {
             get { return tile; }
             protected set { tile = value; }
+        }
+
+        public virtual HitPoints HitPoints
+        {
+            get { return hit_points; }
+            protected set { hit_points = value; }
         }
 
         public virtual Point Location

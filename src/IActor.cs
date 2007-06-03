@@ -23,6 +23,7 @@ namespace Questar.Actors
         string Name { get; }
         bool IsTurnReady { get; }
         IAction Action { get; }
+        HitPoints HitPoints { get; }
     }
 }
 

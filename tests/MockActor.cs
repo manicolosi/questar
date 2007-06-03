@@ -16,6 +16,7 @@ namespace Questar.UnitTests
         public MockActor (string name)
         {
             base.Name = name;
+            base.HitPoints = new HitPoints (0, 0);
             base.Tile = "Blah";
             base.Location = new Point (0, 0);
             base.Map = new Map ();

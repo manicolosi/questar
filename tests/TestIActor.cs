@@ -28,6 +28,7 @@ namespace Questar.UnitTests
         public void Properties ()
         {
             Assert.AreEqual ("Tom", actor.Name);
+            Assert.AreEqual (new HitPoints (0, 0), actor.HitPoints);
         }
 
         [Test]
