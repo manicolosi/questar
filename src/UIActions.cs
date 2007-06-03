@@ -1,7 +1,9 @@
-//
-// UIActions.cs: Description Goes Here
-// Author: Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
-//
+/*******************************************************************************
+ *  UIActions.cs: Encapsulates Gtk.Actions.
+ *
+ *  Copyright (C) 2007
+ *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
+ ******************************************************************************/
 
 using Gdk;
 using Gtk;

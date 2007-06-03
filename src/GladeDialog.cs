@@ -1,7 +1,9 @@
-//
-// GladeDialog.cs: Base class for dialogs.
-// Author: Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
-//
+/*******************************************************************************
+ *  GladeDialog.cs: Abstract base class for Questar's dialogs.
+ *
+ *  Copyright (C) 2007
+ *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
+ ******************************************************************************/
 
 using Glade;
 using Gtk;

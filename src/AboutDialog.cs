@@ -1,7 +1,10 @@
-//
-// AboutDialog.cs: Description Goes Here
-// Author: Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
-//
+/*******************************************************************************
+ *  AboutDialog.cs: Provides a dialog that allows the user to view
+ *  information about Questar and the people that helped.
+ *
+ *  Copyright (C) 2007
+ *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
+ ******************************************************************************/
 
 using Gtk;
 
