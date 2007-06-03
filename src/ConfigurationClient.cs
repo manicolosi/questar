@@ -19,14 +19,10 @@ namespace Questar.Configuration
         public static ConfigurationClient Instance
         {
             get {
-                if (instance == null)
-                    instance = new ConfigurationClient ();
-
+                if (instance == null) instance = new ConfigurationClient ();
                 return instance;
             }
         }
-
-        private const string base_key = "/apps/questar/";
 
         public delegate void SyncToggleActionHandler (ToggleAction action,
             SchemaEntry<bool> entry);
@@ -45,6 +41,8 @@ namespace Questar.Configuration
                 handler (action, entry);
             };
         }
+
+        private const string base_key = "/apps/questar/";
 
         private Client client;
 
@@ -102,3 +100,4 @@ namespace Questar.Configuration
         }
     }
 }
+
