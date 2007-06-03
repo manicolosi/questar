@@ -18,8 +18,7 @@ namespace Questar.Gui
         public static UIActions Instance
         {
             get {
-                if (instance == null)
-                    instance = new UIActions ();
+                if (instance == null) instance = new UIActions ();
 
                 return instance;
             }
@@ -50,6 +49,7 @@ namespace Questar.Gui
                     "_Preferences", null, null, delegate {
                         PreferenceDialog dialog = new PreferenceDialog ();
                         dialog.Run ();
+                        dialog.Destroy ();
                     }),
 
                 new ActionEntry ("ViewMenu", null, "_View", null, null, null),

@@ -36,8 +36,12 @@ namespace Questar.Gui
             } while (response != ResponseType.Close &&
                 response != ResponseType.DeleteEvent);
 
-            dialog.Destroy ();
             return response;
+        }
+
+        public void Destroy ()
+        {
+            dialog.Destroy ();
         }
 
         private void SetupGlade ()
