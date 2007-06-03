@@ -24,6 +24,10 @@ namespace Questar.Gui
             glade.Autoconnect (this);
 
             dialog = glade[name] as Dialog;
+            dialog.Response += delegate (object o, ResponseArgs args) {
+                OnResponse (args.ResponseId);
+            };
+            dialog.ShowAll ();
         }
 
         public Dialog Dialog
@@ -31,23 +35,11 @@ namespace Questar.Gui
             get { return dialog; }
         }
 
-        public ResponseType Run ()
+        protected virtual void OnResponse (ResponseType response)
         {
-            ResponseType response;
-
-            do {
-                response = (ResponseType) dialog.Run ();
-
-                // FIXME: Handler help response.
-            } while (response != ResponseType.Close &&
-                response != ResponseType.DeleteEvent);
-
-            return response;
-        }
-
-        public void Destroy ()
-        {
-            dialog.Destroy ();
+            if (response == ResponseType.Close ||
+                response == ResponseType.DeleteEvent)
+                dialog.Destroy ();
         }
     }
 }

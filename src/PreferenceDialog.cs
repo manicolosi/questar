@@ -52,6 +52,14 @@ namespace Questar.Gui
             tile_set_combobox.PackStart (text_cr, false);
             tile_set_combobox.AddAttribute (text_cr, "text", 0);
         }
+
+        protected override void OnResponse (ResponseType response)
+        {
+            base.OnResponse (response);
+
+            // TODO: Show help
+            //if (response == ResponseType.Help)
+        }
     }
 }
 
