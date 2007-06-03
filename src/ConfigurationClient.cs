@@ -94,7 +94,11 @@ namespace Questar.Configuration
 
         private string GetFullKeyName<T> (SchemaEntry<T> entry)
         {
-            return base_key + entry.Namespace + "/" + entry.Key;
+            string namespce = entry.Namespace + "/";
+            if (String.IsNullOrEmpty (entry.Namespace))
+                namespce = "";
+
+            return base_key + namespce + entry.Key;
         }
     }
 }

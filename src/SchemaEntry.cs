@@ -35,6 +35,12 @@ namespace Questar.Configuration
             });
         }
 
+        public T Value
+        {
+            get { return Get (); }
+            set { Set (value); }
+        }
+
         public T Get ()
         {
             return ConfigurationClient.Instance.Get<T> (this);

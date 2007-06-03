@@ -4,9 +4,11 @@ NUNIT_PATH = /home/mark/source/nunit-bin/bin
 SOURCES =                              \
 	$(srcdir)/HitPointsTest.cs         \
 	$(srcdir)/MockActor.cs             \
+	$(srcdir)/SchemaEntryTest.cs       \
 	$(srcdir)/TestWorld.cs
 
-ASSEMBLIES =                           \
+ASSEMBLIES =                                \
+	-pkg:glib-sharp-2.0                     \
 	-r:$(NUNIT_PATH)/nunit.framework.dll    \
 	-r:../src/Questar.exe
 
