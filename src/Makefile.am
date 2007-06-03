@@ -48,13 +48,16 @@ ASSEMBLIES =                           \
 	-r:Mono.Posix
 
 RESOURCES = \
-	-resource:$(top_srcdir)/resources/questar-ui.xml \
-	-resource:$(top_srcdir)/resources/questar.glade \
-	-resource:$(top_srcdir)/resources/questar.svg \
-	-resource:$(top_srcdir)/resources/terrains.xml
+	$(top_srcdir)/resources/questar-ui.xml \
+	$(top_srcdir)/resources/questar.glade \
+	$(top_srcdir)/resources/questar.svg \
+	$(top_srcdir)/resources/terrains.xml
 
-$(ASSEMBLY): $(SOURCES)
-	$(MCS) -target:exe -out:$@ $(SOURCES) $(ASSEMBLIES) $(RESOURCES)
+RESOURCES_EMBEDDED = \
+	$(foreach res, $(RESOURCES), $(addprefix -resource:, $(res)))
+
+$(ASSEMBLY): $(SOURCES) $(RESOURCES)
+	$(MCS) -target:exe -out:$@ $(SOURCES) $(ASSEMBLIES) $(RESOURCES_EMBEDDED)
 
 all: $(ASSEMBLY)
 
