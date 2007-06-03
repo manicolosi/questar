@@ -36,6 +36,9 @@ namespace Questar.UnitTests
 
                 is_turn_ready = false;
                 turns.Add (World.Instance.Round, true);
+
+                TestWorld.Loop.Quit ();
+
                 return new DoNothingAction (this);
             }
         }

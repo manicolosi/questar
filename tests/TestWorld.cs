@@ -13,9 +13,13 @@ namespace Questar.UnitTests
         MockActor actor1;
         MockActor actor2;
 
+        public static GLib.MainLoop Loop;
+
         [SetUp]
         public void SetupWorldTests ()
         {
+            Loop = new GLib.MainLoop ();
+
             actor1 = new MockActor ("Mock Actor 1");
             actor2 = new MockActor ("Mock Actor 2");
 
@@ -47,9 +51,9 @@ namespace Questar.UnitTests
         }
 
         [Test]
-        [Ignore ("This won't work until we have a way to control the timer.")]
         public void ActorTurnTaking ()
         {
+
             world.AddActor (actor1);
             world.AddActor (actor2);
             world.Start ();
@@ -61,6 +65,7 @@ namespace Questar.UnitTests
 
             // Make actor1 take it's turn.
             actor1.MakeTurnReady ();
+            Loop.Run ();
 
             // Only actor1 should have taken a turn at this point.
             Assert.IsTrue (actor1.TookTurnInRound (0));
@@ -69,6 +74,7 @@ namespace Questar.UnitTests
 
             // Make actor2 take it's turn.
             actor2.MakeTurnReady ();
+            Loop.Run ();
 
             // Both actor should have taken a turn now.
             Assert.IsTrue (actor1.TookTurnInRound (0));
@@ -77,7 +83,6 @@ namespace Questar.UnitTests
         }
 
         [Test]
-        [Ignore ("This won't work until we have a way to control the timer.")]
         public void RoundIncreasesAfterTakingTurns ()
         {
             world.AddActor (actor1);
@@ -88,6 +93,7 @@ namespace Questar.UnitTests
 
             actor1.MakeTurnReady ();
             actor2.MakeTurnReady ();
+            Loop.Run ();
 
             Assert.AreEqual (1, world.Round);
         }
