@@ -33,13 +33,13 @@ EXTRA_DIST =                           \
 	README
 
 MAINTAINERCLEANFILES =                 \
+	INSTALL                            \
 	Makefile.in                        \
+	aclocal.m4                         \
 	config.guess                       \
 	config.sub                         \
 	configure                          \
 	install-sh                         \
-	INSTALL                            \
 	missing                            \
-	mkinstalldirs                      \
-	aclocal.m4
+	mkinstalldirs
 
