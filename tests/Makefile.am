@@ -1,3 +1,10 @@
+################################################################################
+#   Makefile.am: Automake source file for building unit tests.
+#
+#   Copyright (C) 2007
+#   Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
+################################################################################
+
 ASSEMBLY = Questar.UnitTests.dll
 NUNIT_PATH = /home/mark/source/nunit-bin/bin
 

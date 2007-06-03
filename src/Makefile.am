@@ -82,7 +82,7 @@ EXTRA_DIST =                           \
 
 CLEANFILES =                           \
 	$(ASSEMBLY)                        \
-	*.mdb
+	$(ASSEMBLY).mdb
 
 MAINTAINERCLEANFILES =                 \
 	Makefile.in
