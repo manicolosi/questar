@@ -1,9 +1,21 @@
+################################################################################
+#   Makefile.am: Automake source file for building Questar.exe.
+#
+#   Copyright (C) 2007
+#   Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
+################################################################################
+
 ASSEMBLY = Questar.exe
+
+SOURCES_IN =                           \
+	$(srcdir)/AssemblyInfo.cs.in
+
+SOURCES_GEN =                          \
+	$(SOURCES_IN:.in=)
 
 SOURCES =                              \
 	$(srcdir)/AboutDialog.cs           \
 	$(srcdir)/Actor.cs                 \
-	$(srcdir)/AssemblyInfo.cs          \
 	$(srcdir)/CairoUtilities.cs        \
 	$(srcdir)/ConfigurationClient.cs   \
 	$(srcdir)/Direction.cs             \
@@ -49,15 +61,15 @@ ASSEMBLIES =                           \
 
 RESOURCES = \
 	$(top_srcdir)/resources/questar-ui.xml \
-	$(top_srcdir)/resources/questar.glade \
-	$(top_srcdir)/resources/questar.svg \
+	$(top_srcdir)/resources/questar.glade  \
+	$(top_srcdir)/resources/questar.svg    \
 	$(top_srcdir)/resources/terrains.xml
 
 RESOURCES_EMBEDDED = \
 	$(foreach res, $(RESOURCES), $(addprefix -resource:, $(res)))
 
-$(ASSEMBLY): $(SOURCES) $(RESOURCES)
-	$(MCS) -target:exe -out:$@ $(SOURCES) $(ASSEMBLIES) $(RESOURCES_EMBEDDED)
+$(ASSEMBLY): $(SOURCES) $(SOURCES_GEN) $(RESOURCES)
+	$(MCS) $(SOURCES) $(SOURCES_GEN) $(RESOURCES_EMBEDDED) $(ASSEMBLIES) -target:exe -out:$@ 
 
 all: $(ASSEMBLY)
 
@@ -65,7 +77,8 @@ run: $(ASSEMBLY)
 	$(MONO) $(ASSEMBLY)
 
 EXTRA_DIST =                           \
-	$(SOURCES)
+	$(SOURCES)                         \
+	$(SOURCES_IN)
 
 CLEANFILES =                           \
 	$(ASSEMBLY)                        \
