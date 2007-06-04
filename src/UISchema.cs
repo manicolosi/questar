@@ -48,7 +48,7 @@ namespace Questar.Configuration
             );
 
         public static readonly SchemaEntry<string> TileSet =
-            new SchemaEntry<string> ("user_interface", "tile_set", "default",
+            new SchemaEntry<string> ("user_interface", "tile_set", "Default",
                 "Tile Set Name",
                 "Name of the tile set to use."
             );
