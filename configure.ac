@@ -31,7 +31,7 @@ src/Makefile
 src/AssemblyInfo.cs
 tests/Makefile
 tilesets/Makefile
-tilesets/ascii/Makefile
-tilesets/default/Makefile
+tilesets/ASCII/Makefile
+tilesets/Default/Makefile
 ])
 
