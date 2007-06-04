@@ -16,7 +16,7 @@ SOURCES_GEN =                          \
 SOURCES =                              \
 	$(srcdir)/AboutDialog.cs           \
 	$(srcdir)/Actor.cs                 \
-	$(srcdir)/CairoUtilities.cs        \
+	$(srcdir)/CairoColorExtensions.cs  \
 	$(srcdir)/ConfigurationClient.cs   \
 	$(srcdir)/Direction.cs             \
 	$(srcdir)/DoNothingAction.cs       \

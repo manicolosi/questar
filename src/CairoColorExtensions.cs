@@ -1,7 +1,10 @@
-//
-// CairoUtilities.cs: Description Goes Here
-// Author: Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
-//
+/*******************************************************************************
+ *  CairoColorExtensions.cs: Static utility methods for Cairo.Color
+ *  objects.
+ *
+ *  Copyright (C) 2007
+ *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
+ ******************************************************************************/
 
 using Cairo;
 using Gdk;
@@ -11,6 +14,8 @@ using Color = Cairo.Color;
 
 namespace Questar.Gui
 {
+    // When the Mono C# compiler supports Extension Methods these will
+    // be converted to those.
     public class CairoUtilities
     {
         public static Color BlendColors (Color a, Color b, double blend)
@@ -30,13 +35,13 @@ namespace Questar.Gui
 
         public static Color BlendColors (Gdk.Color a, Gdk.Color b, double blend)
         {
-            Color converted_a = ConvertToCairoColor (a);
-            Color converted_b = ConvertToCairoColor (b);
+            Color converted_a = FromGdkColor (a);
+            Color converted_b = FromGdkColor (b);
 
             return BlendColors (converted_a, converted_b, blend);
         }
 
-        public static Color ConvertToCairoColor (Gdk.Color gdk_color)
+        public static Color FromGdkColor (Gdk.Color gdk_color)
         {
             return new Color (
                 gdk_color.Red / 65355.0,
