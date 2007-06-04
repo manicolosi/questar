@@ -25,21 +25,9 @@ namespace Questar.Base
 
     public class World
     {
-        private static World instance;
-
         public static World Instance
         {
-            get {
-                if (instance == null)
-                    instance = new World ();
-
-                return instance;
-            }
-        }
-
-        public static void RecreateInstanceForTesting ()
-        {
-            instance = null;
+            get { return Singleton<World>.Instance; }
         }
 
         private List<IActor> actors = new List<IActor> ();

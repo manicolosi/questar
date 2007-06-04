@@ -43,6 +43,7 @@ SOURCES =                              \
 	$(srcdir)/PreferenceDialog.cs      \
 	$(srcdir)/ProgramInformation.cs    \
 	$(srcdir)/SchemaEntry.cs           \
+	$(srcdir)/Singleton.cs             \
 	$(srcdir)/Terrain.cs               \
 	$(srcdir)/TerrainManager.cs        \
 	$(srcdir)/Tile.cs                  \
@@ -54,6 +55,7 @@ SOURCES =                              \
 ASSEMBLIES =                           \
 	-pkg:gconf-sharp-2.0               \
 	-pkg:glade-sharp-2.0               \
+	-pkg:gnome-sharp-2.0               \
 	-pkg:gtk-sharp-2.0                 \
 	-pkg:rsvg-sharp-2.0                \
 	-r:Mono.Cairo                      \

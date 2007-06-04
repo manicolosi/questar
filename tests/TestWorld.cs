@@ -24,15 +24,20 @@ namespace Questar.UnitTests
         private MainLoop loop;
 
         [SetUp]
-        public void SetupWorldTests ()
+        public void Setup ()
         {
             loop = new MainLoop ();
 
             actor1 = new MockActor ("Mock Actor 1", loop);
             actor2 = new MockActor ("Mock Actor 2", loop);
 
-            World.RecreateInstanceForTesting ();
             world = World.Instance;
+        }
+
+        [TearDown]
+        public void TearDown ()
+        {
+            Singleton<World>.RecreateForTesting ();
         }
 
         [Test]

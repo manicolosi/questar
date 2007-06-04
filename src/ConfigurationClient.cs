@@ -8,20 +8,16 @@ using GConf;
 using Gtk;
 using System;
 
+using Questar.Base;
 using Questar.Gui;
 
 namespace Questar.Configuration
 {
     public class ConfigurationClient
     {
-        private static ConfigurationClient instance;
-
         public static ConfigurationClient Instance
         {
-            get {
-                if (instance == null) instance = new ConfigurationClient ();
-                return instance;
-            }
+            get { return Singleton<ConfigurationClient>.Instance; }
         }
 
         public delegate void SyncToggleActionHandler (ToggleAction action,

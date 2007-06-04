@@ -11,19 +11,15 @@ using System;
 
 using Key = Gdk.Key;
 
+using Questar.Base;
+
 namespace Questar.Gui
 {
     public class UIActions
     {
-        private static UIActions instance;
-
         public static UIActions Instance
         {
-            get {
-                if (instance == null) instance = new UIActions ();
-
-                return instance;
-            }
+            get { return Singleton<UIActions>.Instance; }
         }
 
         private ActionGroup normal_actions = new ActionGroup ("Normal");

@@ -6,6 +6,7 @@
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
+using Gnome;
 using Gtk;
 using System;
 using System.Collections.Generic;
@@ -57,8 +58,9 @@ namespace Questar.Gui
         {
             base.OnResponse (response);
 
-            // TODO: Show help
-            //if (response == ResponseType.Help)
+            if (response == ResponseType.Help)
+                Help.DisplayUriOnScreen ("ghelp:questar/preferences",
+                    base.Dialog.Screen);
         }
     }
 }

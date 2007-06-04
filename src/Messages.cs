@@ -10,24 +10,17 @@ namespace Questar.Base
 {
     public class Messages
     {
+        public static Messages Instance
+        {
+            get { return Singleton<Messages>.Instance; }
+        }
+
         private TextBuffer buffer;
         private string newline = "";
-
-        private static Messages instance;
 
         private Messages ()
         {
             buffer = new TextBuffer (null);
-        }
-
-        public static Messages Instance
-        {
-            get {
-                if (instance == null)
-                    instance = new Messages ();
-
-                return instance;
-            }
         }
 
         public void Add (string message)
