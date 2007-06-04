@@ -46,7 +46,7 @@ namespace Questar.Maps
             }
         }
 
-        public List<string> Tiles
+        public IList<string> Tiles
         {
             get { return tiles; }
         }
