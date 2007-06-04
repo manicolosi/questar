@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.2.0 on Mon Jun  4 01:13:14 2007 by mark@lothlorien-->
+<!--Generated with glade3 3.2.0 on Mon Jun  4 03:59:35 2007 by mark@lothlorien-->
 <glade-interface>
   <widget class="GtkWindow" id="main_window">
     <child>
@@ -90,7 +90,7 @@
     <property name="title" translatable="yes">Preferences</property>
     <property name="window_position">GTK_WIN_POS_CENTER_ON_PARENT</property>
     <property name="default_width">320</property>
-    <property name="default_height">250</property>
+    <property name="default_height">400</property>
     <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
     <property name="transient_for">main_window</property>
     <property name="has_separator">False</property>
