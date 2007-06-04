@@ -10,12 +10,12 @@ run:
 	make run;                          \
 	popd;
 
-test:
+check:
 	pushd $(top_builddir)/src;         \
 	make;                              \
 	popd;                              \
 	pushd $(top_builddir)/tests;       \
-	make test;                         \
+	make run-tests;                    \
 	popd;
 
 SUBDIRS =                              \

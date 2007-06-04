@@ -25,9 +25,7 @@ $(ASSEMBLY): $(SOURCES)
 
 all: $(ASSEMBLY)
 
-tests: all
-
-test: tests
+run-tests: all
 	MONO_PATH=../src:$(NUNIT_PATH) $(NUNIT_PATH)/nunit-console.exe -nologo -labels $(ASSEMBLY)
 
 EXTRA_DIST =                           \
