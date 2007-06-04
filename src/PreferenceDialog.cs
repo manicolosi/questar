@@ -43,6 +43,21 @@ namespace Questar.Gui
                 zoom = zoom.Remove (zoom.Length - 1);
                 UISchema.Zoom.Value = (ZoomSetting) Int32.Parse (zoom);
             };
+
+            UISchema.Zoom.Changed += delegate {
+                string zoom_percent = String.Format ("{0}%",
+                    (int) UISchema.Zoom.Value);
+                zoom_combobox.Model.Foreach (
+                    delegate (TreeModel model, TreePath path, TreeIter iter) {
+                        string model_value = model.GetValue (iter, 0) as string;
+                        if (zoom_percent == model_value) {
+                            zoom_combobox.SetActiveIter (iter);
+                            return false;
+                        }
+
+                        return false;
+                    });
+            };
         }
 
         private void PopulateTileSetComboBox ()
