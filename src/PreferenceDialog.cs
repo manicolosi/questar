@@ -10,6 +10,7 @@ using Glade;
 using Gnome;
 using Gtk;
 using System;
+using System.Collections.Generic;
 
 using Questar.Configuration;
 
@@ -23,8 +24,10 @@ namespace Questar.Gui
         public PreferenceDialog () : base ("preference_dialog")
         {
             SetupHandlers ();
-            PopulateTileSetComboBox ();
-            PopulateZoomComboBox ();
+            PopulateComboBox (zoom_combobox, UISchema.Zoom.Value.ToString (),
+                Enum.GetNames (typeof (ZoomSetting)));
+            PopulateComboBox (tile_set_combobox, UISchema.TileSet.Value,
+                TileSet.AvailableTileSets);
         }
 
         private void SetupHandlers ()
@@ -40,61 +43,37 @@ namespace Questar.Gui
                 TreeIter iter;
                 zoom_combobox.GetActiveIter (out iter);
                 string zoom = zoom_combobox.Model.GetValue (iter, 0) as string;
-                zoom = zoom.Remove (zoom.Length - 1);
-                UISchema.Zoom.Value = (ZoomSetting) Int32.Parse (zoom);
+                UISchema.Zoom.Value = (ZoomSetting) Enum.Parse (
+                    typeof (ZoomSetting), zoom);
             };
 
-            UISchema.Zoom.Changed += delegate {
-                string zoom_percent = String.Format ("{0}%",
-                    (int) UISchema.Zoom.Value);
-                zoom_combobox.Model.Foreach (
-                    delegate (TreeModel model, TreePath path, TreeIter iter) {
-                        string model_value = model.GetValue (iter, 0) as string;
-                        if (zoom_percent == model_value) {
-                            zoom_combobox.SetActiveIter (iter);
-                            return false;
-                        }
-
+            UISchema.Zoom.Changed += delegate { zoom_combobox.Model.Foreach (
+                delegate (TreeModel model, TreePath path, TreeIter iter) {
+                    string model_value = model.GetValue (iter, 0) as string;
+                    if (UISchema.Zoom.Value.ToString () != model_value) {
                         return false;
-                    });
+                    }
+                    zoom_combobox.SetActiveIter (iter);
+                    return true;
+                });
             };
         }
 
-        private void PopulateTileSetComboBox ()
+        private void PopulateComboBox (ComboBox combobox, string active,
+            IEnumerable<string> enumerable)
         {
             ListStore model = new ListStore (typeof (string));
-            tile_set_combobox.Model = model;
+            combobox.Model = model;
 
-            foreach (string tile_set in TileSet.AvailableTileSets) {
-                TreeIter iter = model.AppendValues (tile_set);
-
-                if (tile_set == UISchema.TileSet.Value)
-                    tile_set_combobox.SetActiveIter (iter);
-
+            foreach (string s in enumerable) {
+                TreeIter iter = model.AppendValues (s);
+                if (s == active)
+                    combobox.SetActiveIter (iter);
             }
 
-            CellRendererText text_cr = new CellRendererText ();
-            tile_set_combobox.PackStart (text_cr, false);
-            tile_set_combobox.AddAttribute (text_cr, "text", 0);
-        }
-
-        private void PopulateZoomComboBox ()
-        {
-            ListStore model = new ListStore (typeof (string));
-            zoom_combobox.Model = model;
-
-            Type type = typeof (ZoomSetting);
-            foreach (ZoomSetting zoom_level in Enum.GetValues (type)) {
-                string zoom_percent = String.Format ("{0}%", (int) zoom_level);
-                TreeIter iter = model.AppendValues (zoom_percent);
-
-                if (zoom_level == UISchema.Zoom.Value)
-                    zoom_combobox.SetActiveIter (iter);
-            }
-
-            CellRendererText text_cr = new CellRendererText ();
-            zoom_combobox.PackStart (text_cr, false);
-            zoom_combobox.AddAttribute (text_cr, "text", 0);
+            CellRendererText cr = new CellRendererText ();
+            combobox.PackStart (cr, false);
+            combobox.AddAttribute (cr, "text", 0);
         }
 
         protected override void OnResponse (ResponseType response)
