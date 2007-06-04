@@ -26,6 +26,19 @@ namespace Questar.Gui
 
         private bool show_grid_lines;
 
+        private int offset_x;
+        private int offset_y;
+
+        private int poffset_x;
+        private int poffset_y;
+
+        private List<Point> redraw_grids = new List<Point> ();
+        private bool hero_moved;
+
+        Color fill_color;
+
+        Context context;
+
         public MapView (Map map)
         {
             this.map = map;
@@ -65,7 +78,6 @@ namespace Questar.Gui
                     foreach (Point grid in redraw_grids)
                         QueueDrawGrid (grid);
                 }
-
                 redraw_grids.Clear ();
             };
 
@@ -73,9 +85,6 @@ namespace Questar.Gui
                 hero_moved = true;
             };
         }
-
-        private List<Point> redraw_grids = new List<Point> ();
-        private bool hero_moved;
 
         private void QueueDrawGrid (Point p)
         {
@@ -90,14 +99,23 @@ namespace Questar.Gui
 
         protected override bool OnButtonPressEvent (Gdk.EventButton button)
         {
-            bool handled = (button.Button == 3);
+            if (button.Button != 3)
+                return false;
 
-            if (handled) {
-                Menu menu = UIActions.Instance.GetWidget ("/MapViewPopup")
-                    as Menu;
-                menu.Popup ();
-            }
-            return handled;
+            Point grid = WindowCoordsToGridPoint (button.X, button.Y);
+            if (map.GetGridInformation (grid) == GridInformation.Invalid)
+                return false;
+
+            UIActions.Instance.MapViewMenu.Popup ();
+
+            return true;
+        }
+
+        private Point WindowCoordsToGridPoint (double x, double y)
+        {
+            return new Point (
+                (int) (x + poffset_x) / tileset.Width + offset_x,
+                (int) (y + poffset_y) / tileset.Height + offset_y);
         }
 
         protected override void OnSizeRequested
@@ -107,16 +125,12 @@ namespace Questar.Gui
             requisition.Height = 480;
         }
 
-        Color fill_color;
-
         protected override void OnStyleSet (Style previous)
         {
             fill_color = CairoUtilities.BlendColors (
                 Style.Background (StateType.Normal),
                 Style.Foreground (StateType.Normal), 0.75);
         }
-
-        Context context;
 
         protected override bool OnExposeEvent (Gdk.EventExpose args)
         {
@@ -134,12 +148,6 @@ namespace Questar.Gui
             //Console.WriteLine ((DateTime.Now - start).Milliseconds + "ms");
             return true;
         }
-
-        private int offset_x;
-        private int offset_y;
-
-        private int poffset_x;
-        private int poffset_y;
 
         private void CenterAroundHero (int visible_wide, int visible_high)
         {
@@ -210,15 +218,6 @@ namespace Questar.Gui
 
         private void DrawTile (string tile, int x, int y)
         {
-            //ImageSurface image = tileset[tile].Surface;
-            //image.Show (context, 32, 32);
-
-            //CairoHelper.SetSourcePixbuf (context, tileset[tile].Pixbuf,
-            //    0, 0);
-            //context.Rectangle (x * tileset.Width, y * tileset.Height,
-            //    tileset.Width, tileset.Height);
-            //context.Fill ();
-
             base.GdkWindow.DrawPixbuf (base.Style.BlackGC,
                 tileset[tile].Pixbuf, 0, 0,
                 x * tileset.Width - poffset_x,
