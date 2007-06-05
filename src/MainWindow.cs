@@ -118,7 +118,7 @@ namespace Questar.Gui
         protected override bool OnDeleteEvent (Event args)
         {
             EntryPoint.Quit ();
-            return false;
+            return true;
         }
 
         protected override bool OnWindowStateEvent (EventWindowState args)
