@@ -28,6 +28,8 @@ namespace Questar.Gui
                 Enum.GetNames (typeof (ZoomSetting)));
             PopulateComboBox (tile_set_combobox, UISchema.TileSet.Value,
                 TileSet.AvailableTileSets);
+
+            base.Dialog.ShowAll ();
         }
 
         private void SetupHandlers ()

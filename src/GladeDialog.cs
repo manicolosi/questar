@@ -27,7 +27,6 @@ namespace Questar.Gui
             dialog.Response += delegate (object o, ResponseArgs args) {
                 OnResponse (args.ResponseId);
             };
-            dialog.ShowAll ();
         }
 
         public Dialog Dialog
