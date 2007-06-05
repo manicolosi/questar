@@ -92,7 +92,7 @@ namespace Questar.Gui
             base.AddAccelGroup (UIActions.Instance.UI.AccelGroup);
 
             UIActions.Instance["Quit"].Activated += delegate {
-                Close ();
+                EntryPoint.Quit ();
             };
 
             ConfigurationClient.SyncToggleAction ("ShowMessages",
@@ -117,8 +117,8 @@ namespace Questar.Gui
 
         protected override bool OnDeleteEvent (Event args)
         {
-            Close ();
-            return base.OnDeleteEvent (args);
+            EntryPoint.Quit ();
+            return false;
         }
 
         protected override bool OnWindowStateEvent (EventWindowState args)
@@ -147,11 +147,6 @@ namespace Questar.Gui
             UISchema.Height.Value = height;
 
             return base.OnConfigureEvent (args);
-        }
-
-        private void Close ()
-        {
-            EntryPoint.Quit ();
         }
 
         // HACK: Gtk.Action[s] don't seem to work with accelerator's without
