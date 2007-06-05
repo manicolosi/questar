@@ -44,6 +44,7 @@ SOURCES =                              \
 	$(srcdir)/ProgramInformation.cs    \
 	$(srcdir)/SchemaEntry.cs           \
 	$(srcdir)/Singleton.cs             \
+	$(srcdir)/StartDialog.cs           \
 	$(srcdir)/Terrain.cs               \
 	$(srcdir)/TerrainManager.cs        \
 	$(srcdir)/Tile.cs                  \

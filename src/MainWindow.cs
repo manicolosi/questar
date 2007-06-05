@@ -38,12 +38,12 @@ namespace Questar.Gui
 
         public MainWindow () : base ("Questar")
         {
-            new GladeDialog ("start_dialog");
-
             SetupGlade ();
             BuildWindow ();
             SetupHandlers ();
             LoadSettings ();
+
+            new StartDialog ();
         }
 
         private void SetupGlade ()
