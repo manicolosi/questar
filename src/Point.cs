@@ -51,24 +51,20 @@ namespace Questar.Base
 
         public override bool Equals (object o)
         {
-            Point p = (Point) o;
+            return this == (Point) o;
+        }
 
-            if (X != p.X)
-                return false;
-            if (Y != p.Y)
+        public static bool operator == (Point a, Point b)
+        {
+            if (a.X != b.X || a.Y != b.Y)
                 return false;
 
             return true;
         }
 
-        public static bool operator == (Point a, Point b)
-        {
-            return a.Equals (b);
-        }
-
         public static bool operator != (Point a, Point b)
         {
-            return !a.Equals (b);
+            return !(a == b);
         }
 
         public static Point operator - (Point a, Point b)

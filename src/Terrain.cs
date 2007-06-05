@@ -41,8 +41,7 @@ namespace Questar.Maps
         public bool IsValid
         {
             get {
-                return ((name != null) && (description != null) &&
-                    (tiles.Count != 0));
+                return name != null && description != null && tiles.Count != 0;
             }
         }
 

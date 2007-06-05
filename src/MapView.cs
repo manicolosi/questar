@@ -25,6 +25,8 @@ namespace Questar.Gui
         private Map map;
 
         private bool show_grid_lines;
+        private bool show_highlight = false;
+        private Point highlight_grid;
 
         private int offset_x;
         private int offset_y;
@@ -88,13 +90,9 @@ namespace Questar.Gui
 
         private void QueueDrawGrid (Point p)
         {
-            p.X -= offset_x;
-            p.Y -= offset_y;
-
-            base.QueueDrawArea (
-                p.X * tileset.Width - poffset_x,
-                p.Y * tileset.Height - poffset_y,
-                tileset.Width, tileset.Height);
+            int x, y;
+            GridPointToWindowCoords (p, out x, out y);
+            base.QueueDrawArea (x, y, tileset.Width, tileset.Height);
         }
 
         protected override bool OnButtonPressEvent (Gdk.EventButton button)
@@ -106,9 +104,17 @@ namespace Questar.Gui
             if (map.GetGridInformation (grid) == GridInformation.Invalid)
                 return false;
 
+            highlight_grid = grid;
+            show_highlight = true;
             UIActions.Instance.MapViewMenu.Popup ();
 
             return true;
+        }
+
+        private void GridPointToWindowCoords (Point p, out int x, out int y)
+        {
+            x = (p.X - offset_x) * tileset.Width - poffset_x;
+            y = (p.Y - offset_y) * tileset.Height - poffset_y;
         }
 
         private Point WindowCoordsToGridPoint (double x, double y)
@@ -192,6 +198,17 @@ namespace Questar.Gui
             for (int tx = 0; tx <= tiles_wide; tx++)
                 for (int ty = 0; ty <= tiles_high; ty++)
                     DrawGrid (tx, ty);
+
+            if (show_highlight) {
+                Console.WriteLine ("Exposing");
+                context.Color = new Color (1, 0, 0);
+
+                int x, y;
+                GridPointToWindowCoords (highlight_grid, out x, out y);
+                context.LineWidth = tileset.ZoomPercentage * 4;
+                context.Rectangle (x, y, tileset.Width, tileset.Height);
+                context.Stroke ();
+            }
         }
 
         private void DrawGrid (int x, int y)
