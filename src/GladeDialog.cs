@@ -17,21 +17,31 @@ namespace Questar.Gui
 
         Glade.XML glade;
         Dialog dialog;
+        Window window;
 
         public GladeDialog (string name)
         {
             glade = new Glade.XML (glade_resource, name);
             glade.Autoconnect (this);
 
-            dialog = glade[name] as Dialog;
-            dialog.Response += delegate (object o, ResponseArgs args) {
-                OnResponse (args.ResponseId);
-            };
+            window = glade[name] as Window;
+            dialog = window as Dialog;
+
+            if (dialog != null) {
+                dialog.Response += delegate (object o, ResponseArgs args) {
+                    OnResponse (args.ResponseId);
+                };
+            }
         }
 
         public Dialog Dialog
         {
             get { return dialog; }
+        }
+
+        public Window Window
+        {
+            get { return window; }
         }
 
         protected virtual void OnResponse (ResponseType response)

@@ -6,6 +6,7 @@
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
+using Glade;
 using Gtk;
 using System;
 
@@ -13,9 +14,20 @@ namespace Questar.Gui
 {
     public class StartDialog : GladeDialog
     {
+        [Widget] private Button quit_button;
+
         public StartDialog () : base ("start_dialog")
         {
-            base.Dialog.ShowAll ();
+            SetupHandlers ();
+            base.Window.ShowAll ();
+        }
+
+        private void SetupHandlers ()
+        {
+            quit_button.Clicked += delegate {
+                base.Window.Destroy ();
+                EntryPoint.Quit ();
+            };
         }
     }
 }

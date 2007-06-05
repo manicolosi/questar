@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.2.0 on Tue Jun  5 16:32:16 2007 by mark@lothlorien-->
+<!--Generated with glade3 3.2.0 on Tue Jun  5 17:01:21 2007 by mark@lothlorien-->
 <glade-interface>
   <widget class="GtkWindow" id="main_window">
+    <property name="icon">.</property>
     <child>
       <widget class="GtkVBox" id="main_container">
         <property name="visible">True</property>
@@ -283,54 +284,42 @@
       </widget>
     </child>
   </widget>
-  <widget class="GtkDialog" id="start_dialog">
+  <widget class="GtkWindow" id="start_dialog">
     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-    <property name="border_width">5</property>
+    <property name="border_width">12</property>
     <property name="modal">True</property>
     <property name="window_position">GTK_WIN_POS_CENTER_ON_PARENT</property>
     <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
     <property name="transient_for">main_window</property>
-    <property name="has_separator">False</property>
-    <child internal-child="vbox">
-      <widget class="GtkVBox" id="dialog-vbox2">
+    <child>
+      <widget class="GtkVBox" id="vbox2">
         <property name="visible">True</property>
         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-        <property name="spacing">2</property>
+        <property name="spacing">6</property>
         <child>
-          <widget class="GtkVBox" id="vbox2">
+          <widget class="GtkHBox" id="game_view_box">
             <property name="visible">True</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-            <property name="border_width">6</property>
-            <property name="spacing">6</property>
             <child>
-              <widget class="GtkHBox" id="game_view_box">
-                <property name="visible">True</property>
-                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                <child>
-                  <placeholder/>
-                </child>
-              </widget>
-            </child>
-            <child>
-              <widget class="GtkCheckButton" id="last_played_toggle">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                <property name="label" translatable="yes">Open last played game next time Questar starts</property>
-                <property name="draw_indicator">True</property>
-              </widget>
-              <packing>
-                <property name="expand">False</property>
-                <property name="position">1</property>
-              </packing>
+              <placeholder/>
             </child>
           </widget>
+        </child>
+        <child>
+          <widget class="GtkCheckButton" id="last_played_toggle">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+            <property name="label" translatable="yes">Open last played game next time Questar starts</property>
+            <property name="draw_indicator">True</property>
+          </widget>
           <packing>
+            <property name="expand">False</property>
             <property name="position">1</property>
           </packing>
         </child>
-        <child internal-child="action_area">
-          <widget class="GtkHButtonBox" id="dialog-action_area2">
+        <child>
+          <widget class="GtkHButtonBox" id="hbuttonbox1">
             <property name="visible">True</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
             <child>
@@ -385,7 +374,7 @@
           </widget>
           <packing>
             <property name="expand">False</property>
-            <property name="pack_type">GTK_PACK_END</property>
+            <property name="position">2</property>
           </packing>
         </child>
       </widget>
