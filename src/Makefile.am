@@ -22,6 +22,7 @@ SOURCES =                              \
 	$(srcdir)/DoNothingAction.cs       \
 	$(srcdir)/EntryPoint.cs            \
 	$(srcdir)/Events.cs                \
+	$(srcdir)/Game.cs                  \
 	$(srcdir)/GladeDialog.cs           \
 	$(srcdir)/Grid.cs                  \
 	$(srcdir)/GridInformation.cs       \
