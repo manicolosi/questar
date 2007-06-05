@@ -53,6 +53,7 @@ namespace Questar.Base
         public IActor Hero
         {
             get { return hero; }
+            set { AddActor (value); }
         }
 
         public Map Map
@@ -99,10 +100,13 @@ namespace Questar.Base
         public void AddActor (IActor actor)
         {
             Hero hero = actor as Hero;
-            if (hero != null)
+            if (hero != null) {
                 this.hero = hero;
-
-            actors.Add (actor);
+                actors.Insert (0, hero);
+            }
+            else {
+                actors.Add (actor);
+            }
 
             Events.FireEvent<WorldActorAddedEventArgs> (this, ActorAdded,
                 delegate (WorldActorAddedEventArgs args) {
