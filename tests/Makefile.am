@@ -7,17 +7,20 @@
 
 ASSEMBLY = Questar.UnitTests.dll
 NUNIT_PATH = /home/mark/source/nunit-bin/bin
+NUNIT_DLL = $(NUNIT_PATH)/nunit.framework.dll
+NUNIT_CONSOLE = $(NUNIT_PATH)/nunit-console.exe
 
 SOURCES =                              \
 	$(srcdir)/MockActor.cs             \
 	$(srcdir)/TestIActor.cs            \
 	$(srcdir)/TestHitPoints.cs         \
 	$(srcdir)/TestSchemaEntry.cs       \
+	$(srcdir)/TestSingleton.cs         \
 	$(srcdir)/TestWorld.cs
 
-ASSEMBLIES =                                \
-	-pkg:glib-sharp-2.0                     \
-	-r:$(NUNIT_PATH)/nunit.framework.dll    \
+ASSEMBLIES =                           \
+	-pkg:glib-sharp-2.0                \
+	-r:$(NUNIT_DLL)                    \
 	-r:../src/Questar.exe
 
 $(ASSEMBLY): $(SOURCES) 
@@ -26,7 +29,7 @@ $(ASSEMBLY): $(SOURCES)
 all: $(ASSEMBLY)
 
 run-tests: all
-	MONO_PATH=../src:$(NUNIT_PATH) $(NUNIT_PATH)/nunit-console.exe -nologo -labels $(ASSEMBLY)
+	MONO_PATH=../src:$(NUNIT_PATH) $(NUNIT_CONSOLE) -nologo -labels $(ASSEMBLY)
 
 EXTRA_DIST =                           \
 	$(SOURCES)
