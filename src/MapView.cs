@@ -86,6 +86,13 @@ namespace Questar.Gui
             World.Instance.Hero.Moved += delegate {
                 hero_moved = true;
             };
+
+            UIActions.Instance.MapViewMenu.Hidden += delegate {
+                show_highlight = false;
+            };
+            UIActions.Instance.MapViewMenu.Shown += delegate {
+                show_highlight = true;
+            };
         }
 
         private void QueueDrawGrid (Point p)
@@ -105,7 +112,6 @@ namespace Questar.Gui
                 return false;
 
             highlight_grid = grid;
-            show_highlight = true;
             UIActions.Instance.MapViewMenu.Popup ();
 
             return true;
@@ -200,14 +206,11 @@ namespace Questar.Gui
                     DrawGrid (tx, ty);
 
             if (show_highlight) {
-                Console.WriteLine ("Exposing");
-                context.Color = new Color (1, 0, 0);
-
                 int x, y;
                 GridPointToWindowCoords (highlight_grid, out x, out y);
-                context.LineWidth = tileset.ZoomPercentage * 4;
+                context.Color = new Color (1, 1, 0, 0.5);
                 context.Rectangle (x, y, tileset.Width, tileset.Height);
-                context.Stroke ();
+                context.Fill ();
             }
         }
 
