@@ -11,6 +11,8 @@ using System.Collections.Generic;
 using Questar.Actors;
 using Questar.Maps;
 
+using Timeout = GLib.Timeout;
+
 namespace Questar.Base
 {
     public class WorldActorAddedEventArgs : EventArgs
@@ -70,6 +72,12 @@ namespace Questar.Base
                     delegate (WorldNewRoundEventArgs args) {
                         args.Round = Round;
                     });
+
+                IsPaused = true;
+                Timeout.Add (500, delegate {
+                    IsPaused = false;
+                    return false;
+                });
             }
         }
 
@@ -122,6 +130,7 @@ namespace Questar.Base
             if (turn_index == actors.Count) {
                 turn_index = 0;
                 Round++;
+                return false;
             }
 
             return true;
