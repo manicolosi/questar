@@ -26,8 +26,11 @@ namespace Questar.Gui
 
         private void SetupHandlers ()
         {
+            base.Window.DeleteEvent += delegate {
+                quit_button.Click ();
+            };
+
             quit_button.Clicked += delegate {
-                base.Window.Destroy ();
                 Game.Instance.Quit ();
             };
         }
