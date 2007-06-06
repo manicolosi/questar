@@ -37,7 +37,7 @@ namespace Questar.Actors
         public override IAction Action
         {
             get {
-                Point target = World.Instance.Hero.Location;
+                Point target = Game.Instance.World.Hero.Location;
                 Direction direction = base.Location.DirectionOf (target);
 
                 if (base.CanMoveTo (direction))

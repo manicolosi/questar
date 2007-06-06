@@ -25,11 +25,6 @@ namespace Questar.Base
 
     public class World
     {
-        public static World Instance
-        {
-            get { return Singleton<World>.Instance; }
-        }
-
         private List<IActor> actors = new List<IActor> ();
         private IActor hero;
         private Map map;
@@ -41,7 +36,7 @@ namespace Questar.Base
         public event EventHandler<WorldActorAddedEventArgs> ActorAdded;
         public event EventHandler<WorldNewRoundEventArgs> NewRound;
 
-        private World ()
+        public World ()
         {
         }
 

@@ -26,18 +26,12 @@ namespace Questar.UnitTests
         [SetUp]
         public void Setup ()
         {
+            world = new World ();
             loop = new MainLoop ();
 
-            actor1 = new MockActor ("Mock Actor 1", loop);
-            actor2 = new MockActor ("Mock Actor 2", loop);
+            actor1 = new MockActor ("Mock Actor 1", loop, world);
+            actor2 = new MockActor ("Mock Actor 2", loop, world);
 
-            world = World.Instance;
-        }
-
-        [TearDown]
-        public void TearDown ()
-        {
-            Singleton<World>.RecreateForTesting ();
         }
 
         [Test]

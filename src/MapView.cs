@@ -71,7 +71,7 @@ namespace Questar.Gui
                 redraw_grids.Add (args.Grid);
             };
 
-            World.Instance.NewRound += delegate {
+            Game.Instance.World.NewRound += delegate {
                 if (hero_moved) {
                     base.QueueDraw ();
                     hero_moved = false;
@@ -83,7 +83,7 @@ namespace Questar.Gui
                 redraw_grids.Clear ();
             };
 
-            World.Instance.Hero.Moved += delegate {
+            Game.Instance.World.Hero.Moved += delegate {
                 hero_moved = true;
             };
 
@@ -166,7 +166,7 @@ namespace Questar.Gui
             int w = base.Allocation.Width;
             int h = base.Allocation.Height;
 
-            Point hero = World.Instance.Hero.Location;
+            Point hero = Game.Instance.World.Hero.Location;
             offset_x = hero.X - (visible_wide / 2);
             offset_y = hero.Y - (visible_high / 2);
 

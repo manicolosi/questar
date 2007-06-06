@@ -57,7 +57,7 @@ namespace Questar.Gui
 
             menubar_container.Add (UIActions.Instance.MenuBar);
             message_view_container.Add (new MessageView ());
-            map_view_container.Add (new MapView (World.Instance.Map));
+            map_view_container.Add (new MapView (Game.Instance.World.Map));
 
             base.Add (main_container);
             base.ShowAll ();

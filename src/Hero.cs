@@ -124,7 +124,7 @@ namespace Questar.Actors
             this.action = action;
             last_action = DateTime.Now;
 
-            World.Instance.IsPaused = false;
+            Game.Instance.World.IsPaused = false;
         }
     }
 }

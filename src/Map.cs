@@ -39,7 +39,7 @@ namespace Questar.Maps
                 "grass", "grass", "flower", "grass", "grass",
                 "grass", "grass", "flower", "grass", "grass");
 
-            World.Instance.ActorAdded += delegate (object sender,
+            Game.Instance.World.ActorAdded += delegate (object sender,
                 WorldActorAddedEventArgs args) {
                 IActor actor = args.Actor;
                 this[actor.Location].Actor = actor;

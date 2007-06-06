@@ -22,9 +22,10 @@ namespace Questar.UnitTests
         bool is_turn_ready = false;
         Dictionary<int, bool> turns = new Dictionary<int, bool> ();
 
+        World world;
         MainLoop loop;
 
-        public MockActor (string name, MainLoop loop)
+        public MockActor (string name, MainLoop loop, World world)
         {
             base.Name = name;
             base.HitPoints = new HitPoints (0, 0);
@@ -32,10 +33,11 @@ namespace Questar.UnitTests
             base.Location = new Point (0, 0);
             base.Map = null;
 
+            this.world = world;
             this.loop = loop;
         }
 
-        public MockActor (string name) : this (name, null)
+        public MockActor (string name) : this (name, null, null)
         {
         }
 
@@ -52,7 +54,7 @@ namespace Questar.UnitTests
                         "An action is unavailable, check IsTurnReady first");
 
                 is_turn_ready = false;
-                turns.Add (World.Instance.Round, true);
+                turns.Add (world.Round, true);
 
                 loop.Quit ();
 
@@ -63,7 +65,7 @@ namespace Questar.UnitTests
         public void MakeTurnReady ()
         {
             is_turn_ready = true;
-            World.Instance.IsPaused = false;
+            world.IsPaused = false;
         }
 
         public bool TookTurnInRound (int round)

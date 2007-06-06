@@ -21,20 +21,19 @@ namespace Questar
 
             new StartDialog ();
 
-            game.World = CreateInitialWorld ();
+            CreateInitialWorld ();
             game.Start ();
         }
 
-        private static World CreateInitialWorld ()
+        private static void CreateInitialWorld ()
         {
-            World world = World.Instance;
+            World world = new World ();
+            Game.Instance.World = world;
 
             world.Map = new Map ();
             world.AddActor (new Monster ("troll", world.Map));
             world.AddActor (new Monster ("imp", world.Map));
             world.Hero = new Hero (world.Map);
-
-            return world;
         }
     }
 }

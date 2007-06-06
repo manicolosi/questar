@@ -24,11 +24,6 @@ namespace Questar.Base
             get { return instance; }
         }
 
-        public static void RecreateForTesting ()
-        {
-            CreateInstance ();
-        }
-
         private static void CreateInstance ()
         {
             Type type = typeof (T);
