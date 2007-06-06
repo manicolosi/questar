@@ -21,6 +21,7 @@ SOURCES =                              \
 
 ASSEMBLIES =                           \
 	-pkg:glib-sharp-2.0                \
+	-pkg:gtk-sharp-2.0                 \
 	-r:$(NUNIT_DLL)                    \
 	-r:../src/Questar.exe
 

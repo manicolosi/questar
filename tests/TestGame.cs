@@ -5,6 +5,8 @@
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
+using Gtk;
+using GLib;
 using NUnit.Framework;
 
 using Questar.Base;
@@ -24,9 +26,13 @@ namespace Questar.UnitTests
         }
 
         [Test]
-        public void Quit ()
+        public void QuitStopsMainLoop ()
         {
-            Game.Instance.Quit ();
+            Idle.Add (delegate {
+                Game.Instance.Quit ();
+                return false;
+            });
+            Application.Run ();
         }
     }
 }
