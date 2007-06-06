@@ -155,9 +155,9 @@ namespace Questar.Gui
             get { return GetWidget ("/MenuBar") as MenuBar; }
         }
 
-        public Menu MapViewMenu
+        public Menu WorldViewContextMenu
         {
-            get { return GetWidget ("/MapViewPopup") as Menu; }
+            get { return GetWidget ("/WorldViewContextMenu") as Menu; }
         }
     }
 }

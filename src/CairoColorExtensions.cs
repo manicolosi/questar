@@ -16,9 +16,9 @@ namespace Questar.Gui
 {
     // When the Mono C# compiler supports Extension Methods these will
     // be converted to those.
-    public class CairoUtilities
+    public class CairoColorExtensions
     {
-        public static Color BlendColors (Color a, Color b, double blend)
+        public static Color BlendColors (double blend, Color a, Color b)
         {
             if (blend < 0.0 || blend > 1.0)
                 throw new ArgumentException (
@@ -33,12 +33,12 @@ namespace Questar.Gui
             return new Color (blr, blg, blb);
         }
 
-        public static Color BlendColors (Gdk.Color a, Gdk.Color b, double blend)
+        public static Color BlendColors (double blend, Gdk.Color a, Gdk.Color b)
         {
             Color converted_a = FromGdkColor (a);
             Color converted_b = FromGdkColor (b);
 
-            return BlendColors (converted_a, converted_b, blend);
+            return BlendColors (blend, converted_a, converted_b);
         }
 
         public static Color FromGdkColor (Gdk.Color gdk_color)

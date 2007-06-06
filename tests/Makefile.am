@@ -17,7 +17,8 @@ SOURCES =                              \
 	$(srcdir)/TestHitPoints.cs         \
 	$(srcdir)/TestSchemaEntry.cs       \
 	$(srcdir)/TestSingleton.cs         \
-	$(srcdir)/TestWorld.cs
+	$(srcdir)/TestWorld.cs             \
+	$(srcdir)/TestWorldView.cs
 
 ASSEMBLIES =                           \
 	-pkg:glib-sharp-2.0                \

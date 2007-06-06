@@ -72,12 +72,6 @@ namespace Questar.Base
                     delegate (WorldNewRoundEventArgs args) {
                         args.Round = Round;
                     });
-
-                IsPaused = true;
-                Timeout.Add (500, delegate {
-                    IsPaused = false;
-                    return false;
-                });
             }
         }
 

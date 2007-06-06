@@ -17,6 +17,7 @@ namespace Questar.Gui
     public class StartDialog : GladeDialog
     {
         [Widget] private Button quit_button;
+        [Widget] private Button new_button;
 
         public StartDialog () : base ("start_dialog")
         {
@@ -32,6 +33,10 @@ namespace Questar.Gui
 
             quit_button.Clicked += delegate {
                 Game.Instance.Quit ();
+            };
+
+            new_button.Clicked += delegate {
+                base.Window.Destroy ();
             };
         }
     }

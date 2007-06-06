@@ -18,7 +18,7 @@
             <menuitem action='About' />
         </menu>
     </menubar>
-    <popup name='MapViewPopup'>
+    <popup name='WorldViewContextMenu'>
         <menuitem action='MoveHere' />
         <separator />
         <menuitem action='Target' />

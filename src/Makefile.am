@@ -34,7 +34,6 @@ SOURCES =                              \
 	$(srcdir)/IEntity.cs               \
 	$(srcdir)/MainWindow.cs            \
 	$(srcdir)/Map.cs                   \
-	$(srcdir)/MapView.cs               \
 	$(srcdir)/Messages.cs              \
 	$(srcdir)/MessageView.cs           \
 	$(srcdir)/Monster.cs               \
@@ -52,7 +51,8 @@ SOURCES =                              \
 	$(srcdir)/TileSet.cs               \
 	$(srcdir)/UIActions.cs             \
 	$(srcdir)/UISchema.cs              \
-	$(srcdir)/World.cs
+	$(srcdir)/World.cs                 \
+	$(srcdir)/WorldView.cs
 
 ASSEMBLIES =                           \
 	-pkg:gconf-sharp-2.0               \
