@@ -41,12 +41,18 @@ namespace Questar.Gui
             return BlendColors (blend, converted_a, converted_b);
         }
 
-        public static Color FromGdkColor (Gdk.Color gdk_color)
+        public static Color FromGdkColor (Gdk.Color gdk_color, double alpha)
         {
             return new Color (
                 gdk_color.Red / 65355.0,
                 gdk_color.Green / 65355.0,
-                gdk_color.Blue / 65355.0);
+                gdk_color.Blue / 65355.0,
+                alpha);
+        }
+
+        public static Color FromGdkColor (Gdk.Color gdk_color)
+        {
+            return FromGdkColor (gdk_color, 1.0);
         }
     }
 }

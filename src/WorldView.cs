@@ -36,6 +36,7 @@ namespace Questar.Gui
         private Point highlight_grid;
 
         private Color fill_color;
+        private Color hilight_color;
 
         private int offset_x, offset_y;
         private int poffset_x, poffset_y;
@@ -110,6 +111,8 @@ namespace Questar.Gui
             fill_color = CairoColorExtensions.BlendColors (0.75,
                 Style.Background (StateType.Normal),
                 Style.Foreground (StateType.Normal));
+            hilight_color = CairoColorExtensions.FromGdkColor (
+                Style.Background (StateType.Selected), 0.5);
         }
 
         private void SetWorld (World world)
@@ -252,8 +255,7 @@ namespace Questar.Gui
             if (highlight) {
                 int x, y;
                 GridPointToWindowCoords (highlight_grid, out x, out y);
-                // FIXME: Get from theme.
-                context.Color = new Color (1, 1, 0, 0.5);
+                context.Color = hilight_color;
                 context.Rectangle (x, y, tileset.Width, tileset.Height);
                 context.Fill ();
             }
