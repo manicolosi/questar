@@ -37,6 +37,7 @@ namespace Questar.Gui
 
         private Color fill_color;
         private Color hilight_color;
+        private Color grid_line_color;
 
         private int offset_x, offset_y;
         private int poffset_x, poffset_y;
@@ -111,6 +112,10 @@ namespace Questar.Gui
             fill_color = CairoColorExtensions.BlendColors (0.75,
                 Style.Background (StateType.Normal),
                 Style.Foreground (StateType.Normal));
+
+            grid_line_color = CairoColorExtensions.FromGdkColor (
+                Style.Foreground (StateType.Normal), 0.2);
+
             hilight_color = CairoColorExtensions.FromGdkColor (
                 Style.Background (StateType.Selected), 0.5);
         }
@@ -221,8 +226,7 @@ namespace Questar.Gui
                 DrawTile (tile, x, y);
 
             if (grid_lines) {
-                context.Color = CairoColorExtensions.FromGdkColor (
-                    base.Style.Foreground (StateType.Normal));
+                context.Color = grid_line_color;
                 context.LineWidth = tileset.ZoomPercentage;
                 context.Rectangle (
                     x * tileset.Width - poffset_x,
