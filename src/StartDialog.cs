@@ -10,6 +10,8 @@ using Glade;
 using Gtk;
 using System;
 
+using Questar.Base;
+
 namespace Questar.Gui
 {
     public class StartDialog : GladeDialog
@@ -26,7 +28,7 @@ namespace Questar.Gui
         {
             quit_button.Clicked += delegate {
                 base.Window.Destroy ();
-                EntryPoint.Quit ();
+                Game.Instance.Quit ();
             };
         }
     }

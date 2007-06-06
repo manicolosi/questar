@@ -42,8 +42,6 @@ namespace Questar.Gui
             BuildWindow ();
             SetupHandlers ();
             LoadSettings ();
-
-            new StartDialog ();
         }
 
         private void SetupGlade ()
@@ -92,7 +90,7 @@ namespace Questar.Gui
             base.AddAccelGroup (UIActions.Instance.UI.AccelGroup);
 
             UIActions.Instance["Quit"].Activated += delegate {
-                EntryPoint.Quit ();
+                Game.Instance.Quit ();
             };
 
             ConfigurationClient.SyncToggleAction ("ShowMessages",
@@ -117,7 +115,7 @@ namespace Questar.Gui
 
         protected override bool OnDeleteEvent (Event args)
         {
-            EntryPoint.Quit ();
+            Game.Instance.Quit ();
             return true;
         }
 

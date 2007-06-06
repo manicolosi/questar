@@ -17,36 +17,24 @@ namespace Questar
     {
         public static void Main ()
         {
-            ProcessName = "questar";
+            Game game = Game.Instance;
 
-            Application.Init ();
+            new StartDialog ();
 
-            SetupWorld ();
-            new MainWindow ();
-
-            Application.Run ();
+            game.World = CreateInitialWorld ();
+            game.Start ();
         }
 
-        public static void Quit ()
-        {
-            Application.Quit ();
-        }
-
-        private static void SetupWorld ()
+        private static World CreateInitialWorld ()
         {
             World world = World.Instance;
+
             world.Map = new Map ();
             world.AddActor (new Monster ("troll", world.Map));
             world.AddActor (new Monster ("imp", world.Map));
             world.Hero = new Hero (world.Map);
-            world.Start ();
-        }
 
-        private static string ProcessName
-        {
-            set {
-                NativeMethods.prctl (15 /* PR_SET_NAME */, value, 0, 0, 0);
-            }
+            return world;
         }
     }
 }

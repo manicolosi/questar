@@ -22,6 +22,12 @@ namespace Questar.UnitTests
 
             Assert.AreSame (a, b);
         }
+
+        [Test]
+        public void Quit ()
+        {
+            Game.Instance.Quit ();
+        }
     }
 }
 
