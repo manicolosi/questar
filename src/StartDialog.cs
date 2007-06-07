@@ -14,7 +14,7 @@ using Questar.Base;
 
 namespace Questar.Gui
 {
-    public class StartDialog : GladeDialog
+    public class StartDialog : GladeWindow
     {
         [Widget] private Button quit_button;
         [Widget] private Button new_button;
@@ -33,7 +33,7 @@ namespace Questar.Gui
             new_button.Clicked += delegate { base.Window.Destroy (); };
 
             delete_button.Clicked += delegate {
-                MessageDialog warning = new MessageDialog (base.Dialog,
+                MessageDialog warning = new MessageDialog (base.Window,
                     DialogFlags.DestroyWithParent, MessageType.Warning,
                     ButtonsType.None, "<big><b>{0}</b></big>",
                     "Are you sure you want to permanently delete " +
@@ -56,3 +56,4 @@ namespace Questar.Gui
         }
     }
 }
+
