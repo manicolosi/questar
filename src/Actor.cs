@@ -41,7 +41,7 @@ namespace Questar.Actors
 
         public virtual Point Location
         {
-            get { return (Point) location.Clone (); }
+            get { return location; }
             protected set { location = value; }
         }
 
