@@ -31,7 +31,7 @@ namespace Questar.Gui
         private List<Point> queued_grids = new List<Point> ();
 
         private bool grid_lines;
-        private bool hero_moved = false;
+        private bool recenter = false;
         private bool highlight = false;
         private Point highlight_grid;
 
@@ -44,8 +44,8 @@ namespace Questar.Gui
 
         public WorldView (World world, IActor center)
         {
-            SetWorld (world);
             SetCenter (center);
+            SetWorld (world);
 
             SetupHandlers ();
 
@@ -125,8 +125,8 @@ namespace Questar.Gui
             this.world = world;
 
             world.NewRound += delegate {
-                if (hero_moved) {
-                    hero_moved = false;
+                if (recenter) {
+                    recenter = false;
                     base.QueueDraw ();
                 }
                 else {
@@ -136,7 +136,7 @@ namespace Questar.Gui
                 queued_grids.Clear ();
             };
 
-            world.Hero.Moved += delegate { hero_moved = true; };
+            center.Moved += delegate { recenter = true; };
 
             world.Map.GridChanged += delegate (object sender,
                 MapGridChangedEventArgs args) {
