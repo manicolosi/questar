@@ -1,12 +1,18 @@
-//
-// Point.cs: Description Goes Here
-// Author: Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
-//
+/*******************************************************************************
+ *  Point.cs: Represents a single point in a Map.
+ *
+ *  Copyright (C) 2007
+ *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
+ ******************************************************************************/
 
 using System;
 
 namespace Questar.Base
 {
+    // NOTE: This is meant to only represent grids inside a Map.
+    // Gdk.Point should be used to represent points within the GUI or
+    // Cairo.Point should be used to represent points within a
+    // Cairo.Context.
     public struct Point : ICloneable
     {
         public int X;
