@@ -15,6 +15,7 @@ SOURCES =                              \
 	$(srcdir)/TestIActor.cs            \
 	$(srcdir)/TestGame.cs              \
 	$(srcdir)/TestHitPoints.cs         \
+	$(srcdir)/TestRectangle.cs         \
 	$(srcdir)/TestSchemaEntry.cs       \
 	$(srcdir)/TestSingleton.cs         \
 	$(srcdir)/TestWorld.cs             \

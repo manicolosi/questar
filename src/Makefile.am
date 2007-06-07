@@ -43,6 +43,7 @@ SOURCES =                              \
 	$(srcdir)/Point.cs                 \
 	$(srcdir)/PreferenceDialog.cs      \
 	$(srcdir)/ProgramInformation.cs    \
+	$(srcdir)/Rectangle.cs             \
 	$(srcdir)/SchemaEntry.cs           \
 	$(srcdir)/Singleton.cs             \
 	$(srcdir)/StartDialog.cs           \

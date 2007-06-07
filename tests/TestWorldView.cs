@@ -10,6 +10,7 @@ using NUnit.Framework;
 using Questar.Actors;
 using Questar.Base;
 using Questar.Gui;
+using Questar.Maps;
 
 namespace Questar.UnitTests
 {
@@ -20,6 +21,7 @@ namespace Questar.UnitTests
         public void Creation ()
         {
             World world = new World ();
+            world.Map = new Map ();
             IActor center = new MockActor ();
             WorldView world_view = new WorldView (world, center);
 
