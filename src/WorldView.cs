@@ -210,9 +210,7 @@ namespace Questar.Gui
         private void DrawTile (string tile, int x, int y)
         {
             base.GdkWindow.DrawPixbuf (base.Style.BlackGC,
-                tileset[tile].Pixbuf, 0, 0,
-                x * tileset.Width - poffset_x,
-                y * tileset.Height - poffset_y,
+                tileset[tile].Pixbuf, 0, 0, x, y,
                 -1, -1, Gdk.RgbDither.None, 0, 0);
         }
 
@@ -221,16 +219,16 @@ namespace Questar.Gui
             if (world.Map.GetGridInformation (grid) == GridInformation.Invalid)
                 return;
 
+            int x, y;
+            GridPointToWindowCoords (grid, out x, out y);
+
             foreach (string tile in world.Map[grid].Tiles)
-                DrawTile (tile, grid.X - offset_x, grid.Y - offset_y);
+                DrawTile (tile, x, y);
 
             if (grid_lines) {
                 context.Color = grid_line_color;
                 context.LineWidth = tileset.ZoomPercentage;
-                context.Rectangle (
-                    (grid.X - offset_x) * tileset.Width - poffset_x,
-                    (grid.Y - offset_y) * tileset.Height - poffset_y,
-                    tileset.Width, tileset.Height);
+                context.Rectangle (x, y, tileset.Width, tileset.Height);
                 context.Stroke ();
             }
         }
