@@ -16,6 +16,30 @@ namespace Questar.Gui
 {
     public class StartDialog : GladeWindow
     {
+        private class ConfirmDeleteMessageDialog : MessageDialog
+        {
+            private const string Format = "<big><b>Are you sure " +
+                "you want to permanently delete \"{0}\"?</b></big>";
+            private const string Secondary = "If you delete a saved " +
+                "game, it is permanently lost.";
+
+            public ConfirmDeleteMessageDialog (Window parent) :
+                base (parent, DialogFlags.DestroyWithParent,
+                    MessageType.Warning, ButtonsType.None, "")
+            {
+                string game_text = "Mark - Level 34";
+
+                base.UseMarkup = true;
+                base.Text = String.Format (Format, game_text);
+                base.SecondaryText = Secondary;
+
+                base.AddActionWidget (new Button (Stock.Cancel),
+                    ResponseType.Cancel);
+                base.AddActionWidget (new Button (Stock.Delete),
+                    ResponseType.Apply);
+            }
+        }
+
         [Widget] private Button quit_button;
         [Widget] private Button new_button;
         [Widget] private Button delete_button;
@@ -33,20 +57,8 @@ namespace Questar.Gui
             new_button.Clicked += delegate { base.Window.Destroy (); };
 
             delete_button.Clicked += delegate {
-                MessageDialog warning = new MessageDialog (base.Window,
-                    DialogFlags.DestroyWithParent, MessageType.Warning,
-                    ButtonsType.None, "<big><b>{0}</b></big>",
-                    "Are you sure you want to permanently delete " +
-                    "\"Mark - Level 34\"?");
-                warning.UseMarkup = true;
-                warning.SecondaryText = "If you delete a saved game, " +
-                    "it is permanently lost.";
-                warning.AddActionWidget (new Button (Stock.Cancel),
-                    ResponseType.Cancel);
-                warning.AddActionWidget (new Button (Stock.Delete),
-                    ResponseType.Apply);
-                warning.ShowAll ();
-
+                MessageDialog warning =
+                    new ConfirmDeleteMessageDialog (base.Window);
                 ResponseType response = (ResponseType) warning.Run ();
                 if (response == ResponseType.Apply)
                     Console.WriteLine ("Deleted");
