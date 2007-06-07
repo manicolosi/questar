@@ -30,6 +30,25 @@ namespace Questar.UnitTests
             Rectangle r = new Rectangle (5, 8);
             Assert.AreEqual (new Point (), r.Start);
         }
+
+        [Test]
+        public void IEnumerable ()
+        {
+            Rectangle rect = new Rectangle (10, 10);
+            bool [] points = new bool [rect.Width * rect.Height];
+            int i = 0;
+            foreach (Point p in rect) {
+                Assert.IsTrue (p.X >= rect.Start.X);
+                Assert.IsTrue (p.Y >= rect.Start.Y);
+                Assert.IsTrue (p.X < rect.Width);
+                Assert.IsTrue (p.Y < rect.Height);
+                points[i] = true;
+                i++;
+            }
+
+            foreach (bool p in points)
+                Assert.IsTrue (p, p.ToString ());
+        }
     }
 }
 

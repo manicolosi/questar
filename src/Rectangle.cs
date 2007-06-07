@@ -6,6 +6,8 @@
  ******************************************************************************/
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Questar.Base
 {
@@ -13,7 +15,7 @@ namespace Questar.Base
     // Map. Gdk.Rectangle should be used to represent areas within the
     // GUI or Cairo.Point should be used to represent areas within a
     // Cairo.Context.
-    public struct Rectangle
+    public struct Rectangle : IEnumerable<Point>
     {
         private Point start;
         private int width, height;
@@ -43,6 +45,61 @@ namespace Questar.Base
         public int Height
         {
             get { return height; }
+        }
+
+        public IEnumerator<Point> GetEnumerator ()
+        {
+            return new Enumerator (this);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator ()
+        {
+            return new Enumerator (this);
+        }
+
+        private struct Enumerator : IEnumerator<Point>
+        {
+            Rectangle rectangle;
+            Point current;
+
+            public Enumerator (Rectangle rect)
+            {
+                rectangle = rect;
+                current = rectangle.Start;
+                Reset ();
+            }
+
+            public Point Current
+            {
+                get { return current; }
+            }
+
+            object IEnumerator.Current
+            {
+                get { return current; }
+            }
+
+            public bool MoveNext ()
+            {
+                current.X++;
+
+                if (current.X >= rectangle.Width) {
+                    current.X = rectangle.Start.X;
+                    current.Y++;
+                }
+
+                return current.Y < rectangle.Height;
+            }
+
+            public void Reset ()
+            {
+                current = rectangle.Start;
+                current.X--;
+            }
+
+            public void Dispose ()
+            {
+            }
         }
     }
 }
