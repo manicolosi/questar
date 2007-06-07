@@ -18,8 +18,7 @@ SOURCES =                              \
 	$(srcdir)/TestRectangle.cs         \
 	$(srcdir)/TestSchemaEntry.cs       \
 	$(srcdir)/TestSingleton.cs         \
-	$(srcdir)/TestWorld.cs             \
-	$(srcdir)/TestWorldView.cs
+	$(srcdir)/TestWorld.cs
 
 ASSEMBLIES =                           \
 	-pkg:glib-sharp-2.0                \
