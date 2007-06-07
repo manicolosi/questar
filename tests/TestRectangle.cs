@@ -32,22 +32,32 @@ namespace Questar.UnitTests
         }
 
         [Test]
+        public void CreationWithXAndY ()
+        {
+            Rectangle r = new Rectangle (10, 15, 20, 25);
+            Assert.AreEqual (10, r.Start.X);
+            Assert.AreEqual (15, r.Start.Y);
+            Assert.AreEqual (20, r.Width);
+            Assert.AreEqual (25, r.Height);
+        }
+
+        [Test]
         public void IEnumerable ()
         {
-            Rectangle rect = new Rectangle (10, 10);
+            Rectangle rect = new Rectangle (5, 5, 5, 5);
             bool [] points = new bool [rect.Width * rect.Height];
             int i = 0;
             foreach (Point p in rect) {
-                Assert.IsTrue (p.X >= rect.Start.X);
-                Assert.IsTrue (p.Y >= rect.Start.Y);
-                Assert.IsTrue (p.X < rect.Width);
-                Assert.IsTrue (p.Y < rect.Height);
+                Assert.IsTrue (p.X >= rect.Start.X, "1");
+                Assert.IsTrue (p.Y >= rect.Start.Y, "2");
+                Assert.IsTrue (p.X < (rect.Width + rect.Start.X), "3");
+                Assert.IsTrue (p.Y < (rect.Height + rect.Start.Y), "4");
                 points[i] = true;
                 i++;
             }
 
             foreach (bool p in points)
-                Assert.IsTrue (p, p.ToString ());
+                Assert.IsTrue (p, "5");
         }
     }
 }

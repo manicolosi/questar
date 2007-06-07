@@ -32,6 +32,11 @@ namespace Questar.Base
         {
         }
 
+        public Rectangle (int x, int y, int width, int height) :
+            this (new Point (x, y), width, height)
+        {
+        }
+
         public Point Start
         {
             get { return start; }
@@ -61,11 +66,15 @@ namespace Questar.Base
         {
             Rectangle rectangle;
             Point current;
+            Point end;
 
             public Enumerator (Rectangle rect)
             {
                 rectangle = rect;
                 current = rectangle.Start;
+                end = new Point (
+                    rect.Start.X + rect.Width - 1,
+                    rect.Start.Y + rect.Height - 1);
                 Reset ();
             }
 
@@ -83,12 +92,15 @@ namespace Questar.Base
             {
                 current.X++;
 
-                if (current.X >= rectangle.Width) {
+                if (current.X > end.X) {
                     current.X = rectangle.Start.X;
                     current.Y++;
                 }
 
-                return current.Y < rectangle.Height;
+                if (current.Y > end.Y)
+                    return false;
+
+                return true;
             }
 
             public void Reset ()
