@@ -15,8 +15,6 @@ namespace Questar.Base
     // Cairo.Context.
     public struct Point : ICloneable
     {
-        public static Point Zero = new Point ();
-
         public int X;
         public int Y;
 

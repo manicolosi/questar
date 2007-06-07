@@ -28,7 +28,7 @@ namespace Questar.UnitTests
         public void CreationNoStart ()
         {
             Rectangle r = new Rectangle (5, 8);
-            Assert.AreEqual (Point.Zero, r.Start);
+            Assert.AreEqual (new Point (), r.Start);
         }
     }
 }

@@ -26,7 +26,7 @@ namespace Questar.Base
         }
 
         public Rectangle (int width, int height) :
-            this (Point.Zero, width, height)
+            this (new Point (), width, height)
         {
         }
 
