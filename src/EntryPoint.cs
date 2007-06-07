@@ -19,7 +19,7 @@ namespace Questar
         {
             Game game = Game.Instance;
 
-            //new StartDialog ();
+            new StartDialog ();
 
             CreateInitialWorld ();
             game.Start ();

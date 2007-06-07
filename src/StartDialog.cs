@@ -18,6 +18,7 @@ namespace Questar.Gui
     {
         [Widget] private Button quit_button;
         [Widget] private Button new_button;
+        [Widget] private Button delete_button;
 
         public StartDialog () : base ("start_dialog")
         {
@@ -27,16 +28,30 @@ namespace Questar.Gui
 
         private void SetupHandlers ()
         {
-            base.Window.DeleteEvent += delegate {
-                quit_button.Click ();
-            };
+            base.Window.DeleteEvent += delegate { Game.Instance.Quit (); };
+            quit_button.Clicked += delegate { Game.Instance.Quit (); };
+            new_button.Clicked += delegate { base.Window.Destroy (); };
 
-            quit_button.Clicked += delegate {
-                Game.Instance.Quit ();
-            };
+            delete_button.Clicked += delegate {
+                MessageDialog warning = new MessageDialog (base.Dialog,
+                    DialogFlags.DestroyWithParent, MessageType.Warning,
+                    ButtonsType.None, "<big><b>{0}</b></big>",
+                    "Are you sure you want to permanently delete " +
+                    "\"Mark - Level 34\"?");
+                warning.UseMarkup = true;
+                warning.SecondaryText = "If you delete a saved game, " +
+                    "it is permanently lost.";
+                warning.AddActionWidget (new Button (Stock.Cancel),
+                    ResponseType.Cancel);
+                warning.AddActionWidget (new Button (Stock.Delete),
+                    ResponseType.Apply);
+                warning.ShowAll ();
 
-            new_button.Clicked += delegate {
-                base.Window.Destroy ();
+                ResponseType response = (ResponseType) warning.Run ();
+                if (response == ResponseType.Apply)
+                    Console.WriteLine ("Deleted");
+
+                warning.Destroy ();
             };
         }
     }
