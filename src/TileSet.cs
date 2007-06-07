@@ -70,12 +70,6 @@ namespace Questar.Gui
                 zoom = UISchema.Zoom.Value;
                 LoadPixbufs ();
                 Events.FireEvent (this, TileSetChanged);
-
-                UIActions.Instance["ZoomIn"].Sensitive  =
-                    zoom != ZoomSetting.Largest;
-                UIActions.Instance["ZoomOut"].Sensitive =
-                    zoom != ZoomSetting.Smallest;
-
             };
 
             // UI Action Events
@@ -151,6 +145,11 @@ namespace Questar.Gui
 
         private void LoadPixbufs ()
         {
+            UIActions.Instance["ZoomIn"].Sensitive  =
+                zoom != ZoomSetting.Largest;
+            UIActions.Instance["ZoomOut"].Sensitive =
+                zoom != ZoomSetting.Smallest;
+
             foreach (Tile tile in tiles.Values) {
                 tile.Dispose ();
             }
