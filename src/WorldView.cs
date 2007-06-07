@@ -18,7 +18,7 @@ using Questar.Maps;
 
 using Color = Cairo.Color;
 using Point = Questar.Base.Point;
-using Rectangle = Gdk.Rectangle;
+using Rectangle = Questar.Base.Rectangle;
 
 namespace Questar.Gui
 {
@@ -92,7 +92,7 @@ namespace Questar.Gui
         protected override bool OnExposeEvent (EventExpose args)
         {
             using (Context context = CairoHelper.Create (base.GdkWindow)) {
-                Rectangle rect = args.Area;
+                Gdk.Rectangle rect = args.Area;
                 context.Rectangle (rect.X, rect.Y, rect.Width, rect.Height);
                 context.Clip ();
 
@@ -216,21 +216,20 @@ namespace Questar.Gui
                 -1, -1, Gdk.RgbDither.None, 0, 0);
         }
 
-        private void DrawGrid (Context context, int x, int y)
+        private void DrawGrid (Context context, Point grid)
         {
-            Point grid = new Point (offset_x + x, offset_y + y);
             if (world.Map.GetGridInformation (grid) == GridInformation.Invalid)
                 return;
 
             foreach (string tile in world.Map[grid].Tiles)
-                DrawTile (tile, x, y);
+                DrawTile (tile, grid.X - offset_x, grid.Y - offset_y);
 
             if (grid_lines) {
                 context.Color = grid_line_color;
                 context.LineWidth = tileset.ZoomPercentage;
                 context.Rectangle (
-                    x * tileset.Width - poffset_x,
-                    y * tileset.Height - poffset_y,
+                    (grid.X - offset_x) * tileset.Width - poffset_x,
+                    (grid.Y - offset_y) * tileset.Height - poffset_y,
                     tileset.Width, tileset.Height);
                 context.Stroke ();
             }
@@ -251,10 +250,11 @@ namespace Questar.Gui
                 ((h % tileset.Height) > 0 ? 1 : 0);
 
             SetOffsets (tiles_wide, tiles_high);
+            Rectangle visible = new Rectangle (offset_x, offset_y,
+                tiles_wide, tiles_high);
 
-            for (int tx = 0; tx <= tiles_wide; tx++)
-                for (int ty = 0; ty <= tiles_high; ty++)
-                    DrawGrid (context, tx, ty);
+            foreach (Point grid in visible)
+                DrawGrid (context, grid);
 
             if (highlight) {
                 int x, y;

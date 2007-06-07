@@ -62,6 +62,12 @@ namespace Questar.Base
             return new Enumerator (this);
         }
 
+        public override string ToString ()
+        {
+            return String.Format ("({0},{1}+{2}+{3})",
+                start.X, start.Y, width, height);
+        }
+
         private struct Enumerator : IEnumerator<Point>
         {
             Rectangle rectangle;
