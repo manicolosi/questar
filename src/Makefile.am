@@ -24,6 +24,7 @@ SOURCES =                              \
 	$(srcdir)/Events.cs                \
 	$(srcdir)/Game.cs                  \
 	$(srcdir)/GladeDialog.cs           \
+	$(srcdir)/GladeWindow.cs           \
 	$(srcdir)/Grid.cs                  \
 	$(srcdir)/GridInformation.cs       \
 	$(srcdir)/Hero.cs                  \

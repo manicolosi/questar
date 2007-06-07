@@ -11,21 +11,13 @@ using System;
 
 namespace Questar.Gui
 {
-    public abstract class GladeDialog
+    public abstract class GladeDialog : GladeWindow
     {
-        private const string glade_resource = "questar.glade";
-
-        Glade.XML glade;
         Dialog dialog;
-        Window window;
 
-        public GladeDialog (string name)
+        public GladeDialog (string name) : base (name)
         {
-            glade = new Glade.XML (glade_resource, name);
-            glade.Autoconnect (this);
-
-            window = glade[name] as Window;
-            dialog = window as Dialog;
+            dialog = base.Window as Dialog;
 
             if (dialog != null) {
                 dialog.Response += delegate (object o, ResponseArgs args) {
@@ -37,11 +29,6 @@ namespace Questar.Gui
         public Dialog Dialog
         {
             get { return dialog; }
-        }
-
-        public Window Window
-        {
-            get { return window; }
         }
 
         protected virtual void OnResponse (ResponseType response)
