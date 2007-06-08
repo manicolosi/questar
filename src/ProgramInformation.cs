@@ -23,8 +23,6 @@ namespace Questar.Base
         public static readonly string [] Artists = new string [] {
             "Mark A. Nicolosi"
         };
-
-        public static readonly string Icon = "questar.svg";
     }
 }
 
