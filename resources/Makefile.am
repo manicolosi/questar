@@ -7,7 +7,6 @@
 
 EXTRA_DIST =                           \
 	questar.glade                      \
-	questar.svg                        \
 	questar-ui.xml                     \
 	terrains.xml
 
