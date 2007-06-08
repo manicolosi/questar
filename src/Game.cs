@@ -27,7 +27,7 @@ namespace Questar.Base
 
         private Game ()
         {
-            ProcessName = "questar";
+            ProcessName = ProgramInformation.Name.ToLower ();
             Window.DefaultIconName = ThemeIcons.Application;
             Application.Init ();
         }
