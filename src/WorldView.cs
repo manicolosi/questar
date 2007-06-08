@@ -285,7 +285,7 @@ namespace Questar.Gui
 
             SetOffsets (tiles_wide, tiles_high);
             Rectangle visible = new Rectangle (offset_x, offset_y,
-                tiles_wide, tiles_high);
+                tiles_wide + 1, tiles_high + 1);
 
             foreach (Point grid in visible)
                 DrawGrid (context, grid);
