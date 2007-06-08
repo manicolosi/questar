@@ -52,9 +52,6 @@ namespace Questar.Gui
 
         private void BuildWindow ()
         {
-            Assembly assembly = Assembly.GetExecutingAssembly ();
-            Window.DefaultIcon = new Pixbuf (assembly, "questar.svg");
-
             menubar_container.Add (UIActions.Instance.MenuBar);
             message_view_container.Add (new MessageView ());
             map_view_container.Add (new WorldView (Game.Instance.World));
