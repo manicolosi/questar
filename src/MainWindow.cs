@@ -60,6 +60,7 @@ namespace Questar.Gui
                 base.Window.Unmaximize ();
         }
 
+        [GLib.ConnectBefore]
         private void OnWindowStateEvent (object sender,
             WindowStateEventArgs args)
         {
@@ -74,7 +75,6 @@ namespace Questar.Gui
         [GLib.ConnectBefore]
         private void OnConfigureEvent (object sender, ConfigureEventArgs args)
         {
-            Console.WriteLine ("Here");
             if (UISchema.Maximized.Value == true)
                 return;
 
