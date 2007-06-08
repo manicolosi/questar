@@ -94,6 +94,7 @@ namespace Questar.Gui
         {
             string action = null;
 
+            // All this is really ugly and doesn't really belong here.
             switch (args.Key) {
                 case Key.KP_Up:
                 case Key.Up:
@@ -115,6 +116,8 @@ namespace Questar.Gui
                     action = "MoveSouthWest"; break;
                 case Key.KP_Page_Down:
                     action = "MoveSouthEast"; break;
+                case Key.KP_Begin:
+                    action = "DoNothing"; break;
                 default:
                     break;
             }
