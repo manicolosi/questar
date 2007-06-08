@@ -27,6 +27,8 @@ namespace Questar.Gui
 
             base.Authors = ProgramInformation.Authors;
             base.Artists = ProgramInformation.Artists;
+
+            base.SkipTaskbarHint = true;
         }
     }
 }
