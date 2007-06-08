@@ -130,6 +130,8 @@ namespace Questar.Gui
 
         protected override bool OnExposeEvent (EventExpose args)
         {
+            //DateTime start = DateTime.Now;
+
             using (Context context = CairoHelper.Create (base.GdkWindow)) {
                 Gdk.Rectangle rect = args.Area;
                 context.Rectangle (rect.X, rect.Y, rect.Width, rect.Height);
@@ -137,6 +139,9 @@ namespace Questar.Gui
 
                 DrawMap (context);
             }
+
+            //Console.WriteLine ((DateTime.Now - start).Milliseconds + "ms");
+
             return true;
         }
 
