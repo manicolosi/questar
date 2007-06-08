@@ -37,7 +37,8 @@ namespace Questar.Gui
         private Point highlight_grid;
 
         private Color fill_color;
-        private Color hilight_color;
+        private Color hilight_color1;
+        private Color hilight_color2;
         private Color grid_line_color;
 
         private int offset_x, offset_y;
@@ -160,8 +161,10 @@ namespace Questar.Gui
             grid_line_color = CairoColorExtensions.FromGdkColor (
                 Style.Foreground (StateType.Normal), 0.2);
 
-            hilight_color = CairoColorExtensions.FromGdkColor (
+            hilight_color1 = CairoColorExtensions.FromGdkColor (
                 Style.Background (StateType.Selected), 0.5);
+            hilight_color2 = CairoColorExtensions.FromGdkColor (
+                Style.Background (StateType.Selected));
         }
 
         private void SetWorld (World world)
@@ -301,9 +304,12 @@ namespace Questar.Gui
             if (highlight) {
                 int x, y;
                 GridPointToWindowCoords (highlight_grid, out x, out y);
-                context.Color = hilight_color;
                 context.Rectangle (x, y, tileset.Width, tileset.Height);
-                context.Fill ();
+                context.LineWidth = tileset.ZoomPercentage * 2;
+                context.Color = hilight_color1;
+                context.FillPreserve ();
+                context.Color = hilight_color2;
+                context.Stroke ();
             }
         }
     }
