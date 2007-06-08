@@ -58,6 +58,11 @@ namespace Questar.Gui
                 base.Window.Maximize ();
             else
                 base.Window.Unmaximize ();
+
+            if (UISchema.Fullscreen.Value)
+                base.Window.Fullscreen ();
+            else
+                base.Window.Unfullscreen ();
         }
 
         [GLib.ConnectBefore]
@@ -83,7 +88,6 @@ namespace Questar.Gui
             base.Window.GetPosition (out x, out y);
             base.Window.GetSize (out width, out height);
 
-
             UISchema.XPos.Value = x;
             UISchema.YPos.Value = y;
             UISchema.Width.Value = width;
@@ -98,6 +102,14 @@ namespace Questar.Gui
             base.Window.ConfigureEvent += OnConfigureEvent;
             base.Window.DeleteEvent += delegate { Game.Instance.Quit (); };
 
+            ConfigurationClient.SyncToggleAction ("Fullscreen",
+                UISchema.Fullscreen,
+                delegate (ToggleAction action, SchemaEntry<bool> entry) {
+                    if (action.Active)
+                        base.Window.Fullscreen ();
+                    else
+                        base.Window.Unfullscreen ();
+                });
 
             ConfigurationClient.SyncToggleAction ("ShowMessages",
                 UISchema.ShowMessages,
@@ -112,11 +124,12 @@ namespace Questar.Gui
             EventHandler<EventArgs> load_settings = delegate {
                 LoadSettings ();
             };
-            UISchema.Width.Changed     += load_settings;
-            UISchema.Height.Changed    += load_settings;
-            UISchema.XPos.Changed      += load_settings;
-            UISchema.YPos.Changed      += load_settings;
-            UISchema.Maximized.Changed += load_settings;
+            UISchema.Width.Changed      += load_settings;
+            UISchema.Height.Changed     += load_settings;
+            UISchema.XPos.Changed       += load_settings;
+            UISchema.YPos.Changed       += load_settings;
+            UISchema.Maximized.Changed  += load_settings;
+            UISchema.Fullscreen.Changed += load_settings;
         }
     }
 }

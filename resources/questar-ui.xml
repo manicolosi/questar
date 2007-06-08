@@ -13,6 +13,8 @@
             <menuitem action='ZoomIn' />
             <menuitem action='ZoomOut' />
             <menuitem action='NormalSize' />
+            <separator />
+            <menuitem action='Fullscreen' />
         </menu>
         <menu action='HelpMenu'>
             <menuitem action='About' />

@@ -74,7 +74,9 @@ namespace Questar.Gui
                 new ToggleActionEntry ("ShowGridLines", null, "Show _Gridlines",
                     null, null, null, false),
                 new ToggleActionEntry ("ShowMessages", null, "Show _Messages",
-                    "<control>m", null, null, true)
+                    "<control>m", null, null, true),
+                new ToggleActionEntry ("Fullscreen", null, "Fullscreen",
+                    "F11", null, null, false)
             });
 
             map_actions.Add (new ActionEntry []
