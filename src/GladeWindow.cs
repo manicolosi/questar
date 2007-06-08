@@ -31,6 +31,11 @@ namespace Questar.Gui
         {
             get { return window; }
         }
+
+        public void Destroy ()
+        {
+            window.Destroy ();
+        }
     }
 }
 

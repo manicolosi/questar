@@ -21,7 +21,7 @@ namespace Questar.Base
             get { return Singleton<Game>.Instance; }
         }
 
-        private Window main_window;
+        private MainWindow main_window;
 
         private World world;
 

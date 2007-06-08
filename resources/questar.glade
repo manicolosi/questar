@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.2.0 on Thu Jun  7 21:37:08 2007 by mark@lothlorien-->
+<!--Generated with glade3 3.2.0 on Thu Jun  7 23:39:37 2007 by mark@lothlorien-->
 <glade-interface>
   <widget class="GtkWindow" id="main_window">
-    <property name="icon">.</property>
     <child>
       <widget class="GtkVBox" id="main_container">
         <property name="visible">True</property>

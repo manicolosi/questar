@@ -17,6 +17,7 @@ using Questar.Configuration;
 using Questar.Maps;
 
 using Color = Cairo.Color;
+using Key = Gdk.Key;
 using Point = Questar.Base.Point;
 using Rectangle = Questar.Base.Rectangle;
 
@@ -73,13 +74,13 @@ namespace Questar.Gui
             }
         }
 
-        protected override bool OnButtonPressEvent (EventButton button)
+        protected override bool OnButtonPressEvent (EventButton args)
         {
-            if (button.Button != 3)
+            if (args.Button != 3)
                 return false;
 
             Point grid = WindowCoordsToGridPoint (
-                (int) button.X, (int) button.Y);
+                (int) args.X, (int) args.Y);
             if (world.Map.GetGridInformation (grid) == GridInformation.Invalid)
                 return false;
 
@@ -87,6 +88,41 @@ namespace Questar.Gui
             UIActions.Instance.WorldViewContextMenu.Popup ();
 
             return true;
+        }
+
+        protected override bool OnKeyPressEvent (EventKey args)
+        {
+            string action = null;
+
+            switch (args.Key) {
+                case Key.KP_Up:
+                case Key.Up:
+                    action = "MoveNorth"; break;
+                case Key.KP_Down:
+                case Key.Down:
+                    action = "MoveSouth"; break;
+                case Key.KP_Left:
+                case Key.Left:
+                    action = "MoveWest"; break;
+                case Key.KP_Right:
+                case Key.Right:
+                    action = "MoveEast"; break;
+                case Key.KP_Home:
+                    action = "MoveNorthWest"; break;
+                case Key.KP_Page_Up:
+                    action = "MoveNorthEast"; break;
+                case Key.KP_End:
+                    action = "MoveSouthWest"; break;
+                case Key.KP_Page_Down:
+                    action = "MoveSouthEast"; break;
+                default:
+                    break;
+            }
+            if (action != null) {
+                UIActions.Instance[action].Activate ();
+                return true;
+            }
+            return false;
         }
 
         protected override bool OnExposeEvent (EventExpose args)
