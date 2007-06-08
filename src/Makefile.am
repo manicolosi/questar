@@ -51,6 +51,7 @@ SOURCES =                              \
 	$(srcdir)/TerrainManager.cs        \
 	$(srcdir)/Tile.cs                  \
 	$(srcdir)/TileSet.cs               \
+	$(srcdir)/ThemeIcons.cs            \
 	$(srcdir)/UIActions.cs             \
 	$(srcdir)/UISchema.cs              \
 	$(srcdir)/World.cs                 \
