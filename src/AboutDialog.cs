@@ -16,6 +16,7 @@ namespace Questar.Gui
     {
         public AboutDialog ()
         {
+            base.LogoIconName = "questar";
             base.Name = ProgramInformation.Name;
             base.Version = ProgramInformation.Version;
             base.Copyright = "Copyright \x00a9 2006-2007 Mark A. Nicolosi";
