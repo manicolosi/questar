@@ -60,38 +60,44 @@ namespace Questar.Gui
                 base.Window.Unmaximize ();
         }
 
+        private void OnWindowStateEvent (object sender,
+            WindowStateEventArgs args)
+        {
+            WindowState state = args.Event.NewWindowState;
+
+            if ((state & WindowState.Withdrawn) != 0) {
+                bool maximized = (state & WindowState.Maximized) != 0;
+                UISchema.Maximized.Value = maximized;
+            }
+        }
+
+        [GLib.ConnectBefore]
+        private void OnConfigureEvent (object sender, ConfigureEventArgs args)
+        {
+            Console.WriteLine ("Here");
+            if (UISchema.Maximized.Value == true)
+                return;
+
+            int x, y, width, height;
+
+            base.Window.GetPosition (out x, out y);
+            base.Window.GetSize (out width, out height);
+
+
+            UISchema.XPos.Value = x;
+            UISchema.YPos.Value = y;
+            UISchema.Width.Value = width;
+            UISchema.Height.Value = height;
+        }
+
         private void SetupHandlers ()
         {
             base.Window.AddAccelGroup (UIActions.Instance.UI.AccelGroup);
 
-            base.Window.DeleteEvent += delegate {
-                Game.Instance.Quit ();
-            };
+            base.Window.WindowStateEvent += OnWindowStateEvent;
+            base.Window.ConfigureEvent += OnConfigureEvent;
+            base.Window.DeleteEvent += delegate { Game.Instance.Quit (); };
 
-            base.Window.WindowStateEvent += delegate (object sender,
-                WindowStateEventArgs args) {
-                WindowState state = args.Event.NewWindowState;
-
-                if ((state & WindowState.Withdrawn) == 0)
-                    UISchema.Maximized.Value =
-                        (state & WindowState.Maximized) != 0;
-            };
-
-            base.Window.ConfigureEvent += delegate (object sender,
-                ConfigureEventArgs args) {
-                if (UISchema.Maximized.Value)
-                    return;
-
-                int x, y, width, height;
-
-                base.Window.GetPosition (out x, out y);
-                base.Window.GetSize (out width, out height);
-
-                UISchema.XPos.Value = x;
-                UISchema.YPos.Value = y;
-                UISchema.Width.Value = width;
-                UISchema.Height.Value = height;
-            };
 
             ConfigurationClient.SyncToggleAction ("ShowMessages",
                 UISchema.ShowMessages,
