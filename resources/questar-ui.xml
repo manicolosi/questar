@@ -1,6 +1,9 @@
 <ui>
     <menubar name='MenuBar'>
         <menu action='GameMenu'>
+            <menuitem action='New' />
+            <menuitem action='Open' />
+            <separator />
             <menuitem action='Quit' />
         </menu>
         <menu action='EditMenu'>

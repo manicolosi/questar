@@ -39,10 +39,12 @@ namespace Questar.Gui
         {
             normal_actions.Add (new ActionEntry [] {
                 new ActionEntry ("GameMenu", null, "_Game", null, null, null),
+                new ActionEntry ("New", Stock.New, "_New",
+                    "<control>N", null, null),
+                new ActionEntry ("Open", Stock.Open, "_Open",
+                    "<Control>O", null, null),
                 new ActionEntry ("Quit", Stock.Quit, "_Quit",
-                    "<control>Q", null, delegate {
-                        Game.Instance.Quit ();
-                    }),
+                    "<control>Q", null, delegate { Game.Instance.Quit (); }),
 
                 new ActionEntry ("EditMenu", null, "_Edit", null, null, null),
                 new ActionEntry ("Preferences", Stock.Preferences,
