@@ -7,7 +7,7 @@
 
 using System;
 
-namespace Questar.Base
+namespace Questar.Primitives
 {
     // NOTE: This is meant to only represent grids inside a Map.
     // Gdk.Point should be used to represent points within the GUI or

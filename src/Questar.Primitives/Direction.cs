@@ -1,12 +1,14 @@
-//
-// Direction.cs: Description Goes Here
-// Author: Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
-//
+/*******************************************************************************
+ *  Direction.cs: Represents the eight directions.
+ *
+ *  Copyright (C) 2007
+ *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
+ ******************************************************************************/
 
 using System;
 using System.Collections.Generic;
 
-namespace Questar.Base
+namespace Questar.Primitives
 {
     public struct Direction
     {

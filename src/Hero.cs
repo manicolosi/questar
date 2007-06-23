@@ -9,6 +9,7 @@ using Questar.Actors.Actions;
 using Questar.Base;
 using Questar.Gui;
 using Questar.Maps;
+using Questar.Primitives;
 
 namespace Questar.Actors
 {

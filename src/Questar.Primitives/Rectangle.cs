@@ -9,7 +9,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Questar.Base
+namespace Questar.Primitives
 {
     // NOTE: This is meant to only represent a rectanglular region of a
     // Map. Gdk.Rectangle should be used to represent areas within the

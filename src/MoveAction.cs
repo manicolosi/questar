@@ -5,7 +5,7 @@
 
 using System; 
 
-using Questar.Base;
+using Questar.Primitives;
 
 namespace Questar.Actors.Actions
 {

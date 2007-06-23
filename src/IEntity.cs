@@ -3,7 +3,7 @@
 // Author: Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
 //
 
-using Questar.Base;
+using Questar.Primitives;
 
 namespace Questar.Maps
 {

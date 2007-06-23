@@ -18,7 +18,6 @@ SOURCES =                              \
 	$(srcdir)/Actor.cs                 \
 	$(srcdir)/CairoColorExtensions.cs  \
 	$(srcdir)/ConfigurationClient.cs   \
-	$(srcdir)/Direction.cs             \
 	$(srcdir)/DoNothingAction.cs       \
 	$(srcdir)/EntryPoint.cs            \
 	$(srcdir)/Events.cs                \
@@ -39,10 +38,8 @@ SOURCES =                              \
 	$(srcdir)/Monster.cs               \
 	$(srcdir)/MoveAction.cs            \
 	$(srcdir)/NativeMethods.cs         \
-	$(srcdir)/Point.cs                 \
 	$(srcdir)/PreferenceDialog.cs      \
 	$(srcdir)/ProgramInformation.cs    \
-	$(srcdir)/Rectangle.cs             \
 	$(srcdir)/SchemaEntry.cs           \
 	$(srcdir)/Singleton.cs             \
 	$(srcdir)/StartDialog.cs           \
@@ -63,7 +60,8 @@ ASSEMBLIES =                           \
 	-pkg:gtk-sharp-2.0                 \
 	-pkg:rsvg-sharp-2.0                \
 	-r:Mono.Cairo                      \
-	-r:Mono.Posix
+	-r:Mono.Posix                      \
+	-r:$(srcdir)/Questar.Primitives/Questar.Primitives.dll
 
 RESOURCES = \
 	$(top_srcdir)/resources/questar-ui.xml \
@@ -80,6 +78,9 @@ all: $(ASSEMBLY)
 
 run: $(ASSEMBLY)
 	$(MONO) $(ASSEMBLY)
+
+SUBDIRS =                              \
+	Questar.Primitives
 
 EXTRA_DIST =                           \
 	$(SOURCES)                         \

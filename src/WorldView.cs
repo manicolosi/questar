@@ -15,11 +15,12 @@ using Questar.Actors;
 using Questar.Base;
 using Questar.Configuration;
 using Questar.Maps;
+using Questar.Primitives;
 
 using Color = Cairo.Color;
 using Key = Gdk.Key;
-using Point = Questar.Base.Point;
-using Rectangle = Questar.Base.Rectangle;
+using Point = Questar.Primitives.Point;
+using Rectangle = Questar.Primitives.Rectangle;
 
 namespace Questar.Gui
 {

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 
 using Questar.Actors;
 using Questar.Base;
+using Questar.Primitives;
 
 namespace Questar.Maps
 {
