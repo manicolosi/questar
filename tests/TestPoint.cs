@@ -7,7 +7,7 @@
 
 using NUnit.Framework;
 
-using Questar.Base;
+using Questar.Primitives;
 
 namespace Questar.UnitTests
 {

@@ -10,6 +10,7 @@ using System;
 
 using Questar.Actors;
 using Questar.Base;
+using Questar.Primitives;
 
 namespace Questar.UnitTests
 {

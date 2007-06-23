@@ -10,6 +10,7 @@ using System;
 
 using Questar.Base;
 using Questar.Maps;
+using Questar.Primitives;
 
 namespace Questar.UnitTests
 {
