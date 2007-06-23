@@ -62,6 +62,14 @@ namespace Questar.Maps
             }
         }
 
+        public void FillArea (string terrain_id, Rectangle rectangle)
+        {
+            foreach (Point p in rectangle) {
+                Terrain terrain = terrain_manager[terrain_id];
+                this[p] = new Grid (terrain);
+            }
+        }
+
         public GridInformation GetGridInformation (Point grid)
         {
             GridInformation info = GridInformation.Clear;
@@ -101,6 +109,7 @@ namespace Questar.Maps
         public Grid this[Point p]
         {
             get { return this[p.X, p.Y]; }
+            private set { this[p.X, p.Y] = value; }
         }
 
         private void OnActorMoved (object sender, ActorMovedEventArgs args)
