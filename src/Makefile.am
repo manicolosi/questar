@@ -16,11 +16,9 @@ SOURCES_GEN =                          \
 SOURCES =                              \
 	$(srcdir)/AboutDialog.cs           \
 	$(srcdir)/Actor.cs                 \
-	$(srcdir)/CairoColorExtensions.cs  \
 	$(srcdir)/ConfigurationClient.cs   \
 	$(srcdir)/DoNothingAction.cs       \
 	$(srcdir)/EntryPoint.cs            \
-	$(srcdir)/Events.cs                \
 	$(srcdir)/Game.cs                  \
 	$(srcdir)/GladeDialog.cs           \
 	$(srcdir)/GladeWindow.cs           \
@@ -61,7 +59,8 @@ ASSEMBLIES =                           \
 	-pkg:rsvg-sharp-2.0                \
 	-r:Mono.Cairo                      \
 	-r:Mono.Posix                      \
-	-r:$(srcdir)/Questar.Primitives/Questar.Primitives.dll
+	-r:$(srcdir)/Questar.Primitives/Questar.Primitives.dll \
+	-r:$(srcdir)/Questar.Helpers/Questar.Helpers.dll
 
 RESOURCES = \
 	$(top_srcdir)/resources/questar-ui.xml \
@@ -80,7 +79,8 @@ run: $(ASSEMBLY)
 	$(MONO) $(ASSEMBLY)
 
 SUBDIRS =                              \
-	Questar.Primitives
+	Questar.Primitives                 \
+	Questar.Helpers
 
 EXTRA_DIST =                           \
 	$(SOURCES)                         \

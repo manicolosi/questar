@@ -5,7 +5,7 @@
 
 using System;
 
-using Questar.Base;
+using Questar.Helpers;
 
 namespace Questar.Actors
 {
@@ -41,7 +41,7 @@ namespace Questar.Actors
                 HitPoints old = Clone () as HitPoints;
                 current = value;
 
-                Events.FireEvent<HitPointsEventArgs> (this, Changed,
+                EventHelper.Raise<HitPointsEventArgs> (this, Changed,
                     delegate (HitPointsEventArgs args) {
                         args.OldHitPoints = old;
                     });
@@ -59,7 +59,7 @@ namespace Questar.Actors
                 HitPoints old = Clone () as HitPoints;
                 max = value;
 
-                Events.FireEvent<HitPointsEventArgs> (this, Changed,
+                EventHelper.Raise<HitPointsEventArgs> (this, Changed,
                     delegate (HitPointsEventArgs args) {
                         args.OldHitPoints = old;
                     });

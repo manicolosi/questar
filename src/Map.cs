@@ -8,6 +8,7 @@ using System.Collections.Generic;
 
 using Questar.Actors;
 using Questar.Base;
+using Questar.Helpers;
 using Questar.Primitives;
 
 namespace Questar.Maps
@@ -125,12 +126,12 @@ namespace Questar.Maps
             this[old_location].Actor = null;
             this[new_location].Actor = actor;
 
-            Events.FireEvent<MapGridChangedEventArgs> (this, GridChanged,
+            EventHelper.Raise<MapGridChangedEventArgs> (this, GridChanged,
                 delegate (MapGridChangedEventArgs args1) {
                     args1.Grid = old_location;
                 });
 
-            Events.FireEvent<MapGridChangedEventArgs> (this, GridChanged,
+            EventHelper.Raise<MapGridChangedEventArgs> (this, GridChanged,
                 delegate (MapGridChangedEventArgs args2) {
                     args2.Grid = new_location;
                 });

@@ -29,6 +29,7 @@ Makefile
 resources/Makefile
 src/Makefile
 src/AssemblyInfo.cs
+src/Questar.Helpers/Makefile
 src/Questar.Primitives/Makefile
 tests/Makefile
 tilesets/Makefile

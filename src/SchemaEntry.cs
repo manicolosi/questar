@@ -7,7 +7,7 @@
 using GConf;
 using System;
 
-using Questar.Base;
+using Questar.Helpers;
 
 namespace Questar.Configuration
 {
@@ -31,7 +31,7 @@ namespace Questar.Configuration
             LongDescription = long_description;
 
             ConfigurationClient.Instance.AddNotify (this, delegate {
-                Events.FireEvent (this, Changed);
+                EventHelper.Raise (this, Changed);
             });
         }
 

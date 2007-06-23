@@ -6,7 +6,7 @@
 using System;
 
 using Questar.Actors.Actions;
-using Questar.Base;
+using Questar.Helpers;
 using Questar.Maps;
 using Questar.Primitives;
 
@@ -65,7 +65,7 @@ namespace Questar.Actors
             Point old = Location;
             Location = p;
 
-            Events.FireEvent<ActorMovedEventArgs> (this, Moved,
+            EventHelper.Raise<ActorMovedEventArgs> (this, Moved,
                 delegate (ActorMovedEventArgs args) {
                     args.OldLocation = old;
                 });

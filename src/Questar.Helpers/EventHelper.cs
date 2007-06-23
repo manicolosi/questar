@@ -1,17 +1,20 @@
-//
-// Events.cs: Description Goes Here
-// Author: Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
-//
+/*******************************************************************************
+ *  EventHelper.cs: Static utility methods that make dealing with events
+ *  easier.
+ *
+ *  Copyright (C) 2007
+ *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
+ ******************************************************************************/
 
 using System;
 
-namespace Questar.Base
+namespace Questar.Helpers
 {
-    public static class Events
+    public static class EventHelper
     {
         public delegate void SetupEventArgsHandler<T> (T args);
 
-        public static void FireEvent<T> (object sender,
+        public static void Raise<T> (object sender,
             EventHandler<T> event_handler,
             SetupEventArgsHandler<T> setup_handler) where T: EventArgs, new ()
         {
@@ -25,10 +28,11 @@ namespace Questar.Base
             }
         }
 
-        public static void FireEvent (object sender,
+        public static void Raise (object sender,
             EventHandler<EventArgs> event_handler)
         {
-            FireEvent<EventArgs> (sender, event_handler, null);
+            Raise<EventArgs> (sender, event_handler, null);
         }
     }
 }
+

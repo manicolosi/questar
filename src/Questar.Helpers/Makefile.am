@@ -1,20 +1,22 @@
 ################################################################################
-#   Makefile.am: Automake source file for building
-#   Questar.Primitives.dll.
+#   Makefile.am: Automake source file for building Questar.Helpers.dll.
 #
 #   Copyright (C) 2007
 #   Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
 ################################################################################
 
-ASSEMBLY = Questar.Primitives.dll
+ASSEMBLY = Questar.Helpers.dll
 
 SOURCES =                              \
-	$(srcdir)/Direction.cs             \
-	$(srcdir)/Rectangle.cs             \
-	$(srcdir)/Point.cs
+	$(srcdir)/ColorHelper.cs           \
+	$(srcdir)/EventHelper.cs
+
+ASSEMBLIES =                           \
+	-pkg:gtk-sharp-2.0                 \
+	-r:Mono.Cairo
 
 $(ASSEMBLY): $(SOURCES)
-	$(MCS) $(SOURCES) -target:library -out:$@
+	$(MCS) $(SOURCES) $(ASSEMBLIES) -target:library -out:$@
 
 all: $(ASSEMBLY)
 

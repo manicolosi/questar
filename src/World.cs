@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 
 using Questar.Actors;
+using Questar.Helpers;
 using Questar.Maps;
 
 using Timeout = GLib.Timeout;
@@ -68,7 +69,7 @@ namespace Questar.Base
             private set {
                 round = value;
 
-                Events.FireEvent<WorldNewRoundEventArgs> (this, NewRound,
+                EventHelper.Raise<WorldNewRoundEventArgs> (this, NewRound,
                     delegate (WorldNewRoundEventArgs args) {
                         args.Round = Round;
                     });
@@ -105,7 +106,7 @@ namespace Questar.Base
             else
                 actors.Add (actor);
 
-            Events.FireEvent<WorldActorAddedEventArgs> (this, ActorAdded,
+            EventHelper.Raise<WorldActorAddedEventArgs> (this, ActorAdded,
                 delegate (WorldActorAddedEventArgs args) {
                     args.Actor = actor;
                 });

@@ -9,8 +9,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-using Questar.Base;
+using Questar.Helpers;
 using Questar.Configuration;
+
+using EventHelper = Questar.Helpers.EventHelper;
 
 namespace Questar.Gui
 {
@@ -64,12 +66,12 @@ namespace Questar.Gui
             UISchema.TileSet.Changed += delegate {
                 name = UISchema.TileSet.Value;
                 LoadPixbufs ();
-                Events.FireEvent (this, TileSetChanged);
+                EventHelper.Raise (this, TileSetChanged);
             };
             UISchema.Zoom.Changed += delegate {
                 zoom = UISchema.Zoom.Value;
                 LoadPixbufs ();
-                Events.FireEvent (this, TileSetChanged);
+                EventHelper.Raise (this, TileSetChanged);
             };
 
             // UI Action Events

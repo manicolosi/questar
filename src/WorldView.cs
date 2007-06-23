@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using Questar.Actors;
 using Questar.Base;
 using Questar.Configuration;
+using Questar.Helpers;
 using Questar.Maps;
 using Questar.Primitives;
 
@@ -155,16 +156,16 @@ namespace Questar.Gui
 
         protected override void OnStyleSet (Style previous)
         {
-            fill_color = CairoColorExtensions.BlendColors (0.75,
+            fill_color = ColorHelper.BlendColors (0.75,
                 Style.Background (StateType.Normal),
                 Style.Foreground (StateType.Normal));
 
-            grid_line_color = CairoColorExtensions.FromGdkColor (
+            grid_line_color = ColorHelper.FromGdkColor (
                 Style.Foreground (StateType.Normal), 0.2);
 
-            hilight_color1 = CairoColorExtensions.FromGdkColor (
+            hilight_color1 = ColorHelper.FromGdkColor (
                 Style.Background (StateType.Selected), 0.5);
-            hilight_color2 = CairoColorExtensions.FromGdkColor (
+            hilight_color2 = ColorHelper.FromGdkColor (
                 Style.Background (StateType.Selected));
         }
 

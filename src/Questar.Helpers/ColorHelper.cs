@@ -1,6 +1,5 @@
 /*******************************************************************************
- *  CairoColorExtensions.cs: Static utility methods for Cairo.Color
- *  objects.
+ *  ColorHelper.cs: Static utility methods for Cairo.Color objects.
  *
  *  Copyright (C) 2007
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
@@ -12,11 +11,9 @@ using System;
 
 using Color = Cairo.Color;
 
-namespace Questar.Gui
+namespace Questar.Helpers
 {
-    // When the Mono C# compiler supports Extension Methods these will
-    // be converted to those.
-    public class CairoColorExtensions
+    public class ColorHelper
     {
         public static Color BlendColors (double blend, Color a, Color b)
         {
