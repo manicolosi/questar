@@ -39,7 +39,7 @@ namespace Questar.Maps
 
         private void ReadTerrain (XmlReader reader, string key)
         {
-            Terrain terrain = new Terrain ();
+            Terrain terrain = new Terrain (key);
 
             while (reader.Read ()) {
                 if ((reader.NodeType == XmlNodeType.EndElement) &&

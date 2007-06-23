@@ -10,14 +10,21 @@ namespace Questar.Maps
 {
     public class Terrain
     {
+        private string id;
         private string name;
         private string description;
         private List<string> tiles;
         private bool is_blocking;
 
-        public Terrain ()
+        public Terrain (string id)
         {
+            this.id = id;
             this.tiles = new List<string> ();
+        }
+
+        public string Id
+        {
+            get { return id; }
         }
 
         public string Name
