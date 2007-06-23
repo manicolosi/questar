@@ -51,15 +51,18 @@ namespace Questar.Actors
 
         private IAction CreateRandomMoveAction ()
         {
-            List<Direction> potential_moves = new List<Direction> ();
+            List<Direction> potentials = new List<Direction> ();
 
             foreach (Direction direction in Direction.Directions) {
                 if (base.CanMoveTo (direction))
-                    potential_moves.Add (direction);
+                    potentials.Add (direction);
             }
 
-            int index = random.Next (potential_moves.Count);
-            return new MoveAction (this, potential_moves[index]);
+            if (potentials.Count == 0)
+                return new DoNothingAction (this);
+
+            int index = random.Next (potentials.Count);
+            return new MoveAction (this, potentials[index]);
         }
     }
 }
