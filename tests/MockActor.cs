@@ -1,6 +1,5 @@
 /*******************************************************************************
- *  MockActor.cs: Mock object that implements the IActor interface, used
- *  for unit tests.
+ *  MockActor.cs: Mock object that implements the Actor abstract class.
  *
  *  Copyright (C) 2007
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>

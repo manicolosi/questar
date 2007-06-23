@@ -14,9 +14,9 @@ using Questar.Base;
 namespace Questar.UnitTests
 {
     [TestFixture]
-    public class TestIActor
+    public class TestActor
     {
-        IActor actor;
+        Actor actor;
 
         [SetUp]
         public void Setup ()

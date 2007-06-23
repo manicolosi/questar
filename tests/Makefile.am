@@ -12,7 +12,7 @@ NUNIT_CONSOLE = $(NUNIT_PATH)/nunit-console.exe
 
 SOURCES =                              \
 	$(srcdir)/MockActor.cs             \
-	$(srcdir)/TestIActor.cs            \
+	$(srcdir)/TestActor.cs             \
 	$(srcdir)/TestGame.cs              \
 	$(srcdir)/TestHitPoints.cs         \
 	$(srcdir)/TestPoint.cs             \
