@@ -13,54 +13,64 @@ SOURCES_IN =                           \
 SOURCES_GEN =                          \
 	$(SOURCES_IN:.in=)
 
-SOURCES =                              \
-	$(srcdir)/AboutDialog.cs           \
-	$(srcdir)/Actor.cs                 \
-	$(srcdir)/ConfigurationClient.cs   \
-	$(srcdir)/DoNothingAction.cs       \
-	$(srcdir)/EntryPoint.cs            \
-	$(srcdir)/Game.cs                  \
-	$(srcdir)/GladeDialog.cs           \
-	$(srcdir)/GladeWindow.cs           \
-	$(srcdir)/Grid.cs                  \
-	$(srcdir)/GridInformation.cs       \
-	$(srcdir)/Hero.cs                  \
-	$(srcdir)/HitPoints.cs             \
-	$(srcdir)/IActionable.cs           \
-	$(srcdir)/IAction.cs               \
-	$(srcdir)/IEntity.cs               \
-	$(srcdir)/MainWindow.cs            \
-	$(srcdir)/Map.cs                   \
-	$(srcdir)/Messages.cs              \
-	$(srcdir)/MessageView.cs           \
-	$(srcdir)/Monster.cs               \
-	$(srcdir)/MoveAction.cs            \
-	$(srcdir)/NativeMethods.cs         \
-	$(srcdir)/PreferenceDialog.cs      \
-	$(srcdir)/ProgramInformation.cs    \
-	$(srcdir)/SchemaEntry.cs           \
-	$(srcdir)/Singleton.cs             \
-	$(srcdir)/StartDialog.cs           \
-	$(srcdir)/Terrain.cs               \
-	$(srcdir)/TerrainManager.cs        \
-	$(srcdir)/Tile.cs                  \
-	$(srcdir)/TileSet.cs               \
-	$(srcdir)/ThemeIcons.cs            \
-	$(srcdir)/UIActions.cs             \
-	$(srcdir)/UISchema.cs              \
-	$(srcdir)/World.cs                 \
-	$(srcdir)/WorldView.cs
+SOURCES = \
+	Questar/EntryPoint.cs \
+	Questar.Actors/Actor.cs \
+	Questar.Actors/Hero.cs \
+	Questar.Actors/HitPoints.cs \
+	Questar.Actors/IActionable.cs \
+	Questar.Actors/Monster.cs \
+	\
+	Questar.Actors.Actions/DoNothingAction.cs \
+	Questar.Actors.Actions/IAction.cs \
+	Questar.Actors.Actions/MoveAction.cs \
+	\
+	Questar.Base/Game.cs \
+	Questar.Base/Messages.cs \
+	Questar.Base/NativeMethods.cs \
+	Questar.Base/ProgramInformation.cs \
+	Questar.Base/Singleton.cs \
+	Questar.Base/World.cs \
+	\
+	Questar.Configuration/ConfigurationClient.cs \
+	Questar.Configuration/SchemaEntry.cs \
+	Questar.Configuration/UISchema.cs \
+	\
+	Questar.Gui/AboutDialog.cs \
+	Questar.Gui/GladeDialog.cs \
+	Questar.Gui/GladeWindow.cs \
+	Questar.Gui/MainWindow.cs \
+	Questar.Gui/MessageView.cs \
+	Questar.Gui/PreferenceDialog.cs \
+	Questar.Gui/StartDialog.cs \
+	Questar.Gui/ThemeIcons.cs \
+	Questar.Gui/Tile.cs \
+	Questar.Gui/TileSet.cs \
+	Questar.Gui/UIActions.cs \
+	Questar.Gui/WorldView.cs \
+	\
+	Questar.Helpers/ColorHelper.cs \
+	Questar.Helpers/EventHelper.cs \
+	\
+	Questar.Maps/Grid.cs \
+	Questar.Maps/GridInformation.cs \
+	Questar.Maps/IEntity.cs \
+	Questar.Maps/Map.cs \
+	Questar.Maps/Terrain.cs \
+	Questar.Maps/TerrainManager.cs \
+	\
+	Questar.Primitives/Direction.cs \
+	Questar.Primitives/Point.cs \
+	Questar.Primitives/Rectangle.cs
 
-ASSEMBLIES =                           \
-	-pkg:gconf-sharp-2.0               \
-	-pkg:glade-sharp-2.0               \
-	-pkg:gnome-sharp-2.0               \
-	-pkg:gtk-sharp-2.0                 \
-	-pkg:rsvg-sharp-2.0                \
-	-r:Mono.Cairo                      \
-	-r:Mono.Posix                      \
-	-r:$(srcdir)/Questar.Primitives/Questar.Primitives.dll \
-	-r:$(srcdir)/Questar.Helpers/Questar.Helpers.dll
+ASSEMBLIES = \
+	-pkg:gconf-sharp-2.0 \
+	-pkg:glade-sharp-2.0 \
+	-pkg:gnome-sharp-2.0 \
+	-pkg:gtk-sharp-2.0 \
+	-pkg:rsvg-sharp-2.0 \
+	-r:Mono.Cairo \
+	-r:Mono.Posix
 
 RESOURCES = \
 	$(top_srcdir)/resources/questar-ui.xml \
@@ -77,10 +87,6 @@ all: $(ASSEMBLY)
 
 run: $(ASSEMBLY)
 	$(MONO) $(ASSEMBLY)
-
-SUBDIRS =                              \
-	Questar.Primitives                 \
-	Questar.Helpers
 
 EXTRA_DIST =                           \
 	$(SOURCES)                         \
