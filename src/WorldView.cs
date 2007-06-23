@@ -26,7 +26,7 @@ namespace Questar.Gui
     public class WorldView : DrawingArea
     {
         private World world;
-        private IActor center;
+        private Actor center;
 
         private TileSet tileset = new TileSet ();
         private List<Point> queued_grids = new List<Point> ();
@@ -44,7 +44,7 @@ namespace Questar.Gui
         private int offset_x, offset_y;
         private int poffset_x, poffset_y;
 
-        public WorldView (World world, IActor center)
+        public WorldView (World world, Actor center)
         {
             SetCenter (center);
             SetWorld (world);
@@ -67,7 +67,7 @@ namespace Questar.Gui
             }
         }
 
-        public IActor Center
+        public Actor Center
         {
             get { return center; }
             set {
@@ -191,7 +191,7 @@ namespace Questar.Gui
             };
         }
 
-        private void SetCenter (IActor center)
+        private void SetCenter (Actor center)
         {
             this.center = center;
         }

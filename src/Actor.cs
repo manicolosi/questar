@@ -11,7 +11,12 @@ using Questar.Maps;
 
 namespace Questar.Actors
 {
-    public abstract class Actor : IActor, IActionable
+    public class ActorMovedEventArgs : EventArgs
+    {
+        public Point OldLocation;
+    }
+
+    public abstract class Actor : IActionable
     {
         private string name;
         private HitPoints hit_points;

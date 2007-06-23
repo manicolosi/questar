@@ -17,7 +17,7 @@ namespace Questar.Base
 {
     public class WorldActorAddedEventArgs : EventArgs
     {
-        public IActor Actor;
+        public Actor Actor;
     }
 
     public class WorldNewRoundEventArgs : EventArgs
@@ -27,8 +27,8 @@ namespace Questar.Base
 
     public class World
     {
-        private List<IActor> actors = new List<IActor> ();
-        private IActor hero;
+        private List<Actor> actors = new List<Actor> ();
+        private Actor hero;
         private Map map;
 
         private int turn_index = 0;
@@ -47,7 +47,7 @@ namespace Questar.Base
             IsPaused = false;
         }
 
-        public IActor Hero
+        public Actor Hero
         {
             get { return hero; }
             set {
@@ -92,12 +92,12 @@ namespace Questar.Base
             }
         }
 
-        public IActor CurrentActor
+        public Actor CurrentActor
         {
             get { return actors[turn_index]; }
         }
 
-        public void AddActor (IActor actor)
+        public void AddActor (Actor actor)
         {
             Hero hero = actor as Hero;
             if (hero != null)

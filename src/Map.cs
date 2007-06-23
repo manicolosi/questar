@@ -41,7 +41,7 @@ namespace Questar.Maps
 
             Game.Instance.World.ActorAdded += delegate (object sender,
                 WorldActorAddedEventArgs args) {
-                IActor actor = args.Actor;
+                Actor actor = args.Actor;
                 this[actor.Location].Actor = actor;
                 actor.Moved += OnActorMoved;
             };
@@ -105,7 +105,7 @@ namespace Questar.Maps
 
         private void OnActorMoved (object sender, ActorMovedEventArgs args)
         {
-            IActor actor = sender as IActor;
+            Actor actor = sender as Actor;
             Point old_location = args.OldLocation;
             Point new_location = actor.Location;
 

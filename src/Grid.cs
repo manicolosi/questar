@@ -13,7 +13,7 @@ namespace Questar.Maps
     public class Grid
     {
         private Terrain terrain;
-        private IActor actor;
+        private Actor actor;
 
         public Grid (Terrain terrain)
         {
@@ -26,7 +26,7 @@ namespace Questar.Maps
             set { terrain = value; }
         }
 
-        public IActor Actor
+        public Actor Actor
         {
             get { return actor; }
             set { actor = value; }

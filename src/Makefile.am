@@ -31,7 +31,6 @@ SOURCES =                              \
 	$(srcdir)/HitPoints.cs             \
 	$(srcdir)/IActionable.cs           \
 	$(srcdir)/IAction.cs               \
-	$(srcdir)/IActor.cs                \
 	$(srcdir)/IEntity.cs               \
 	$(srcdir)/MainWindow.cs            \
 	$(srcdir)/Map.cs                   \
