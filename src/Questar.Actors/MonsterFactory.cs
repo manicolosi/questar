@@ -60,8 +60,12 @@ namespace Questar.Actors
             MonsterDefinition definition = new MonsterDefinition (id);
 
             foreach (XmlNode child in node.ChildNodes) {
-                if (child.Name == "Name")
+                if (child.Name == "Name") {
                     definition.Name = child.FirstChild.Value;
+                    foreach (XmlAttribute attribute in child.Attributes)
+                        if (attribute.Name == "Prefix")
+                            definition.Prefix = attribute.Value;
+                }
 
                 else if (child.Name == "Description")
                     definition.Description = child.FirstChild.Value;
