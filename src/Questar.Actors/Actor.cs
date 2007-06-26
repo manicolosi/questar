@@ -6,6 +6,7 @@
 using System;
 
 using Questar.Actors.Actions;
+using Questar.Base;
 using Questar.Helpers;
 using Questar.Maps;
 using Questar.Primitives;
@@ -78,8 +79,9 @@ namespace Questar.Actors
 
         public void TakeDamage (Actor attacker, int damage)
         {
-            Console.WriteLine ("{0} attacks {1} for {3}.",
+            string message = String.Format ("{0} attacks {1} for {2}.",
                 attacker, this, damage);
+            Messages.Instance.Add (message);
         }
 
         protected bool CanMoveTo (Direction direction)

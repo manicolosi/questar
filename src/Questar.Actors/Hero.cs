@@ -106,7 +106,8 @@ namespace Questar.Actors
                     break;
 
                 case GridInformation.Occupied:
-                    Messages.Instance.Add ("Someone is in the way.");
+                    Point p = direction.ApplyToPoint (base.Location);
+                    AddAction (new AttackAction (this, base.Map[p].Actor));
                     break;
 
                 default:
