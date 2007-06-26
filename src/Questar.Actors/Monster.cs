@@ -70,6 +70,11 @@ namespace Questar.Actors
             int index = random.Next (potentials.Count);
             return new MoveAction (this, potentials[index]);
         }
+
+        public override string ToString ()
+        {
+            return String.Format ("{0} {1}", prefix, base.Name);
+        }
     }
 }
 

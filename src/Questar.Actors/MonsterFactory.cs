@@ -42,50 +42,35 @@ namespace Questar.Actors
         {
             Assembly assembly = Assembly.GetExecutingAssembly ();
             Stream stream = assembly.GetManifestResourceStream (resource);
-            XmlTextReader reader = new XmlTextReader (stream);
 
-            string id;
+            XmlDocument document = new XmlDocument ();
+            document.Load (stream);
 
-            while (reader.Read ()) {
-                if ((reader.NodeType == XmlNodeType.Element) &&
-                    (reader.Name == "Monster")) {
-                    id = reader["Id"];
+            XmlNodeList nodes = document.GetElementsByTagName ("Monster");
 
-                    if (id == null)
-                        throw new ApplicationException
-                            ("Monster does not contain an 'Id' attribute.");
-
-                    LoadMonster (reader, id);
-                }
+            foreach (XmlNode node in nodes) {
+                foreach (XmlAttribute attribute in node.Attributes)
+                    if (attribute.Name == "Id")
+                        LoadMonster (attribute.Value, node);
             }
         }
 
-        private void LoadMonster (XmlReader reader, string id)
+        private void LoadMonster (string id, XmlNode node)
         {
             MonsterDefinition definition = new MonsterDefinition (id);
 
-            while (reader.Read ()) {
-                if ((reader.NodeType == XmlNodeType.EndElement) &&
-                    (reader.Name == "Monster"))
-                    break;
+            foreach (XmlNode child in node.ChildNodes) {
+                if (child.Name == "Name")
+                    definition.Name = child.FirstChild.Value;
 
-                if (reader.NodeType != XmlNodeType.Element)
-                    continue;
+                else if (child.Name == "Description")
+                    definition.Description = child.FirstChild.Value;
 
-                string element = reader.Name;
-                reader.Read ();
+                else if (child.Name == "Tile")
+                    definition.TileId = child.FirstChild.Value;
 
-                if (element == "Name")
-                    definition.Name = reader.Value;
-
-                else if (element == "Description")
-                    definition.Description = reader.Value;
-
-                else if (element == "Tile")
-                    definition.TileId = reader.Value;
-
-                else if (element == "MaxHP")
-                    definition.MaxHP = Int32.Parse (reader.Value);
+                else if (child.Name == "MaxHP")
+                    definition.MaxHP = Int32.Parse (child.FirstChild.Value);
             }
 
             definitions.Add (id, definition);
