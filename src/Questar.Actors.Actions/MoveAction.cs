@@ -24,11 +24,6 @@ namespace Questar.Actors.Actions
         {
             actor.Move (direction.ApplyToPoint (actor.Location));
         }
-
-        public Direction Direction
-        {
-            get { return direction; }
-        }
     }
 }
 
