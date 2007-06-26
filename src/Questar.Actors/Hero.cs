@@ -54,9 +54,10 @@ namespace Questar.Actors
         {
             // TODO: Should the Hero be a regular Actor that has a PlayerAI?
             // There definitely needs to be some sort of ActorFactory thing.
-            //
-            // An alternative to all this is to have the MainWindow send all keypresses
-            // to the Hero and see if a key is found in a table of actions.
+
+            // An alternative to all this is to have the MainWindow send
+            // all keypresses to the Hero and see if a key is found in a
+            // table of actions.
             last_action = DateTime.Now;
 
             UIActions.Instance["MoveNorth"].Activated += delegate {
