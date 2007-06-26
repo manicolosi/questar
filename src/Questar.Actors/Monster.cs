@@ -23,6 +23,7 @@ namespace Questar.Actors
             base.Name = definition.Name;
             base.Tile = definition.TileId;
             base.Map = Game.Instance.World.Map;
+            base.HitPoints = new HitPoints (definition.MaxHP);
 
             monster_id = definition.Id;
             prefix = definition.Prefix;
@@ -69,6 +70,11 @@ namespace Questar.Actors
 
             int index = random.Next (potentials.Count);
             return new MoveAction (this, potentials[index]);
+        }
+
+        public string Id
+        {
+            get { return monster_id; }
         }
 
         public override string ToString ()

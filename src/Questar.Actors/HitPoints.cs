@@ -30,6 +30,10 @@ namespace Questar.Actors
             Current = current;
         }
 
+        public HitPoints (int max) : this (max, max)
+        {
+        }
+
         public int Current
         {
             get { return current; }
