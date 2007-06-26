@@ -18,7 +18,6 @@ SOURCES = \
 	Questar.Actors/Actor.cs \
 	Questar.Actors/Hero.cs \
 	Questar.Actors/HitPoints.cs \
-	Questar.Actors/IActionable.cs \
 	Questar.Actors/Monster.cs \
 	\
 	Questar.Actors.Actions/DoNothingAction.cs \

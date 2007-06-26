@@ -12,9 +12,9 @@ namespace Questar.Actors.Actions
     public class MoveAction : IAction
     {
         private Direction direction;
-        private IActionable actor;
+        private Actor actor;
 
-        public MoveAction (IActionable actor, Direction direction)
+        public MoveAction (Actor actor, Direction direction)
         {
             this.actor = actor;
             this.direction = direction;

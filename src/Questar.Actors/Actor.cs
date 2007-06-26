@@ -17,7 +17,7 @@ namespace Questar.Actors
         public Point OldLocation;
     }
 
-    public abstract class Actor : IActionable
+    public abstract class Actor
     {
         private string name;
         private HitPoints hit_points;
@@ -70,7 +70,6 @@ namespace Questar.Actors
                     args.OldLocation = old;
                 });
         }
-
 
         protected bool CanMoveTo (Direction direction)
         {
