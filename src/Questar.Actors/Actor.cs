@@ -71,6 +71,17 @@ namespace Questar.Actors
                 });
         }
 
+        public int GetAttackDamage (Actor target)
+        {
+            return 5;
+        }
+
+        public void TakeDamage (Actor attacker, int damage)
+        {
+            Console.WriteLine ("{0} attacks {1} for {3}.",
+                attacker, this, damage);
+        }
+
         protected bool CanMoveTo (Direction direction)
         {
             return CanMoveTo (direction.ApplyToPoint (Location));
