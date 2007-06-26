@@ -83,6 +83,8 @@ namespace Questar.Actors
             string message = String.Format ("{0} attack {1} for {2}.",
                 attacker_name, this, damage);
             Messages.Instance.Add (message);
+
+            this.HitPoints.Current -= damage;
         }
 
         protected bool CanMoveTo (Direction direction)

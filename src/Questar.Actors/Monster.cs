@@ -44,6 +44,8 @@ namespace Questar.Actors
         public override IAction Action
         {
             get {
+                Console.WriteLine ("{0} has {1} HP.", this, base.HitPoints);
+
                 Point target = Game.Instance.World.Hero.Location;
                 Direction direction = base.Location.DirectionOf (target);
 
