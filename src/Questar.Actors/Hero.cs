@@ -129,6 +129,11 @@ namespace Questar.Actors
 
             Game.Instance.World.IsPaused = false;
         }
+
+        public override string ToString ()
+        {
+            return "you";
+        }
     }
 }
 

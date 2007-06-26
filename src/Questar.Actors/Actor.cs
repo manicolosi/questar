@@ -79,8 +79,9 @@ namespace Questar.Actors
 
         public void TakeDamage (Actor attacker, int damage)
         {
-            string message = String.Format ("{0} attacks {1} for {2}.",
-                attacker, this, damage);
+            string attacker_name = FirstLetterUpper (attacker.ToString ());
+            string message = String.Format ("{0} attack {1} for {2}.",
+                attacker_name, this, damage);
             Messages.Instance.Add (message);
         }
 
@@ -92,6 +93,17 @@ namespace Questar.Actors
         protected bool CanMoveTo (Point p)
         {
             return Map.GetGridInformation (p) == GridInformation.Clear;
+        }
+
+        public override string ToString ()
+        {
+            return name;
+        }
+
+        private string FirstLetterUpper (string str)
+        {
+            string first_letter = str.Substring (0, 1).ToUpper ();
+            return str.Remove (0, 1).Insert (0, first_letter);
         }
     }
 }
