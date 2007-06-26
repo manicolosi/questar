@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Monsters>
+    <Monster Id="imp">
+        <Name Prefix="an">imp</Name>
+        <Description>Ugly little critter.</Description>
+        <Tile>imp</Tile>
+        <MaxHP>20</MaxHP>
+    </Monster>
+
+    <Monster Id="troll">
+        <Name>troll</Name>
+        <Description>Ugly big critter.</Description>
+        <Tile>troll</Tile>
+        <MaxHP>15</MaxHP>
+    </Monster>
+</Monsters>
+

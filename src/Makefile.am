@@ -19,6 +19,8 @@ SOURCES = \
 	Questar.Actors/Hero.cs \
 	Questar.Actors/HitPoints.cs \
 	Questar.Actors/Monster.cs \
+	Questar.Actors/MonsterDefinition.cs \
+	Questar.Actors/MonsterFactory.cs \
 	\
 	Questar.Actors.Actions/AttackAction.cs \
 	Questar.Actors.Actions/DoNothingAction.cs \
@@ -74,7 +76,8 @@ ASSEMBLIES = \
 
 RESOURCES = \
 	$(top_srcdir)/resources/questar-ui.xml \
-	$(top_srcdir)/resources/questar.glade  \
+	$(top_srcdir)/resources/questar.glade \
+	$(top_srcdir)/resources/monsters.xml \
 	$(top_srcdir)/resources/terrains.xml
 
 RESOURCES_EMBEDDED = \

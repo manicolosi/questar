@@ -15,18 +15,23 @@ namespace Questar.Actors
 {
     public class Monster : Actor
     {
-        public Monster (string tile, Map map)
+        private string monster_id;
+        private string prefix;
+
+        public Monster (MonsterDefinition definition)
         {
-            base.Tile = tile;
-            base.Name = tile;
-            base.Map = map;
+            base.Name = definition.Name;
+            base.Tile = definition.TileId;
+            base.Map = Game.Instance.World.Map;
+
+            monster_id = definition.Id;
+            prefix = definition.Prefix;
 
             Point p;
             do {
-                p = Point.GetRandom (map.Width, map.Height);
+                p = Point.GetRandom (base.Map.Width, base.Map.Height);
             }
             while (!base.CanMoveTo (p));
-
             base.Location = p;
         }
 
