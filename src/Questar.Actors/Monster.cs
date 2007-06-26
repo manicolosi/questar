@@ -18,7 +18,7 @@ namespace Questar.Actors
         public Monster (string tile, Map map)
         {
             base.Tile = tile;
-            base.Name = "No Name";
+            base.Name = tile;
             base.Map = map;
 
             Point p;
