@@ -42,10 +42,22 @@ namespace Questar.Maps
                 "grass", "grass", "flower", "grass", "grass");
 
             Game.Instance.World.ActorAdded += delegate (object sender,
-                WorldActorAddedEventArgs args) {
+                WorldActorEventArgs args) {
                 Actor actor = args.Actor;
                 this[actor.Location].Actor = actor;
                 actor.Moved += OnActorMoved;
+            };
+
+            Game.Instance.World.ActorRemoved += delegate (object sender,
+                WorldActorEventArgs args) {
+                Actor actor = args.Actor;
+                this[actor.Location].Actor = null;
+                actor.Moved -= OnActorMoved;
+
+                EventHelper.Raise<MapGridChangedEventArgs> (this, GridChanged,
+                    delegate (MapGridChangedEventArgs grid_args) {
+                        grid_args.Grid = actor.Location;
+                    });
             };
         }
 

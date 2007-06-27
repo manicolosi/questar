@@ -79,12 +79,18 @@ namespace Questar.Actors
 
         public void TakeDamage (Actor attacker, int damage)
         {
-            string attacker_name = FirstLetterUpper (attacker.ToString ());
-            string message = String.Format ("{0} attack {1} for {2}.",
-                attacker_name, this, damage);
-            Messages.Instance.Add (message);
+            HitPoints.Current -= damage;
 
-            this.HitPoints.Current -= damage;
+            string extra = "";
+            if (HitPoints.Current < 0) {
+                extra = " and killed it";
+                Game.Instance.World.RemoveActor (this);
+            }
+
+            string attacker_name = FirstLetterUpper (attacker.ToString ());
+            string message = String.Format ("{0} attack {1}{2}.",
+                attacker_name, this, extra);
+            Messages.Instance.Add (message);
         }
 
         protected bool CanMoveTo (Direction direction)

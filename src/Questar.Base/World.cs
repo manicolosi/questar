@@ -16,7 +16,7 @@ using Timeout = GLib.Timeout;
 
 namespace Questar.Base
 {
-    public class WorldActorAddedEventArgs : EventArgs
+    public class WorldActorEventArgs : EventArgs
     {
         public Actor Actor;
     }
@@ -36,7 +36,8 @@ namespace Questar.Base
         private int round = 0;
         private bool is_paused = true;
 
-        public event EventHandler<WorldActorAddedEventArgs> ActorAdded;
+        public event EventHandler<WorldActorEventArgs> ActorAdded;
+        public event EventHandler<WorldActorEventArgs> ActorRemoved;
         public event EventHandler<WorldNewRoundEventArgs> NewRound;
 
         public World ()
@@ -106,8 +107,18 @@ namespace Questar.Base
             else
                 actors.Add (actor);
 
-            EventHelper.Raise<WorldActorAddedEventArgs> (this, ActorAdded,
-                delegate (WorldActorAddedEventArgs args) {
+            EventHelper.Raise<WorldActorEventArgs> (this, ActorAdded,
+                delegate (WorldActorEventArgs args) {
+                    args.Actor = actor;
+                });
+        }
+
+        public void RemoveActor (Actor actor)
+        {
+            actors.Remove (actor);
+
+            EventHelper.Raise<WorldActorEventArgs> (this, ActorRemoved,
+                delegate (WorldActorEventArgs args) {
                     args.Actor = actor;
                 });
         }
