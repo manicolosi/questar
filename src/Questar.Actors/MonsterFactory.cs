@@ -16,30 +16,23 @@ using Questar.Base;
 
 namespace Questar.Actors
 {
-    public class MonsterFactory
+    public static class MonsterFactory
     {
         private const string resource = "monsters.xml";
+        private static Dictionary<string, MonsterDefinition> definitions = null;
 
-        private Dictionary<string, MonsterDefinition> definitions =
-            new Dictionary<string, MonsterDefinition> ();
-
-        public static MonsterFactory Instance
+        public static Monster Create (string id)
         {
-            get { return Singleton<MonsterFactory>.Instance; }
-        }
+            if (definitions == null)
+                Load ();
 
-        private MonsterFactory ()
-        {
-            Load ();
-        }
-
-        public Monster Create (string id)
-        {
             return new Monster (definitions[id]);
         }
 
-        private void Load ()
+        private static void Load ()
         {
+            definitions = new Dictionary<string, MonsterDefinition> ();
+
             Assembly assembly = Assembly.GetExecutingAssembly ();
             Stream stream = assembly.GetManifestResourceStream (resource);
 
@@ -55,7 +48,7 @@ namespace Questar.Actors
             }
         }
 
-        private void LoadMonster (string id, XmlNode node)
+        private static void LoadMonster (string id, XmlNode node)
         {
             MonsterDefinition definition = new MonsterDefinition (id);
 
