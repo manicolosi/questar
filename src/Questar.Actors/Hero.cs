@@ -18,20 +18,22 @@ namespace Questar.Actors
         private IAction action = null;
         private DateTime last_action;
 
-        public Hero (Map map)
+        public Hero ()
         {
             base.Tile = "hero";
             base.Name = "Hero";
-            base.Map = map;
+            base.Map = Game.Instance.World.Map;
 
             Point p;
             do {
-                p = Point.GetRandom (map.Width, map.Height);
+                p = Point.GetRandom (base.Map.Width, base.Map.Height);
             }
             while (!base.CanMoveTo (p));
             base.Location = p;
 
             SetupHandlers ();
+
+            Game.Instance.World.AddActor (this);
         }
 
         public override bool IsTurnReady

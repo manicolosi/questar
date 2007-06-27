@@ -31,7 +31,7 @@ namespace Questar
             Game.Instance.World = world;
 
             world.Map = new Map ();
-            world.Hero = new Hero (world.Map);
+            new Hero ();
             MonsterFactory.Instance.Create ("imp");
             MonsterFactory.Instance.Create ("imp");
             MonsterFactory.Instance.Create ("troll");

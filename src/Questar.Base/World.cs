@@ -49,15 +49,6 @@ namespace Questar.Base
             IsPaused = false;
         }
 
-        public Actor Hero
-        {
-            get { return hero; }
-            set {
-                this.hero = value;
-                AddActor (hero);
-            }
-        }
-
         public Map Map
         {
             get { return map; }
@@ -99,11 +90,18 @@ namespace Questar.Base
             get { return actors[turn_index]; }
         }
 
+        public Actor Hero
+        {
+            get { return hero; }
+        }
+
         public void AddActor (Actor actor)
         {
             Hero hero = actor as Hero;
-            if (hero != null)
+            if (hero != null) {
+                this.hero = hero;
                 actors.Insert (0, hero);
+            }
             else
                 actors.Add (actor);
 
