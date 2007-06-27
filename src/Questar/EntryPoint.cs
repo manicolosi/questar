@@ -32,10 +32,10 @@ namespace Questar
 
             world.Map = new Map ();
             world.Hero = new Hero (world.Map);
-            world.AddActor (MonsterFactory.Instance.Create ("imp"));
-            world.AddActor (MonsterFactory.Instance.Create ("imp"));
-            world.AddActor (MonsterFactory.Instance.Create ("troll"));
-            world.AddActor (MonsterFactory.Instance.Create ("troll"));
+            MonsterFactory.Instance.Create ("imp");
+            MonsterFactory.Instance.Create ("imp");
+            MonsterFactory.Instance.Create ("troll");
+            MonsterFactory.Instance.Create ("troll");
         }
     }
 }
