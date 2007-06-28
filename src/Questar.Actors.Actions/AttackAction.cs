@@ -7,6 +7,7 @@
 
 using System;
 
+using Questar.Maps;
 using Questar.Primitives;
 
 namespace Questar.Actors.Actions
@@ -35,8 +36,13 @@ namespace Questar.Actors.Actions
             bool found = false;
 
             foreach (Direction direction in Direction.Directions) {
+                Map map = attacker.Map;
                 Point p = direction.ApplyToPoint (attacker.Location);
-                if (attacker.Map[p].Actor == target)
+
+                if (map.GetGridInformation (p) == GridInformation.Invalid)
+                    continue;
+
+                if (map[p].Actor == target)
                     found = true;
             }
 
