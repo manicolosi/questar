@@ -39,10 +39,7 @@ namespace Questar.Actors.Actions
                 Map map = attacker.Map;
                 Point p = direction.ApplyToPoint (attacker.Location);
 
-                if (map.GetGridInformation (p) == GridInformation.Invalid)
-                    continue;
-
-                if (map[p].Actor == target)
+                if (map.GetGridInformation (p) == GridInformation.Occupied)
                     found = true;
             }
 
