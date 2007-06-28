@@ -27,6 +27,7 @@ namespace Questar.Actors
         private Point location;
 
         public event EventHandler<ActorMovedEventArgs> Moved;
+        public event EventHandler<EventArgs> Died;
 
         public virtual string Name
         {
@@ -58,6 +59,16 @@ namespace Questar.Actors
             protected set { map = value; }
         }
 
+        protected virtual bool IsAlive
+        {
+            get { return HitPoints.Current >= 0; }
+        }
+
+        protected virtual bool IsDead
+        {
+            get { return !IsAlive; }
+        }
+
         public abstract bool IsTurnReady { get; }
         public abstract IAction Action { get; }
 
@@ -82,9 +93,9 @@ namespace Questar.Actors
             HitPoints.Current -= damage;
 
             string extra = "";
-            if (HitPoints.Current < 0) {
+            if (IsDead) {
+                EventHelper.Raise (this, Died);
                 extra = " and killed it";
-                Game.Instance.World.RemoveActor (this);
             }
 
             string attacker_name = FirstLetterUpper (attacker.ToString ());

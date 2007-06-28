@@ -97,6 +97,8 @@ namespace Questar.Base
 
         public void AddActor (Actor actor)
         {
+            actor.Died += delegate { RemoveActor (actor); };
+
             Hero hero = actor as Hero;
             if (hero != null) {
                 this.hero = hero;
@@ -111,7 +113,7 @@ namespace Questar.Base
                 });
         }
 
-        public void RemoveActor (Actor actor)
+        private void RemoveActor (Actor actor)
         {
             actors.Remove (actor);
 
