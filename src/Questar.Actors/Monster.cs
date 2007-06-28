@@ -35,7 +35,7 @@ namespace Questar.Actors
             while (!base.CanMoveTo (p));
             base.Location = p;
 
-            Game.Instance.World.AddActor (this);
+            base.OnCreation ();
         }
 
         public override bool IsTurnReady

@@ -42,6 +42,9 @@ namespace Questar.Base
 
         public World ()
         {
+            Actor.Created += delegate (object sender, EventArgs args) {
+                AddActor ((Actor) sender);
+            };
         }
 
         public void Start ()
@@ -95,9 +98,12 @@ namespace Questar.Base
             get { return hero; }
         }
 
-        public void AddActor (Actor actor)
+        private void AddActor (Actor actor)
         {
-            actor.Died += delegate { RemoveActor (actor); };
+            actor.Died += delegate (object sender, EventArgs args)
+            {
+                RemoveActor ((Actor) sender);
+            };
 
             Hero hero = actor as Hero;
             if (hero != null) {

@@ -33,7 +33,7 @@ namespace Questar.Actors
 
             SetupHandlers ();
 
-            Game.Instance.World.AddActor (this);
+            base.OnCreation ();
         }
 
         public override bool IsTurnReady

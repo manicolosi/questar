@@ -26,6 +26,7 @@ namespace Questar.Actors
         private Map map;
         private Point location;
 
+        public static event EventHandler<EventArgs> Created;
         public event EventHandler<ActorMovedEventArgs> Moved;
         public event EventHandler<EventArgs> Died;
 
@@ -112,6 +113,11 @@ namespace Questar.Actors
         protected bool CanMoveTo (Point p)
         {
             return Map.GetGridInformation (p) == GridInformation.Clear;
+        }
+
+        protected void OnCreation ()
+        {
+            EventHelper.Raise (this, Created);
         }
 
         public override string ToString ()
