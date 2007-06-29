@@ -43,16 +43,43 @@ namespace Questar.Actors
             get { return true; }
         }
 
+        // FIXME: This note means this isn't clear. First see if there
+        // is another Actor adjacent to us. If there is and the other
+        // Actor is the Hero or a Monster of a different type, attack
+        // it. If there's nobody to attack, go towards the Hero if
+        // possible otherwise move randomly.
         public override IAction Action
         {
             get {
-                Point target = Game.Instance.World.Hero.Location;
-                Direction direction = base.Location.DirectionOf (target);
+                IAction action = null;
+                Map map = base.Map;
+                Point location = base.Location;
 
-                if (base.CanMoveTo (direction))
-                    return new MoveAction (this, direction);
-                else
-                    return CreateRandomMoveAction ();
+                foreach (Direction direction in Direction.Directions) {
+                    Point p = direction.ApplyToPoint (location);
+                    GridInformation info = map.GetGridInformation (p);
+
+                    if (info == GridInformation.Occupied) {
+                        Actor actor = map[p].Actor;
+                        Monster monster = actor as Monster;
+
+                        if ((monster != null && monster.Id != Id) ||
+                            actor is Hero)
+                            action = new AttackAction (this, actor);
+                    }
+                }
+
+                if (action == null) {
+                    Point target = Game.Instance.World.Hero.Location;
+                    Direction direction = location.DirectionOf (target);
+
+                    if (base.CanMoveTo (direction))
+                        action = new MoveAction (this, direction);
+                    else
+                        action = CreateRandomMoveAction ();
+                }
+
+                return action;
             }
         }
 
