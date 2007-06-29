@@ -84,7 +84,7 @@ RESOURCES_EMBEDDED = \
 	$(foreach res, $(RESOURCES), $(addprefix -resource:, $(res)))
 
 $(ASSEMBLY): $(SOURCES) $(SOURCES_GEN) $(RESOURCES)
-	$(MCS) $(SOURCES) $(SOURCES_GEN) $(RESOURCES_EMBEDDED) $(ASSEMBLIES) -target:exe -out:$@ 
+	$(MCS) $(SOURCES) $(SOURCES_GEN) $(RESOURCES_EMBEDDED) $(ASSEMBLIES) -target:winexe -out:$@
 
 all: $(ASSEMBLY)
 
