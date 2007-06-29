@@ -23,6 +23,7 @@ namespace Questar.Actors
             base.Tile = "hero";
             base.Name = "Hero";
             base.Map = Game.Instance.World.Map;
+            base.HitPoints = new HitPoints (100, 100);
 
             Point p;
             do {
