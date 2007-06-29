@@ -31,6 +31,11 @@ namespace Questar.Base
             newline = Environment.NewLine;
         }
 
+        public void Add (string format, params object [] args)
+        {
+            Add (String.Format (format, args));
+        }
+
         public TextBuffer Buffer
         {
             get { return buffer; }

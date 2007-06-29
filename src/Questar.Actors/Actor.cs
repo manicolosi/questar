@@ -100,9 +100,8 @@ namespace Questar.Actors
             }
 
             string attacker_name = FirstLetterUpper (attacker.ToString ());
-            string message = String.Format ("{0} attack {1}{2}.",
+            Messages.Instance.Add ("{0} attack {1}{2}.",
                 attacker_name, this, extra);
-            Messages.Instance.Add (message);
         }
 
         protected bool CanMoveTo (Direction direction)
