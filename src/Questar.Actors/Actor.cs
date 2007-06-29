@@ -93,15 +93,24 @@ namespace Questar.Actors
         {
             HitPoints.Current -= damage;
 
-            string extra = "";
-            if (IsDead) {
-                EventHelper.Raise (this, Died);
-                extra = " and killed it";
-            }
+            OnAttacked (attacker, damage);
 
-            string attacker_name = FirstLetterUpper (attacker.ToString ());
-            Messages.Instance.Add ("{0} attack {1}{2}.",
-                attacker_name, this, extra);
+            if (IsDead)
+                OnDied ();
+        }
+
+        protected void OnAttacked (Actor attacker, int damage)
+        {
+            string attacker_name = SentenceCapitalize (attacker.ToString ());
+            Messages.Instance.Add ("{0} attack {1}.", attacker_name, this);
+        }
+
+        protected void OnDied ()
+        {
+            string attacker_name = SentenceCapitalize (ToString ());
+            Messages.Instance.Add ("{0} has died.", attacker_name);
+
+            EventHelper.Raise (this, Died);
         }
 
         protected bool CanMoveTo (Direction direction)
@@ -124,7 +133,7 @@ namespace Questar.Actors
             return name;
         }
 
-        private string FirstLetterUpper (string str)
+        private string SentenceCapitalize (string str)
         {
             string first_letter = str.Substring (0, 1).ToUpper ();
             return str.Remove (0, 1).Insert (0, first_letter);
