@@ -31,7 +31,6 @@ namespace Questar.UnitTests
 
             actor1 = new MockActor ("Mock Actor 1", loop, world);
             actor2 = new MockActor ("Mock Actor 2", loop, world);
-
         }
 
         [Test]
@@ -44,7 +43,7 @@ namespace Questar.UnitTests
         [Test]
         public void NotPausedWhenStarted ()
         {
-            world.AddActor (actor1);
+            actor1.Create ();
 
             world.Start ();
             Assert.IsFalse (world.IsPaused);
@@ -60,9 +59,8 @@ namespace Questar.UnitTests
         [Test]
         public void ActorTurnTaking ()
         {
-
-            world.AddActor (actor1);
-            world.AddActor (actor2);
+            actor1.Create ();
+            actor2.Create ();
             world.Start ();
 
             // Nobody should have taken a turn at this point.
@@ -92,8 +90,8 @@ namespace Questar.UnitTests
         [Test]
         public void RoundIncreasesAfterTakingTurns ()
         {
-            world.AddActor (actor1);
-            world.AddActor (actor2);
+            actor1.Create ();
+            actor2.Create ();
             world.Start ();
 
             Assert.AreEqual (0, world.Round);

@@ -45,6 +45,11 @@ namespace Questar.UnitTests
         {
         }
 
+        public void Create ()
+        {
+            base.OnCreation ();
+        }
+
         public override bool IsTurnReady
         {
             get { return is_turn_ready; }
