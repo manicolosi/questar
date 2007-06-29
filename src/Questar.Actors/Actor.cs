@@ -101,13 +101,13 @@ namespace Questar.Actors
 
         protected void OnAttacked (Actor attacker, int damage)
         {
-            string attacker_name = SentenceCapitalize (attacker.ToString ());
+            string attacker_name = StringHelper.SentenceCapitalize (attacker);
             Messages.Instance.Add ("{0} attack {1}.", attacker_name, this);
         }
 
         protected void OnDied ()
         {
-            string attacker_name = SentenceCapitalize (ToString ());
+            string attacker_name = StringHelper.SentenceCapitalize (this);
             Messages.Instance.Add ("{0} has died.", attacker_name);
 
             EventHelper.Raise (this, Died);
@@ -131,12 +131,6 @@ namespace Questar.Actors
         public override string ToString ()
         {
             return name;
-        }
-
-        private string SentenceCapitalize (string str)
-        {
-            string first_letter = str.Substring (0, 1).ToUpper ();
-            return str.Remove (0, 1).Insert (0, first_letter);
         }
     }
 }

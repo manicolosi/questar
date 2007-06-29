@@ -53,6 +53,7 @@ SOURCES = \
 	\
 	Questar.Helpers/ColorHelper.cs \
 	Questar.Helpers/EventHelper.cs \
+	Questar.Helpers/StringHelper.cs \
 	\
 	Questar.Maps/Grid.cs \
 	Questar.Maps/GridInformation.cs \
