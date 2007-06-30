@@ -8,6 +8,7 @@
 using NUnit.Framework;
 using System;
 
+using Questar.Actors;
 using Questar.Base;
 using Questar.Maps;
 using Questar.Primitives;
@@ -27,6 +28,25 @@ namespace Questar.UnitTests
 
             world.Map = new Map ();
             map = world.Map;
+        }
+
+        [Test]
+        public void AdjacentActors ()
+        {
+            MockActor a1 = new MockActor ();
+            MockActor a2 = new MockActor ();
+            a1.Move (new Point (3, 3));
+            a2.Move (new Point (3, 5));
+            a1.Create ();
+            a2.Create ();
+
+            int count = 0;
+            foreach (Actor actor in map.GetAdjacentActors (new Point (3, 4))) {
+                count++;
+                Assert.IsTrue (actor == a1 || actor == a2);
+            }
+
+            Assert.AreEqual (2, count);
         }
 
         [Test]
