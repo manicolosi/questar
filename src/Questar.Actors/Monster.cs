@@ -4,7 +4,6 @@
 //
 
 using System;
-using System.Collections.Generic;
 
 using Questar.Actors.Actions;
 using Questar.Base;
@@ -68,29 +67,11 @@ namespace Questar.Actors
                     if (base.CanMoveTo (direction))
                         action = new MoveAction (this, direction);
                     else
-                        action = CreateRandomMoveAction ();
+                        action = new RandomMoveAction (this);
                 }
 
                 return action;
             }
-        }
-
-        private Random random = new Random ();
-
-        private IAction CreateRandomMoveAction ()
-        {
-            List<Direction> potentials = new List<Direction> ();
-
-            foreach (Direction direction in Direction.Directions) {
-                if (base.CanMoveTo (direction))
-                    potentials.Add (direction);
-            }
-
-            if (potentials.Count == 0)
-                return new DoNothingAction (this);
-
-            int index = random.Next (potentials.Count);
-            return new MoveAction (this, potentials[index]);
         }
 
         public string Id
