@@ -55,18 +55,10 @@ namespace Questar.Actors
                 Map map = base.Map;
                 Point location = base.Location;
 
-                foreach (Direction direction in Direction.Directions) {
-                    Point p = direction.ApplyToPoint (location);
-                    GridInformation info = map.GetGridInformation (p);
-
-                    if (info == GridInformation.Occupied) {
-                        Actor actor = map[p].Actor;
-                        Monster monster = actor as Monster;
-
-                        if ((monster != null && monster.Id != Id) ||
-                            actor is Hero)
-                            action = new AttackAction (this, actor);
-                    }
+                foreach (Actor actor in map.GetAdjacentActors (location)) {
+                    Monster monster = actor as Monster;
+                    if ((monster != null && monster.Id != Id) || actor is Hero)
+                        action = new AttackAction (this, actor);
                 }
 
                 if (action == null) {
