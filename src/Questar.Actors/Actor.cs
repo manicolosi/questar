@@ -96,7 +96,7 @@ namespace Questar.Actors
             OnAttacked (attacker, damage);
 
             if (IsDead)
-                OnDied ();
+                OnDeath ();
         }
 
         protected void OnAttacked (Actor attacker, int damage)
@@ -105,7 +105,7 @@ namespace Questar.Actors
             Messages.Instance.Add ("{0} attack {1}.", attacker_name, this);
         }
 
-        protected void OnDied ()
+        protected void OnDeath ()
         {
             string attacker_name = StringHelper.SentenceCapitalize (this);
             Messages.Instance.Add ("{0} has died.", attacker_name);
