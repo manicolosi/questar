@@ -99,10 +99,17 @@ namespace Questar.Actors
                 OnDeath ();
         }
 
+        protected void OnCreation ()
+        {
+            EventHelper.Raise (this, Created);
+        }
+
         protected void OnAttacked (Actor attacker, int damage)
         {
             string attacker_name = StringHelper.SentenceCapitalize (attacker);
             Messages.Instance.Add ("{0} attack {1}.", attacker_name, this);
+
+            //EventHelper.Raise (this, Attacked);
         }
 
         protected void OnDeath ()
@@ -121,11 +128,6 @@ namespace Questar.Actors
         protected bool CanMoveTo (Point p)
         {
             return Map.GetGridInformation (p) == GridInformation.Clear;
-        }
-
-        protected void OnCreation ()
-        {
-            EventHelper.Raise (this, Created);
         }
 
         public override string ToString ()
