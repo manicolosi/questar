@@ -120,12 +120,12 @@ namespace Questar.Actors
             EventHelper.Raise (this, Died);
         }
 
-        protected bool CanMoveTo (Direction direction)
+        public bool CanMoveTo (Direction direction)
         {
             return CanMoveTo (direction.ApplyToPoint (Location));
         }
 
-        protected bool CanMoveTo (Point p)
+        public bool CanMoveTo (Point p)
         {
             return Map.GetGridInformation (p) == GridInformation.Clear;
         }
