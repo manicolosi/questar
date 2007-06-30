@@ -99,12 +99,12 @@ namespace Questar.Actors
                 OnDeath ();
         }
 
-        protected void OnCreation ()
+        protected virtual void OnCreation ()
         {
             EventHelper.Raise (this, Created);
         }
 
-        protected void OnAttacked (Actor attacker, int damage)
+        protected virtual void OnAttacked (Actor attacker, int damage)
         {
             string attacker_name = StringHelper.SentenceCapitalize (attacker);
             Messages.Instance.Add ("{0} attack {1}.", attacker_name, this);
@@ -112,7 +112,7 @@ namespace Questar.Actors
             //EventHelper.Raise (this, Attacked);
         }
 
-        protected void OnDeath ()
+        protected virtual void OnDeath ()
         {
             string attacker_name = StringHelper.SentenceCapitalize (this);
             Messages.Instance.Add ("{0} has died.", attacker_name);
