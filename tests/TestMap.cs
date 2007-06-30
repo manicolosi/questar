@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  TestActor.cs: Unit Tests for Actor class.
+ *  TestMap.cs: Unit Tests for Map class.
  *
  *  Copyright (C) 2007
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
