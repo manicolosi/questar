@@ -102,7 +102,8 @@ namespace Questar.Base
         {
             actor.Died += delegate (object sender, EventArgs args)
             {
-                RemoveActor ((Actor) sender);
+                if (!(sender is Hero))
+                    RemoveActor ((Actor) sender);
             };
 
             Hero hero = actor as Hero;
