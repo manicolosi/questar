@@ -133,6 +133,12 @@ namespace Questar.Actors
             Game.Instance.World.IsPaused = false;
         }
 
+        protected override void OnDeath ()
+        {
+            base.HitPoints = new HitPoints (100);
+            base.OnDeath ();
+        }
+
         public override string ToString ()
         {
             return "you";
