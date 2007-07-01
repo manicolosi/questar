@@ -71,10 +71,8 @@ namespace Questar.Gui
         {
             WindowState state = args.Event.NewWindowState;
 
-            if ((state & WindowState.Withdrawn) != 0) {
-                bool maximized = (state & WindowState.Maximized) != 0;
-                UISchema.Maximized.Value = maximized;
-            }
+            bool maximized = (state & WindowState.Maximized) != 0;
+            UISchema.Maximized.Value = maximized;
         }
 
         [GLib.ConnectBefore]
@@ -83,15 +81,10 @@ namespace Questar.Gui
             if (UISchema.Maximized.Value == true)
                 return;
 
-            int x, y, width, height;
-
-            base.Window.GetPosition (out x, out y);
-            base.Window.GetSize (out width, out height);
-
-            UISchema.XPos.Value = x;
-            UISchema.YPos.Value = y;
-            UISchema.Width.Value = width;
-            UISchema.Height.Value = height;
+            UISchema.XPos.Value   = args.Event.X;
+            UISchema.YPos.Value   = args.Event.Y;
+            UISchema.Width.Value  = args.Event.Width;
+            UISchema.Height.Value = args.Event.Height;
         }
 
         private void SetupHandlers ()
