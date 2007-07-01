@@ -77,7 +77,7 @@ namespace Questar.Gui
                     null, null, null, false),
                 new ToggleActionEntry ("ShowMessages", null, "Show _Messages",
                     "<control>m", null, null, true),
-                new ToggleActionEntry ("Fullscreen", null, "Fullscreen",
+                new ToggleActionEntry ("FullScreen", null, "Full Screen",
                     "F11", null, null, false)
             });
 

@@ -17,7 +17,7 @@
             <menuitem action='ZoomOut' />
             <menuitem action='NormalSize' />
             <separator />
-            <menuitem action='Fullscreen' />
+            <menuitem action='FullScreen' />
         </menu>
         <menu action='HelpMenu'>
             <menuitem action='About' />

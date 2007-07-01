@@ -59,7 +59,7 @@ namespace Questar.Gui
             else
                 base.Window.Unmaximize ();
 
-            if (UISchema.Fullscreen.Value)
+            if (UISchema.FullScreen.Value)
                 base.Window.Fullscreen ();
             else
                 base.Window.Unfullscreen ();
@@ -95,8 +95,8 @@ namespace Questar.Gui
             base.Window.ConfigureEvent += OnConfigureEvent;
             base.Window.DeleteEvent += delegate { Game.Instance.Quit (); };
 
-            ConfigurationClient.SyncToggleAction ("Fullscreen",
-                UISchema.Fullscreen,
+            ConfigurationClient.SyncToggleAction ("FullScreen",
+                UISchema.FullScreen,
                 delegate (ToggleAction action, SchemaEntry<bool> entry) {
                     if (action.Active)
                         base.Window.Fullscreen ();
@@ -122,7 +122,7 @@ namespace Questar.Gui
             UISchema.XPos.Changed       += load_settings;
             UISchema.YPos.Changed       += load_settings;
             UISchema.Maximized.Changed  += load_settings;
-            UISchema.Fullscreen.Changed += load_settings;
+            UISchema.FullScreen.Changed += load_settings;
         }
     }
 }

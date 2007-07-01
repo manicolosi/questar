@@ -40,10 +40,10 @@ namespace Questar.Configuration
                 "otherwise false."
             );
 
-        public static readonly SchemaEntry<bool> Fullscreen =
-            new SchemaEntry<bool> ("user_interface", "fullscreen", false,
-                "Window Fullscreen",
-                "True if the main interface window is to be fullscreen, " +
+        public static readonly SchemaEntry<bool> FullScreen =
+            new SchemaEntry<bool> ("user_interface", "full_screen", false,
+                "Window Full Screen",
+                "True if the main interface window is to be full screen, " +
                 "otherwise false."
             );
 
