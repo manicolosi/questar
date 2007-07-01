@@ -111,7 +111,7 @@ namespace Questar.Gui
                 });
 
             UISchema.ShowMessages.Changed += delegate {
-                (UIActions.Instance["ShowMessages"] as ToggleAction).Active =
+                ((ToggleAction) UIActions.Instance["ShowMessages"]).Active =
                     UISchema.ShowMessages.Value;
             };
         }
