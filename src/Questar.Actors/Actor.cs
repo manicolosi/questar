@@ -20,15 +20,15 @@ namespace Questar.Actors
 
     public abstract class Actor
     {
+        public static event EventHandler<EventArgs> Created;
+        public event EventHandler<ActorMovedEventArgs> Moved;
+        public event EventHandler<EventArgs> Died;
+
         private string name;
         private HitPoints hit_points;
         private string tile;
         private Map map;
         private Point location;
-
-        public static event EventHandler<EventArgs> Created;
-        public event EventHandler<ActorMovedEventArgs> Moved;
-        public event EventHandler<EventArgs> Died;
 
         public virtual string Name
         {
@@ -60,16 +60,6 @@ namespace Questar.Actors
             protected set { map = value; }
         }
 
-        protected virtual bool IsAlive
-        {
-            get { return HitPoints.Current >= 0; }
-        }
-
-        protected virtual bool IsDead
-        {
-            get { return !IsAlive; }
-        }
-
         public abstract bool IsTurnReady { get; }
         public abstract IAction Action { get; }
 
@@ -99,6 +89,31 @@ namespace Questar.Actors
                 OnDeath ();
         }
 
+        public bool CanMoveTo (Direction direction)
+        {
+            return CanMoveTo (direction.ApplyToPoint (Location));
+        }
+
+        public bool CanMoveTo (Point p)
+        {
+            return Map.GetGridInformation (p) == GridInformation.Clear;
+        }
+
+        public override string ToString ()
+        {
+            return name;
+        }
+
+        protected virtual bool IsAlive
+        {
+            get { return HitPoints.Current >= 0; }
+        }
+
+        protected virtual bool IsDead
+        {
+            get { return !IsAlive; }
+        }
+
         protected virtual void OnCreation ()
         {
             EventHelper.Raise (this, Created);
@@ -118,21 +133,6 @@ namespace Questar.Actors
             Messages.Instance.Add ("{0} has died.", attacker_name);
 
             EventHelper.Raise (this, Died);
-        }
-
-        public bool CanMoveTo (Direction direction)
-        {
-            return CanMoveTo (direction.ApplyToPoint (Location));
-        }
-
-        public bool CanMoveTo (Point p)
-        {
-            return Map.GetGridInformation (p) == GridInformation.Clear;
-        }
-
-        public override string ToString ()
-        {
-            return name;
         }
     }
 }
