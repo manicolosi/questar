@@ -114,15 +114,6 @@ namespace Questar.Gui
                 (UIActions.Instance["ShowMessages"] as ToggleAction).Active =
                     UISchema.ShowMessages.Value;
             };
-            EventHandler<EventArgs> load_settings = delegate {
-                LoadSettings ();
-            };
-            UISchema.Width.Changed      += load_settings;
-            UISchema.Height.Changed     += load_settings;
-            UISchema.XPos.Changed       += load_settings;
-            UISchema.YPos.Changed       += load_settings;
-            UISchema.Maximized.Changed  += load_settings;
-            UISchema.FullScreen.Changed += load_settings;
         }
     }
 }
