@@ -154,6 +154,16 @@ namespace Questar.UnitTests.Items
 
             Assert.IsFalse (item1.IsOwned);
         }
+
+        [Test]
+        public void DontGetOwnerFromUnownedInventory ()
+        {
+            item1.Owner = owner;
+            inventory.Add (item1);
+
+            Assert.IsTrue (item1.IsOwned);
+            Assert.AreSame (owner, item1.Owner);
+        }
     }
 }
 
