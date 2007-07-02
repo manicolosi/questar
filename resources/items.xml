@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Items>
-    <Item Type="HealthPotion" Id="NormalHealthPotion">
-        <Name>Health Potion</Name>
-        <Tile>potion-health</Tile>
+    <Item Type="HealthPotion" Id="HealLightWounds">
+        <Name>Heal Light Wounds</Name>
+        <Tile>potion-heal-light</Tile>
         <Description>Recovers a small amount of hit points.</Description>
         <RocoverAmount>20</RocoverAmount>
+    </Item>
+
+    <Item Type="HealthPotion" Id="HealSeriousWounds">
+        <Name>Heal Serious Wounds</Name>
+        <Tile>potion-heal-serious</Tile>
+        <Description>Recovers a medium amount of hit points.</Description>
+        <RocoverAmount>50</RocoverAmount>
     </Item>
 </Items>
 
