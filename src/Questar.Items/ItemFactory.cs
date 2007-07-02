@@ -25,8 +25,10 @@ namespace Questar.Items
             if (items == null)
                 Load ();
 
-            Item item = items[id];
-            return item;
+            if (!items.ContainsKey (id))
+                throw new ArgumentException ("The given id is invalid.");
+
+            return items[id];
         }
 
         public static void Load ()

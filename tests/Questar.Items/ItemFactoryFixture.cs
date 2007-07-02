@@ -6,6 +6,7 @@
  ******************************************************************************/
 
 using NUnit.Framework;
+using System;
 
 using Questar.Items;
 
@@ -19,6 +20,13 @@ namespace Questar.UnitTests.Items
         {
             Item item = ItemFactory.Create ("HealLightWounds");
             Assert.IsInstanceOfType (typeof (HealthPotion), item);
+        }
+
+        [Test]
+        [ExpectedException (typeof (ArgumentException))]
+        public void InvalidItem ()
+        {
+            Item item = ItemFactory.Create ("InvalidItem");
         }
     }
 }
