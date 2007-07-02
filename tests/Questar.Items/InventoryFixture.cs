@@ -10,6 +10,7 @@ using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
 
+using Questar.Actors;
 using Questar.Items;
 
 namespace Questar.UnitTests.Items
@@ -122,6 +123,15 @@ namespace Questar.UnitTests.Items
 
             CollectionAssert.Contains (items, item1);
             CollectionAssert.Contains (items, item2);
+        }
+
+        [Test]
+        public void CreationWithOwner ()
+        {
+            Actor owner = new MockActor ();
+            Inventory inventory = new Inventory (owner);
+
+            Assert.AreSame (owner, inventory.Owner);
         }
     }
 }

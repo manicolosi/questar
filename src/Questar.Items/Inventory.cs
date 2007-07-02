@@ -12,17 +12,30 @@ using System.IO;
 using System.Reflection;
 using System.Xml;
 
+using Questar.Actors;
 using Questar.Base;
 
 namespace Questar.Items
 {
     public class Inventory : IEnumerable<Item>
     {
+        private Actor owner;
         private List<Item> items;
 
-        public Inventory ()
+        public Inventory (Actor owner)
         {
+            this.owner = owner;
+
             items = new List<Item> ();
+        }
+
+        public Inventory () : this (null)
+        {
+        }
+
+        public Actor Owner
+        {
+            get { return owner; }
         }
 
         public void Add (Item item)
