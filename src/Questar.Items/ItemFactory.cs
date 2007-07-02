@@ -9,18 +9,9 @@ using Questar.Base;
 
 namespace Questar.Items
 {
-    public class ItemFactory
+    public static class ItemFactory
     {
-        public static ItemFactory Instance
-        {
-            get { return Singleton<ItemFactory>.Instance; }
-        }
-
-        private ItemFactory ()
-        {
-        }
-
-        public Item Create (string id)
+        public static Item Create (string id)
         {
             return null;
         }
