@@ -7,6 +7,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 using Questar.Items;
@@ -104,6 +105,23 @@ namespace Questar.UnitTests.Items
         public void IsIEnumerable ()
         {
             Assert.IsInstanceOfType (typeof (IEnumerable), inventory);
+        }
+
+        [Test]
+        public void Foreach ()
+        {
+            inventory.Add (item1);
+            inventory.Add (item2);
+
+            List<Item> items = new List<Item> ();
+
+            foreach (Item item in inventory)
+                items.Add (item);
+
+            Assert.AreEqual (2, items.Count);
+
+            CollectionAssert.Contains (items, item1);
+            CollectionAssert.Contains (items, item2);
         }
     }
 }
