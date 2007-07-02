@@ -56,6 +56,7 @@ SOURCES = \
 	Questar.Helpers/EventHelper.cs \
 	Questar.Helpers/StringHelper.cs \
 	\
+	Questar.Items/HealthPotion.cs \
 	Questar.Items/Item.cs \
 	Questar.Items/ItemFactory.cs \
 	\
