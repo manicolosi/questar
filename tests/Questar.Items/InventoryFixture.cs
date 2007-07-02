@@ -40,6 +40,16 @@ namespace Questar.UnitTests.Items
         }
 
         [Test]
+        [ExpectedException (typeof (ArgumentException))]
+        public void AddTwice ()
+        {
+            Item item = ItemFactory.Create ("HealLightWounds");
+
+            inventory.Add (item);
+            inventory.Add (item);
+        }
+
+        [Test]
         public void ContainsNonAddedItem ()
         {
             Item item = ItemFactory.Create ("HealLightWounds");

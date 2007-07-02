@@ -27,7 +27,10 @@ namespace Questar.Items
         public void Add (Item item)
         {
             if (item == null)
-                throw new ArgumentNullException ("item must not be null.");
+                throw new ArgumentNullException ("Item must not be null.");
+
+            if (Contains (item))
+                throw new ArgumentException ("An Item can't be added twice.");
 
             items.Add (item);
         }
