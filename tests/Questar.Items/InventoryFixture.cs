@@ -164,6 +164,15 @@ namespace Questar.UnitTests.Items
             Assert.IsTrue (item1.IsOwned);
             Assert.AreSame (owner, item1.Owner);
         }
+
+        [Test]
+        [ExpectedException (typeof (ArgumentException))]
+        public void DontAddAlreadyOwnedItems ()
+        {
+            item1.Owner = new MockActor ();
+
+            owned_inventory.Add (item1);
+        }
     }
 }
 

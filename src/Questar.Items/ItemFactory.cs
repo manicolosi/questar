@@ -28,7 +28,7 @@ namespace Questar.Items
             if (!items.ContainsKey (id))
                 throw new ArgumentException ("The given id is invalid.");
 
-            return items[id];
+            return items[id].Clone ();
         }
 
         public static void Load ()

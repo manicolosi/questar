@@ -42,6 +42,10 @@ namespace Questar.Items
             if (Contains (item))
                 throw new ArgumentException ("An Item can't be added twice.");
 
+            if (item.IsOwned && owner != null && item.Owner != owner)
+                throw new ArgumentException (
+                    "Item can't be added because it's owned by somebody else");
+
             if (owner != null)
                 item.Owner = owner;
 
