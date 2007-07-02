@@ -11,6 +11,7 @@ NUNIT_DLL = $(NUNIT_PATH)/nunit.framework.dll
 NUNIT_CONSOLE = $(NUNIT_PATH)/nunit-console.exe
 
 SOURCES =                              \
+	$(srcdir)/Questar.Items/InventoryFixture.cs \
 	$(srcdir)/Questar.Items/ItemFactoryFixture.cs \
 	$(srcdir)/Questar.Items/ItemFixture.cs \
 	\
