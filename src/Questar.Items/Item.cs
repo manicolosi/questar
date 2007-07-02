@@ -6,13 +6,25 @@
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
-using Questar.Maps;
+using Questar.Actors;
 using Questar.Primitives;
 
 namespace Questar.Items
 {
     public abstract class Item : Entity
     {
+        private Actor owner = null;
+
+        public Actor Owner
+        {
+            get { return owner; }
+            set { owner = value; }
+        }
+
+        public bool IsOwned
+        {
+            get { return owner != null; }
+        }
     }
 }
 
