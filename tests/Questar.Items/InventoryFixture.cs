@@ -133,6 +133,25 @@ namespace Questar.UnitTests.Items
 
             Assert.AreSame (owner, inventory.Owner);
         }
+
+        [Test]
+        public void ItemsGetInventoriesOwner ()
+        {
+            Actor owner = new MockActor ();
+            Inventory inventory = new Inventory (owner);
+
+            Assert.IsFalse (item1.IsOwned);
+            Assert.IsFalse (item2.IsOwned);
+
+            inventory.Add (item1);
+            inventory.Add (item2);
+
+            Assert.IsTrue (item1.IsOwned);
+            Assert.IsTrue (item2.IsOwned);
+
+            Assert.AreSame (owner, item1.Owner);
+            Assert.AreSame (owner, item2.Owner);
+        }
     }
 }
 

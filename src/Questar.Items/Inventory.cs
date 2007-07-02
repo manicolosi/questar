@@ -42,6 +42,8 @@ namespace Questar.Items
             if (Contains (item))
                 throw new ArgumentException ("An Item can't be added twice.");
 
+            item.Owner = owner;
+
             items.Add (item);
         }
 
