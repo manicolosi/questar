@@ -35,6 +35,11 @@ namespace Questar.Items
             items.Add (item);
         }
 
+        public void Remove (Item item)
+        {
+            items.Remove (item);
+        }
+
         public bool Contains (Item item)
         {
             return items.Contains (item);

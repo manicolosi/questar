@@ -72,6 +72,18 @@ namespace Questar.UnitTests.Items
         {
             Assert.IsFalse (inventory.Contains (null));
         }
+
+        [Test]
+        public void RemoveItem ()
+        {
+            inventory.Add (item1);
+            inventory.Add (item2);
+
+            inventory.Remove (item1);
+
+            Assert.IsFalse (inventory.Contains (item1));
+            Assert.IsTrue (inventory.Contains (item2));
+        }
     }
 }
 
