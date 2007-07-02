@@ -6,6 +6,7 @@
  ******************************************************************************/
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -15,7 +16,7 @@ using Questar.Base;
 
 namespace Questar.Items
 {
-    public class Inventory
+    public class Inventory : IEnumerable<Item>
     {
         private List<Item> items;
 
@@ -49,6 +50,16 @@ namespace Questar.Items
         public bool Contains (Item item)
         {
             return items.Contains (item);
+        }
+
+        public IEnumerator<Item> GetEnumerator ()
+        {
+            return items.GetEnumerator ();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator ()
+        {
+            return GetEnumerator ();
         }
     }
 }

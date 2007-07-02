@@ -6,6 +6,7 @@
  ******************************************************************************/
 
 using System;
+using System.Collections;
 using NUnit.Framework;
 
 using Questar.Items;
@@ -97,6 +98,12 @@ namespace Questar.UnitTests.Items
         public void RemoveNullItem ()
         {
             inventory.Remove (null);
+        }
+
+        [Test]
+        public void IsIEnumerable ()
+        {
+            Assert.IsInstanceOfType (typeof (IEnumerable), inventory);
         }
     }
 }
