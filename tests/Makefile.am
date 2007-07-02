@@ -11,6 +11,8 @@ NUNIT_DLL = $(NUNIT_PATH)/nunit.framework.dll
 NUNIT_CONSOLE = $(NUNIT_PATH)/nunit-console.exe
 
 SOURCES =                              \
+	$(srcdir)/Questar.Items/ItemFactoryFixture.cs \
+	\
 	$(srcdir)/MockActor.cs             \
 	$(srcdir)/TestActor.cs             \
 	$(srcdir)/TestGame.cs              \

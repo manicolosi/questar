@@ -56,6 +56,8 @@ SOURCES = \
 	Questar.Helpers/EventHelper.cs \
 	Questar.Helpers/StringHelper.cs \
 	\
+	Questar.Items/ItemFactory.cs \
+	\
 	Questar.Maps/Grid.cs \
 	Questar.Maps/GridInformation.cs \
 	Questar.Maps/IEntity.cs \
