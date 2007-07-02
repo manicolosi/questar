@@ -16,28 +16,29 @@ namespace Questar.UnitTests.Items
     public class InventoryFixture
     {
         Inventory inventory;
+        Item item1;
+        Item item2;
 
         [SetUp]
         public void SetUp ()
         {
             inventory = new Inventory ();
+
+            item1 = ItemFactory.Create ("HealLightWounds");
+            item2 = ItemFactory.Create ("HealSeriousWounds");
         }
 
         [Test]
         public void AddOneItem ()
         {
-            Item item = ItemFactory.Create ("HealLightWounds");
-            inventory.Add (item);
+            inventory.Add (item1);
 
-            Assert.IsTrue (inventory.Contains (item));
+            Assert.IsTrue (inventory.Contains (item1));
         }
 
         [Test]
         public void AddMultipleItems ()
         {
-            Item item1 = ItemFactory.Create ("HealLightWounds");
-            Item item2 = ItemFactory.Create ("HealSeriousWounds");
-
             inventory.Add (item1);
             inventory.Add (item2);
 
@@ -56,18 +57,14 @@ namespace Questar.UnitTests.Items
         [ExpectedException (typeof (ArgumentException))]
         public void AddTwice ()
         {
-            Item item = ItemFactory.Create ("HealLightWounds");
-
-            inventory.Add (item);
-            inventory.Add (item);
+            inventory.Add (item1);
+            inventory.Add (item1);
         }
 
         [Test]
         public void ContainsNonAddedItem ()
         {
-            Item item = ItemFactory.Create ("HealLightWounds");
-
-            Assert.IsFalse (inventory.Contains (item));
+            Assert.IsFalse (inventory.Contains (item1));
         }
 
         [Test]
