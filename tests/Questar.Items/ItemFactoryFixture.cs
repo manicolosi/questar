@@ -14,11 +14,18 @@ namespace Questar.UnitTests.Items
     [TestFixture]
     public class ItemFactoryFixture
     {
+        private ItemFactory factory;
+
+        [SetUp]
+        public void SetUp ()
+        {
+            factory = ItemFactory.Instance;
+        }
+
         [Test]
         public void Singleton ()
         {
-            ItemFactory instance = ItemFactory.Instance;
-            Assert.AreSame (instance, ItemFactory.Instance);
+            Assert.AreSame (factory, ItemFactory.Instance);
         }
     }
 }
