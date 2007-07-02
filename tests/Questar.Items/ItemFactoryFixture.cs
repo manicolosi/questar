@@ -18,7 +18,7 @@ namespace Questar.UnitTests.Items
         public void CreateHealthPotion ()
         {
             Item item = ItemFactory.Create ("HealLightWounds");
-            Assert.IsNotNull (item);
+            Assert.IsInstanceOfType (typeof (HealthPotion), item);
         }
     }
 }
