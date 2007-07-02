@@ -19,6 +19,11 @@ namespace Questar.Items
         private ItemFactory ()
         {
         }
+
+        public Item Create (string id)
+        {
+            return null;
+        }
     }
 }
 

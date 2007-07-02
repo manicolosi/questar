@@ -27,6 +27,13 @@ namespace Questar.UnitTests.Items
         {
             Assert.AreSame (factory, ItemFactory.Instance);
         }
+
+        [Test]
+        public void CreateHealthPotion ()
+        {
+            Item item = factory.Create ("HealthPotion");
+            Assert.IsNotNull (item);
+        }
     }
 }
 
