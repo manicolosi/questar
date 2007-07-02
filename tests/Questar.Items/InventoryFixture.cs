@@ -14,15 +14,29 @@ namespace Questar.UnitTests.Items
     [TestFixture]
     public class InventoryFixture
     {
+        Inventory inventory;
+
+        [SetUp]
+        public void SetUp ()
+        {
+            inventory = new Inventory ();
+        }
+
         [Test]
         public void AddOneItem ()
         {
             Item item = ItemFactory.Create ("HealLightWounds");
-
-            Inventory inventory = new Inventory ();
             inventory.Add (item);
 
             Assert.IsTrue (inventory.Contains (item));
+        }
+
+        [Test]
+        public void ContainsNonAddedItem ()
+        {
+            Item item = ItemFactory.Create ("HealLightWounds");
+
+            Assert.IsFalse (inventory.Contains (item));
         }
     }
 }
