@@ -173,6 +173,15 @@ namespace Questar.UnitTests.Items
 
             owned_inventory.Add (item1);
         }
+
+        [Test]
+        public void AllowAddingWhenOwnersAreSame ()
+        {
+            item1.Owner = owned_inventory.Owner;
+            owned_inventory.Add (item1);
+
+            Assert.AreSame (owned_inventory.Owner, item1.Owner);
+        }
     }
 }
 
