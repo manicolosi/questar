@@ -11,11 +11,11 @@ run:
 	popd;
 
 check:
-	pushd $(top_builddir)/src;         \
-	make;                              \
-	popd;                              \
-	pushd $(top_builddir)/tests;       \
-	make run-tests;                    \
+	pushd $(top_builddir)/src &&       \
+	make &&                            \
+	popd &&                            \
+	pushd $(top_builddir)/tests &&     \
+	make run-tests &&                  \
 	popd;
 
 SUBDIRS =                              \
