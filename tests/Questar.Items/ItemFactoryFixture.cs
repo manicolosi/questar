@@ -24,9 +24,16 @@ namespace Questar.UnitTests.Items
 
         [Test]
         [ExpectedException (typeof (ArgumentException))]
-        public void InvalidItem ()
+        public void InvalidItemId ()
         {
-            Item item = ItemFactory.Create ("InvalidItem");
+            ItemFactory.Create ("InvalidItem");
+        }
+
+        [Test]
+        [ExpectedException (typeof (ArgumentNullException))]
+        public void NullItemId ()
+        {
+            ItemFactory.Create (null);
         }
     }
 }
