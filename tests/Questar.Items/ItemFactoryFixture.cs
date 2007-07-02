@@ -17,7 +17,7 @@ namespace Questar.UnitTests.Items
         [Test]
         public void CreateHealthPotion ()
         {
-            Item item = ItemFactory.Create ("HealthPotion");
+            Item item = ItemFactory.Create ("HealLightWounds");
             Assert.IsNotNull (item);
         }
     }
