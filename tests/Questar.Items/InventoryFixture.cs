@@ -91,6 +91,13 @@ namespace Questar.UnitTests.Items
         {
             inventory.Remove (item1);
         }
+
+        [Test]
+        [ExpectedException (typeof (ArgumentNullException))]
+        public void RemoveNullItem ()
+        {
+            inventory.Remove (null);
+        }
     }
 }
 
