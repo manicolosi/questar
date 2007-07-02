@@ -38,6 +38,12 @@ namespace Questar.UnitTests.Items
 
             Assert.IsFalse (inventory.Contains (item));
         }
+
+        [Test]
+        public void ContainsNull ()
+        {
+            Assert.IsFalse (inventory.Contains (null));
+        }
     }
 }
 
