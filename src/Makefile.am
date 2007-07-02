@@ -61,12 +61,12 @@ SOURCES = \
 	\
 	Questar.Maps/Grid.cs \
 	Questar.Maps/GridInformation.cs \
-	Questar.Maps/IEntity.cs \
 	Questar.Maps/Map.cs \
 	Questar.Maps/Terrain.cs \
 	Questar.Maps/TerrainManager.cs \
 	\
 	Questar.Primitives/Direction.cs \
+	Questar.Primitives/Entity.cs \
 	Questar.Primitives/Point.cs \
 	Questar.Primitives/Rectangle.cs
 

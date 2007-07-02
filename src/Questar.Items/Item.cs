@@ -11,29 +11,8 @@ using Questar.Primitives;
 
 namespace Questar.Items
 {
-    public abstract class Item : IEntity
+    public abstract class Item : Entity
     {
-        private Point location;
-        private Map map;
-        private string tile;
-
-        public virtual Point Location
-        {
-            get { return location; }
-            protected set { location = value; }
-        }
-
-        public virtual Map Map
-        {
-            get { return map; }
-            protected set { map = value; }
-        }
-
-        public virtual string Tile
-        {
-            get { return tile; }
-            protected set { tile = value; }
-        }
     }
 }
 

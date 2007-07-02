@@ -18,7 +18,7 @@ namespace Questar.Actors
         public Point OldLocation;
     }
 
-    public abstract class Actor
+    public abstract class Actor : Entity
     {
         public static event EventHandler<EventArgs> Created;
         public event EventHandler<ActorMovedEventArgs> Moved;
@@ -26,9 +26,6 @@ namespace Questar.Actors
 
         private string name;
         private HitPoints hit_points;
-        private string tile;
-        private Map map;
-        private Point location;
 
         public virtual string Name
         {
@@ -36,28 +33,10 @@ namespace Questar.Actors
             protected set { name = value; }
         }
 
-        public virtual string Tile
-        {
-            get { return tile; }
-            protected set { tile = value; }
-        }
-
         public virtual HitPoints HitPoints
         {
             get { return hit_points; }
             protected set { hit_points = value; }
-        }
-
-        public virtual Point Location
-        {
-            get { return location; }
-            protected set { location = value; }
-        }
-
-        public virtual Map Map
-        {
-            get { return map; }
-            protected set { map = value; }
         }
 
         public abstract bool IsTurnReady { get; }
