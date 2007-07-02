@@ -33,6 +33,19 @@ namespace Questar.UnitTests.Items
         }
 
         [Test]
+        public void AddMultipleItems ()
+        {
+            Item item1 = ItemFactory.Create ("HealLightWounds");
+            Item item2 = ItemFactory.Create ("HealSeriousWounds");
+
+            inventory.Add (item1);
+            inventory.Add (item2);
+
+            Assert.IsTrue (inventory.Contains (item1));
+            Assert.IsTrue (inventory.Contains (item2));
+        }
+
+        [Test]
         [ExpectedException (typeof (ArgumentNullException))]
         public void AddNull ()
         {
