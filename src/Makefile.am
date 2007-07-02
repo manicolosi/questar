@@ -80,9 +80,10 @@ ASSEMBLIES = \
 	-r:Mono.Posix
 
 RESOURCES = \
+	$(top_srcdir)/resources/items.xml \
+	$(top_srcdir)/resources/monsters.xml \
 	$(top_srcdir)/resources/questar-ui.xml \
 	$(top_srcdir)/resources/questar.glade \
-	$(top_srcdir)/resources/monsters.xml \
 	$(top_srcdir)/resources/terrains.xml
 
 RESOURCES_EMBEDDED = \

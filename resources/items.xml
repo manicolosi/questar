@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Items>
+    <Item Type="HealthPotion" Id="NormalHealthPotion">
+        <Name>Health Potion</Name>
+        <Tile>potion-health</Tile>
+        <Description>Recovers a small amount of hit points.</Description>
+        <RocoverAmount>20</RocoverAmount>
+    </Item>
+</Items>
+
