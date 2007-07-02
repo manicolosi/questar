@@ -5,6 +5,7 @@
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
+using System;
 using NUnit.Framework;
 
 using Questar.Items;
@@ -29,6 +30,13 @@ namespace Questar.UnitTests.Items
             inventory.Add (item);
 
             Assert.IsTrue (inventory.Contains (item));
+        }
+
+        [Test]
+        [ExpectedException (typeof (ArgumentNullException))]
+        public void AddNull ()
+        {
+            inventory.Add (null);
         }
 
         [Test]

@@ -26,6 +26,9 @@ namespace Questar.Items
 
         public void Add (Item item)
         {
+            if (item == null)
+                throw new ArgumentNullException ("item must not be null.");
+
             items.Add (item);
         }
 
