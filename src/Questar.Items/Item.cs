@@ -6,12 +6,14 @@
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
+using System;
+
 using Questar.Actors;
 using Questar.Primitives;
 
 namespace Questar.Items
 {
-    public abstract class Item : Entity
+    public abstract class Item : Entity, ICloneable
     {
         private Actor owner = null;
 
@@ -24,6 +26,16 @@ namespace Questar.Items
         public bool IsOwned
         {
             get { return owner != null; }
+        }
+
+        public Item Clone ()
+        {
+            return (Item) base.MemberwiseClone ();
+        }
+
+        object ICloneable.Clone ()
+        {
+            return Clone ();
         }
     }
 }

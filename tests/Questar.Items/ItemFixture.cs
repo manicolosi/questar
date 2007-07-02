@@ -17,12 +17,16 @@ namespace Questar.UnitTests.Items
     [TestFixture]
     public class ItemFixture
     {
+        private Actor owner;
         private Item item;
 
         [SetUp]
         public void SetUp ()
         {
+            owner = new MockActor ();
+
             item = ItemFactory.Create ("HealLightWounds");
+            item.Owner = owner;
         }
 
         [Test]
@@ -34,18 +38,31 @@ namespace Questar.UnitTests.Items
         [Test]
         public void NotOwned ()
         {
+            item.Owner = null;
+
             Assert.IsFalse (item.IsOwned);
         }
 
         [Test]
         public void Owned ()
         {
-            Actor owner = new MockActor ();
-
-            item.Owner = owner;
-
             Assert.IsTrue (item.IsOwned);
             Assert.AreSame (owner, item.Owner);
+        }
+
+        [Test]
+        public void IsICloneable ()
+        {
+            Assert.IsInstanceOfType (typeof (ICloneable), item);
+        }
+
+        [Test]
+        public void ClonedItem ()
+        {
+            Item clone = item.Clone ();
+
+            Assert.AreNotSame (item, clone);
+            Assert.AreSame (item.Owner, clone.Owner);
         }
     }
 }
