@@ -84,6 +84,13 @@ namespace Questar.UnitTests.Items
             Assert.IsFalse (inventory.Contains (item1));
             Assert.IsTrue (inventory.Contains (item2));
         }
+
+        [Test]
+        [ExpectedException (typeof (ArgumentException))]
+        public void RemoveNonAddedItem ()
+        {
+            inventory.Remove (item1);
+        }
     }
 }
 

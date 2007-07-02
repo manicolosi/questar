@@ -37,6 +37,9 @@ namespace Questar.Items
 
         public void Remove (Item item)
         {
+            if (!Contains (item))
+                throw new ArgumentException ("Item is not in this Inventory.");
+
             items.Remove (item);
         }
 
