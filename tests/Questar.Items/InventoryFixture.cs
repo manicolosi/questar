@@ -18,9 +18,12 @@ namespace Questar.UnitTests.Items
     [TestFixture]
     public class InventoryFixture
     {
-        Inventory inventory;
-        Item item1;
-        Item item2;
+        private Inventory inventory;
+        private Item item1;
+        private Item item2;
+
+        private Actor owner;
+        private Inventory owned_inventory;
 
         [SetUp]
         public void SetUp ()
@@ -29,6 +32,9 @@ namespace Questar.UnitTests.Items
 
             item1 = ItemFactory.Create ("HealLightWounds");
             item2 = ItemFactory.Create ("HealSeriousWounds");
+
+            owner = new MockActor ();
+            owned_inventory = new Inventory (owner);
         }
 
         [Test]
@@ -128,23 +134,17 @@ namespace Questar.UnitTests.Items
         [Test]
         public void CreationWithOwner ()
         {
-            Actor owner = new MockActor ();
-            Inventory inventory = new Inventory (owner);
-
-            Assert.AreSame (owner, inventory.Owner);
+            Assert.AreSame (owner, owned_inventory.Owner);
         }
 
         [Test]
         public void ItemsGetInventoriesOwner ()
         {
-            Actor owner = new MockActor ();
-            Inventory inventory = new Inventory (owner);
-
             Assert.IsFalse (item1.IsOwned);
             Assert.IsFalse (item2.IsOwned);
 
-            inventory.Add (item1);
-            inventory.Add (item2);
+            owned_inventory.Add (item1);
+            owned_inventory.Add (item2);
 
             Assert.IsTrue (item1.IsOwned);
             Assert.IsTrue (item2.IsOwned);
