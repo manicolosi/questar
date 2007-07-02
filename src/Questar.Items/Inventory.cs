@@ -55,6 +55,8 @@ namespace Questar.Items
             if (!Contains (item))
                 throw new ArgumentException ("Item is not in this Inventory.");
 
+            item.Owner = null;
+
             items.Remove (item);
         }
 

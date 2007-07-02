@@ -138,19 +138,21 @@ namespace Questar.UnitTests.Items
         }
 
         [Test]
-        public void ItemsGetInventoriesOwner ()
+        public void ItemsGetOwnerFromInventory ()
         {
-            Assert.IsFalse (item1.IsOwned);
-            Assert.IsFalse (item2.IsOwned);
-
             owned_inventory.Add (item1);
-            owned_inventory.Add (item2);
 
             Assert.IsTrue (item1.IsOwned);
-            Assert.IsTrue (item2.IsOwned);
-
             Assert.AreSame (owner, item1.Owner);
-            Assert.AreSame (owner, item2.Owner);
+        }
+
+        [Test]
+        public void ItemsLoseOwnerWhenRemoved ()
+        {
+            owned_inventory.Add (item1);
+            owned_inventory.Remove (item1);
+
+            Assert.IsFalse (item1.IsOwned);
         }
     }
 }
