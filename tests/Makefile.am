@@ -12,6 +12,7 @@ NUNIT_CONSOLE = $(NUNIT_PATH)/nunit-console.exe
 
 SOURCES =                              \
 	$(srcdir)/Questar.Items/ItemFactoryFixture.cs \
+	$(srcdir)/Questar.Items/ItemFixture.cs \
 	\
 	$(srcdir)/MockActor.cs             \
 	$(srcdir)/TestActor.cs             \
