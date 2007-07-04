@@ -11,9 +11,29 @@ namespace Questar.Primitives
 {
     public abstract class Entity
     {
+        private string tile;
+        private string name;
+        private string description;
         private Point location;
         private Map map;
-        private string tile;
+
+        public virtual string Name
+        {
+            get { return name; }
+            protected set { name = value; }
+        }
+
+        public virtual string Description
+        {
+            get { return description; }
+            protected set { description = value; }
+        }
+
+        public virtual string Tile
+        {
+            get { return tile; }
+            protected set { tile = value; }
+        }
 
         public virtual Point Location
         {
@@ -27,10 +47,9 @@ namespace Questar.Primitives
             protected set { map = value; }
         }
 
-        public virtual string Tile
+        public override string ToString ()
         {
-            get { return tile; }
-            protected set { tile = value; }
+            return name;
         }
     }
 }

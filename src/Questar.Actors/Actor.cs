@@ -24,23 +24,16 @@ namespace Questar.Actors
         public event EventHandler<ActorMovedEventArgs> Moved;
         public event EventHandler<EventArgs> Died;
 
-        private string name;
         private HitPoints hit_points;
 
-        public virtual string Name
-        {
-            get { return name; }
-            protected set { name = value; }
-        }
+        public abstract bool IsTurnReady { get; }
+        public abstract IAction Action { get; }
 
         public virtual HitPoints HitPoints
         {
             get { return hit_points; }
             protected set { hit_points = value; }
         }
-
-        public abstract bool IsTurnReady { get; }
-        public abstract IAction Action { get; }
 
         public void Move (Point p)
         {
@@ -61,7 +54,6 @@ namespace Questar.Actors
         public void TakeDamage (Actor attacker, int damage)
         {
             HitPoints.Current -= damage;
-
             OnAttacked (attacker, damage);
 
             if (IsDead)
@@ -76,11 +68,6 @@ namespace Questar.Actors
         public bool CanMoveTo (Point p)
         {
             return Map.GetGridInformation (p) == GridInformation.Clear;
-        }
-
-        public override string ToString ()
-        {
-            return name;
         }
 
         protected virtual bool IsAlive
