@@ -64,6 +64,16 @@ namespace Questar.UnitTests.Items
             Assert.AreNotSame (item, clone);
             Assert.AreSame (item.Owner, clone.Owner);
         }
+
+        [Test]
+        public void UseIt ()
+        {
+            owner.HitPoints.Max = 50;
+            owner.HitPoints.Current = 20;
+            item.Use (owner);
+
+            Assert.AreEqual (40, owner.HitPoints.Current);
+        }
     }
 }
 

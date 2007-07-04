@@ -5,11 +5,17 @@
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
+using Questar.Actors;
+
 namespace Questar.Items
 {
     public class HealthPotion : Item
     {
         public HealthPotion ()
+        {
+        }
+
+        public override void Use (Actor target)
         {
         }
     }

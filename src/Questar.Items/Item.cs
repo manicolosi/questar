@@ -28,6 +28,8 @@ namespace Questar.Items
             get { return owner != null; }
         }
 
+        public abstract void Use (Actor target);
+
         public Item Clone ()
         {
             return (Item) base.MemberwiseClone ();
