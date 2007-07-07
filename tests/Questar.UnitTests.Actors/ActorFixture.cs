@@ -10,6 +10,7 @@ using NUnit.Framework;
 
 using Questar.Actors;
 using Questar.Items;
+using Questar.MockObjects;
 
 namespace Questar.UnitTests.Actors
 {

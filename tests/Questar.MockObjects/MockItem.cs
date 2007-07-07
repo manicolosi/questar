@@ -9,7 +9,7 @@ using Questar.Actors;
 using Questar.Items;
 using Questar.Primitives;
 
-namespace Questar.UnitTests
+namespace Questar.MockObjects
 {
     public class MockItem : Item
     {

@@ -11,6 +11,7 @@ using NUnit.Framework;
 using Questar.Actors;
 using Questar.Primitives;
 using Questar.Items;
+using Questar.MockObjects;
 
 namespace Questar.UnitTests.Items
 {

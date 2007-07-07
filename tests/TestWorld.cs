@@ -10,7 +10,7 @@ using NUnit.Framework;
 using System;
 
 using Questar.Base;
-using Questar.UnitTests;
+using Questar.MockObjects;
 
 namespace Questar.UnitTests
 {

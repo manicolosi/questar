@@ -11,6 +11,7 @@ using System;
 using Questar.Actors;
 using Questar.Base;
 using Questar.Primitives;
+using Questar.MockObjects;
 
 namespace Questar.UnitTests
 {

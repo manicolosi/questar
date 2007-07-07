@@ -15,7 +15,7 @@ using Questar.Base;
 using Questar.Maps;
 using Questar.Primitives;
 
-namespace Questar.UnitTests
+namespace Questar.MockObjects
 {
     public class MockActor : Actor
     {
