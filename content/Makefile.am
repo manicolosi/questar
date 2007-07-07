@@ -6,8 +6,7 @@
 ################################################################################
 
 SUBDIRS = \
-	ASCII \
-	Default
+	Questar.Content.Items
 
 MAINTAINERCLEANFILES = \
 	Makefile.in

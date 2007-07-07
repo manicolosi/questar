@@ -19,7 +19,7 @@ namespace Questar.Items
     public static class ItemFactory
     {
         private const string namespce = "Questar.Content.Items.";
-        private const string directory = "../boo/Questar.Content.Items";
+        private const string directory = "../content/Questar.Content.Items";
 
         private static Assembly items_assembly = null;
 

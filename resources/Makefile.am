@@ -5,8 +5,12 @@
 #   Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
 ################################################################################
 
-EXTRA_DIST =                           \
-	questar.glade                      \
-	questar-ui.xml                     \
+EXTRA_DIST = \
+	monsters.xml \
+	questar.glade \
+	questar-ui.xml \
 	terrains.xml
+
+MAINTAINERCLEANFILES = \
+	Makefile.in
 

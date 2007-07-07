@@ -6,40 +6,41 @@
 ################################################################################
 
 run:
-	pushd $(top_builddir)/src;         \
-	make run;                          \
+	pushd $(top_builddir)/src; \
+	make run; \
 	popd;
 
 check:
-	pushd $(top_builddir)/src &&       \
-	make &&                            \
-	popd &&                            \
-	pushd $(top_builddir)/tests &&     \
-	make run-tests &&                  \
+	pushd $(top_builddir)/src && \
+	make && \
+	popd && \
+	pushd $(top_builddir)/tests && \
+	make run-tests && \
 	popd;
 
-SUBDIRS =                              \
-	resources                          \
-	src                                \
-	tests                              \
+SUBDIRS = \
+	content \
+	resources \
+	src \
+	tests \
 	tilesets
 
-EXTRA_DIST =                           \
-	autogen.sh                         \
-	AUTHORS                            \
-	ChangeLog                          \
-	COPYING                            \
-	NEWS                               \
+EXTRA_DIST = \
+	autogen.sh \
+	AUTHORS \
+	ChangeLog \
+	COPYING \
+	NEWS \
 	README
 
-MAINTAINERCLEANFILES =                 \
-	INSTALL                            \
-	Makefile.in                        \
-	aclocal.m4                         \
-	config.guess                       \
-	config.sub                         \
-	configure                          \
-	install-sh                         \
-	missing                            \
+MAINTAINERCLEANFILES = \
+	INSTALL \
+	Makefile.in \
+	aclocal.m4 \
+	config.guess \
+	config.sub \
+	configure \
+	install-sh \
+	missing \
 	mkinstalldirs
 

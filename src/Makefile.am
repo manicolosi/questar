@@ -7,10 +7,10 @@
 
 ASSEMBLY = Questar.exe
 
-SOURCES_IN =                           \
+SOURCES_IN = \
 	$(srcdir)/AssemblyInfo.cs.in
 
-SOURCES_GEN =                          \
+SOURCES_GEN = \
 	$(SOURCES_IN:.in=)
 
 SOURCES = \
@@ -98,14 +98,14 @@ all: $(ASSEMBLY)
 run: $(ASSEMBLY)
 	$(MONO) $(ASSEMBLY)
 
-EXTRA_DIST =                           \
-	$(SOURCES)                         \
+EXTRA_DIST = \
+	$(SOURCES) \
 	$(SOURCES_IN)
 
-CLEANFILES =                           \
-	$(ASSEMBLY)                        \
+CLEANFILES = \
+	$(ASSEMBLY) \
 	$(ASSEMBLY).mdb
 
-MAINTAINERCLEANFILES =                 \
+MAINTAINERCLEANFILES = \
 	Makefile.in
 

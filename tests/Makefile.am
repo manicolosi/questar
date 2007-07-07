@@ -10,26 +10,26 @@ NUNIT_PATH = /home/mark/source/nunit-bin/bin
 NUNIT_DLL = $(NUNIT_PATH)/nunit.framework.dll
 NUNIT_CONSOLE = $(NUNIT_PATH)/nunit-console.exe
 
-SOURCES =                              \
+SOURCES = \
 	$(srcdir)/Questar.Items/InventoryFixture.cs \
 	$(srcdir)/Questar.Items/ItemFactoryFixture.cs \
 	$(srcdir)/Questar.Items/ItemFixture.cs \
 	\
-	$(srcdir)/MockActor.cs             \
-	$(srcdir)/TestActor.cs             \
-	$(srcdir)/TestGame.cs              \
-	$(srcdir)/TestHitPoints.cs         \
-	$(srcdir)/TestMap.cs               \
-	$(srcdir)/TestPoint.cs             \
-	$(srcdir)/TestRectangle.cs         \
-	$(srcdir)/TestSchemaEntry.cs       \
-	$(srcdir)/TestSingleton.cs         \
+	$(srcdir)/MockActor.cs \
+	$(srcdir)/TestActor.cs \
+	$(srcdir)/TestGame.cs \
+	$(srcdir)/TestHitPoints.cs \
+	$(srcdir)/TestMap.cs \
+	$(srcdir)/TestPoint.cs \
+	$(srcdir)/TestRectangle.cs \
+	$(srcdir)/TestSchemaEntry.cs \
+	$(srcdir)/TestSingleton.cs \
 	$(srcdir)/TestWorld.cs
 
-ASSEMBLIES =                           \
-	-pkg:glib-sharp-2.0                \
-	-pkg:gtk-sharp-2.0                 \
-	-r:$(NUNIT_DLL)                    \
+ASSEMBLIES = \
+	-pkg:glib-sharp-2.0 \
+	-pkg:gtk-sharp-2.0 \
+	-r:$(NUNIT_DLL) \
 	-r:../src/Questar.exe
 
 $(ASSEMBLY): $(SOURCES) 
@@ -40,13 +40,13 @@ all: $(ASSEMBLY)
 run-tests: all
 	MONO_PATH=../src:$(NUNIT_PATH) $(NUNIT_CONSOLE) -nologo -labels $(ASSEMBLY)
 
-EXTRA_DIST =                           \
+EXTRA_DIST = \
 	$(SOURCES)
 
-CLEANFILES =                           \
-	$(ASSEMBLY)                        \
+CLEANFILES = \
+	$(ASSEMBLY) \
 	$(ASSEMBLY).mdb
 
-MAINTAINERCLEANFILES =                 \
+MAINTAINERCLEANFILES = \
 	Makefile.in
 

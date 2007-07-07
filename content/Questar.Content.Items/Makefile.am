@@ -5,9 +5,8 @@
 #   Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
 ################################################################################
 
-SUBDIRS = \
-	ASCII \
-	Default
+EXTRA_DIST = \
+	Potions.boo
 
 MAINTAINERCLEANFILES = \
 	Makefile.in
