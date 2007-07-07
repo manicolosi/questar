@@ -1,9 +1,7 @@
-////////////////////////////////////////////////////////////////////////////////
-//  Potions.cs: All potions are defined here.
+// Potions.cs: All potions are defined here.
 //
-//  Copyright (C) 2007
-//  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
-////////////////////////////////////////////////////////////////////////////////
+// Copyright (C) 2007
+// Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
 
 namespace Questar.Content.Items
 
