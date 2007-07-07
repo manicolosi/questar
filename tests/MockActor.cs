@@ -45,6 +45,11 @@ namespace Questar.UnitTests
         {
         }
 
+        public MockActor (Point location) : this (null, null, null)
+        {
+            base.Location = location;
+        }
+
         public void Create ()
         {
             base.OnCreation ();

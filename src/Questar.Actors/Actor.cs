@@ -8,6 +8,7 @@ using System;
 using Questar.Actors.Actions;
 using Questar.Base;
 using Questar.Helpers;
+using Questar.Items;
 using Questar.Maps;
 using Questar.Primitives;
 
@@ -25,14 +26,21 @@ namespace Questar.Actors
         public event EventHandler<EventArgs> Died;
 
         private HitPoints hit_points;
+        private Inventory inventory = new Inventory ();
 
         public abstract bool IsTurnReady { get; }
         public abstract IAction Action { get; }
 
-        public virtual HitPoints HitPoints
+        public HitPoints HitPoints
         {
             get { return hit_points; }
             protected set { hit_points = value; }
+        }
+
+        public Inventory Inventory
+        {
+            get { return inventory; }
+            protected set { inventory = value; }
         }
 
         public void Move (Point p)

@@ -34,6 +34,11 @@ namespace Questar.Items
             get { return owner; }
         }
 
+        public bool IsEmpty
+        {
+            get { return items.Count == 0; }
+        }
+
         public void Add (Item item)
         {
             if (item == null)

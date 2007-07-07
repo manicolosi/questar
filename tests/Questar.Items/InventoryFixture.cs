@@ -191,6 +191,19 @@ namespace Questar.UnitTests.Items
 
             Assert.AreSame (owner, item1.Owner);
         }
+
+        [Test]
+        public void Empty ()
+        {
+            Assert.IsTrue (inventory.IsEmpty);
+        }
+
+        [Test]
+        public void NotEmpty ()
+        {
+            inventory.Add (item1);
+            Assert.IsFalse (inventory.IsEmpty);
+        }
     }
 }
 

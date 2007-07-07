@@ -11,11 +11,16 @@ NUNIT_DLL = $(NUNIT_PATH)/nunit.framework.dll
 NUNIT_CONSOLE = $(NUNIT_PATH)/nunit-console.exe
 
 SOURCES = \
+	$(srcdir)/Questar.Actors/ActorFixture.cs \
+	\
 	$(srcdir)/Questar.Items/InventoryFixture.cs \
 	$(srcdir)/Questar.Items/ItemFactoryFixture.cs \
 	$(srcdir)/Questar.Items/ItemFixture.cs \
 	\
+	$(srcdir)/Questar.UnitTests.Actors.Actions/PickUpActionFixture.cs \
+	\
 	$(srcdir)/MockActor.cs \
+	$(srcdir)/MockItem.cs \
 	$(srcdir)/TestActor.cs \
 	$(srcdir)/TestGame.cs \
 	$(srcdir)/TestHitPoints.cs \
