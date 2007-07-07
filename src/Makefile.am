@@ -56,7 +56,6 @@ SOURCES = \
 	Questar.Helpers/EventHelper.cs \
 	Questar.Helpers/StringHelper.cs \
 	\
-	Questar.Items/HealthPotion.cs \
 	Questar.Items/Inventory.cs \
 	Questar.Items/Item.cs \
 	Questar.Items/ItemFactory.cs \
@@ -73,6 +72,7 @@ SOURCES = \
 	Questar.Primitives/Rectangle.cs
 
 ASSEMBLIES = \
+	-pkg:boo \
 	-pkg:gconf-sharp-2.0 \
 	-pkg:glade-sharp-2.0 \
 	-pkg:gnome-sharp-2.0 \

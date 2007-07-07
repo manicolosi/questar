@@ -5,11 +5,12 @@
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
+using Boo.Lang.Compiler;
+using Boo.Lang.Compiler.IO;
+using Boo.Lang.Compiler.Pipelines;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using System.Xml;
 
 using Questar.Base;
 
@@ -17,57 +18,46 @@ namespace Questar.Items
 {
     public static class ItemFactory
     {
-        private const string resource = "items.xml";
-        private static Dictionary<string, Item> items = null;
+        private const string namespce = "Questar.Content.Items.";
+        private const string directory = "../boo/Questar.Content.Items";
 
-        public static Item Create (string id)
+        private static Assembly items_assembly = null;
+
+        public static Item Create (string item_type)
         {
-            if (items == null)
+            if (items_assembly == null)
                 Load ();
 
-            if (!items.ContainsKey (id))
-                throw new ArgumentException ("The given id is invalid.");
+            if (item_type == null)
+                throw new ArgumentNullException ("item_type must not be null.");
 
-            return items[id].Clone ();
+            Item item = items_assembly.CreateInstance (
+                namespce + item_type) as Item;
+
+            if (item == null)
+                throw new ArgumentException (
+                    "item_type is invalid or is not an Item.");
+
+            return item;
         }
 
         public static void Load ()
         {
-            items = new Dictionary<string, Item> ();
+            BooCompiler compiler = new BooCompiler ();
+            compiler.Parameters.Input.Add (new FileInput (
+                directory + Path.DirectorySeparatorChar + "Potions.boo"));
+            compiler.Parameters.Pipeline = new CompileToMemory ();
+            compiler.Parameters.Ducky = true;
 
-            Assembly assembly = Assembly.GetExecutingAssembly ();
-            Stream stream = assembly.GetManifestResourceStream (resource);
+            CompilerContext context = compiler.Run ();
 
-            XmlDocument document = new XmlDocument ();
-            document.Load (stream);
+            items_assembly = context.GeneratedAssembly;
+            if (items_assembly == null) {
+                foreach (CompilerError error in context.Errors)
+                    Console.WriteLine (error);
 
-            XmlNodeList nodes = document.GetElementsByTagName ("Item");
-
-            foreach (XmlNode node in nodes) {
-                string id_attribute = null;
-                string type_attribute = null;
-
-                foreach (XmlAttribute attribute in node.Attributes) {
-                    if (attribute.Name == "Id")
-                        id_attribute = attribute.Value;
-                    else if (attribute.Name == "Type")
-                        type_attribute = attribute.Value;
-                }
-
-                if (id_attribute == null || type_attribute == null)
-                    throw new ApplicationException (
-                        "Item node must have an 'Id' and 'Type' attribute.");
-
-                LoadItem (node, id_attribute, type_attribute);
+                throw new ApplicationException ("Error in a boo file.");
             }
-        }
-
-        private static void LoadItem (XmlNode node, string id, string type)
-        {
-            Assembly assembly = Assembly.GetExecutingAssembly ();
-            Item item = (Item) assembly.CreateInstance ("Questar.Items." + type);
-
-            items.Add (id, item);
         }
     }
 }

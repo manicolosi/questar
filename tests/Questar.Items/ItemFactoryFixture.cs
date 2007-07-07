@@ -16,10 +16,10 @@ namespace Questar.UnitTests.Items
     public class ItemFactoryFixture
     {
         [Test]
-        public void CreateHealthPotion ()
+        public void CreatePotion ()
         {
             Item item = ItemFactory.Create ("HealLightWounds");
-            Assert.IsInstanceOfType (typeof (HealthPotion), item);
+            Assert.IsNotNull (item);
         }
 
         [Test]
