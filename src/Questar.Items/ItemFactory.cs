@@ -46,6 +46,7 @@ namespace Questar.Items
             BooCompiler compiler = new BooCompiler ();
             compiler.Parameters.Input.Add (new FileInput (
                 directory + Path.DirectorySeparatorChar + "Potions.boo"));
+            compiler.Parameters.AddAssembly (Assembly.GetExecutingAssembly ());
             compiler.Parameters.Pipeline = new CompileToMemory ();
             compiler.Parameters.Ducky = true;
 

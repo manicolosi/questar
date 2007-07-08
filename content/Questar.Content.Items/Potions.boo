@@ -5,8 +5,8 @@
 
 namespace Questar.Content.Items
 
-import Questar.Items from Questar.exe
-import Questar.Actors from Questar.exe
+import Questar.Items
+import Questar.Actors
 
 class Potion (Item):
     pass
