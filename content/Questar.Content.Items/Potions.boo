@@ -1,13 +1,16 @@
-// Potions.cs: All potions are defined here.
-//
-// Copyright (C) 2007
-// Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
+/*******************************************************************************
+ *  Potions.boo: All potions are defined here.
+ *
+ *  Copyright (C) 2007
+ *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
+ ******************************************************************************/
 
 namespace Questar.Content.Items
 
 import Questar.Items
 import Questar.Actors
 
+// Some functionality should be moved here.
 class Potion (Item):
     pass
 

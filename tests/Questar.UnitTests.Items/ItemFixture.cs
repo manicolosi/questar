@@ -26,7 +26,7 @@ namespace Questar.UnitTests.Items
         {
             owner = new MockActor ();
 
-            item = ItemFactory.Create ("HealLightWounds");
+            item = new MockItem ();
             item.Owner = owner;
         }
 
@@ -69,11 +69,9 @@ namespace Questar.UnitTests.Items
         [Test]
         public void UseIt ()
         {
-            owner.HitPoints.Max = 50;
-            owner.HitPoints.Current = 20;
             item.Use (owner);
 
-            Assert.AreEqual (40, owner.HitPoints.Current);
+            Assert.AreEqual (1, ((MockItem) item).UsedCount);
         }
     }
 }
