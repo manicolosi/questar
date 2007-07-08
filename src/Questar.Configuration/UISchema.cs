@@ -72,6 +72,12 @@ namespace Questar.Configuration
                 "Show Messages",
                 "True if the message area should be shown, otherwise false."
             );
+
+        public static readonly SchemaEntry<bool> ShowSidePane =
+            new SchemaEntry<bool> ("user_interface", "show_side_pane", true,
+                "Show Side Pane",
+                "True if the side pane should be shown, otherwise false."
+            );
     }
 }
 

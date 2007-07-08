@@ -11,6 +11,7 @@
         </menu>
         <menu action='ViewMenu'>
             <menuitem action='ShowMessages' />
+            <menuitem action='ShowSidePane' />
             <menuitem action='ShowGridLines' />
             <separator />
             <menuitem action='ZoomIn' />

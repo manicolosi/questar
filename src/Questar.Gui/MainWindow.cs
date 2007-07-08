@@ -21,6 +21,7 @@ namespace Questar.Gui
         [Glade.Widget] private Container menubar_container;
         [Glade.Widget] private Container map_view_container;
         [Glade.Widget] private Container message_view_container;
+        [Glade.Widget] private Notebook side_pane;
 
         public MainWindow () : base ("main_window")
         {
@@ -113,6 +114,17 @@ namespace Questar.Gui
             UISchema.ShowMessages.Changed += delegate {
                 ((ToggleAction) UIActions.Instance["ShowMessages"]).Active =
                     UISchema.ShowMessages.Value;
+            };
+
+            ConfigurationClient.SyncToggleAction ("ShowSidePane",
+                UISchema.ShowSidePane,
+                delegate (ToggleAction action, SchemaEntry<bool> entry) {
+                    side_pane.Visible = action.Active;
+                });
+
+            UISchema.ShowSidePane.Changed += delegate {
+                ((ToggleAction) UIActions.Instance["ShowSidePane"]).Active =
+                    UISchema.ShowSidePane.Value;
             };
         }
     }

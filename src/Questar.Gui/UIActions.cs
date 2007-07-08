@@ -75,6 +75,8 @@ namespace Questar.Gui
             {
                 new ToggleActionEntry ("ShowGridLines", null, "Show _Gridlines",
                     null, null, null, false),
+                new ToggleActionEntry ("ShowSidePane", null, "Show _Side Pane",
+                    "F9", null, null, true),
                 new ToggleActionEntry ("ShowMessages", null, "Show _Messages",
                     "<control>m", null, null, true),
                 new ToggleActionEntry ("FullScreen", null, "Full Screen",
