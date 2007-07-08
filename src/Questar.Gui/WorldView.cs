@@ -79,6 +79,8 @@ namespace Questar.Gui
 
         protected override bool OnButtonPressEvent (EventButton args)
         {
+            base.GrabFocus ();
+
             if (args.Button != 3)
                 return false;
 
