@@ -28,8 +28,10 @@ class HealPotion (Item):
 class HealLightWounds (HealPotion):
     def constructor ():
         Amount = 20
+        Name = "Heal Light Wounds"
 
 class HealSeriousWounds (HealPotion):
     def constructor ():
         Amount = 50
+        Name = "Heal Serious Wounds"
 

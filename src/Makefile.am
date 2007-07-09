@@ -44,6 +44,7 @@ SOURCES = \
 	Questar.Gui/AboutDialog.cs \
 	Questar.Gui/GladeDialog.cs \
 	Questar.Gui/GladeWindow.cs \
+	Questar.Gui/InventoryView.cs \
 	Questar.Gui/MainWindow.cs \
 	Questar.Gui/MessageView.cs \
 	Questar.Gui/PreferenceDialog.cs \

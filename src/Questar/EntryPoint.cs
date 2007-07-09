@@ -1,14 +1,16 @@
-//
-// EntryPoint.cs: Description Goes Here
-// Author: Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
-//
+/*******************************************************************************
+ *  EntryPoint.cs: Questar's entry point, AKA Main().
+ *
+ *  Copyright (C) 2007
+ *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
+ ******************************************************************************/
 
-using Gtk;
 using System;
 
 using Questar.Actors;
 using Questar.Base;
 using Questar.Gui;
+using Questar.Items;
 using Questar.Maps;
 
 namespace Questar
@@ -32,6 +34,10 @@ namespace Questar
 
             world.Map = new Map ();
             new Hero ();
+            world.Hero.Inventory.Add (ItemFactory.Create ("HealLightWounds"));
+            world.Hero.Inventory.Add (ItemFactory.Create ("HealLightWounds"));
+            world.Hero.Inventory.Add (ItemFactory.Create ("HealSeriousWounds"));
+            world.Hero.Inventory.Add (ItemFactory.Create ("HealSeriousWounds"));
             MonsterFactory.Create ("imp");
             MonsterFactory.Create ("imp");
             MonsterFactory.Create ("troll");
