@@ -34,10 +34,13 @@ namespace Questar
 
             world.Map = new Map ();
             new Hero ();
-            world.Hero.Inventory.Add (ItemFactory.Create ("HealLightWounds"));
-            world.Hero.Inventory.Add (ItemFactory.Create ("HealLightWounds"));
-            world.Hero.Inventory.Add (ItemFactory.Create ("HealSeriousWounds"));
-            world.Hero.Inventory.Add (ItemFactory.Create ("HealSeriousWounds"));
+
+            ItemFactory factory = ItemFactory.Instance;
+            world.Hero.Inventory.Add (factory.Create ("HealLightWounds"));
+            world.Hero.Inventory.Add (factory.Create ("HealLightWounds"));
+            world.Hero.Inventory.Add (factory.Create ("HealSeriousWounds"));
+            world.Hero.Inventory.Add (factory.Create ("HealSeriousWounds"));
+
             MonsterFactory.Create ("imp");
             MonsterFactory.Create ("imp");
             MonsterFactory.Create ("troll");

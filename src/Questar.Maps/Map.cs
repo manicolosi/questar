@@ -44,14 +44,16 @@ namespace Questar.Maps
             Game.Instance.World.ActorAdded += delegate (object sender,
                 WorldActorEventArgs args) {
                 Actor actor = args.Actor;
-                this[actor.Location].Actor = actor;
+                Point grid = actor.Location.Point;
+                this[grid].Actor = actor;
                 actor.Moved += OnActorMoved;
             };
 
             Game.Instance.World.ActorRemoved += delegate (object sender,
                 WorldActorEventArgs args) {
                 Actor actor = args.Actor;
-                this[actor.Location].Actor = null;
+                Point grid = actor.Location.Point;
+                this[grid].Actor = null;
                 actor.Moved -= OnActorMoved;
 
                 EventHelper.Raise<MapGridChangedEventArgs> (this, GridChanged,
@@ -126,23 +128,17 @@ namespace Questar.Maps
             private set { this[p.X, p.Y] = value; }
         }
 
-        public Grid this[Location loc]
-        {
-            get { return this[loc.Point]; }
-            private set { this[loc.Point] = value; }
-        }
-
         private void OnActorMoved (object sender, ActorMovedEventArgs args)
         {
             Actor actor = sender as Actor;
             Location old_location = args.OldLocation;
             Location new_location = actor.Location;
 
-            if (this[new_location].Actor != null)
+            if (this[new_location.Point].Actor != null)
                 throw new ApplicationException ("Grid is occupied");
 
-            this[old_location].Actor = null;
-            this[new_location].Actor = actor;
+            this[old_location.Point].Actor = null;
+            this[new_location.Point].Actor = actor;
 
             EventHelper.Raise<MapGridChangedEventArgs> (this, GridChanged,
                 delegate (MapGridChangedEventArgs args1) {

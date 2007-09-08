@@ -6,6 +6,7 @@
 ################################################################################
 
 EXTRA_DIST = \
+	items.xml \
 	monsters.xml \
 	questar.glade \
 	questar-ui.xml \

@@ -19,7 +19,6 @@ check:
 	popd;
 
 SUBDIRS = \
-	content \
 	resources \
 	src \
 	tests \

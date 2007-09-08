@@ -1,65 +1,95 @@
-/*******************************************************************************
- *  ItemFactory.cs: A factory that creates Item objects.
- *
- *  Copyright (C) 2007
- *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
- ******************************************************************************/
-
-using Boo.Lang.Compiler;
-using Boo.Lang.Compiler.IO;
-using Boo.Lang.Compiler.Pipelines;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Xml;
 
 using Questar.Base;
 
 namespace Questar.Items
 {
-    public static class ItemFactory
-    {
-        private const string namespce = "Questar.Content.Items.";
-        private const string directory = "../content/Questar.Content.Items";
+	public class ItemFactory
+	{
+		private const string resource = "items.xml";
+		
+		public static ItemFactory Instance
+		{
+			get { return Singleton<ItemFactory>.Instance; }
+		}
 
-        private static Assembly items_assembly = null;
+		private Dictionary<string, ItemDefinition> definitions;
+		
+		private ItemFactory ()
+		{
+			definitions = new Dictionary<string, ItemDefinition> (); 
+			Assembly assembly = Assembly.GetExecutingAssembly ();
+			Stream stream = assembly.GetManifestResourceStream (resource);
 
-        public static Item Create (string item_type)
-        {
-            if (items_assembly == null)
-                Load ();
+			XmlDocument document = new XmlDocument ();
+			document.Load (stream);
+			
+			XmlNodeList nodes = document.GetElementsByTagName ("Item");
 
-            if (item_type == null)
-                throw new ArgumentNullException ("item_type must not be null.");
+			string id = null;
+			string klass = null;
+			
+			foreach (XmlNode node in nodes) {
+				foreach (XmlAttribute attribute in node.Attributes) {
+					switch (attribute.Name) {
+					case "id":
+						id = attribute.Value;
+						break;
+					case "class":
+						klass = attribute.Value;
+						break;
+					}
+				}
 
-            Item item = items_assembly.CreateInstance (
-                namespce + item_type) as Item;
+				LoadItem (node, id, klass);
+			}
+		}
+		
+		public Item Create (string item_id)
+		{
+			if (!definitions.ContainsKey (item_id))
+				throw new ApplicationException (String.Format (
+				    "ItemFactory doesn't contain an Item with id \"{0}\"",
+				    item_id));
+			
+			ItemDefinition definition = definitions[item_id];
+			
+			ItemBuilder builder = new ItemBuilder (
+			    Assembly.GetExecutingAssembly (), "Questar.Items.Concrete",
+			    definition.Class);
+			
+			foreach (KeyValuePair<string,string> kv_pair in definition.Properties)
+				builder.SetProperty (kv_pair.Key, kv_pair.Value);
+			
+			return builder.GetItem ();
+		}
 
-            if (item == null)
-                throw new ArgumentException (
-                    "item_type is invalid or is not an Item.");
+		public T Create<T> (string item_id) where T: Item
+		{
+			return (T) Create (item_id);
+		}
+		
+		private void LoadItem (XmlNode node, string id, string klass)
+		{
+			if (id == null)
+				throw new ApplicationException (
+			        "Item doesn't contain an 'id' attribute");
+			
+			if (klass == null)
+				throw new ApplicationException (String.Format (
+				    "Item with id \"{0}\" doesn't contain a 'class' attribute",
+				    id));
+				
+			ItemDefinition def = new ItemDefinition (klass);
+			
+			foreach (XmlNode child in node.ChildNodes)
+				def.AddProperty (child.Name, child.FirstChild.Value);
 
-            return item;
-        }
-
-        public static void Load ()
-        {
-            BooCompiler compiler = new BooCompiler ();
-            compiler.Parameters.Input.Add (new FileInput (
-                directory + Path.DirectorySeparatorChar + "Potions.boo"));
-            compiler.Parameters.AddAssembly (Assembly.GetExecutingAssembly ());
-            compiler.Parameters.Pipeline = new CompileToMemory ();
-            compiler.Parameters.Ducky = true;
-
-            CompilerContext context = compiler.Run ();
-
-            items_assembly = context.GeneratedAssembly;
-            if (items_assembly == null) {
-                foreach (CompilerError error in context.Errors)
-                    Console.WriteLine (error);
-
-                throw new ApplicationException ("Error in a boo file.");
-            }
-        }
-    }
+			definitions.Add (id, def);
+		}
+	}
 }
-

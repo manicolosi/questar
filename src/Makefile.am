@@ -59,9 +59,15 @@ SOURCES = \
 	Questar.Helpers/EventHelper.cs \
 	Questar.Helpers/StringHelper.cs \
 	\
+	Questar.Items/AbstractItem.cs \
+	Questar.Items/IDrinkable.cs \
 	Questar.Items/Inventory.cs \
+	Questar.Items/ItemBuilder.cs \
 	Questar.Items/Item.cs \
+	Questar.Items/ItemDefinition.cs \
 	Questar.Items/ItemFactory.cs \
+	\
+	Questar.Items.Concrete/HealthPotion.cs \
 	\
 	Questar.Maps/Grid.cs \
 	Questar.Maps/GridInformation.cs \
@@ -76,7 +82,6 @@ SOURCES = \
 	Questar.Primitives/Rectangle.cs
 
 ASSEMBLIES = \
-	-pkg:boo \
 	-pkg:gconf-sharp-2.0 \
 	-pkg:glade-sharp-2.0 \
 	-pkg:gnome-sharp-2.0 \
@@ -86,6 +91,7 @@ ASSEMBLIES = \
 	-r:Mono.Posix
 
 RESOURCES = \
+	$(top_srcdir)/resources/items.xml \
 	$(top_srcdir)/resources/monsters.xml \
 	$(top_srcdir)/resources/questar-ui.xml \
 	$(top_srcdir)/resources/questar.glade \

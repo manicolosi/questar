@@ -26,8 +26,6 @@ PKG_CHECK_MODULES(RSVG, rsvg-sharp-2.0 >= $GTKSHARP_REQUIRED)
 
 AC_OUTPUT([
 Makefile
-content/Makefile
-content/Questar.Content.Items/Makefile
 resources/Makefile
 src/Makefile
 src/AssemblyInfo.cs
