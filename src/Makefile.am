@@ -75,6 +75,7 @@ SOURCES = \
 	Questar.Maps/Terrain.cs \
 	Questar.Maps/TerrainManager.cs \
 	\
+	Questar.Primitives/AbstractEntity.cs \
 	Questar.Primitives/Direction.cs \
 	Questar.Primitives/Entity.cs \
 	Questar.Primitives/Location.cs \

@@ -18,7 +18,7 @@ namespace Questar.Actors
         public Location OldLocation;
     }
 
-    public abstract class Actor : Entity
+    public abstract class Actor : AbstractEntity, Entity
     {
         public static event EventHandler<EventArgs> Created;
         public event EventHandler<ActorMovedEventArgs> Moved;

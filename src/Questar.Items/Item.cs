@@ -5,12 +5,8 @@ using Questar.Primitives;
 
 namespace Questar.Items
 {
-	public interface Item
+	public interface Item : Entity
 	{
-		string Name { get; }
-		string Description { get; }
-        Location Location { get; }
-
         Actor Owner { get; set; }
         bool IsOwned { get; }
 	}
