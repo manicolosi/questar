@@ -29,13 +29,13 @@ namespace Questar.UnitTests.Actors.Actions
 
             actor = new MockActor (location);
             item = new MockItem (location);
-
-            Assert.IsFalse (actor.Inventory.Contains (item));
         }
 
         [Test]
         public void PickUp ()
         {
+            Assert.IsFalse (actor.Inventory.Contains (item));
+
             new PickUpAction (actor, item).Execute ();
 
             Assert.IsTrue (actor.Inventory.Contains (item));
