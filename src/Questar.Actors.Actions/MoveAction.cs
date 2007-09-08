@@ -22,7 +22,7 @@ namespace Questar.Actors.Actions
 
         public void Execute ()
         {
-            actor.Move (direction.ApplyToPoint (actor.Location));
+            actor.Move (direction.ApplyTo (actor.Location));
         }
     }
 }

@@ -14,8 +14,7 @@ namespace Questar.Primitives
         private string tile;
         private string name;
         private string description;
-        private Point location;
-        private Map map;
+        private Location location;
 
         public virtual string Name
         {
@@ -35,16 +34,10 @@ namespace Questar.Primitives
             protected set { tile = value; }
         }
 
-        public virtual Point Location
+        public virtual Location Location
         {
             get { return location; }
             protected set { location = value; }
-        }
-
-        public virtual Map Map
-        {
-            get { return map; }
-            protected set { map = value; }
         }
 
         public override string ToString ()

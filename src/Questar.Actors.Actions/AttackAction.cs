@@ -33,19 +33,7 @@ namespace Questar.Actors.Actions
 
         public void CheckAdjacency ()
         {
-            bool found = false;
-
-            foreach (Direction direction in Direction.Directions) {
-                Map map = attacker.Map;
-                Point p = direction.ApplyToPoint (attacker.Location);
-
-                if (map[p].Actor == target) {
-                    found = true;
-                    break;
-                }
-            }
-
-            if (!found)
+            if (!attacker.IsAdjacentTo (target))
                 throw new ApplicationException (
                     "Target is not adjacent to attacker.");
         }

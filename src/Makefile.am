@@ -71,6 +71,7 @@ SOURCES = \
 	\
 	Questar.Primitives/Direction.cs \
 	Questar.Primitives/Entity.cs \
+	Questar.Primitives/Location.cs \
 	Questar.Primitives/Point.cs \
 	Questar.Primitives/Rectangle.cs
 

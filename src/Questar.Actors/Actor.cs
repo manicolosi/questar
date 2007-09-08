@@ -16,7 +16,7 @@ namespace Questar.Actors
 {
     public class ActorMovedEventArgs : EventArgs
     {
-        public Point OldLocation;
+        public Location OldLocation;
     }
 
     public abstract class Actor : Entity
@@ -43,14 +43,14 @@ namespace Questar.Actors
             protected set { inventory = value; }
         }
 
-        public void Move (Point p)
+        public void Move (Location new_loc)
         {
-            Point old = Location;
-            Location = p;
+            Location old_loc = base.Location;
+            base.Location = new_loc;
 
             EventHelper.Raise<ActorMovedEventArgs> (this, Moved,
                 delegate (ActorMovedEventArgs args) {
-                    args.OldLocation = old;
+                    args.OldLocation = old_loc;
                 });
         }
 
@@ -68,14 +68,19 @@ namespace Questar.Actors
                 OnDeath ();
         }
 
-        public bool CanMoveTo (Direction direction)
+        public bool IsAdjacentTo (Actor target)
         {
-            return CanMoveTo (direction.ApplyToPoint (Location));
+            return base.Location.IsAdjacentTo (target.Location);
         }
 
-        public bool CanMoveTo (Point p)
+        public bool CanMoveTo (Direction direction)
         {
-            return Map.GetGridInformation (p) == GridInformation.Clear;
+            return CanMoveTo (direction.ApplyTo (base.Location));
+        }
+
+        public bool CanMoveTo (Location loc)
+        {
+            return loc.IsClear;
         }
 
         protected virtual bool IsAlive

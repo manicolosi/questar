@@ -81,9 +81,14 @@ namespace Questar.Primitives
             get { return y; }
         }
 
-        public Point ApplyToPoint (Point p)
+        public Point ApplyTo (Point p)
         {
             return new Point (p.X + X, p.Y + Y);
+        }
+
+        public Location ApplyTo (Location loc)
+        {
+            return new Location (loc.Map, ApplyTo (loc.Point));
         }
 
         public override string ToString ()

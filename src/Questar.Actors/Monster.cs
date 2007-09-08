@@ -21,18 +21,15 @@ namespace Questar.Actors
         {
             base.Name = definition.Name;
             base.Tile = definition.TileId;
-            base.Map = Game.Instance.World.Map;
             base.HitPoints = new HitPoints (definition.MaxHP);
 
             monster_id = definition.Id;
             prefix = definition.Prefix;
 
-            Point p;
             do {
-                p = Point.GetRandom (base.Map.Width, base.Map.Height);
+                base.Location = Location.GetRandom (Game.Instance.World.Map);
             }
-            while (!base.CanMoveTo (p));
-            base.Location = p;
+            while (!base.CanMoveTo (base.Location));
 
             base.OnCreation ();
         }
@@ -42,33 +39,45 @@ namespace Questar.Actors
             get { return true; }
         }
 
-        // FIXME: This note means this isn't clear. First see if there
-        // is another Actor adjacent to us. If there is and the other
-        // Actor is the Hero or a Monster of a different type, attack
-        // it. If there's nobody to attack, go towards the Hero if
-        // possible otherwise move randomly.
+        private bool IsHostile (Actor actor)
+        {
+            // Always hostile towards the Hero.
+            if (actor is Hero)
+                return true;
+
+            // We're also hostile to Monsters that have a different Id
+            // than this one.
+            Monster monster = actor as Monster;
+            if (monster != null && monster.Id != Id)
+                return true;
+
+            return false;
+        }
+
         public override IAction Action
         {
             get {
                 IAction action = null;
-                Map map = base.Map;
-                Point location = base.Location;
+                Location location = base.Location;
 
-                foreach (Actor actor in map.GetAdjacentActors (location)) {
-                    Monster monster = actor as Monster;
-                    if ((monster != null && monster.Id != Id) || actor is Hero)
+                // Possible attack someone
+                foreach (Actor actor in location.AdjacentActors) {
+                    if (IsHostile (actor))
                         action = new AttackAction (this, actor);
                 }
 
+                // Move towards the Hero
                 if (action == null) {
-                    Point target = Game.Instance.World.Hero.Location;
+                    Location target = Game.Instance.World.Hero.Location;
                     Direction direction = location.DirectionOf (target);
 
                     if (base.CanMoveTo (direction))
                         action = new MoveAction (this, direction);
-                    else
-                        action = new RandomMoveAction (this);
                 }
+
+                // Move randomly
+                if (action == null)
+                    action = new RandomMoveAction (this);
 
                 return action;
             }

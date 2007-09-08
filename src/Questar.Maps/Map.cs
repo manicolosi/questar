@@ -56,7 +56,7 @@ namespace Questar.Maps
 
                 EventHelper.Raise<MapGridChangedEventArgs> (this, GridChanged,
                     delegate (MapGridChangedEventArgs grid_args) {
-                        grid_args.Grid = actor.Location;
+                        grid_args.Grid = actor.Location.Point;
                     });
             };
         }
@@ -87,7 +87,7 @@ namespace Questar.Maps
         public IEnumerable<Actor> GetAdjacentActors (Point grid)
         {
             foreach (Direction direction in Direction.Directions) {
-                Point p = direction.ApplyToPoint (grid);
+                Point p = direction.ApplyTo (grid);
                 GridInformation info = GetGridInformation (p);
                 //Console.WriteLine (p);
                 //Console.WriteLine (info);
@@ -139,11 +139,17 @@ namespace Questar.Maps
             private set { this[p.X, p.Y] = value; }
         }
 
+        public Grid this[Location loc]
+        {
+            get { return this[loc.Point]; }
+            private set { this[loc.Point] = value; }
+        }
+
         private void OnActorMoved (object sender, ActorMovedEventArgs args)
         {
             Actor actor = sender as Actor;
-            Point old_location = args.OldLocation;
-            Point new_location = actor.Location;
+            Location old_location = args.OldLocation;
+            Location new_location = actor.Location;
 
             if (this[new_location].Actor != null)
                 throw new ApplicationException ("Grid is occupied");
@@ -153,12 +159,12 @@ namespace Questar.Maps
 
             EventHelper.Raise<MapGridChangedEventArgs> (this, GridChanged,
                 delegate (MapGridChangedEventArgs args1) {
-                    args1.Grid = old_location;
+                    args1.Grid = old_location.Point;
                 });
 
             EventHelper.Raise<MapGridChangedEventArgs> (this, GridChanged,
                 delegate (MapGridChangedEventArgs args2) {
-                    args2.Grid = new_location;
+                    args2.Grid = new_location.Point;
                 });
         }
     }

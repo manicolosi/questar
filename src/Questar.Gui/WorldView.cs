@@ -241,7 +241,7 @@ namespace Questar.Gui
             int w = base.Allocation.Width;
             int h = base.Allocation.Height;
 
-            Point center_grid = center.Location;
+            Point center_grid = center.Location.Point;
             offset_x = center_grid.X - (visible_wide / 2);
             offset_y = center_grid.Y - (visible_high / 2);
 

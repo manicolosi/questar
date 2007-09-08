@@ -29,7 +29,7 @@ namespace Questar.Actors.Actions
                 throw new ImpossibleActionException
                     ("Item is already owned.");
 
-            if (item.Map != actor.Map || item.Location != actor.Location)
+            if (item.Location != actor.Location)
                 throw new ImpossibleActionException
                     ("Item is not under Actor.");
 

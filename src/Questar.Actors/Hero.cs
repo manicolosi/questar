@@ -22,15 +22,12 @@ namespace Questar.Actors
         {
             base.Tile = "hero";
             base.Name = "Hero";
-            base.Map = Game.Instance.World.Map;
             base.HitPoints = new HitPoints (100, 100);
 
-            Point p;
             do {
-                p = Point.GetRandom (base.Map.Width, base.Map.Height);
+                base.Location = Location.GetRandom (Game.Instance.World.Map);
             }
-            while (!base.CanMoveTo (p));
-            base.Location = p;
+            while (!base.CanMoveTo (base.Location));
 
             SetupHandlers ();
 
@@ -95,8 +92,8 @@ namespace Questar.Actors
 
         private void CreateMoveAction (Direction direction)
         {
-            GridInformation info = base.Map.GetGridInformation (
-                direction.ApplyToPoint (base.Location));
+            Location loc = direction.ApplyTo (base.Location);
+            GridInformation info = loc.GridInformation;
 
             switch (info)
             {
@@ -109,8 +106,7 @@ namespace Questar.Actors
                     break;
 
                 case GridInformation.Occupied:
-                    Point p = direction.ApplyToPoint (base.Location);
-                    AddAction (new AttackAction (this, base.Map[p].Actor));
+                    AddAction (new AttackAction (this, loc.Actor));
                     break;
 
                 default:

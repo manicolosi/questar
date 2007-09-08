@@ -37,7 +37,7 @@ namespace Questar.Actors.Actions
             }
             else {
                 int index = random.Next (potentials.Count);
-                actor.Move (potentials[index].ApplyToPoint (actor.Location));
+                actor.Move (potentials[index].ApplyTo (actor.Location));
             }
         }
     }
