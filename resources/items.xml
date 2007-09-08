@@ -1,19 +1,22 @@
 <Items>
-	<Item id="HealLightWounds" class="HealthPotion">
+	<Item id="HealLight" class="HealthPotion">
 		<Name>Heal Light Wounds</Name>
 		<Description>Recovers a small amount of HP.</Description>
+        <Tile>item-potion-heal-light</Tile>
 		<RecoverAmount>20</RecoverAmount>
 	</Item>
 
-	<Item id="HealSeriousWounds" class="HealthPotion">
+	<Item id="HealSerious" class="HealthPotion">
 		<Name>Heal Serious Wounds</Name>
 		<Description>Recovers a moderate amount of HP.</Description>
+        <Tile>item-potion-heal-serious</Tile>
 		<RecoverAmount>50</RecoverAmount>
 	</Item>
 	
-	<Item id="HealCriticalWounds" class="HealthPotion">
+	<Item id="HealCritical" class="HealthPotion">
 		<Name>Heal Critical Wounds</Name>
 		<Description>Recovers a large amount of HP.</Description>
+        <Tile>item-potion-heal-critical</Tile>
 		<RecoverAmount>100</RecoverAmount>
 	</Item>
 </Items>

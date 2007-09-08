@@ -36,15 +36,19 @@ namespace Questar
             new Hero ();
 
             ItemFactory factory = ItemFactory.Instance;
-            world.Hero.Inventory.Add (factory.Create ("HealLightWounds"));
-            world.Hero.Inventory.Add (factory.Create ("HealLightWounds"));
-            world.Hero.Inventory.Add (factory.Create ("HealSeriousWounds"));
-            world.Hero.Inventory.Add (factory.Create ("HealSeriousWounds"));
+            world.Hero.Inventory.Add (factory.Create ("HealLight"));
+            world.Hero.Inventory.Add (factory.Create ("HealLight"));
+            world.Hero.Inventory.Add (factory.Create ("HealSerious"));
+            world.Hero.Inventory.Add (factory.Create ("HealSerious"));
 
             MonsterFactory.Create ("imp");
             MonsterFactory.Create ("imp");
             MonsterFactory.Create ("troll");
             MonsterFactory.Create ("troll");
+
+            world.Map[4,7].Item = factory.Create ("HealLight");
+            world.Map[5,5].Item = factory.Create ("HealCritical");
+            world.Map[8,3].Item = factory.Create ("HealSerious");
         }
     }
 }
