@@ -84,19 +84,6 @@ namespace Questar.Maps
             }
         }
 
-        public IEnumerable<Actor> GetAdjacentActors (Point grid)
-        {
-            foreach (Direction direction in Direction.Directions) {
-                Point p = direction.ApplyTo (grid);
-                GridInformation info = GetGridInformation (p);
-                //Console.WriteLine (p);
-                //Console.WriteLine (info);
-
-                if (info == GridInformation.Occupied)
-                    yield return this[p].Actor;
-            }
-        }
-
         public GridInformation GetGridInformation (Point grid)
         {
             GridInformation info = GridInformation.Clear;
