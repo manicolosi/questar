@@ -15,6 +15,11 @@ namespace Questar.Primitives
     // Cairo.Context.
     public struct Point
     {
+        public static Point Zero
+        {
+            get { return new Point (0, 0); }
+        }
+
         public int X;
         public int Y;
 

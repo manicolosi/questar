@@ -29,6 +29,10 @@ namespace Questar.Primitives
             point = p;
         }
 
+        public Location () : this (null, Point.Zero)
+        {
+        }
+
         public Map Map
         {
             get { return map; }

@@ -25,7 +25,7 @@ namespace Questar.UnitTests.Actors.Actions
         [SetUp]
         public void SetUp ()
         {
-            Point location = new Point (5, 5);
+            Location location = new Location (null, new Point (5, 5));
 
             actor = new MockActor (location);
             item = new MockItem (location);
@@ -53,7 +53,7 @@ namespace Questar.UnitTests.Actors.Actions
         [ExpectedException (typeof (ImpossibleActionException))]
         public void DifferentLocation ()
         {
-            actor.Move (new Point (50, 50));
+            actor.Move (new Location (null, new Point (50, 50)));
             new PickUpAction (actor, item).Execute ();
         }
     }

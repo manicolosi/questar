@@ -30,8 +30,7 @@ namespace Questar.MockObjects
             base.Name = name;
             base.HitPoints = new HitPoints (0, 0);
             base.Tile = "Blah";
-            base.Location = new Point (0, 0);
-            base.Map = null;
+            base.Location = new Location (null, new Point (0, 0));
 
             this.world = world;
             this.loop = loop;
@@ -45,7 +44,7 @@ namespace Questar.MockObjects
         {
         }
 
-        public MockActor (Point location) : this (null, null, null)
+        public MockActor (Location location) : this (null, null, null)
         {
             base.Location = location;
         }

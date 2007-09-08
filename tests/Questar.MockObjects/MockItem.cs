@@ -15,12 +15,12 @@ namespace Questar.MockObjects
     {
         private int count = 0;
 
-        public MockItem (Point location)
+        public MockItem (Location location)
         {
             base.Location = location;
         }
 
-        public MockItem () : this (new Point (0, 0))
+        public MockItem () : this (new Location ())
         {
         }
 

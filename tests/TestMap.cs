@@ -36,8 +36,8 @@ namespace Questar.UnitTests
         {
             MockActor a1 = new MockActor ();
             MockActor a2 = new MockActor ();
-            a1.Move (new Point (3, 3));
-            a2.Move (new Point (3, 5));
+            a1.Move (new Location (map, new Point (3, 3)));
+            a2.Move (new Location (map, new Point (3, 5)));
             a1.Create ();
             a2.Create ();
 

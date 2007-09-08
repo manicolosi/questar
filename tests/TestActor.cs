@@ -38,7 +38,7 @@ namespace Questar.UnitTests
         {
             bool changed = false;
             actor.Moved += delegate { changed = true; };
-            actor.Move (new Point (1, 1));
+            actor.Move (new Location (actor.Location.Map, new Point (1, 1)));
             Assert.IsTrue (changed);
         }
     }
