@@ -38,7 +38,7 @@ namespace Questar.Primitives
         public virtual Location Location
         {
             get { return location; }
-            protected set { location = value; }
+            set { location = value; }
         }
 
         public override string ToString ()

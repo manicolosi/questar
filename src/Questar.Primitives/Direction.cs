@@ -8,6 +8,8 @@
 using System;
 using System.Collections.Generic;
 
+using Questar.Maps;
+
 namespace Questar.Primitives
 {
     public struct Direction
@@ -88,7 +90,11 @@ namespace Questar.Primitives
 
         public Location ApplyTo (Location loc)
         {
-            return new Location (loc.Map, ApplyTo (loc.Point));
+            Point p = ApplyTo (loc.Point);
+            if (loc.Map.GetGridInformation (p) == GridInformation.Invalid)
+                return new NullLocation ();
+
+            return new MapLocation (loc.Map, p);
         }
 
         public override string ToString ()

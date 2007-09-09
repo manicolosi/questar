@@ -75,10 +75,13 @@ SOURCES = \
 	Questar.Maps/Terrain.cs \
 	Questar.Maps/TerrainManager.cs \
 	\
+	Questar.Primitives/ActorLocation.cs \
 	Questar.Primitives/AbstractEntity.cs \
 	Questar.Primitives/Direction.cs \
 	Questar.Primitives/Entity.cs \
 	Questar.Primitives/Location.cs \
+	Questar.Primitives/MapLocation.cs \
+	Questar.Primitives/NullLocation.cs \
 	Questar.Primitives/Point.cs \
 	Questar.Primitives/Rectangle.cs
 

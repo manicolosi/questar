@@ -9,127 +9,27 @@ using System;
 using System.Collections.Generic;
 
 using Questar.Actors;
+using Questar.Items;
 using Questar.Maps;
 
 namespace Questar.Primitives
 {
-    public class Location
+    public interface Location
     {
-        public static Location GetRandom (Map map)
-        {
-            return new Location (map, Point.GetRandom (map.Width, map.Height));
-        }
+        Map Map { get; }
+        Point Point { get; }
+        Actor Actor { get; }
+        Item Item { get; }
 
-        private Map map;
-        private Point point;
+        bool IsAdjacentTo (Location loc);
+        bool IsClear { get; }
 
-        public Location (Map m, Point p)
-        {
-            map = m;
-            point = p;
-        }
+        IEnumerable<MapLocation> AdjacentLocations { get; }
+        IEnumerable<Actor> AdjacentActors { get; }
 
-        public Location () : this (null, Point.Zero)
-        {
-        }
+        Direction DirectionOf (Location loc);
 
-        public Map Map
-        {
-            get { return map; }
-            set { map = value; }
-        }
-
-        public Point Point
-        {
-            get { return point; }
-            set { point = value; }
-        }
-
-        public IEnumerable<Location> AdjacentLocations
-        {
-            get {
-                foreach (Direction direction in Direction.Directions)
-                    yield return new Location (Map, direction.ApplyTo (Point));
-            }
-        }
-
-        public IEnumerable<Actor> AdjacentActors
-        {
-            get {
-                foreach (Location location in AdjacentLocations) {
-                    if (location.Actor != null)
-                        yield return location.Actor;
-                }
-            }
-        }
-
-        public bool IsAdjacentTo (Location loc)
-        {
-            foreach (Location adjacent_loc in AdjacentLocations) {
-                if (loc == adjacent_loc)
-                    return true;
-            }
-
-            return false;
-        }
-
-        public Direction DirectionOf (Location loc)
-        {
-            return point.DirectionOf (loc.Point);
-        }
-
-        public GridInformation GridInformation
-        {
-            get { return map.GetGridInformation (point); }
-        }
-
-        public bool IsClear
-        {
-            get { return GridInformation == GridInformation.Clear; }
-        }
-
-        public bool IsInvalid
-        {
-            get { return GridInformation == GridInformation.Invalid; }
-        }
-
-        public Actor Actor
-        {
-            get {
-                if (IsInvalid)
-                    return null;
-
-                return map[point].Actor;
-            }
-        }
-
-        public override string ToString ()
-        {
-            return String.Format ("{0}: {1}", map, point);
-        }
-
-        public override bool Equals (object o)
-        {
-            return this == (Location) o;
-        }
-
-        public override int GetHashCode ()
-        {
-            return ToString ().GetHashCode ();
-        }
-
-        public static bool operator == (Location a, Location b)
-        {
-            if (a.map == b.map && a.Point == b.Point)
-                return true;
-
-            return false;
-        }
-
-        public static bool operator != (Location a, Location b)
-        {
-            return !(a == b);
-        }
+        GridInformation GridInformation { get; }
     }
 }
 
