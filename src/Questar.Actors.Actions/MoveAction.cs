@@ -9,20 +9,18 @@ using Questar.Primitives;
 
 namespace Questar.Actors.Actions
 {
-    public class MoveAction : IAction
+    public class MoveAction : AbstractAction, Action
     {
         private Direction direction;
-        private Actor actor;
 
-        public MoveAction (Actor actor, Direction direction)
+        public MoveAction (Actor actor, Direction direction) : base (actor)
         {
-            this.actor = actor;
             this.direction = direction;
         }
 
         public void Execute ()
         {
-            actor.Move (direction.ApplyTo (actor.Location));
+            Actor.Move (direction.ApplyTo (Actor.Location));
         }
     }
 }

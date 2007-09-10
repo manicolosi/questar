@@ -12,7 +12,7 @@ using Questar.Primitives;
 
 namespace Questar.Actors.Actions
 {
-    public class AttackAction : IAction
+    public class AttackAction : Action
     {
         private Actor attacker;
         private Actor target;

@@ -12,33 +12,49 @@ using Questar.Primitives;
 
 namespace Questar.Actors.Actions
 {
-    public class RandomMoveAction : IAction
+    public class RandomMoveAction : AbstractAction, Action
     {
-        private Actor actor;
-        private Random random = new Random ();
-
-        public RandomMoveAction (Actor actor)
+        public RandomMoveAction (Actor actor) : base (actor)
         {
-            this.actor = actor;
         }
 
         public void Execute ()
         {
+            List<Direction> potentials = GetPotentialMoves ();
+            Action action = CreateMoveAction (potentials);
+
+            if (action == null)
+                action = new DoNothingAction (Actor);
+
+            action.Execute ();
+        }
+
+        private Action CreateMoveAction (List<Direction> potentials)
+        {
+            if (potentials.Count != 0)
+                return new MoveAction (Actor, RandomDirection (potentials));
+
+            return null;
+        }
+
+        private List<Direction> GetPotentialMoves ()
+        {
             List<Direction> potentials = new List<Direction> ();
 
             foreach (Direction direction in Direction.Directions) {
-                if (actor.CanMoveTo (direction))
+                if (Actor.CanMoveTo (direction))
                     potentials.Add (direction);
             }
 
-            if (potentials.Count == 0) {
-                IAction do_nothing = new DoNothingAction (actor);
-                do_nothing.Execute ();
-            }
-            else {
-                int index = random.Next (potentials.Count);
-                actor.Move (potentials[index].ApplyTo (actor.Location));
-            }
+            return potentials;
+        }
+
+        private Direction RandomDirection (List<Direction> directions)
+        {
+            Random random = new Random ();
+            int index = random.Next (directions.Count);
+
+            return directions[index];
         }
     }
 }

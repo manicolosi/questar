@@ -9,31 +9,30 @@ using System;
 
 using Questar.Actors;
 using Questar.Items;
+using Questar.Primitives;
 
 namespace Questar.Actors.Actions
 {
-    public class PickUpAction : IAction
+    public class PickUpAction : AbstractAction, Action
     {
-        private Actor actor;
         private Item item;
 
-        public PickUpAction (Actor actor, Item item)
+        public PickUpAction (Actor actor, Item item) : base (actor)
         {
-            this.actor = actor;
             this.item = item;
         }
 
         public void Execute ()
         {
-            if (item.IsOwned)
-                throw new ImpossibleActionException
-                    ("Item is already owned.");
+            if (item.Location is ActorLocation)
+                throw new ImpossibleActionException (
+                    "Item belongs to another Actor.");
 
-            if (item.Location != actor.Location)
-                throw new ImpossibleActionException
-                    ("Item is not under Actor.");
+            if (item.Location != base.Actor.Location)
+                throw new ImpossibleActionException (
+                    "Item is not under Actor.");
 
-            actor.Inventory.Add (item);
+            base.Actor.Take (item);
         }
     }
 }

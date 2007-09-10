@@ -7,7 +7,7 @@ using System;
 
 namespace Questar.Actors.Actions
 {
-    public class DoNothingAction : IAction
+    public class DoNothingAction : Action
     {
         public DoNothingAction (Actor actor)
         {

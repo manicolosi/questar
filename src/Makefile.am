@@ -22,9 +22,10 @@ SOURCES = \
 	Questar.Actors/MonsterDefinition.cs \
 	Questar.Actors/MonsterFactory.cs \
 	\
+	Questar.Actors.Actions/AbstractAction.cs \
+	Questar.Actors.Actions/Action.cs \
 	Questar.Actors.Actions/AttackAction.cs \
 	Questar.Actors.Actions/DoNothingAction.cs \
-	Questar.Actors.Actions/IAction.cs \
 	Questar.Actors.Actions/ImpossibleActionException.cs \
 	Questar.Actors.Actions/MoveAction.cs \
 	Questar.Actors.Actions/PickUpAction.cs \
