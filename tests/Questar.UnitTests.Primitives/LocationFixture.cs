@@ -23,7 +23,7 @@ namespace Questar.UnitTests.Primitives
         }
 
         [Test]
-        public void TestNullLocationEquality ()
+        public void NullLocationEquality ()
         {
             Location loc1 = new NullLocation ();
             Location loc2 = new NullLocation ();
@@ -34,7 +34,7 @@ namespace Questar.UnitTests.Primitives
         }
 
         [Test]
-        public void TestMapLocationEquality ()
+        public void MapLocationEquality ()
         {
             Location loc1 = new MapLocation (new Map (), Point.Zero);
             Location loc2 = new MapLocation (loc1);
@@ -45,7 +45,7 @@ namespace Questar.UnitTests.Primitives
         }
 
         [Test]
-        public void TestMapLocationInequality ()
+        public void MapLocationInequality ()
         {
             Location loc1 = new MapLocation (new Map (), new Point (1, 1));
             Location loc2 = new MapLocation (new Map (), new Point (1, 2));
@@ -56,7 +56,7 @@ namespace Questar.UnitTests.Primitives
         }
 
         [Test]
-        public void TestActorLocationEquality ()
+        public void ActorLocationEquality ()
         {
             Location loc1 = new ActorLocation (new MockActor ());
             Location loc2 = new ActorLocation (loc1.Actor);
@@ -67,7 +67,7 @@ namespace Questar.UnitTests.Primitives
         }
 
         [Test]
-        public void TestActorLocationInequality ()
+        public void ActorLocationInequality ()
         {
             Location loc1 = new ActorLocation (new MockActor ());
             Location loc2 = new ActorLocation (new MockActor ());
