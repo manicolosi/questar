@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using Questar.Actors;
 using Questar.Base;
 using Questar.Helpers;
+using Questar.Items;
 using Questar.Primitives;
 
 namespace Questar.Maps
@@ -41,26 +42,33 @@ namespace Questar.Maps
                 "grass", "grass", "flower", "grass", "grass",
                 "grass", "grass", "flower", "grass", "grass");
 
-            Game.Instance.World.ActorAdded += delegate (object sender,
-                WorldActorEventArgs args) {
-                Actor actor = args.Actor;
-                Point grid = actor.Location.Point;
-                this[grid].Actor = actor;
-                actor.Moved += OnActorMoved;
-            };
+            if (Game.Instance.World != null) {
+                Game.Instance.World.ActorAdded += delegate (object sender,
+                    WorldActorEventArgs args) {
+                    Actor actor = args.Actor;
+                    Point grid = actor.Location.Point;
+                    this[grid].Actor = actor;
+                    actor.Moved += OnActorMoved;
+                };
 
-            Game.Instance.World.ActorRemoved += delegate (object sender,
-                WorldActorEventArgs args) {
-                Actor actor = args.Actor;
-                Point grid = actor.Location.Point;
-                this[grid].Actor = null;
-                actor.Moved -= OnActorMoved;
+                Game.Instance.World.ActorRemoved += delegate (object sender,
+                    WorldActorEventArgs args) {
+                    Actor actor = args.Actor;
+                    Point grid = actor.Location.Point;
+                    this[grid].Actor = null;
+                    actor.Moved -= OnActorMoved;
 
-                EventHelper.Raise<MapGridChangedEventArgs> (this, GridChanged,
-                    delegate (MapGridChangedEventArgs grid_args) {
-                        grid_args.Grid = actor.Location.Point;
-                    });
-            };
+                    FireGridChanged (grid);
+                };
+            }
+        }
+
+        private void FireGridChanged (Point point)
+        {
+            EventHelper.Raise<MapGridChangedEventArgs> (this, GridChanged,
+                delegate (MapGridChangedEventArgs grid_args) {
+                    grid_args.Grid = point;
+                });
         }
 
         // Dummy method
@@ -84,6 +92,24 @@ namespace Questar.Maps
                 Terrain terrain = terrain_manager[terrain_id];
                 this[p] = new Grid (terrain);
             }
+        }
+
+        public void Add (Item item, Point point)
+        {
+            item.Location = new MapLocation (this, point);
+            this[point].Item = item;
+
+            FireGridChanged (point);
+        }
+
+        public void Remove (Item item)
+        {
+            Point point = item.Location.Point;
+
+            item.Location = null;
+            this[point].Item = null;
+
+            FireGridChanged (point);
         }
 
         public GridInformation GetGridInformation (Point grid)
@@ -140,15 +166,8 @@ namespace Questar.Maps
             this[old_location.Point].Actor = null;
             this[new_location.Point].Actor = actor;
 
-            EventHelper.Raise<MapGridChangedEventArgs> (this, GridChanged,
-                delegate (MapGridChangedEventArgs args1) {
-                    args1.Grid = old_location.Point;
-                });
-
-            EventHelper.Raise<MapGridChangedEventArgs> (this, GridChanged,
-                delegate (MapGridChangedEventArgs args2) {
-                    args2.Grid = new_location.Point;
-                });
+            FireGridChanged (old_location.Point);
+            FireGridChanged (new_location.Point);
         }
     }
 }
