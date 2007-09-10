@@ -26,7 +26,7 @@ namespace Questar.Actors
             prefix = definition.Prefix;
 
             do {
-                base.Location = Location.GetRandom (Game.Instance.World.Map);
+                base.Location = MapLocation.GetRandom (Game.Instance.World.Map);
             }
             while (!base.CanMoveTo (base.Location));
 
@@ -53,10 +53,10 @@ namespace Questar.Actors
             return false;
         }
 
-        public override IAction Action
+        public override Action Action
         {
             get {
-                IAction action = null;
+                Action action = null;
                 Location location = base.Location;
 
                 // Possible attack someone

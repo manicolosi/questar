@@ -25,10 +25,15 @@ namespace Questar.Actors
         public event EventHandler<EventArgs> Died;
 
         private HitPoints hit_points;
-        private Inventory inventory = new Inventory ();
+        private Inventory inventory;
 
         public abstract bool IsTurnReady { get; }
-        public abstract IAction Action { get; }
+        public abstract Action Action { get; }
+
+        protected Actor ()
+        {
+            inventory = new Inventory (this);
+        }
 
         public HitPoints HitPoints
         {
@@ -40,6 +45,12 @@ namespace Questar.Actors
         {
             get { return inventory; }
             protected set { inventory = value; }
+        }
+
+        public virtual void Take (Item item)
+        {
+            Messages.Instance.Add ("{0} picked up a {1}", this, item);
+            Inventory.Add (item);
         }
 
         public void Move (Location new_loc)

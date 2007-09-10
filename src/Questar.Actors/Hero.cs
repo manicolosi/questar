@@ -8,6 +8,7 @@ using System;
 using Questar.Actors.Actions;
 using Questar.Base;
 using Questar.Gui;
+using Questar.Items;
 using Questar.Maps;
 using Questar.Primitives;
 
@@ -15,7 +16,7 @@ namespace Questar.Actors
 {
     public class Hero : Actor
     {
-        private IAction action = null;
+        private Action action = null;
         private DateTime last_action;
 
         public Hero ()
@@ -25,7 +26,7 @@ namespace Questar.Actors
             base.HitPoints = new HitPoints (100, 100);
 
             do {
-                base.Location = Location.GetRandom (Game.Instance.World.Map);
+                base.Location = MapLocation.GetRandom (Game.Instance.World.Map);
             }
             while (!base.CanMoveTo (base.Location));
 
@@ -41,10 +42,10 @@ namespace Questar.Actors
             }
         }
 
-        public override IAction Action
+        public override Action Action
         {
             get {
-                IAction action = this.action;
+                Action action = this.action;
                 this.action = null;
                 return action;
             }
@@ -61,37 +62,54 @@ namespace Questar.Actors
             last_action = DateTime.Now;
 
             UIActions.Instance["MoveNorth"].Activated += delegate {
-                CreateMoveAction (Direction.North);
+                AddAction (CreateMoveAction (Direction.North));
             };
             UIActions.Instance["MoveSouth"].Activated += delegate {
-                CreateMoveAction (Direction.South);
+                AddAction (CreateMoveAction (Direction.South));
             };
             UIActions.Instance["MoveWest"].Activated += delegate {
-                CreateMoveAction (Direction.West);
+                AddAction (CreateMoveAction (Direction.West));
             };
             UIActions.Instance["MoveEast"].Activated += delegate {
-                CreateMoveAction (Direction.East);
+                AddAction (CreateMoveAction (Direction.East));
             };
             UIActions.Instance["MoveNorthEast"].Activated += delegate {
-                CreateMoveAction (Direction.NorthEast);
+                AddAction (CreateMoveAction (Direction.NorthEast));
             };
             UIActions.Instance["MoveSouthEast"].Activated += delegate {
-                CreateMoveAction (Direction.SouthEast);
+                AddAction (CreateMoveAction (Direction.SouthEast));
             };
             UIActions.Instance["MoveNorthWest"].Activated += delegate {
-                CreateMoveAction (Direction.NorthWest);
+                AddAction (CreateMoveAction (Direction.NorthWest));
             };
             UIActions.Instance["MoveSouthWest"].Activated += delegate {
-                CreateMoveAction (Direction.SouthWest);
+                AddAction (CreateMoveAction (Direction.SouthWest));
             };
 
             UIActions.Instance["DoNothing"].Activated += delegate {
                 AddAction (new DoNothingAction (this));
             };
+
+            UIActions.Instance["PickUp"].Activated += delegate {
+                AddAction (CreatePickUpAction ());
+            };
         }
 
-        private void CreateMoveAction (Direction direction)
+        private Action CreatePickUpAction ()
         {
+            Item item = base.Location.Item;
+
+            if (item == null) {
+                Messages.Instance.Add ("Nothing here to pick up!");
+                return null;
+            }
+
+            return new PickUpAction (this, item);
+        }
+
+        private Action CreateMoveAction (Direction direction)
+        {
+            Action action = null;
             Location loc = direction.ApplyTo (base.Location);
             GridInformation info = loc.GridInformation;
 
@@ -110,13 +128,18 @@ namespace Questar.Actors
                     break;
 
                 default:
-                    AddAction (new MoveAction (this, direction));
+                    action = new MoveAction (this, direction);
                     break;
             }
+
+            return action;
         }
 
-        private void AddAction (IAction action)
+        private void AddAction (Action action)
         {
+            if (action == null)
+                return;
+
             if ((int) (DateTime.Now - last_action).Milliseconds < 100)
                 return;
 
