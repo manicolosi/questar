@@ -16,13 +16,11 @@ namespace Questar.Items
     public class Inventory : IEnumerable<Item>
     {
         private Actor owner;
-        private List<Item> items;
+        private List<Item> items = new List<Item> ();
 
         public Inventory (Actor owner)
         {
             this.owner = owner;
-
-            items = new List<Item> ();
         }
 
         public Inventory () : this (null)
@@ -47,13 +45,6 @@ namespace Questar.Items
             if (Contains (item))
                 throw new ArgumentException ("An Item can't be added twice.");
 
-            if (item.IsOwned && owner != null && item.Owner != owner)
-                throw new ArgumentException (
-                    "Item can't be added because it's owned by somebody else");
-
-            if (owner != null)
-                item.Owner = owner;
-
             items.Add (item);
         }
 
@@ -64,8 +55,6 @@ namespace Questar.Items
 
             if (!Contains (item))
                 throw new ArgumentException ("Item is not in this Inventory.");
-
-            item.Owner = null;
 
             items.Remove (item);
         }
