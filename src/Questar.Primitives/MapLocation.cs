@@ -25,10 +25,13 @@ namespace Questar.Primitives
         private Map map;
         private Point point;
 
-        public MapLocation (Map m, Point p)
+        public MapLocation (Map map, Point point)
         {
-            map = m;
-            point = p;
+            if (map == null)
+                throw new ApplicationException ("Map is null");
+
+            this.map = map;
+            this.point = point;
 
             if (GridInformation == GridInformation.Invalid)
                 throw new ApplicationException (
@@ -36,27 +39,32 @@ namespace Questar.Primitives
 
         }
 
-        public Map Map
+        public MapLocation (Location location) :
+            this (location.Map, location.Point)
+        {
+        }
+
+        public override Map Map
         {
             get { return map; }
         }
 
-        public Point Point
+        public override Point Point
         {
             get { return point; }
         }
 
-        public Actor Actor
+        public override Actor Actor
         {
             get { return map[point].Actor; }
         }
 
-        public Item Item
+        public override Item Item
         {
             get { return map[point].Item; }
         }
 
-        public bool IsAdjacentTo (Location loc)
+        public override bool IsAdjacentTo (Location loc)
         {
             foreach (MapLocation adj_loc in AdjacentLocations) {
                 if ((MapLocation) loc == adj_loc)
@@ -66,12 +74,12 @@ namespace Questar.Primitives
             return false;
         }
 
-        public bool IsClear
+        public override bool IsClear
         {
             get { return GridInformation == GridInformation.Clear; }
         }
 
-        public IEnumerable<MapLocation> AdjacentLocations
+        public override IEnumerable<MapLocation> AdjacentLocations
         {
             get {
                 Location adj_loc;
@@ -84,7 +92,7 @@ namespace Questar.Primitives
             }
         }
 
-        public IEnumerable<Actor> AdjacentActors
+        public override IEnumerable<Actor> AdjacentActors
         {
             get {
                 foreach (Location location in AdjacentLocations) {
@@ -94,12 +102,12 @@ namespace Questar.Primitives
             }
         }
 
-        public Direction DirectionOf (Location loc)
+        public override Direction DirectionOf (Location loc)
         {
             return point.DirectionOf (loc.Point);
         }
 
-        public GridInformation GridInformation
+        public override GridInformation GridInformation
         {
             get { return map.GetGridInformation (point); }
         }
@@ -116,22 +124,14 @@ namespace Questar.Primitives
 
         public override bool Equals (object o)
         {
-            MapLocation loc = o as MapLocation;
+            if (!base.Equals (o))
+                return false;
 
-            if (this.map == loc.map && this.Point == loc.Point)
+            MapLocation loc = o as MapLocation;
+            if ((loc != null) && (Map == loc.Map) && (Point == loc.Point))
                 return true;
 
             return false;
-        }
-
-        public static bool operator == (MapLocation a, MapLocation b)
-        {
-            return a.Equals (b);
-        }
-
-        public static bool operator != (MapLocation a, MapLocation b)
-        {
-            return !(a == b);
         }
     }
 }

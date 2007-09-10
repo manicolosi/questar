@@ -21,52 +21,52 @@ namespace Questar.Primitives
         {
         }
 
-        public Map Map
+        public override Map Map
         {
             get { return null; }
         }
 
-        public Point Point
+        public override Point Point
         {
             get { return Point.Zero; }
         }
 
-        public Actor Actor
+        public override Actor Actor
         {
             get { return null; }
         }
 
-        public Item Item
+        public override Item Item
         {
             get { return null; }
         }
 
-        public bool IsAdjacentTo (Location loc)
+        public override bool IsAdjacentTo (Location loc)
         {
             return false;
         }
 
-        public bool IsClear
+        public override bool IsClear
         {
             get { return false; }
         }
 
-        public IEnumerable<MapLocation> AdjacentLocations
+        public override IEnumerable<MapLocation> AdjacentLocations
         {
             get { return null; }
         }
 
-        public IEnumerable<Actor> AdjacentActors
+        public override IEnumerable<Actor> AdjacentActors
         {
             get { return null; }
         }
 
-        public Direction DirectionOf (Location loc)
+        public override Direction DirectionOf (Location loc)
         {
             return Direction.None;
         }
 
-        public GridInformation GridInformation
+        public override GridInformation GridInformation
         {
             get { return GridInformation.Invalid; }
         }

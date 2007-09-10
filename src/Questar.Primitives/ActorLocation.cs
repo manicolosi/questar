@@ -27,54 +27,54 @@ namespace Questar.Primitives
             this.actor = actor;
         }
 
-        public Map Map
+        public override Map Map
         {
             get { return actor.Location.Map; }
         }
 
-        public Point Point
+        public override Point Point
         {
             get { return actor.Location.Point; }
         }
 
-        public Actor Actor
+        public override Actor Actor
         {
             get { return actor; }
         }
 
-        public Item Item
+        public override Item Item
         {
             // Maybe Inventory should be an Item and this could return
             // that.
             get { return null; }
         }
 
-        public bool IsAdjacentTo (Location loc)
+        public override bool IsAdjacentTo (Location loc)
         {
             return actor.Location.IsAdjacentTo (loc);
         }
 
-        public bool IsClear
+        public override bool IsClear
         {
             get { return true; }
         }
 
-        public IEnumerable<MapLocation> AdjacentLocations
+        public override IEnumerable<MapLocation> AdjacentLocations
         {
             get { return actor.Location.AdjacentLocations; }
         }
 
-        public IEnumerable<Actor> AdjacentActors
+        public override IEnumerable<Actor> AdjacentActors
         {
             get { return actor.Location.AdjacentActors; }
         }
 
-        public Direction DirectionOf (Location loc)
+        public override Direction DirectionOf (Location loc)
         {
             return actor.Location.DirectionOf (loc);
         }
 
-        public GridInformation GridInformation
+        public override GridInformation GridInformation
         {
             get { return actor.Location.GridInformation; }
         }
@@ -91,22 +91,14 @@ namespace Questar.Primitives
 
         public override bool Equals (object o)
         {
-            ActorLocation loc = o as ActorLocation;
+            if (!base.Equals (o))
+                return false;
 
-            if (this.actor == loc.actor)
+            ActorLocation loc = o as ActorLocation;
+            if ((loc != null) && (Actor == loc.Actor))
                 return true;
 
             return false;
-        }
-
-        public static bool operator == (ActorLocation a, ActorLocation b)
-        {
-            return a.Equals (b);
-        }
-
-        public static bool operator != (ActorLocation a, ActorLocation b)
-        {
-            return !(a == b);
         }
     }
 }

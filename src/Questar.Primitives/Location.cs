@@ -14,22 +14,45 @@ using Questar.Maps;
 
 namespace Questar.Primitives
 {
-    public interface Location
+    public abstract class Location
     {
-        Map Map { get; }
-        Point Point { get; }
-        Actor Actor { get; }
-        Item Item { get; }
+        public abstract Map Map { get; }
+        public abstract Point Point { get; }
+        public abstract Actor Actor { get; }
+        public abstract Item Item { get; }
 
-        bool IsAdjacentTo (Location loc);
-        bool IsClear { get; }
+        public abstract bool IsAdjacentTo (Location loc);
+        public abstract bool IsClear { get; }
 
-        IEnumerable<MapLocation> AdjacentLocations { get; }
-        IEnumerable<Actor> AdjacentActors { get; }
+        public abstract IEnumerable<MapLocation> AdjacentLocations { get; }
+        public abstract IEnumerable<Actor> AdjacentActors { get; }
 
-        Direction DirectionOf (Location loc);
+        public abstract Direction DirectionOf (Location loc);
 
-        GridInformation GridInformation { get; }
+        public abstract GridInformation GridInformation { get; }
+
+        public override bool Equals (Object o)
+        {
+            if ((o == null) || base.GetType () != o.GetType ())
+                return false;
+
+            return true;
+        }
+
+        public override int GetHashCode ()
+        {
+            return ToString ().GetHashCode ();
+        }
+
+        public static bool operator == (Location a, Location b)
+        {
+            return a.Equals (b);
+        }
+
+        public static bool operator != (Location a, Location b)
+        {
+            return !a.Equals (b);
+        }
     }
 }
 
