@@ -6,6 +6,7 @@
  ******************************************************************************/
 
 using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 using Questar.Maps;
@@ -75,6 +76,33 @@ namespace Questar.UnitTests.Primitives
             Assert.IsFalse (loc1.Equals (loc2));
             Assert.IsFalse (loc1 == loc2);
             Assert.IsTrue (loc1 != loc2);
+        }
+
+        [Test]
+        public void AdjacentLocationsFromMapLocation ()
+        {
+            Location loc = new MapLocation (new Map (), new Point (5, 5));
+            List<Location> adj_locs =
+                new List<Location> (loc.AdjacentLocations);
+
+            Assert.AreEqual (8, adj_locs.Count);
+
+            CollectionAssert.Contains (adj_locs,
+                Direction.North.ApplyTo (loc));
+            CollectionAssert.Contains (adj_locs,
+                Direction.NorthEast.ApplyTo (loc));
+            CollectionAssert.Contains (adj_locs,
+                Direction.East.ApplyTo (loc));
+            CollectionAssert.Contains (adj_locs,
+                Direction.SouthEast.ApplyTo (loc));
+            CollectionAssert.Contains (adj_locs,
+                Direction.South.ApplyTo (loc));
+            CollectionAssert.Contains (adj_locs,
+                Direction.SouthWest.ApplyTo (loc));
+            CollectionAssert.Contains (adj_locs,
+                Direction.West.ApplyTo (loc));
+            CollectionAssert.Contains (adj_locs,
+                Direction.NorthWest.ApplyTo (loc));
         }
     }
 }

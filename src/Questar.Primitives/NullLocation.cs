@@ -51,7 +51,7 @@ namespace Questar.Primitives
             get { return false; }
         }
 
-        public override IEnumerable<MapLocation> AdjacentLocations
+        public override IEnumerable<Location> AdjacentLocations
         {
             get { return null; }
         }

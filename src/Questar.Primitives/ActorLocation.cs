@@ -59,7 +59,7 @@ namespace Questar.Primitives
             get { return true; }
         }
 
-        public override IEnumerable<MapLocation> AdjacentLocations
+        public override IEnumerable<Location> AdjacentLocations
         {
             get { return actor.Location.AdjacentLocations; }
         }

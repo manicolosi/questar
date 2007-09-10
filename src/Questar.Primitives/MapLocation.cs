@@ -79,7 +79,7 @@ namespace Questar.Primitives
             get { return GridInformation == GridInformation.Clear; }
         }
 
-        public override IEnumerable<MapLocation> AdjacentLocations
+        public override IEnumerable<Location> AdjacentLocations
         {
             get {
                 Location adj_loc;
@@ -87,7 +87,7 @@ namespace Questar.Primitives
                 foreach (Direction direction in Direction.Directions) {
                     adj_loc = direction.ApplyTo (this);
                     if (!(adj_loc is NullLocation))
-                        yield return adj_loc as MapLocation;
+                        yield return adj_loc;
                 }
             }
         }

@@ -24,7 +24,7 @@ namespace Questar.Primitives
         public abstract bool IsAdjacentTo (Location loc);
         public abstract bool IsClear { get; }
 
-        public abstract IEnumerable<MapLocation> AdjacentLocations { get; }
+        public abstract IEnumerable<Location> AdjacentLocations { get; }
         public abstract IEnumerable<Actor> AdjacentActors { get; }
 
         public abstract Direction DirectionOf (Location loc);
