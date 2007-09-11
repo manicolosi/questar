@@ -12,6 +12,7 @@ using Questar.Base;
 using Questar.Gui;
 using Questar.Items;
 using Questar.Maps;
+using Questar.Primitives;
 
 namespace Questar
 {
@@ -46,9 +47,7 @@ namespace Questar
             MonsterFactory.Create ("troll");
             MonsterFactory.Create ("troll");
 
-            world.Map[4,7].Item = factory.Create ("HealLight");
-            world.Map[5,5].Item = factory.Create ("HealCritical");
-            world.Map[8,3].Item = factory.Create ("HealSerious");
+            world.Map.Add (factory.Create ("HealCritical"), new Point (5, 5));
         }
     }
 }
