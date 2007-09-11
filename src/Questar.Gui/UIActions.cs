@@ -113,6 +113,9 @@ namespace Questar.Gui
                     null, null, null),
 
                 new ActionEntry ("DoNothing", null, "Do Nothing",
+                    null, null, null),
+
+                new ActionEntry ("PickUp", null, "Pick Up Item",
                     null, null, null)
             });
 

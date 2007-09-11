@@ -123,6 +123,8 @@ namespace Questar.Gui
                     action = "MoveSouthEast"; break;
                 case Key.KP_Begin:
                     action = "DoNothing"; break;
+                case Key.KP_Delete:
+                    action = "PickUp"; break;
                 default:
                     break;
             }
