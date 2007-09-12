@@ -47,7 +47,7 @@ namespace Questar
             MonsterFactory.Create ("troll");
             MonsterFactory.Create ("troll");
 
-            world.Map.Add (factory.Create ("HealCritical"), new Point (5, 5));
+            ItemFactory.Instance.Create ("HealLight", new MapLocation (world.Map, 5, 5));
         }
     }
 }
