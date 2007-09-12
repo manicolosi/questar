@@ -152,6 +152,12 @@ namespace Questar.Gui
             return true;
         }
 
+        protected override void OnRealized ()
+        {
+            base.OnRealized ();
+            base.GrabFocus ();
+        }
+
         protected override void OnSizeRequested (ref Requisition requisition)
         {
             requisition.Width  = 640;
