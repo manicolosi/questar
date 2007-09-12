@@ -49,7 +49,7 @@ namespace Questar.Primitives
                 return location;
             }
             set {
-                Location old_loc = location;
+                Location old_loc = Location;
                 location = value;
 
                 FireLocationChanged (old_loc, location);
