@@ -24,15 +24,15 @@ namespace Questar.Actors.Actions
 
         public void Execute ()
         {
-            if (item.Location is ActorLocation)
+            if (!(item.Location is MapLocation))
                 throw new ImpossibleActionException (
-                    "Item belongs to another Actor.");
+                    "Item is not on a MapLocation.");
 
-            if (item.Location != base.Actor.Location)
+            if (item.Location != Actor.Location)
                 throw new ImpossibleActionException (
                     "Item is not under Actor.");
 
-            base.Actor.Take (item);
+            Actor.Inventory.Add (item);
         }
     }
 }
