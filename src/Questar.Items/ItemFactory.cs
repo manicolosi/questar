@@ -50,6 +50,14 @@ namespace Questar.Items
 			}
 		}
 		
+        public Item Create (string item_id, Location location)
+        {
+            Item item = Create (item_id);
+            item.Location = location;
+
+            return item;
+        }
+
 		public override Item Create (string item_id)
 		{
 			if (!definitions.ContainsKey (item_id))
