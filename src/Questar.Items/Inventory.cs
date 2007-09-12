@@ -70,6 +70,7 @@ namespace Questar.Items
                 throw new ArgumentException ("Item is not in this Inventory.");
 
             items.Remove (item);
+            item.Location = new NullLocation ();
 
             FireEvent (Removed, item);
         }
