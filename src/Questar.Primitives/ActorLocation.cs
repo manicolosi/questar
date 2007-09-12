@@ -81,7 +81,7 @@ namespace Questar.Primitives
 
         public override string ToString ()
         {
-            return String.Format ("On {0}", actor);
+            return actor.Name;
         }
 
         public override int GetHashCode ()
