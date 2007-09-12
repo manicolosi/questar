@@ -22,13 +22,22 @@ namespace Questar.Gui
         {
             this.inventory = inventory;
 
-            store = new ListStore (typeof (Item));
-            base.Model = store;
-            base.HeadersVisible = false;
+            SetupHandlers ();
+            BuildView ();
+            BuildStore ();
 
-            foreach (Item item in this.inventory) {
-                store.AppendValues (item);
-            }
+            base.ShowAll ();
+        }
+
+        private void SetupHandlers ()
+        {
+            inventory.Added += OnAddedOrRemoved;
+            inventory.Removed += OnAddedOrRemoved;
+        }
+
+        private void BuildView ()
+        {
+            base.HeadersVisible = false;
 
             // Name Column
             TreeViewColumn name = new TreeViewColumn ();
@@ -40,8 +49,24 @@ namespace Questar.Gui
             name.SetCellDataFunc (cell, RenderNameCell);
 
             base.AppendColumn (name);
+        }
 
-            base.ShowAll ();
+        private void BuildStore ()
+        {
+            if (store == null)
+                store = new ListStore (typeof (Item));
+
+            store.Clear ();
+
+            foreach (Item item in inventory)
+                store.AppendValues (item);
+
+            base.Model = store;
+        }
+
+        private void OnAddedOrRemoved (object sender, ItemEventArgs args)
+        {
+            BuildStore ();
         }
 
         private void RenderNameCell (TreeViewColumn column, CellRenderer cell,
