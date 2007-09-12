@@ -46,12 +46,12 @@ namespace Questar.Primitives
 
         public static bool operator == (Location a, Location b)
         {
-            return a.Equals (b);
+            return Object.Equals (a, b);
         }
 
         public static bool operator != (Location a, Location b)
         {
-            return !a.Equals (b);
+            return !Object.Equals (a, b);
         }
     }
 }

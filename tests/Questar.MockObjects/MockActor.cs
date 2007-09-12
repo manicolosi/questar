@@ -30,7 +30,7 @@ namespace Questar.MockObjects
             base.Name = name;
             base.HitPoints = new HitPoints (0, 0);
             base.Tile = "Blah";
-            base.Location = new Location (null, new Point (0, 0));
+            base.Location = new NullLocation ();
 
             this.world = world;
             this.loop = loop;
@@ -59,7 +59,7 @@ namespace Questar.MockObjects
             get { return is_turn_ready; }
         }
 
-        public override IAction Action
+        public override Action Action
         {
             get {
                 if (!is_turn_ready)

@@ -79,6 +79,16 @@ namespace Questar.UnitTests.Primitives
         }
 
         [Test]
+        public void NullLocationsEquality ()
+        {
+            Location loc1 = null;
+            Location loc2 = null;
+
+            Assert.AreEqual (loc1, loc2);
+            Assert.IsTrue (loc1 == loc2);
+        }
+
+        [Test]
         public void AdjacentLocationsFromMapLocation ()
         {
             Location loc = new MapLocation (new Map (), new Point (5, 5));
