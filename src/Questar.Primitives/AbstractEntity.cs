@@ -37,7 +37,12 @@ namespace Questar.Primitives
 
         public virtual Location Location
         {
-            get { return location; }
+            get {
+                if (location == null)
+                    location = new NullLocation ();
+
+                return location;
+            }
             set { location = value; }
         }
 
