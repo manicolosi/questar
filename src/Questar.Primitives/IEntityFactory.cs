@@ -6,13 +6,13 @@
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
-using Questar.Maps;
+using System;
 
 namespace Questar.Primitives
 {
     public interface IEntityFactory<T> where T: Entity
     {
-        T Create (string);
+        T Create (string id);
         event EventHandler<EventArgs> Created;
     }
 }
