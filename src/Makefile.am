@@ -78,6 +78,7 @@ SOURCES = \
 	\
 	Questar.Primitives/ActorLocation.cs \
 	Questar.Primitives/AbstractEntity.cs \
+	Questar.Primitives/AbstractEntityFactory.cs \
 	Questar.Primitives/Direction.cs \
 	Questar.Primitives/Entity.cs \
 	Questar.Primitives/IEntityFactory.cs \
