@@ -6,7 +6,11 @@
  ******************************************************************************/
 
 using Gtk;
+using System;
 
+using Questar.Actors;
+using Questar.Actors.Actions;
+using Questar.Base;
 using Questar.Items;
 
 using Item = Questar.Items.Item;
@@ -74,6 +78,21 @@ namespace Questar.Gui
         {
             Item item = (Item) model.GetValue (iter, 0);
             ((CellRendererText) cell).Text = item.Name;
+        }
+
+        protected override void OnRowActivated (TreePath path, TreeViewColumn column)
+        {
+            // HACK: How could this be better?
+            Hero hero = (Hero) Game.Instance.World.Hero;
+
+            if (inventory != hero.Inventory)
+                return;
+
+            TreeIter iter = TreeIter.Zero;
+            store.GetIter (out iter, path);
+
+            Item item = (Item) store.GetValue (iter, 0);
+            hero.AddAction (new DropAction (hero, item));
         }
     }
 }

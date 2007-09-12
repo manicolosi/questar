@@ -135,7 +135,7 @@ namespace Questar.Actors
             return action;
         }
 
-        private void AddAction (Action action)
+        public void AddAction (Action action)
         {
             if (action == null)
                 return;
