@@ -25,6 +25,10 @@ namespace Questar.Primitives
         private Map map;
         private Point point;
 
+        public MapLocation (Map map, int x, int y) : this (map, new Point (x, y))
+        {
+        }
+
         public MapLocation (Map map, Point point)
         {
             if (map == null)
