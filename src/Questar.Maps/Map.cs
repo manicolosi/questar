@@ -44,11 +44,7 @@ namespace Questar.Maps
                 "grass", "grass", "flower", "grass", "grass",
                 "grass", "grass", "flower", "grass", "grass");
 
-            ItemFactory.Instance.Created += delegate (object sender,
-                EntityCreatedEventArgs args) {
-
-                OnItemCreated ((Item) args.Entity);
-            };
+            ItemFactory.Instance.Created += OnItemCreated;
 
             if (Game.Instance.World != null) {
                 Game.Instance.World.ActorAdded += delegate (object sender,
@@ -71,10 +67,8 @@ namespace Questar.Maps
             }
         }
 
-        private void OnItemCreated (Item item)
+        private void OnItemCreated (Object sender, EntityCreatedEventArgs args)
         {
-            Console.WriteLine ("This was created: " + item.Name);
-            Console.WriteLine (item.Location.GetType ());
         }
 
         private void FireGridChanged (Point point)
