@@ -10,6 +10,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using Questar.Actors;
+using Questar.Primitives;
 
 namespace Questar.Items
 {
@@ -45,6 +46,7 @@ namespace Questar.Items
             if (Contains (item))
                 throw new ArgumentException ("An Item can't be added twice.");
 
+            item.Location = new ActorLocation (owner);
             items.Add (item);
         }
 
