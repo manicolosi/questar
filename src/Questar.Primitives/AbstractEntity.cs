@@ -6,12 +6,17 @@
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
+using System;
+
+using Questar.Helpers;
 using Questar.Maps;
 
 namespace Questar.Primitives
 {
     public abstract class AbstractEntity : Entity
     {
+        public event EventHandler<LocationChangedEventArgs> LocationChanged;
+
         private string tile;
         private string name;
         private string description;
@@ -43,12 +48,26 @@ namespace Questar.Primitives
 
                 return location;
             }
-            set { location = value; }
+            protected set {
+                Location old_loc = location;
+                location = value;
+
+                FireLocationChanged (old_loc, location);
+            }
         }
 
         public override string ToString ()
         {
             return name;
+        }
+
+        private void FireLocationChanged (Location old_loc, Location new_loc)
+        {
+            EventHelper.Raise<LocationChangedEventArgs> (this, LocationChanged,
+                delegate (LocationChangedEventArgs args) {
+                    args.OldLocation = old_loc;
+                    args.NewLocation = new_loc;
+                });
         }
     }
 }

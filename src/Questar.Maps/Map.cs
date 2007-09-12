@@ -67,8 +67,16 @@ namespace Questar.Maps
             }
         }
 
-        private void OnItemCreated (Object sender, EntityCreatedEventArgs args)
+        private void OnItemCreated (object sender, EntityCreatedEventArgs args)
         {
+            Item item = (Item) args.Entity;
+            item.LocationChanged += OnItemLocationChanged;
+        }
+
+        private void OnItemLocationChanged (object sender, LocationChangedEventArgs args)
+        {
+            Item item = (Item) sender;
+            Console.WriteLine ("{0}: LocationChanged", item.Name);
         }
 
         private void FireGridChanged (Point point)
@@ -104,20 +112,20 @@ namespace Questar.Maps
 
         public void Add (Item item, Point point)
         {
-            item.Location = new MapLocation (this, point);
-            this[point].Item = item;
+            //item.Location = new MapLocation (this, point);
+            //this[point].Item = item;
 
-            FireGridChanged (point);
+            //FireGridChanged (point);
         }
 
         public void Remove (Item item)
         {
-            Point point = item.Location.Point;
+            //Point point = item.Location.Point;
 
-            item.Location = null;
-            this[point].Item = null;
+            //item.Location = null;
+            //this[point].Item = null;
 
-            FireGridChanged (point);
+            //FireGridChanged (point);
         }
 
         public GridInformation GetGridInformation (Point grid)
