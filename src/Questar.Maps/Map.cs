@@ -76,7 +76,26 @@ namespace Questar.Maps
         private void OnItemLocationChanged (object sender, LocationChangedEventArgs args)
         {
             Item item = (Item) sender;
-            Console.WriteLine ("{0}: LocationChanged", item.Name);
+            Location new_loc = args.NewLocation;
+            Location old_loc = args.OldLocation;
+
+            // Remove from old Location.
+            if (old_loc is MapLocation) {
+                if (old_loc.Map != this)
+                    throw new NotImplementedException ("Multiple Maps");
+
+                this[old_loc.Point].Item = null;
+                FireGridChanged (old_loc.Point);
+            }
+
+            // Add to new Location.
+            if (new_loc is MapLocation) {
+                if (new_loc.Map != this)
+                    throw new NotImplementedException ("Multiple Maps");
+
+                this[new_loc.Point].Item = item;
+                FireGridChanged (new_loc.Point);
+            }
         }
 
         private void FireGridChanged (Point point)
@@ -108,24 +127,6 @@ namespace Questar.Maps
                 Terrain terrain = terrain_manager[terrain_id];
                 this[p] = new Grid (terrain);
             }
-        }
-
-        public void Add (Item item, Point point)
-        {
-            //item.Location = new MapLocation (this, point);
-            //this[point].Item = item;
-
-            //FireGridChanged (point);
-        }
-
-        public void Remove (Item item)
-        {
-            //Point point = item.Location.Point;
-
-            //item.Location = null;
-            //this[point].Item = null;
-
-            //FireGridChanged (point);
         }
 
         public GridInformation GetGridInformation (Point grid)
