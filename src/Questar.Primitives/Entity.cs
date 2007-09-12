@@ -25,7 +25,7 @@ namespace Questar.Primitives
         string Name { get; }
         string Description { get; }
         string Tile { get; } 
-        Location Location { get; }
+        Location Location { get; set; }
     }
 }
 

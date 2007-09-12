@@ -48,7 +48,7 @@ namespace Questar.Primitives
 
                 return location;
             }
-            protected set {
+            set {
                 Location old_loc = location;
                 location = value;
 
