@@ -12,10 +12,10 @@ using Questar.Helpers;
 
 namespace Questar.Primitives
 {
-    public abstract class AbstractEntityFactory<T> where T: Entity,
-        IEntityFactory<T>
+    public abstract class AbstractEntityFactory<T> : IEntityFactory<T>
+        where T: Entity
     {
-        event EventHandler<EntityCreatedEventArgs> Created;
+        public event EventHandler<EntityCreatedEventArgs> Created;
 
         public abstract T Create (string id);
 

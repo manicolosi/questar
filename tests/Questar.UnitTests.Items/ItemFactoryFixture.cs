@@ -9,31 +9,53 @@ using NUnit.Framework;
 using System;
 
 using Questar.Items;
+using Questar.Primitives;
 
 namespace Questar.UnitTests.Items
 {
     [TestFixture]
     public class ItemFactoryFixture
     {
+        ItemFactory factory;
+
+        [SetUp]
+        public void SetUp ()
+        {
+            factory = ItemFactory.Instance;
+        }
+
         [Test]
         public void CreatePotion ()
         {
-            Item item = ItemFactory.Create ("HealLightWounds");
+            Item item = factory.Create ("HealLight");
             Assert.IsNotNull (item);
         }
 
         [Test]
-        [ExpectedException (typeof (ArgumentException))]
+        [ExpectedException (typeof (ApplicationException))]
         public void InvalidItemId ()
         {
-            ItemFactory.Create ("InvalidItem");
+            factory.Create ("InvalidItem");
         }
 
         [Test]
         [ExpectedException (typeof (ArgumentNullException))]
         public void NullItemId ()
         {
-            ItemFactory.Create (null);
+            factory.Create (null);
+        }
+
+        [Test]
+        public void CreatedEvent ()
+        {
+            bool got_event = false;
+
+            factory.Created += delegate {
+                got_event = true;
+            };
+
+            factory.Create ("HealLight");
+            Assert.IsTrue (got_event);
         }
     }
 }

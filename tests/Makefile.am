@@ -11,29 +11,28 @@ NUNIT_DLL = $(NUNIT_PATH)/nunit.framework.dll
 NUNIT_CONSOLE = $(NUNIT_PATH)/nunit-console.exe
 
 SOURCES = \
-	\
-	$(srcdir)/TestActor.cs \
-	$(srcdir)/TestGame.cs \
-	$(srcdir)/TestHitPoints.cs \
-	$(srcdir)/TestMap.cs \
-	$(srcdir)/TestPoint.cs \
-	$(srcdir)/TestRectangle.cs \
-	$(srcdir)/TestSchemaEntry.cs \
-	$(srcdir)/TestSingleton.cs \
-	$(srcdir)/TestWorld.cs \
-	\
-	$(srcdir)/Questar.MockObjects/MockActor.cs \
-	$(srcdir)/Questar.MockObjects/MockItem.cs \
-	\
-	$(srcdir)/Questar.UnitTests.Actors/ActorFixture.cs \
-	\
-	$(srcdir)/Questar.UnitTests.Actors.Actions/PickUpActionFixture.cs \
-	\
-	$(srcdir)/Questar.UnitTests.Items/InventoryFixture.cs \
 	$(srcdir)/Questar.UnitTests.Items/ItemFactoryFixture.cs \
-	$(srcdir)/Questar.UnitTests.Items/ItemFixture.cs \
-	\
-	$(srcdir)/Questar.UnitTests.Primitives/LocationFixture.cs
+	#$(srcdir)/TestActor.cs \
+	#$(srcdir)/TestGame.cs \
+	#$(srcdir)/TestHitPoints.cs \
+	#$(srcdir)/TestMap.cs \
+	#$(srcdir)/TestPoint.cs \
+	#$(srcdir)/TestRectangle.cs \
+	#$(srcdir)/TestSchemaEntry.cs \
+	#$(srcdir)/TestSingleton.cs \
+	#$(srcdir)/TestWorld.cs \
+	#\
+	#$(srcdir)/Questar.MockObjects/MockActor.cs \
+	#$(srcdir)/Questar.MockObjects/MockItem.cs \
+	#\
+	#$(srcdir)/Questar.UnitTests.Actors/ActorFixture.cs \
+	#\
+	#$(srcdir)/Questar.UnitTests.Actors.Actions/PickUpActionFixture.cs \
+	#\
+	#$(srcdir)/Questar.UnitTests.Items/InventoryFixture.cs \
+	#$(srcdir)/Questar.UnitTests.Items/ItemFixture.cs \
+	#\
+	#$(srcdir)/Questar.UnitTests.Primitives/LocationFixture.cs
 
 
 ASSEMBLIES = \

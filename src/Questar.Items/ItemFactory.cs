@@ -5,24 +5,25 @@ using System.Reflection;
 using System.Xml;
 
 using Questar.Base;
+using Questar.Primitives;
 
 namespace Questar.Items
 {
-	public class ItemFactory
-	{
-		private const string resource = "items.xml";
-		
-		public static ItemFactory Instance
-		{
-			get { return Singleton<ItemFactory>.Instance; }
-		}
+    public class ItemFactory : AbstractEntityFactory<Item>
+    {
+        private const string resource = "items.xml";
 
-		private Dictionary<string, ItemDefinition> definitions;
-		
-		private ItemFactory ()
-		{
-			definitions = new Dictionary<string, ItemDefinition> (); 
-			Assembly assembly = Assembly.GetExecutingAssembly ();
+        public static ItemFactory Instance
+        {
+            get { return Singleton<ItemFactory>.Instance; }
+        }
+
+        private Dictionary<string, ItemDefinition> definitions;
+
+        private ItemFactory ()
+        {
+            definitions = new Dictionary<string, ItemDefinition> (); 
+            Assembly assembly = Assembly.GetExecutingAssembly ();
 			Stream stream = assembly.GetManifestResourceStream (resource);
 
 			XmlDocument document = new XmlDocument ();
@@ -49,7 +50,7 @@ namespace Questar.Items
 			}
 		}
 		
-		public Item Create (string item_id)
+		public override Item Create (string item_id)
 		{
 			if (!definitions.ContainsKey (item_id))
 				throw new ApplicationException (String.Format (
@@ -65,14 +66,12 @@ namespace Questar.Items
 			foreach (KeyValuePair<string,string> kv_pair in definition.Properties)
 				builder.SetProperty (kv_pair.Key, kv_pair.Value);
 			
-			return builder.GetItem ();
+            Item item = builder.GetItem ();
+            OnCreation (item);
+
+			return item;
 		}
 
-		public T Create<T> (string item_id) where T: Item
-		{
-			return (T) Create (item_id);
-		}
-		
 		private void LoadItem (XmlNode node, string id, string klass)
 		{
 			if (id == null)
