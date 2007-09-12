@@ -70,6 +70,11 @@ namespace Questar.Primitives
         {
             get { return GridInformation.Invalid; }
         }
+
+        public override string ToString ()
+        {
+            return "nowhere";
+        }
     }
 }
 
