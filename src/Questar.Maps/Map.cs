@@ -1,7 +1,9 @@
-//
-// Map.cs: Description Goes Here
-// Author: Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
-//
+/*******************************************************************************
+ *  Map.cs: Basically a 2d collection of Grids.
+ *
+ *  Copyright (C) 2007
+ *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
+ ******************************************************************************/
 
 using System;
 using System.Collections.Generic;
@@ -42,6 +44,12 @@ namespace Questar.Maps
                 "grass", "grass", "flower", "grass", "grass",
                 "grass", "grass", "flower", "grass", "grass");
 
+            ItemFactory.Instance.Created += delegate (object sender,
+                EntityCreatedEventArgs args) {
+
+                OnItemCreated ((Item) args.Entity);
+            };
+
             if (Game.Instance.World != null) {
                 Game.Instance.World.ActorAdded += delegate (object sender,
                     WorldActorEventArgs args) {
@@ -61,6 +69,12 @@ namespace Questar.Maps
                     FireGridChanged (grid);
                 };
             }
+        }
+
+        private void OnItemCreated (Item item)
+        {
+            Console.WriteLine ("This was created: " + item.Name);
+            Console.WriteLine (item.Location.GetType ());
         }
 
         private void FireGridChanged (Point point)
