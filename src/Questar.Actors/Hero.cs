@@ -26,7 +26,7 @@ namespace Questar.Actors
         {
             base.Tile = "hero";
             base.Name = "Hero";
-            base.HitPoints = new HitPoints (100, 100);
+            base.HitPoints = new HitPoints (100, 400);
 
             do {
                 base.Location = MapLocation.GetRandom (Game.Instance.World.Map);
@@ -48,9 +48,9 @@ namespace Questar.Actors
         public override Action Action
         {
             get {
-                Action action = this.action;
-                this.action = null;
-                return action;
+                Action current_action = action;
+                action = null;
+                return current_action;
             }
         }
 
