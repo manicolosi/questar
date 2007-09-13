@@ -28,6 +28,7 @@ SOURCES = \
 	Questar.Actors.Actions/Action.cs \
 	Questar.Actors.Actions/AttackAction.cs \
 	Questar.Actors.Actions/DoNothingAction.cs \
+	Questar.Actors.Actions/DrinkAction.cs \
 	Questar.Actors.Actions/DropAction.cs \
 	Questar.Actors.Actions/ImpossibleActionException.cs \
 	Questar.Actors.Actions/MoveAction.cs \

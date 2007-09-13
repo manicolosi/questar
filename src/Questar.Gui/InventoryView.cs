@@ -92,7 +92,9 @@ namespace Questar.Gui
             store.GetIter (out iter, path);
 
             Item item = (Item) store.GetValue (iter, 0);
-            hero.AddAction (new DropAction (hero, item));
+
+            //hero.AddAction (new DropAction (hero, item));
+            hero.AddAction (new DrinkAction (hero, (IDrinkable) item));
         }
     }
 }
