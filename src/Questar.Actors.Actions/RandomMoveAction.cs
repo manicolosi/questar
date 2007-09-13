@@ -12,13 +12,13 @@ using Questar.Primitives;
 
 namespace Questar.Actors.Actions
 {
-    public class RandomMoveAction : AbstractAction, Action
+    public class RandomMoveAction : AbstractAction
     {
         public RandomMoveAction (Actor actor) : base (actor)
         {
         }
 
-        public void Execute ()
+        public override void Execute ()
         {
             List<Direction> potentials = GetPotentialMoves ();
             Action action = CreateMoveAction (potentials);

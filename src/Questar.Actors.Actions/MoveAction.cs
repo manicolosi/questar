@@ -1,7 +1,9 @@
-//
-// MoveAction.cs: Description Goes Here
-// Author: Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
-//
+/*******************************************************************************
+ *  MoveAction.cs: Action that moves an Actor.
+ *
+ *  Copyright (C) 2007
+ *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
+ ******************************************************************************/
 
 using System; 
 
@@ -18,7 +20,7 @@ namespace Questar.Actors.Actions
             this.direction = direction;
         }
 
-        public void Execute ()
+        public override void Execute ()
         {
             Actor.Move (direction.ApplyTo (Actor.Location));
         }

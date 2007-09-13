@@ -11,7 +11,7 @@ using Questar.Actors;
 
 namespace Questar.Actors.Actions
 {
-    public abstract class AbstractAction
+    public abstract class AbstractAction : Action
     {
         private Actor actor;
 
@@ -25,6 +25,8 @@ namespace Questar.Actors.Actions
             get { return this.actor; }
             protected set { this.actor = value; }
         }
+
+        public abstract void Execute ();
     }
 }
 

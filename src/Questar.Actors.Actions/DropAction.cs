@@ -13,7 +13,7 @@ using Questar.Primitives;
 
 namespace Questar.Actors.Actions
 {
-    public class DropAction : AbstractAction, Action
+    public class DropAction : AbstractAction
     {
         private Item item;
 
@@ -22,7 +22,7 @@ namespace Questar.Actors.Actions
             this.item = item;
         }
 
-        public void Execute ()
+        public override void Execute ()
         {
             if (!(item.Location is ActorLocation))
                 throw new ImpossibleActionException (
