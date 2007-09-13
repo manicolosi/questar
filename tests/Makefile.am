@@ -14,6 +14,7 @@ SOURCES = \
 	$(srcdir)/Questar.UnitTests.Primitives/LocationFixture.cs \
 	$(srcdir)/Questar.UnitTests.Items/ItemFactoryFixture.cs \
 	$(srcdir)/Questar.MockObjects/MockActor.cs \
+	$(srcdir)/TestWorld.cs \
 	#$(srcdir)/TestActor.cs \
 	#$(srcdir)/TestGame.cs \
 	#$(srcdir)/TestHitPoints.cs \
@@ -22,7 +23,6 @@ SOURCES = \
 	#$(srcdir)/TestRectangle.cs \
 	#$(srcdir)/TestSchemaEntry.cs \
 	#$(srcdir)/TestSingleton.cs \
-	#$(srcdir)/TestWorld.cs \
 	#\
 	#$(srcdir)/Questar.MockObjects/MockItem.cs \
 	#\

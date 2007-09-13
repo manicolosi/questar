@@ -81,10 +81,10 @@ namespace Questar.Actors
         }
 
         // We need this to get the Created event fired for the Hero,
-        // too.
-        public void FireTheCreationEventHack (Hero hero)
+        // too. This is need by MockActors, too.
+        public void FireTheCreationEventHack (Actor actor)
         {
-            OnCreation (hero);
+            OnCreation (actor);
         }
     }
 }

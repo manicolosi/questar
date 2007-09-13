@@ -85,11 +85,6 @@ namespace Questar.Base
             }
         }
 
-        public Actor CurrentActor
-        {
-            get { return actors[turn_index]; }
-        }
-
         public Actor Hero
         {
             get { return hero; }
@@ -120,6 +115,11 @@ namespace Questar.Base
             actors.Remove ((Actor) sender);
         }
 
+        public Actor CurrentActor
+        {
+            get { return actors[turn_index]; }
+        }
+
         private bool NextTurn ()
         {
             if (!CurrentActor.IsTurnReady) {
@@ -130,7 +130,8 @@ namespace Questar.Base
             CurrentActor.Action.Execute ();
             turn_index++;
 
-            if (turn_index == actors.Count) {
+            //if (turn_index == actors.Count) {
+            if (turn_index >= actors.Count) {
                 turn_index = 0;
                 Round++;
                 return false;

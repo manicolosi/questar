@@ -17,7 +17,7 @@ using Questar.Primitives;
 
 namespace Questar.MockObjects
 {
-    public class MockActor : Actor
+    public class MockActor : AbstractActor
     {
         bool is_turn_ready = false;
         Dictionary<int, bool> turns = new Dictionary<int, bool> ();
@@ -51,7 +51,7 @@ namespace Questar.MockObjects
 
         public void Create ()
         {
-            base.OnCreation ();
+            MonsterFactory.Instance.FireTheCreationEventHack (this);
         }
 
         public override bool IsTurnReady
