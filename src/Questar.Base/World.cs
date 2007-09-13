@@ -37,8 +37,6 @@ namespace Questar.Base
         private int round = 0;
         private bool is_paused = true;
 
-        public event EventHandler<WorldActorEventArgs> ActorAdded;
-        public event EventHandler<WorldActorEventArgs> ActorRemoved;
         public event EventHandler<WorldNewRoundEventArgs> NewRound;
 
         public World ()
@@ -101,12 +99,9 @@ namespace Questar.Base
         {
             Actor actor = (Actor) args.Entity;
 
-            actor.Died += delegate (object sender2, EventArgs args2)
-            {
-                if (!(sender2 is Hero))
-                    RemoveActor ((Actor) sender2);
-            };
+            actor.Destroyed += OnActorDestroyed;
 
+            // HACK
             Hero hero = actor as Hero;
             if (hero != null) {
                 this.hero = hero;
@@ -114,21 +109,15 @@ namespace Questar.Base
             }
             else
                 actors.Add (actor);
-
-            EventHelper.Raise<WorldActorEventArgs> (this, ActorAdded,
-                delegate (WorldActorEventArgs args3) {
-                    args3.Actor = actor;
-                });
         }
 
-        private void RemoveActor (Actor actor)
+        private void OnActorDestroyed (object sender, EventArgs args)
         {
-            actors.Remove (actor);
+            // HACK
+            if (sender is Hero)
+                return;
 
-            EventHelper.Raise<WorldActorEventArgs> (this, ActorRemoved,
-                delegate (WorldActorEventArgs args) {
-                    args.Actor = actor;
-                });
+            actors.Remove ((Actor) sender);
         }
 
         private bool NextTurn ()

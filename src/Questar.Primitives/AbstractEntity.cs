@@ -16,6 +16,7 @@ namespace Questar.Primitives
     public abstract class AbstractEntity : Entity
     {
         public event EventHandler<LocationChangedEventArgs> LocationChanged;
+        public event EventHandler Destroyed;
 
         private string tile;
         private string name;
@@ -52,7 +53,7 @@ namespace Questar.Primitives
                 Location old_loc = Location;
                 location = value;
 
-                FireLocationChanged (old_loc, location);
+                OnLocationChanged (old_loc, location);
             }
         }
 
@@ -61,13 +62,20 @@ namespace Questar.Primitives
             return name;
         }
 
-        private void FireLocationChanged (Location old_loc, Location new_loc)
+        protected void OnLocationChanged (Location old_loc, Location new_loc)
         {
             EventHelper.Raise<LocationChangedEventArgs> (this, LocationChanged,
                 delegate (LocationChangedEventArgs args) {
                     args.OldLocation = old_loc;
                     args.NewLocation = new_loc;
                 });
+        }
+
+        protected void OnDestroyed ()
+        {
+            Location = new NullLocation ();
+
+            EventHelper.Raise (this, Destroyed);
         }
     }
 }

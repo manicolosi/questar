@@ -21,6 +21,7 @@ namespace Questar.Primitives
     public interface Entity
     {
         event EventHandler<LocationChangedEventArgs> LocationChanged;
+        event EventHandler Destroyed;
 
         string Name { get; }
         string Description { get; }

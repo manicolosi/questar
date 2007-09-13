@@ -9,7 +9,6 @@ using System;
 using System.Collections.Generic;
 
 using Questar.Actors;
-using Questar.Base;
 using Questar.Helpers;
 using Questar.Items;
 using Questar.Primitives;
@@ -45,32 +44,24 @@ namespace Questar.Maps
                 "grass", "grass", "flower", "grass", "grass");
 
             ItemFactory.Instance.Created += OnItemCreated;
-
-            if (Game.Instance.World != null) {
-                Game.Instance.World.ActorAdded += delegate (object sender,
-                    WorldActorEventArgs args) {
-                    Actor actor = args.Actor;
-                    Point grid = actor.Location.Point;
-                    this[grid].Actor = actor;
-                    actor.LocationChanged += OnActorLocationChanged;
-                };
-
-                Game.Instance.World.ActorRemoved += delegate (object sender,
-                    WorldActorEventArgs args) {
-                    Actor actor = args.Actor;
-                    Point grid = actor.Location.Point;
-                    this[grid].Actor = null;
-                    actor.LocationChanged -= OnActorLocationChanged;
-
-                    FireGridChanged (grid);
-                };
-            }
+            MonsterFactory.Instance.Created += OnActorCreated;
         }
 
-        private void OnItemCreated (object sender, EntityCreatedEventArgs args)
+        private void OnActorCreated (object sender, EntityCreatedEventArgs args)
         {
-            Item item = (Item) args.Entity;
-            item.LocationChanged += OnItemLocationChanged;
+            Actor actor = (Actor) args.Entity;
+
+            actor.LocationChanged += OnActorLocationChanged;
+            actor.Destroyed += OnActorDestroyed;
+
+            if (actor.Location.Map == this)
+                this[actor.Location.Point].Actor = actor;
+        }
+
+        private void OnActorDestroyed (object sender, EventArgs args)
+        {
+            Actor actor = (Actor) sender;
+            actor.LocationChanged -= OnActorLocationChanged;
         }
 
         private void OnActorLocationChanged (object sender,
@@ -89,6 +80,12 @@ namespace Questar.Maps
                 this[new_loc.Point].Actor = actor;
                 FireGridChanged (new_loc.Point);
             }
+        }
+
+        private void OnItemCreated (object sender, EntityCreatedEventArgs args)
+        {
+            Item item = (Item) args.Entity;
+            item.LocationChanged += OnItemLocationChanged;
         }
 
         private void OnItemLocationChanged (object sender,

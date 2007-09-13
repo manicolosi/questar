@@ -17,8 +17,6 @@ namespace Questar.Actors
 {
     public abstract class AbstractActor : AbstractEntity, Actor
     {
-        public event EventHandler<EventArgs> Died;
-
         private HitPoints hit_points;
         private Inventory inventory;
 
@@ -51,7 +49,15 @@ namespace Questar.Actors
             get { return !IsAlive; }
         }
 
-        public abstract bool IsTurnReady { get; }
+        public virtual bool IsTurnReady {
+            get {
+                if (IsDead)
+                    throw new ApplicationException (
+                        String.Format ("{0} is dead.", this));
+
+                return true;
+            }
+        }
 
         public bool IsAdjacentTo (Actor target)
         {
@@ -100,7 +106,7 @@ namespace Questar.Actors
             string attacker_name = StringHelper.SentenceCapitalize (this);
             Messages.Instance.Add ("{0} has died.", attacker_name);
 
-            EventHelper.Raise (this, Died);
+            OnDestroyed ();
         }
     }
 }

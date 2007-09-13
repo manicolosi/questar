@@ -31,13 +31,13 @@ namespace Questar.Actors
                 base.Location = MapLocation.GetRandom (Game.Instance.World.Map);
             }
             while (!base.CanMoveTo (base.Location));
-
-            //base.OnCreation ();
         }
 
         public override bool IsTurnReady
         {
-            get { return true; }
+            get {
+                return base.IsTurnReady;
+            }
         }
 
         private bool IsHostile (Actor actor)
