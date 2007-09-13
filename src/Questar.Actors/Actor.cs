@@ -7,6 +7,8 @@
 
 using System;
 
+using Questar.Actors.Actions;
+using Questar.Items;
 using Questar.Primitives;
 
 namespace Questar.Actors

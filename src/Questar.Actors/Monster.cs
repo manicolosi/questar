@@ -1,7 +1,9 @@
-//
-// Monster.cs: Description Goes Here
-// Author: Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
-//
+/*******************************************************************************
+ *  AbstractActor.cs: Actors that are controlled by Questar.
+ *
+ *  Copyright (C) 2007
+ *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
+ ******************************************************************************/
 
 using System;
 
@@ -11,7 +13,7 @@ using Questar.Primitives;
 
 namespace Questar.Actors
 {
-    public class Monster : Actor
+    public class Monster : AbstractActor
     {
         private string monster_id;
         private string prefix;
@@ -30,7 +32,7 @@ namespace Questar.Actors
             }
             while (!base.CanMoveTo (base.Location));
 
-            base.OnCreation ();
+            //base.OnCreation ();
         }
 
         public override bool IsTurnReady
@@ -70,7 +72,7 @@ namespace Questar.Actors
                     Location target = Game.Instance.World.Hero.Location;
                     Direction direction = location.DirectionOf (target);
 
-                    if (base.CanMoveTo (direction))
+                    if (base.CanMoveIn (direction))
                         action = new MoveAction (this, direction);
                 }
 

@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  AbstractActor.cs: An abstract implementation of IActor.
+ *  AbstractActor.cs: An abstract implementation of Actor.
  *
  *  Copyright (C) 2007
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
@@ -7,9 +7,15 @@
 
 using System;
 
+using Questar.Actors.Actions;
+using Questar.Base;
+using Questar.Helpers;
+using Questar.Items;
+using Questar.Primitives;
+
 namespace Questar.Actors
 {
-    public abstract class AbstractActor : IActor
+    public abstract class AbstractActor : AbstractEntity, Actor
     {
         public event EventHandler<EventArgs> Died;
 
@@ -35,12 +41,12 @@ namespace Questar.Actors
 
         public abstract Action Action { get; }
 
-        protected virtual bool IsAlive
+        public virtual bool IsAlive
         {
             get { return HitPoints.Current >= 0; }
         }
 
-        protected virtual bool IsDead
+        public virtual bool IsDead
         {
             get { return !IsAlive; }
         }
@@ -52,14 +58,14 @@ namespace Questar.Actors
             return base.Location.IsAdjacentTo (target.Location);
         }
 
-        public bool CanMoveTo (Direction direction)
-        {
-            return CanMoveTo (direction.ApplyTo (base.Location));
-        }
-
         public bool CanMoveTo (Location loc)
         {
             return loc.IsClear;
+        }
+
+        public bool CanMoveIn (Direction direction)
+        {
+            return CanMoveTo (direction.ApplyTo (base.Location));
         }
 
         public void Move (Location new_location)
@@ -79,11 +85,6 @@ namespace Questar.Actors
 
             if (IsDead)
                 OnDeath ();
-        }
-
-        protected virtual void OnCreation ()
-        {
-            EventHelper.Raise (this, Created);
         }
 
         protected virtual void OnAttacked (Actor attacker, int damage)

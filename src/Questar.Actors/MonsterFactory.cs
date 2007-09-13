@@ -13,23 +13,22 @@ using System.Reflection;
 using System.Xml;
 
 using Questar.Base;
+using Questar.Primitives;
 
 namespace Questar.Actors
 {
-    public static class MonsterFactory
+    public class MonsterFactory : AbstractEntityFactory<Monster>
     {
         private const string resource = "monsters.xml";
-        private static Dictionary<string, MonsterDefinition> definitions = null;
 
-        public static Monster Create (string id)
+        public static MonsterFactory Instance
         {
-            if (definitions == null)
-                Load ();
-
-            return new Monster (definitions[id]);
+            get { return Singleton<MonsterFactory>.Instance; }
         }
 
-        private static void Load ()
+        private Dictionary<string, MonsterDefinition> definitions;
+
+        private MonsterFactory ()
         {
             definitions = new Dictionary<string, MonsterDefinition> ();
 
@@ -48,7 +47,7 @@ namespace Questar.Actors
             }
         }
 
-        private static void LoadMonster (string id, XmlNode node)
+        private void LoadMonster (string id, XmlNode node)
         {
             MonsterDefinition definition = new MonsterDefinition (id);
 
@@ -71,6 +70,21 @@ namespace Questar.Actors
             }
 
             definitions.Add (id, definition);
+        }
+
+        public override Monster Create (string monster_id)
+        {
+            Monster monster = new Monster (definitions[monster_id]);
+            OnCreation (monster);
+
+            return monster;
+        }
+
+        // We need this to get the Created event fired for the Hero,
+        // too.
+        public void FireTheCreationEventHack (Hero hero)
+        {
+            OnCreation (hero);
         }
     }
 }

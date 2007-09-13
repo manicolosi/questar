@@ -1,20 +1,23 @@
-//
-// Hero.cs: Description Goes Here
-// Author: Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
-//
+/*******************************************************************************
+ *  AbstractActor.cs: Actors that are controlled by the user.
+ *
+ *  Copyright (C) 2007
+ *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
+ ******************************************************************************/
 
 using System;
 
 using Questar.Actors.Actions;
 using Questar.Base;
 using Questar.Gui;
+using Questar.Helpers;
 using Questar.Items;
 using Questar.Maps;
 using Questar.Primitives;
 
 namespace Questar.Actors
 {
-    public class Hero : Actor
+    public class Hero : AbstractActor
     {
         private Action action = null;
         private DateTime last_action;
@@ -32,7 +35,7 @@ namespace Questar.Actors
 
             SetupHandlers ();
 
-            base.OnCreation ();
+            MonsterFactory.Instance.FireTheCreationEventHack (this);
         }
 
         public override bool IsTurnReady

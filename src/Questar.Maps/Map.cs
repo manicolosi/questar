@@ -52,7 +52,7 @@ namespace Questar.Maps
                     Actor actor = args.Actor;
                     Point grid = actor.Location.Point;
                     this[grid].Actor = actor;
-                    actor.Moved += OnActorMoved;
+                    actor.LocationChanged += OnActorLocationChanged;
                 };
 
                 Game.Instance.World.ActorRemoved += delegate (object sender,
@@ -60,7 +60,7 @@ namespace Questar.Maps
                     Actor actor = args.Actor;
                     Point grid = actor.Location.Point;
                     this[grid].Actor = null;
-                    actor.Moved -= OnActorMoved;
+                    actor.LocationChanged -= OnActorLocationChanged;
 
                     FireGridChanged (grid);
                 };
@@ -73,29 +73,52 @@ namespace Questar.Maps
             item.LocationChanged += OnItemLocationChanged;
         }
 
-        private void OnItemLocationChanged (object sender, LocationChangedEventArgs args)
+        private void OnActorLocationChanged (object sender,
+            LocationChangedEventArgs args)
+        {
+            Actor actor = (Actor) sender;
+            Location new_loc = args.NewLocation;
+            Location old_loc = args.OldLocation;
+
+            if (IsLocationValid (old_loc)) {
+                this[old_loc.Point].Actor = null;
+                FireGridChanged (old_loc.Point);
+            }
+
+            if (IsLocationValid (new_loc)) {
+                this[new_loc.Point].Actor = actor;
+                FireGridChanged (new_loc.Point);
+            }
+        }
+
+        private void OnItemLocationChanged (object sender,
+            LocationChangedEventArgs args)
         {
             Item item = (Item) sender;
             Location new_loc = args.NewLocation;
             Location old_loc = args.OldLocation;
 
-            // Remove from old Location.
-            if (old_loc is MapLocation) {
-                if (old_loc.Map != this)
-                    throw new NotImplementedException ("Multiple Maps");
-
+            if (IsLocationValid (old_loc)) {
                 this[old_loc.Point].Item = null;
                 FireGridChanged (old_loc.Point);
             }
 
-            // Add to new Location.
-            if (new_loc is MapLocation) {
-                if (new_loc.Map != this)
-                    throw new NotImplementedException ("Multiple Maps");
-
+            if (IsLocationValid (new_loc)) {
                 this[new_loc.Point].Item = item;
                 FireGridChanged (new_loc.Point);
             }
+        }
+
+        private bool IsLocationValid (Location location)
+        {
+            if (location is MapLocation) {
+                if (location.Map != this)
+                    throw new NotImplementedException ("Multiple Maps");
+
+                return true;
+            }
+
+            return false;
         }
 
         private void FireGridChanged (Point point)
@@ -169,22 +192,6 @@ namespace Questar.Maps
         {
             get { return this[p.X, p.Y]; }
             private set { this[p.X, p.Y] = value; }
-        }
-
-        private void OnActorMoved (object sender, ActorMovedEventArgs args)
-        {
-            Actor actor = sender as Actor;
-            Location old_location = args.OldLocation;
-            Location new_location = actor.Location;
-
-            if (this[new_location.Point].Actor != null)
-                throw new ApplicationException ("Grid is occupied");
-
-            this[old_location.Point].Actor = null;
-            this[new_location.Point].Actor = actor;
-
-            FireGridChanged (old_location.Point);
-            FireGridChanged (new_location.Point);
         }
     }
 }

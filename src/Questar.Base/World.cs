@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using Questar.Actors;
 using Questar.Helpers;
 using Questar.Maps;
+using Questar.Primitives;
 
 using Timeout = GLib.Timeout;
 
@@ -42,9 +43,7 @@ namespace Questar.Base
 
         public World ()
         {
-            Actor.Created += delegate (object sender, EventArgs args) {
-                AddActor ((Actor) sender);
-            };
+            MonsterFactory.Instance.Created += OnMonsterCreated;
         }
 
         public void Start ()
@@ -98,12 +97,14 @@ namespace Questar.Base
             get { return hero; }
         }
 
-        private void AddActor (Actor actor)
+        private void OnMonsterCreated (object sender, EntityCreatedEventArgs args)
         {
-            actor.Died += delegate (object sender, EventArgs args)
+            Actor actor = (Actor) args.Entity;
+
+            actor.Died += delegate (object sender2, EventArgs args2)
             {
-                if (!(sender is Hero))
-                    RemoveActor ((Actor) sender);
+                if (!(sender2 is Hero))
+                    RemoveActor ((Actor) sender2);
             };
 
             Hero hero = actor as Hero;
@@ -115,8 +116,8 @@ namespace Questar.Base
                 actors.Add (actor);
 
             EventHelper.Raise<WorldActorEventArgs> (this, ActorAdded,
-                delegate (WorldActorEventArgs args) {
-                    args.Actor = actor;
+                delegate (WorldActorEventArgs args3) {
+                    args3.Actor = actor;
                 });
         }
 

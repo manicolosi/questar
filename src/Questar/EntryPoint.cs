@@ -42,10 +42,10 @@ namespace Questar
             world.Hero.Inventory.Add (factory.Create ("HealSerious"));
             world.Hero.Inventory.Add (factory.Create ("HealSerious"));
 
-            MonsterFactory.Create ("imp");
-            MonsterFactory.Create ("imp");
-            MonsterFactory.Create ("troll");
-            MonsterFactory.Create ("troll");
+            MonsterFactory.Instance.Create ("imp");
+            MonsterFactory.Instance.Create ("imp");
+            MonsterFactory.Instance.Create ("troll");
+            MonsterFactory.Instance.Create ("troll");
 
             ItemFactory.Instance.Create ("HealLight", new MapLocation (world.Map, 5, 5));
         }

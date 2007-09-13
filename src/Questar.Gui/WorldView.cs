@@ -190,7 +190,7 @@ namespace Questar.Gui
                 queued_grids.Clear ();
             };
 
-            center.Moved += delegate { recenter = true; };
+            center.LocationChanged += delegate { recenter = true; };
 
             world.Map.GridChanged += delegate (object sender,
                 MapGridChangedEventArgs args) {
