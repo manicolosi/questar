@@ -130,7 +130,6 @@ namespace Questar.Base
             CurrentActor.Action.Execute ();
             turn_index++;
 
-            //if (turn_index == actors.Count) {
             if (turn_index >= actors.Count) {
                 turn_index = 0;
                 Round++;
