@@ -1,128 +1,34 @@
-//
-// Actor.cs: Description Goes Here
-// Author: Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
-//
+/*******************************************************************************
+ *  Actor.cs: An interface implemented by Actors.
+ *
+ *  Copyright (C) 2007
+ *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
+ ******************************************************************************/
 
 using System;
 
-using Questar.Actors.Actions;
-using Questar.Base;
-using Questar.Helpers;
-using Questar.Items;
 using Questar.Primitives;
 
 namespace Questar.Actors
 {
-    public class ActorMovedEventArgs : EventArgs
+    public interface Actor : Entity
     {
-        public Location OldLocation;
-    }
+        event EventHandler<EventArgs> Died;
 
-    public abstract class Actor : AbstractEntity, Entity
-    {
-        public static event EventHandler<EventArgs> Created;
-        public event EventHandler<ActorMovedEventArgs> Moved;
-        public event EventHandler<EventArgs> Died;
+        HitPoints HitPoints { get; }
+        Inventory Inventory { get; }
+        Action Action { get; }
 
-        private HitPoints hit_points;
-        private Inventory inventory;
+        bool IsAlive { get; }
+        bool IsDead { get; }
+        bool IsTurnReady { get; }
+        bool IsAdjacentTo (Actor target);
+        bool CanMoveTo (Location location);
+        bool CanMoveIn (Direction direction);
 
-        public abstract bool IsTurnReady { get; }
-        public abstract Action Action { get; }
-
-        protected Actor ()
-        {
-            inventory = new Inventory (this);
-        }
-
-        public HitPoints HitPoints
-        {
-            get { return hit_points; }
-            protected set { hit_points = value; }
-        }
-
-        public Inventory Inventory
-        {
-            get { return inventory; }
-            protected set { inventory = value; }
-        }
-
-        public virtual void Take (Item item)
-        {
-            Messages.Instance.Add ("{0} picked up a {1}", this, item);
-            Inventory.Add (item);
-        }
-
-        public void Move (Location new_loc)
-        {
-            Location old_loc = base.Location;
-            base.Location = new_loc;
-
-            EventHelper.Raise<ActorMovedEventArgs> (this, Moved,
-                delegate (ActorMovedEventArgs args) {
-                    args.OldLocation = old_loc;
-                });
-        }
-
-        public int GetAttackDamage (Actor target)
-        {
-            return 5;
-        }
-
-        public void TakeDamage (Actor attacker, int damage)
-        {
-            HitPoints.Current -= damage;
-            OnAttacked (attacker, damage);
-
-            if (IsDead)
-                OnDeath ();
-        }
-
-        public bool IsAdjacentTo (Actor target)
-        {
-            return base.Location.IsAdjacentTo (target.Location);
-        }
-
-        public bool CanMoveTo (Direction direction)
-        {
-            return CanMoveTo (direction.ApplyTo (base.Location));
-        }
-
-        public bool CanMoveTo (Location loc)
-        {
-            return loc.IsClear;
-        }
-
-        protected virtual bool IsAlive
-        {
-            get { return HitPoints.Current >= 0; }
-        }
-
-        protected virtual bool IsDead
-        {
-            get { return !IsAlive; }
-        }
-
-        protected virtual void OnCreation ()
-        {
-            EventHelper.Raise (this, Created);
-        }
-
-        protected virtual void OnAttacked (Actor attacker, int damage)
-        {
-            string attacker_name = StringHelper.SentenceCapitalize (attacker);
-            Messages.Instance.Add ("{0} attack {1}.", attacker_name, this);
-
-            //EventHelper.Raise (this, Attacked);
-        }
-
-        protected virtual void OnDeath ()
-        {
-            string attacker_name = StringHelper.SentenceCapitalize (this);
-            Messages.Instance.Add ("{0} has died.", attacker_name);
-
-            EventHelper.Raise (this, Died);
-        }
+        void Move (Location new_location);
+        int GetAttackDamage (Actor target);
+        void TakeDamage (Actor attacker, int damage);
     }
 }
 
