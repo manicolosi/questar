@@ -5,6 +5,7 @@ configure
 config.*
 *.dll
 *.exe
+*.exe.mdb
 AssemblyInfo.cs
 autom4te.cache
 aclocal.m4
