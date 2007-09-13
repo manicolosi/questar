@@ -64,17 +64,13 @@ namespace Questar.Gui
         public World World
         {
             get { return world; }
-            set {
-                SetWorld (value);
-            }
+            set { SetWorld (value); }
         }
 
         public Actor Center
         {
             get { return center; }
-            set {
-                SetCenter (value);
-            }
+            set { SetCenter (value); }
         }
 
         protected override bool OnButtonPressEvent (EventButton args)
@@ -84,8 +80,7 @@ namespace Questar.Gui
             if (args.Button != 3)
                 return false;
 
-            Point grid = WindowCoordsToGridPoint (
-                (int) args.X, (int) args.Y);
+            Point grid = WindowCoordsToGridPoint ( (int) args.X, (int) args.Y);
             if (world.Map.GetGridInformation (grid) == GridInformation.Invalid)
                 return false;
 
