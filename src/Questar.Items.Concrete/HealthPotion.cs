@@ -20,8 +20,7 @@ namespace Questar.Items.Concrete
 		
 		public void Drink (Actor actor)
 		{
-			Console.WriteLine ("{0} is drinking {1}. {2} HP recovered!",
-			                   actor.Name, base.Name, RecoverAmount);
+            actor.HitPoints.Current += recover_amount;
 		}
 	}
 }
