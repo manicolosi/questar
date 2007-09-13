@@ -38,17 +38,12 @@ namespace Questar.Actors
         {
             get { return current; }
             set {
-                if (value > max)
-                    throw new ArgumentException (
-                        "Current must be less than Max.");
+                int new_current = Math.Min (value, max);
+                if (new_current == current)
+                    return;
 
-                HitPoints old = Clone () as HitPoints;
-                current = value;
-
-                EventHelper.Raise<HitPointsEventArgs> (this, Changed,
-                    delegate (HitPointsEventArgs args) {
-                        args.OldHitPoints = old;
-                    });
+                OnChanged ((HitPoints) Clone ());
+                current = new_current;
             }
         }
 
@@ -56,18 +51,20 @@ namespace Questar.Actors
         {
             get { return max; }
             set {
-                if (value < current)
-                    throw new ArgumentException (
-                        "Max must be greater than Current.");
+                if (value == max)
+                    return;
 
-                HitPoints old = Clone () as HitPoints;
+                OnChanged ((HitPoints) Clone ());
                 max = value;
-
-                EventHelper.Raise<HitPointsEventArgs> (this, Changed,
-                    delegate (HitPointsEventArgs args) {
-                        args.OldHitPoints = old;
-                    });
             }
+        }
+
+        private void OnChanged (HitPoints old)
+        {
+            EventHelper.Raise<HitPointsEventArgs> (this, Changed,
+                delegate (HitPointsEventArgs args) {
+                    args.OldHitPoints = old;
+                });
         }
 
         public bool IsEmpty
