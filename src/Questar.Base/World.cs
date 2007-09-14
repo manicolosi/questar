@@ -98,10 +98,10 @@ namespace Questar.Base
                 return;
         }
 
-        //public Actor CurrentActor
-        //{
-            //get { return actors[turn_index]; }
-        //}
+        public Actor CurrentActor
+        {
+            get { return turn_loop.CurrentActor; }
+        }
     }
 }
 
