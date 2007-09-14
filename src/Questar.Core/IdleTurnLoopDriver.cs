@@ -28,7 +28,6 @@ namespace Questar.Core
 
         public void Start ()
         {
-            Console.WriteLine ("IdleTurnLoopDriver.Start()");
             // TODO: Need to check if we're already running?
             Idle.Add (IdleHandler);
             is_running = true;
@@ -36,7 +35,6 @@ namespace Questar.Core
 
         public void Stop ()
         {
-            Console.WriteLine ("IdleTurnLoopDriver.Stop()");
             // TODO: Need to check if we're NOT already running?
             Idle.Remove (IdleHandler);
             is_running = false;
@@ -44,7 +42,12 @@ namespace Questar.Core
 
         private bool IdleHandler ()
         {
-            return turn_loop.NextTurn ();
+            bool run_again = turn_loop.NextTurn ();
+
+            if (!run_again)
+                is_running = false ();
+
+            return run_again;
         }
     }
 }

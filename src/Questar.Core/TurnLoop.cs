@@ -54,13 +54,11 @@ namespace Questar.Core
         // Returns false when the ITurnLoopDriver should stop.
         public bool NextTurn ()
         {
-            Console.WriteLine ("Actor {0} [{1}] Round {2}",
-                turn_index, CurrentActor.Name, Round);
-
-            if (!CurrentActor.IsTurnReady) {
-                Console.WriteLine ("\tIsn't ready...");
+            if (actors.Count == 0)
                 return false;
-            }
+
+            if (!CurrentActor.IsTurnReady)
+                return false;
 
             CurrentActor.Action.Execute ();
             turn_index++;
@@ -68,7 +66,6 @@ namespace Questar.Core
             if (turn_index >= actors.Count) {
                 turn_index = 0;
                 Round++;
-                //return false;
             }
 
             return true;
