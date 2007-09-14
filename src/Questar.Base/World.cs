@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 
 using Questar.Actors;
+using Questar.Core;
 using Questar.Helpers;
 using Questar.Maps;
 using Questar.Primitives;
@@ -29,24 +30,28 @@ namespace Questar.Base
 
     public class World
     {
-        private List<Actor> actors = new List<Actor> ();
+        public event EventHandler<WorldNewRoundEventArgs> NewRound;
+
+        private TurnLoop turn_loop;
+        private ITurnLoopDriver driver;
+
         private Actor hero;
         private Map map;
 
-        private int turn_index = 0;
-        private int round = 0;
-        private bool is_paused = true;
-
-        public event EventHandler<WorldNewRoundEventArgs> NewRound;
-
         public World ()
         {
+            turn_loop = new TurnLoop ();
+            turn_loop.NewRound += delegate {
+                EventHelper.Raise<WorldNewRoundEventArgs> (this, NewRound, null);
+            };
+            driver = new IdleTurnLoopDriver (turn_loop);
+
             MonsterFactory.Instance.Created += OnMonsterCreated;
         }
 
         public void Start ()
         {
-            IsPaused = false;
+            driver.Start ();
         }
 
         public Map Map
@@ -57,31 +62,17 @@ namespace Questar.Base
 
         public int Round
         {
-            get { return round; }
-            private set {
-                round = value;
-
-                EventHelper.Raise<WorldNewRoundEventArgs> (this, NewRound,
-                    delegate (WorldNewRoundEventArgs args) {
-                        args.Round = Round;
-                    });
-            }
+            get { return turn_loop.Round; }
         }
 
         public bool IsPaused
         {
-            get { return is_paused; }
+            get { return !driver.IsRunning; }
             set {
-                if (!value) {
-                    if (actors.Count == 0)
-                        throw new InvalidOperationException (
-                            "Actors must be added to the World before " +
-                            "starting or unpausing it.");
-
-                    Idle.Add (NextTurn);
-                }
-
-                is_paused = value;
+                if (value)
+                    driver.Stop ();
+                else
+                    driver.Start ();
             }
         }
 
@@ -93,17 +84,11 @@ namespace Questar.Base
         private void OnMonsterCreated (object sender, EntityCreatedEventArgs args)
         {
             Actor actor = (Actor) args.Entity;
-
             actor.Destroyed += OnActorDestroyed;
 
             // HACK
-            Hero hero = actor as Hero;
-            if (hero != null) {
-                this.hero = hero;
-                actors.Insert (0, hero);
-            }
-            else
-                actors.Add (actor);
+            if (actor is Hero)
+                this.hero = actor;
         }
 
         private void OnActorDestroyed (object sender, EventArgs args)
@@ -111,33 +96,12 @@ namespace Questar.Base
             // HACK
             if (sender is Hero)
                 return;
-
-            actors.Remove ((Actor) sender);
         }
 
-        public Actor CurrentActor
-        {
-            get { return actors[turn_index]; }
-        }
-
-        private bool NextTurn ()
-        {
-            if (!CurrentActor.IsTurnReady) {
-                IsPaused = true;
-                return false;
-            }
-
-            CurrentActor.Action.Execute ();
-            turn_index++;
-
-            if (turn_index >= actors.Count) {
-                turn_index = 0;
-                Round++;
-                return false;
-            }
-
-            return true;
-        }
+        //public Actor CurrentActor
+        //{
+            //get { return actors[turn_index]; }
+        //}
     }
 }
 
