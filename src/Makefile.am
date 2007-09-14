@@ -46,6 +46,10 @@ SOURCES = \
 	Questar.Configuration/SchemaEntry.cs \
 	Questar.Configuration/UISchema.cs \
 	\
+	Questar.Core/ITurnLoopDriver.cs \
+	Questar.Core/IdleTurnLoopDriver.cs \
+	Questar.Core/TurnLoop.cs \
+	\
 	Questar.Gui/AboutDialog.cs \
 	Questar.Gui/GladeDialog.cs \
 	Questar.Gui/GladeWindow.cs \
