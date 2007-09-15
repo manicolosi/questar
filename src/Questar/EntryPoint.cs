@@ -30,24 +30,26 @@ namespace Questar
 
         private static void CreateInitialWorld ()
         {
-            World world = new World ();
-            Game.Instance.World = world;
+            Game game = Game.Instance;
+            game.CurrentMap = new Map ();
+            game.Hero = new Hero ();
 
-            world.Map = new Map ();
-            new Hero ();
+            MonsterFactory.Instance.Create ("imp");
+            MonsterFactory.Instance.Create ("imp");
+            MonsterFactory.Instance.Create ("troll");
+            MonsterFactory.Instance.Create ("troll");
 
             ItemFactory factory = ItemFactory.Instance;
-            world.Hero.Inventory.Add (factory.Create ("HealLight"));
-            world.Hero.Inventory.Add (factory.Create ("HealLight"));
-            world.Hero.Inventory.Add (factory.Create ("HealSerious"));
-            world.Hero.Inventory.Add (factory.Create ("HealSerious"));
+            factory.Create ("HealLight", new MapLocation (game.CurrentMap, 5, 5));
 
-            MonsterFactory.Instance.Create ("imp");
-            MonsterFactory.Instance.Create ("imp");
-            MonsterFactory.Instance.Create ("troll");
-            MonsterFactory.Instance.Create ("troll");
+            // Use an ActorLocation with the Location override of
+            // ItemFactory.Create() and make the Inventory adding
+            // automagic.
+            game.Hero.Inventory.Add (factory.Create ("HealLight"));
+            game.Hero.Inventory.Add (factory.Create ("HealLight"));
+            game.Hero.Inventory.Add (factory.Create ("HealSerious"));
+            game.Hero.Inventory.Add (factory.Create ("HealSerious"));
 
-            ItemFactory.Instance.Create ("HealLight", new MapLocation (world.Map, 5, 5));
         }
     }
 }

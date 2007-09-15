@@ -29,7 +29,7 @@ namespace Questar.Actors
             base.HitPoints = new HitPoints (100, 400);
 
             do {
-                base.Location = MapLocation.GetRandom (Game.Instance.World.Map);
+                base.Location = MapLocation.GetRandom (Game.Instance.CurrentMap);
             }
             while (!base.CanMoveTo (base.Location));
 
@@ -152,7 +152,7 @@ namespace Questar.Actors
             this.action = action;
             last_action = DateTime.Now;
 
-            Game.Instance.World.IsPaused = false;
+            Game.Instance.Start ();
         }
 
         protected override void OnDeath ()

@@ -16,12 +16,12 @@ namespace Questar.Core
 {
     public class TurnLoop
     {
-        public class TurnLoopEventArgs : EventArgs
+        public class EventArgs : System.EventArgs
         {
             public int Round;
         }
 
-        public event EventHandler<TurnLoopEventArgs> NewRound;
+        public event EventHandler<TurnLoop.EventArgs> NewRound;
 
         private List<Actor> actors = new List<Actor> ();
         private int round = 0;
@@ -39,8 +39,8 @@ namespace Questar.Core
             private set {
                 round = value;
 
-                EventHelper.Raise<TurnLoopEventArgs> (this, NewRound,
-                    delegate (TurnLoopEventArgs args) {
+                EventHelper.Raise<TurnLoop.EventArgs> (this, NewRound,
+                    delegate (TurnLoop.EventArgs args) {
                         args.Round = round;
                     });
             }
@@ -83,7 +83,7 @@ namespace Questar.Core
                 actors.Add (actor);
         }
 
-        private void ActorDestroyedHandler (object sender, EventArgs args)
+        private void ActorDestroyedHandler (object sender, System.EventArgs args)
         {
             actors.Remove ((Actor) sender);
         }

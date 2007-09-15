@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using Questar.Actors;
 using Questar.Base;
 using Questar.Configuration;
+using Questar.Core;
 using Questar.Helpers;
 using Questar.Maps;
 using Questar.Primitives;
@@ -27,8 +28,8 @@ namespace Questar.Gui
 {
     public class WorldView : DrawingArea
     {
-        private World world;
         private Actor center;
+        private Map map;
 
         private TileSet tileset = new TileSet ();
         private List<Point> queued_grids = new List<Point> ();
@@ -46,10 +47,10 @@ namespace Questar.Gui
         private int offset_x, offset_y;
         private int poffset_x, poffset_y;
 
-        public WorldView (World world, Actor center)
+        public WorldView (Actor center)
         {
-            SetCenter (center);
-            SetWorld (world);
+            this.center = center;
+            map = center.Location.Map;
 
             SetupHandlers ();
 
@@ -57,20 +58,8 @@ namespace Questar.Gui
             base.CanFocus = true;
         }
 
-        public WorldView (World world) : this (world, world.Hero)
+        public WorldView () : this (Game.Instance.Hero)
         {
-        }
-
-        public World World
-        {
-            get { return world; }
-            set { SetWorld (value); }
-        }
-
-        public Actor Center
-        {
-            get { return center; }
-            set { SetCenter (value); }
         }
 
         protected override bool OnButtonPressEvent (EventButton args)
@@ -81,7 +70,7 @@ namespace Questar.Gui
                 return false;
 
             Point grid = WindowCoordsToGridPoint ( (int) args.X, (int) args.Y);
-            if (world.Map.GetGridInformation (grid) == GridInformation.Invalid)
+            if (map.GetGridInformation (grid) == GridInformation.Invalid)
                 return false;
 
             highlight_grid = grid;
@@ -174,35 +163,6 @@ namespace Questar.Gui
                 Style.Background (StateType.Selected));
         }
 
-        private void SetWorld (World world)
-        {
-            this.world = world;
-
-            world.NewRound += delegate {
-                if (recenter) {
-                    recenter = false;
-                    base.QueueDraw ();
-                }
-                else {
-                    foreach (Point grid in queued_grids)
-                        QueueDrawGrid (grid);
-                }
-                queued_grids.Clear ();
-            };
-
-            center.LocationChanged += delegate { recenter = true; };
-
-            world.Map.GridChanged += delegate (object sender,
-                MapGridChangedEventArgs args) {
-                    queued_grids.Add (args.Grid);
-            };
-        }
-
-        private void SetCenter (Actor center)
-        {
-            this.center = center;
-        }
-
         private void SetupHandlers ()
         {
             Menu context_menu = UIActions.Instance.WorldViewContextMenu;
@@ -217,6 +177,10 @@ namespace Questar.Gui
                     grid_lines = action.Active;
                     base.QueueDraw ();
                 });
+
+            Game.Instance.TurnLoop.NewRound += NewRoundHandler;
+            center.Location.Map.GridChanged += GridChangedHandler;
+            center.LocationChanged += CenterLocationChangedHandler;
         }
 
         private void GridPointToWindowCoords (Point p, out int x, out int y)
@@ -270,13 +234,13 @@ namespace Questar.Gui
 
         private void DrawGrid (Context context, Point grid)
         {
-            if (world.Map.GetGridInformation (grid) == GridInformation.Invalid)
+            if (map.GetGridInformation (grid) == GridInformation.Invalid)
                 return;
 
             int x, y;
             GridPointToWindowCoords (grid, out x, out y);
 
-            foreach (string tile in world.Map[grid].Tiles)
+            foreach (string tile in map[grid].Tiles)
                 DrawTile (tile, x, y);
 
             if (grid_lines) {
@@ -318,6 +282,32 @@ namespace Questar.Gui
                 context.Color = hilight_color2;
                 context.Stroke ();
             }
+        }
+
+        private void NewRoundHandler (object sender, TurnLoop.EventArgs args)
+        {
+            if (recenter) {
+                recenter = false;
+                base.QueueDraw ();
+            }
+            else {
+                foreach (Point grid in queued_grids)
+                    QueueDrawGrid (grid);
+            }
+
+            queued_grids.Clear ();
+        }
+
+        private void GridChangedHandler (object sender, MapGridChangedEventArgs args)
+        {
+            queued_grids.Add (args.Grid);
+        }
+
+        private void CenterLocationChangedHandler (object sender,
+            LocationChangedEventArgs args)
+        {
+            map = args.NewLocation.Map;
+            recenter = true;
         }
     }
 }

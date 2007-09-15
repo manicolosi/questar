@@ -83,7 +83,7 @@ namespace Questar.Gui
         protected override void OnRowActivated (TreePath path, TreeViewColumn column)
         {
             // HACK: How could this be better?
-            Hero hero = (Hero) Game.Instance.World.Hero;
+            Hero hero = (Hero) Game.Instance.Hero;
 
             if (inventory != hero.Inventory)
                 return;

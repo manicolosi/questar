@@ -28,7 +28,7 @@ namespace Questar.Actors
             prefix = definition.Prefix;
 
             do {
-                base.Location = MapLocation.GetRandom (Game.Instance.World.Map);
+                base.Location = MapLocation.GetRandom (Game.Instance.CurrentMap);
             }
             while (!base.CanMoveTo (base.Location));
         }
@@ -69,7 +69,7 @@ namespace Questar.Actors
 
                 // Move towards the Hero
                 if (action == null) {
-                    Location target = Game.Instance.World.Hero.Location;
+                    Location target = Game.Instance.Hero.Location;
                     Direction direction = location.DirectionOf (target);
 
                     if (base.CanMoveIn (direction))

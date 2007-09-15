@@ -35,10 +35,10 @@ namespace Questar.Gui
         {
             menubar_container.Add (UIActions.Instance.MenuBar);
             message_view_container.Add (new MessageView ());
-            map_view_container.Add (new WorldView (Game.Instance.World));
+            map_view_container.Add (new WorldView ());
 
             inventory_container.Add (
-                new InventoryView (Game.Instance.World.Hero.Inventory));
+                new InventoryView (Game.Instance.Hero.Inventory));
 
             base.Window.ShowAll ();
         }

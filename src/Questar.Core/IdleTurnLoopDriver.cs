@@ -45,7 +45,7 @@ namespace Questar.Core
             bool run_again = turn_loop.NextTurn ();
 
             if (!run_again)
-                is_running = false ();
+                is_running = false;
 
             return run_again;
         }

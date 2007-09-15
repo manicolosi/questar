@@ -8,6 +8,7 @@
 using Gtk;
 using System;
 
+using Questar.Core;
 using Questar.Gui;
 using Questar.Maps;
 using Questar.Actors;
@@ -22,34 +23,57 @@ namespace Questar.Base
         }
 
         private MainWindow main_window;
-
-        private World world;
+        private TurnLoop turn_loop;
+        private ITurnLoopDriver driver;
+        private Map current_map;
+        private Actor hero;
 
         private Game ()
         {
             ProcessName = ProgramInformation.Name.ToLower ();
             Window.DefaultIconName = ThemeIcons.Application;
             Application.Init ();
+
+            turn_loop = new TurnLoop ();
+            driver = new IdleTurnLoopDriver (turn_loop);
         }
 
-        public World World
+        public ITurnLoopDriver TurnLoopDriver
         {
-            get { return world; }
-            set { world = value; }
+            get { return driver; }
+        }
+
+        public TurnLoop TurnLoop
+        {
+            get { return turn_loop; }
+        }
+
+        public Map CurrentMap
+        {
+            get { return current_map; }
+            set { current_map = value; }
+        }
+
+        public Actor Hero
+        {
+            get { return hero; }
+            set { hero = value; }
         }
 
         public void Start ()
         {
-            main_window = new MainWindow ();
+            driver.Start ();
 
-            if (world != null)
-                world.Start ();
-
-            Application.Run ();
+            if (main_window == null) {
+                main_window = new MainWindow ();
+                Application.Run ();
+            }
         }
 
         public void Quit ()
         {
+            driver.Stop ();
+
             if (main_window != null)
                 main_window.Destroy ();
 

@@ -40,7 +40,6 @@ SOURCES = \
 	Questar.Base/NativeMethods.cs \
 	Questar.Base/ProgramInformation.cs \
 	Questar.Base/Singleton.cs \
-	Questar.Base/World.cs \
 	\
 	Questar.Configuration/ConfigurationClient.cs \
 	Questar.Configuration/SchemaEntry.cs \
