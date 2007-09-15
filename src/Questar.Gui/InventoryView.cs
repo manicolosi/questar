@@ -10,7 +10,7 @@ using System;
 
 using Questar.Actors;
 using Questar.Actors.Actions;
-using Questar.Base;
+using Questar.Core;
 using Questar.Items;
 
 using Item = Questar.Items.Item;

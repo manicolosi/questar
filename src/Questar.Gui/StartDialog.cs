@@ -10,7 +10,7 @@ using Glade;
 using Gtk;
 using System;
 
-using Questar.Base;
+using Questar.Core;
 
 namespace Questar.Gui
 {

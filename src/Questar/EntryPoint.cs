@@ -8,7 +8,7 @@
 using System;
 
 using Questar.Actors;
-using Questar.Base;
+using Questar.Core;
 using Questar.Gui;
 using Questar.Items;
 using Questar.Maps;

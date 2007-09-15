@@ -35,7 +35,6 @@ SOURCES = \
 	Questar.Actors.Actions/PickUpAction.cs \
 	Questar.Actors.Actions/RandomMoveAction.cs \
 	\
-	Questar.Base/Game.cs \
 	Questar.Base/Messages.cs \
 	Questar.Base/NativeMethods.cs \
 	Questar.Base/ProgramInformation.cs \
@@ -45,6 +44,7 @@ SOURCES = \
 	Questar.Configuration/SchemaEntry.cs \
 	Questar.Configuration/UISchema.cs \
 	\
+	Questar.Core/Game.cs \
 	Questar.Core/ITurnLoopDriver.cs \
 	Questar.Core/IdleTurnLoopDriver.cs \
 	Questar.Core/TurnLoop.cs \

@@ -1,5 +1,6 @@
 /*******************************************************************************
- *  Game.cs: FIXME
+ *  Game.cs: Singleton object responsible for keeping track of the
+ *  game's internal state and behavior.
  *
  *  Copyright (C) 2007
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
@@ -8,12 +9,12 @@
 using Gtk;
 using System;
 
-using Questar.Core;
+using Questar.Base;
 using Questar.Gui;
 using Questar.Maps;
 using Questar.Actors;
 
-namespace Questar.Base
+namespace Questar.Core
 {
     public class Game
     {

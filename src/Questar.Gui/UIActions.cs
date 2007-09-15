@@ -12,6 +12,7 @@ using System;
 using Key = Gdk.Key;
 
 using Questar.Base;
+using Questar.Core;
 
 namespace Questar.Gui
 {

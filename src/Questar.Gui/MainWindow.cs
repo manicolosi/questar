@@ -9,7 +9,7 @@ using Gtk;
 using System;
 using System.Reflection;
 
-using Questar.Base;
+using Questar.Core;
 using Questar.Configuration;
 
 using Window = Gtk.Window;
