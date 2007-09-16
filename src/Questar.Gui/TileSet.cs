@@ -49,7 +49,7 @@ namespace Questar.Gui
 
         private string name;
 
-        public event EventHandler<EventArgs> TileSetChanged;
+        public event EventHandler TileSetChanged;
 
         public TileSet ()
         {

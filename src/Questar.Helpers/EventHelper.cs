@@ -28,12 +28,6 @@ namespace Questar.Helpers
             }
         }
 
-        public static void Raise (object sender,
-            EventHandler<EventArgs> event_handler)
-        {
-            Raise<EventArgs> (sender, event_handler, null);
-        }
-
         public static void Raise (object sender, EventHandler event_handler)
         {
             if (event_handler != null)

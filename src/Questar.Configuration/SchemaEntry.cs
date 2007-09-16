@@ -19,7 +19,7 @@ namespace Questar.Configuration
         public readonly string ShortDescription;
         public readonly string LongDescription;
 
-        public event EventHandler<EventArgs> Changed;
+        public event EventHandler Changed;
 
         public SchemaEntry (string namespce, string key, T default_value,
             string short_description, string long_description)
