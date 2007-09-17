@@ -28,7 +28,7 @@ namespace Questar.Primitives
         }
 
         public Rectangle (int width, int height) :
-            this (new Point (), width, height)
+            this (Point.Zero, width, height)
         {
         }
 
