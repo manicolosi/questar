@@ -11,7 +11,7 @@ using Questar.Actors;
 using Questar.Core;
 using Questar.Gui;
 using Questar.Items;
-using Questar.Maps;
+using Questar.Maps.Generation;
 using Questar.Primitives;
 
 namespace Questar
@@ -31,7 +31,10 @@ namespace Questar
         private static void CreateInitialWorld ()
         {
             Game game = Game.Instance;
-            game.CurrentMap = new Map ();
+
+            IMapGenerator map_gen = new StupidGenerator ();
+            game.CurrentMap = map_gen.Generate ();
+
             game.Hero = new Hero ();
 
             MonsterFactory.Instance.Create ("imp");

@@ -83,6 +83,9 @@ SOURCES = \
 	Questar.Maps/Terrain.cs \
 	Questar.Maps/TerrainManager.cs \
 	\
+	Questar.Maps.Generation/IMapGenerator.cs \
+	Questar.Maps.Generation/StupidGenerator.cs \
+	\
 	Questar.Primitives/ActorLocation.cs \
 	Questar.Primitives/AbstractEntity.cs \
 	Questar.Primitives/AbstractEntityFactory.cs \

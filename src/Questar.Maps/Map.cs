@@ -22,26 +22,19 @@ namespace Questar.Maps
 
     public class Map
     {
-        private int width  = 48;
-        private int height = 48;
+        private int width;
+        private int height;
 
         private Grid [,] grids;
 
-        private TerrainManager terrain_manager;
-
         public event EventHandler<MapGridChangedEventArgs> GridChanged;
 
-        public Map ()
+        public Map (int width, int height)
         {
-            terrain_manager = new TerrainManager ();
+            this.width = width;
+            this.height = height;
 
             grids = new Grid [width, height];
-
-            FillRandom ("tree", "grass", "flower", "grass", "grass",
-                "grass", "grass", "flower", "grass", "grass",
-                "grass", "grass", "flower", "grass", "grass",
-                "grass", "grass", "flower", "grass", "grass",
-                "grass", "grass", "flower", "grass", "grass");
 
             ItemFactory.Instance.Created += OnItemCreated;
             MonsterFactory.Instance.Created += OnActorCreated;
@@ -126,29 +119,6 @@ namespace Questar.Maps
                 });
         }
 
-        // Dummy method
-        private void FillRandom (params string [] terrain_ids)
-        {
-            Random random = new Random ();
-
-            for (int x = 0; x < width; x++) {
-                for (int y = 0; y < height; y++) {
-                    int i = random.Next (terrain_ids.Length);
-                    Terrain terrain = terrain_manager[terrain_ids[i]];
-
-                    this[x, y] = new Grid (terrain);
-                }
-            }
-        }
-
-        public void FillArea (string terrain_id, Rectangle rectangle)
-        {
-            foreach (Point p in rectangle) {
-                Terrain terrain = terrain_manager[terrain_id];
-                this[p] = new Grid (terrain);
-            }
-        }
-
         public GridInformation GetGridInformation (Point grid)
         {
             GridInformation info = GridInformation.Clear;
@@ -182,13 +152,13 @@ namespace Questar.Maps
         public Grid this[int x, int y]
         {
             get { return grids[x, y]; }
-            private set { grids[x, y] = value; }
+            set { grids[x, y] = value; }
         }
 
         public Grid this[Point p]
         {
             get { return this[p.X, p.Y]; }
-            private set { this[p.X, p.Y] = value; }
+            set { this[p.X, p.Y] = value; }
         }
     }
 }
