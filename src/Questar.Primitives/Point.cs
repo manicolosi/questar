@@ -44,9 +44,11 @@ namespace Questar.Primitives
             return Direction.None;
         }
 
+        private static Random random;
         public static Point GetRandom (int width, int height)
         {
-            Random random = new Random ();
+            if (random == null)
+                random = new Random ();
             return new Point (random.Next (width), random.Next (height));
         }
 
