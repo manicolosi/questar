@@ -36,17 +36,26 @@ namespace Questar.Maps.Generation
         private void FillArea (string terrain, Rectangle rectangle)
         {
             foreach (Point p in rectangle)
-                map[p] = new Grid (terrain_manager[terrain]);
+                Put (p, terrain);
         }
 
         private void FillRandom (double percent, string terrain)
         {
             double amount = (map.Width * map.Height) * percent;
 
-            for (int i = 0; i < amount; i++) {
-                Point p = Point.GetRandom (map.Width, map.Height);
-                map[p] = new Grid (terrain_manager[terrain]);
-            }
+            for (int i = 0; i < amount; i++)
+                PutRandom (terrain);
+        }
+
+        private void PutRandom (string terrain)
+        {
+            Point p = Point.GetRandom (map.Width, map.Height);
+            Put (p, terrain);
+        }
+
+        private void Put (Point point, string terrain)
+        {
+            map[point] = new Grid (terrain_manager[terrain]);
         }
     }
 }
