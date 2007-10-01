@@ -129,9 +129,8 @@ namespace Questar.Maps
             if ((x < 0) || (x >= width) || (y < 0) || (y >= height))
                 info = GridInformation.Invalid;
 
-            else if (this[grid].Terrain.IsBlocking) {
+            else if (this[grid].Terrain.IsBlocking)
                 info = GridInformation.BlockingTerrain;
-            }
 
             else if (this[grid].Actor != null)
                 info = GridInformation.Occupied;
