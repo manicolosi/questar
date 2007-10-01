@@ -18,20 +18,33 @@ namespace Questar.Helpers
             EventHandler<T> event_handler,
             SetupEventArgsHandler<T> setup_handler) where T: EventArgs, new ()
         {
-            if (event_handler != null) {
-                T args = new T ();
+            if (event_handler == null)
+                return;
 
-                if (setup_handler != null)
-                    setup_handler (args);
+            T args = new T ();
 
+            if (setup_handler != null)
+                setup_handler (args);
+
+            try {
                 event_handler (sender, args);
+            }
+            catch (Exception ex) {
+                throw new RaisedEventException (event_handler, sender, args, ex);
             }
         }
 
         public static void Raise (object sender, EventHandler event_handler)
         {
-            if (event_handler != null)
+            if (event_handler == null)
+                return;
+
+            try {
                 event_handler (sender, EventArgs.Empty);
+            }
+            catch (Exception ex) {
+                throw new RaisedEventException (event_handler, sender, null, ex);
+            }
         }
     }
 }

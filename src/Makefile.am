@@ -65,6 +65,7 @@ SOURCES = \
 	\
 	Questar.Helpers/ColorHelper.cs \
 	Questar.Helpers/EventHelper.cs \
+	Questar.Helpers/RaisedEventException.cs \
 	Questar.Helpers/StringHelper.cs \
 	\
 	Questar.Items/AbstractItem.cs \
