@@ -31,7 +31,7 @@ namespace Questar.Helpers
         public static void Raise (object sender, EventHandler event_handler)
         {
             if (event_handler != null)
-                event_handler (sender, new EventArgs ());
+                event_handler (sender, EventArgs.Empty);
         }
     }
 }
