@@ -21,7 +21,7 @@ namespace Questar.Primitives
 
         protected void OnCreation (Entity entity)
         {
-            EventHelper.Raise<EntityCreatedEventArgs> (this, Created,
+            EventHelper.Raise (this, Created,
                 delegate (EntityCreatedEventArgs args) {
                     args.Entity = entity;
                 });

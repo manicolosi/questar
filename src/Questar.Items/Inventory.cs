@@ -92,7 +92,7 @@ namespace Questar.Items
 
         private void FireEvent (EventHandler<ItemEventArgs> event_handler, Item item)
         {
-            EventHelper.Raise<ItemEventArgs> (this, event_handler,
+            EventHelper.Raise (this, event_handler,
                 delegate (ItemEventArgs args) {
                     args.Item = item;
                 });

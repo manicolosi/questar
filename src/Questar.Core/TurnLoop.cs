@@ -39,7 +39,7 @@ namespace Questar.Core
             private set {
                 round = value;
 
-                EventHelper.Raise<TurnLoop.EventArgs> (this, NewRound,
+                EventHelper.Raise (this, NewRound,
                     delegate (TurnLoop.EventArgs args) {
                         args.Round = round;
                     });

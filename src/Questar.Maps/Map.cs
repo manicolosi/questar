@@ -113,7 +113,7 @@ namespace Questar.Maps
 
         private void FireGridChanged (Point point)
         {
-            EventHelper.Raise<MapGridChangedEventArgs> (this, GridChanged,
+            EventHelper.Raise (this, GridChanged,
                 delegate (MapGridChangedEventArgs grid_args) {
                     grid_args.Grid = point;
                 });
