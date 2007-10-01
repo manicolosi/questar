@@ -100,14 +100,15 @@ namespace Questar.Gui
             base.Window.ConfigureEvent += OnConfigureEvent;
             base.Window.DeleteEvent += delegate { Game.Instance.Quit (); };
 
-            ConfigurationClient.SyncToggleAction ("FullScreen",
-                UISchema.FullScreen,
-                delegate (ToggleAction action, SchemaEntry<bool> entry) {
-                    if (action.Active)
-                        base.Window.Fullscreen ();
-                    else
-                        base.Window.Unfullscreen ();
-                });
+            // FIXME: This won't compile anymore (bug in gmcs?).
+            //ConfigurationClient.SyncToggleAction ("FullScreen",
+                //UISchema.FullScreen,
+                //delegate (ToggleAction action, SchemaEntry<bool> entry) {
+                    //if (action.Active)
+                        //base.Window.Fullscreen ();
+                    //else
+                        //base.Window.Unfullscreen ();
+                //});
 
             ConfigurationClient.SyncToggleAction ("ShowMessages",
                 UISchema.ShowMessages,

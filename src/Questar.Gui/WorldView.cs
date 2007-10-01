@@ -171,12 +171,13 @@ namespace Questar.Gui
 
             tileset.TileSetChanged += delegate { base.QueueDraw (); };
 
-            ConfigurationClient.SyncToggleAction ("ShowGridLines",
-                UISchema.DrawGridLines, delegate (ToggleAction action,
-                    SchemaEntry<bool> entry) {
-                    grid_lines = action.Active;
-                    base.QueueDraw ();
-                });
+            // FIXME: This won't compile anymore (bug in gmcs?).
+            //ConfigurationClient.SyncToggleAction ("ShowGridLines",
+                //UISchema.DrawGridLines, delegate (ToggleAction action,
+                    //SchemaEntry<bool> entry) {
+                    //grid_lines = action.Active;
+                    //base.QueueDraw ();
+                //});
 
             Game.Instance.TurnLoop.NewRound += NewRoundHandler;
             center.Location.Map.GridChanged += GridChangedHandler;
