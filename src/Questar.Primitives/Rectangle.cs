@@ -54,70 +54,22 @@ namespace Questar.Primitives
 
         public IEnumerator<Point> GetEnumerator ()
         {
-            return new Enumerator (this);
+            for (int x = 0; x < width; x++) {
+                for (int y = 0; y < height; y++) {
+                    yield return (new Point (x, y) + start);
+                }
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator ()
         {
-            return new Enumerator (this);
+            return GetEnumerator ();
         }
 
         public override string ToString ()
         {
             return String.Format ("({0},{1}+{2}+{3})",
                 start.X, start.Y, width, height);
-        }
-
-        private struct Enumerator : IEnumerator<Point>
-        {
-            Rectangle rectangle;
-            Point current;
-            Point end;
-
-            public Enumerator (Rectangle rect)
-            {
-                rectangle = rect;
-                current = rectangle.Start;
-                end = new Point (
-                    rect.Start.X + rect.Width - 1,
-                    rect.Start.Y + rect.Height - 1);
-                Reset ();
-            }
-
-            public Point Current
-            {
-                get { return current; }
-            }
-
-            object IEnumerator.Current
-            {
-                get { return current; }
-            }
-
-            public bool MoveNext ()
-            {
-                current.X++;
-
-                if (current.X > end.X) {
-                    current.X = rectangle.Start.X;
-                    current.Y++;
-                }
-
-                if (current.Y > end.Y)
-                    return false;
-
-                return true;
-            }
-
-            public void Reset ()
-            {
-                current = rectangle.Start;
-                current.X--;
-            }
-
-            public void Dispose ()
-            {
-            }
         }
     }
 }
