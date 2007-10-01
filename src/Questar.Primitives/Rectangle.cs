@@ -52,6 +52,12 @@ namespace Questar.Primitives
             get { return height; }
         }
 
+        public bool Contains (Point p)
+        {
+            return (p.X >= start.X) && (p.Y >= start.Y) &&
+                (p.X < start.X + width) && (p.Y < start.Y + height);
+        }
+
         public IEnumerator<Point> GetEnumerator ()
         {
             for (int x = 0; x < width; x++) {

@@ -123,10 +123,8 @@ namespace Questar.Maps
         {
             GridInformation info = GridInformation.Clear;
 
-            int x = grid.X;
-            int y = grid.Y;
-
-            if ((x < 0) || (x >= width) || (y < 0) || (y >= height))
+            Rectangle rect = new Rectangle (width, height);
+            if (!rect.Contains (grid))
                 info = GridInformation.Invalid;
 
             else if (this[grid].Terrain.IsBlocking)
