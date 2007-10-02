@@ -63,6 +63,8 @@ SOURCES = \
 	Questar.Gui/UIActions.cs \
 	Questar.Gui/WorldView.cs \
 	\
+	Questar.Gui.Widgets/HitPointsWidget.cs \
+	\
 	Questar.Helpers/ColorHelper.cs \
 	Questar.Helpers/EventHelper.cs \
 	Questar.Helpers/RaisedEventException.cs \
