@@ -1,7 +1,9 @@
-//
-// HitPoints.cs: Represents an actor's HP.
-// Author: Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
-//
+/*******************************************************************************
+ *  HitPoints.cs: Encapsulates an Actor's HP.
+ *
+ *  Copyright (C) 2007
+ *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
+ ******************************************************************************/
 
 using System;
 
@@ -12,10 +14,6 @@ namespace Questar.Actors
     public class HitPointsEventArgs : EventArgs
     {
         public HitPoints OldHitPoints;
-
-        public HitPointsEventArgs ()
-        {
-        }
     }
 
     public class HitPoints : ICloneable
@@ -42,8 +40,9 @@ namespace Questar.Actors
                 if (new_current == current)
                     return;
 
-                OnChanged ((HitPoints) Clone ());
+                HitPoints old = (HitPoints) Clone ();
                 current = new_current;
+                OnChanged (old);
             }
         }
 
@@ -54,8 +53,9 @@ namespace Questar.Actors
                 if (value == max)
                     return;
 
-                OnChanged ((HitPoints) Clone ());
+                HitPoints old = (HitPoints) Clone ();
                 max = value;
+                OnChanged (old);
             }
         }
 
@@ -77,6 +77,13 @@ namespace Questar.Actors
             get { return current == max; }
         }
 
+        public double AsDouble
+        {
+            get {
+                return (double) ((double) current / max);
+            }
+        }
+
         public override string ToString ()
         {
             return String.Format ("{0}/{1}", Current, Max);
@@ -94,8 +101,10 @@ namespace Questar.Actors
 
         public override bool Equals (object o)
         {
-            HitPoints hp = (HitPoints) o;
+            HitPoints hp = o as HitPoints;
 
+            if (hp == null)
+                return false;
             if (Current != hp.Current)
                 return false;
             if (Max != hp.Max)
@@ -106,12 +115,12 @@ namespace Questar.Actors
 
         public static bool operator == (HitPoints a, HitPoints b)
         {
-            return a.Equals (b);
+            return Object.Equals (a, b);
         }
 
         public static bool operator != (HitPoints a, HitPoints b)
         {
-            return !a.Equals (b);
+            return !Object.Equals (a, b);
         }
     }
 }
