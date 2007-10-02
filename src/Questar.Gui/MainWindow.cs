@@ -1,7 +1,9 @@
-//
-// MainWindow.cs: Description Goes Here
-// Author: Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
-//
+/*******************************************************************************
+ *  MainWindow.cs: The main window for Questar.
+ *
+ *  Copyright (C) 2007
+ *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
+ ******************************************************************************/
 
 using Gdk;
 using Glade;
@@ -9,8 +11,10 @@ using Gtk;
 using System;
 using System.Reflection;
 
+using Questar.Actors;
 using Questar.Core;
 using Questar.Configuration;
+using Questar.Gui.Widgets;
 
 using Window = Gtk.Window;
 
@@ -22,6 +26,7 @@ namespace Questar.Gui
         [Glade.Widget] private Container menubar_container;
         [Glade.Widget] private Container map_view_container;
         [Glade.Widget] private Container message_view_container;
+        [Glade.Widget] private Container character_container;
         [Glade.Widget] private Container inventory_container;
 
         public MainWindow () : base ("main_window")
@@ -37,8 +42,9 @@ namespace Questar.Gui
             message_view_container.Add (new MessageView ());
             map_view_container.Add (new WorldView ());
 
-            inventory_container.Add (
-                new InventoryView (Game.Instance.Hero.Inventory));
+            Actor hero = Game.Instance.Hero;
+            inventory_container.Add (new InventoryView (hero.Inventory));
+            character_container.Add (new HitPointsWidget (hero.HitPoints));
 
             base.Window.ShowAll ();
         }
