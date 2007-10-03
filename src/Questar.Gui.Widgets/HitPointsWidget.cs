@@ -12,8 +12,9 @@ using System;
 
 using Questar.Actors;
 
-using Rectangle = Gdk.Rectangle;
 using Color = Cairo.Color;
+using Point = Cairo.Point;
+using Rectangle = Gdk.Rectangle;
 
 namespace Questar.Gui.Widgets
 {
@@ -42,7 +43,7 @@ namespace Questar.Gui.Widgets
             }
         }
 
-        private double HitPointsToRadians ()
+        private double HPToRadians ()
         {
             return (hit_points.AsDouble * 360) * (Math.PI / 180);
         }
@@ -51,19 +52,20 @@ namespace Questar.Gui.Widgets
         {
 
             using (Context context = CairoHelper.Create (base.GdkWindow)) {
-                Rectangle allocation = base.Allocation;
-                double xc = allocation.Width / 2;
-                double yc = allocation.Height / 2;
-                double radius = (allocation.Width / 2) - 4;
+                Rectangle alloc = base.Allocation;
+                Point center = new Point (alloc.Width / 2, alloc.Height / 2);
+                double radius = (alloc.Width - 2) / 2;
 
-                context.Arc (xc, yc, radius, 0, HitPointsToRadians ());
+                context.Arc (center.X, center.Y, radius, 0, HPToRadians ());
+
                 if (!hit_points.IsFull) {
-                    context.LineTo (xc, yc);
-                    context.LineTo (xc + radius, yc);
+                    context.LineTo (center.X, center.Y);
+                    context.LineTo (center.X + radius, center.Y);
                 }
 
                 context.Color = new Color (0, 0, 0);
                 context.StrokePreserve ();
+
                 context.Color = new Color (0.80, 0.80, 0.80);
                 context.Fill ();
             }
