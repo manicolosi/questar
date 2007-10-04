@@ -51,6 +51,17 @@ namespace Questar.Helpers
         {
             return FromGdkColor (gdk_color, 1.0);
         }
+
+        public static Color FromString (string color_str)
+        {
+            Gdk.Color gdk_color = new Gdk.Color (0, 0, 0);
+
+            bool success = Gdk.Color.Parse (color_str, ref gdk_color);
+            if (!success)
+                throw new ApplicationException ("color_str");
+
+            return FromGdkColor (gdk_color);
+        }
     }
 }
 

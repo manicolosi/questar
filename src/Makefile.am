@@ -57,6 +57,7 @@ SOURCES = \
 	Questar.Gui/MessageView.cs \
 	Questar.Gui/PreferenceDialog.cs \
 	Questar.Gui/StartDialog.cs \
+	Questar.Gui/TangoColors.cs \
 	Questar.Gui/ThemeIcons.cs \
 	Questar.Gui/Tile.cs \
 	Questar.Gui/TileSet.cs \

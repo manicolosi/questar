@@ -11,6 +11,8 @@ using Gtk;
 using System;
 
 using Questar.Actors;
+using Questar.Gui;
+using Questar.Helpers;
 
 using Color = Cairo.Color;
 using Point = Cairo.Point;
@@ -52,21 +54,25 @@ namespace Questar.Gui.Widgets
         {
 
             using (Context context = CairoHelper.Create (base.GdkWindow)) {
+                // Clip context to args.Area...
+                // CreateChartPath (context);
+                // StrokeAndFill (context);
                 Rectangle alloc = base.Allocation;
                 Point center = new Point (alloc.Width / 2, alloc.Height / 2);
-                double radius = (alloc.Width - 2) / 2;
+                double radius = (alloc.Width - 10) / 2;
 
                 context.Arc (center.X, center.Y, radius, 0, HPToRadians ());
 
                 if (!hit_points.IsFull) {
                     context.LineTo (center.X, center.Y);
-                    context.LineTo (center.X + radius, center.Y);
+                    context.ClosePath ();
                 }
 
-                context.Color = new Color (0, 0, 0);
+                context.LineWidth = 4.0;
+                context.Color = TangoColors.Chameleon3;
                 context.StrokePreserve ();
 
-                context.Color = new Color (0.80, 0.80, 0.80);
+                context.Color = TangoColors.Chameleon1;
                 context.Fill ();
             }
 
