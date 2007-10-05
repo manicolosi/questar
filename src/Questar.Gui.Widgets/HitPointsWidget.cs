@@ -12,6 +12,7 @@ using System;
 
 using Questar.Actors;
 using Questar.Gui;
+using Questar.Gui.Animation;
 using Questar.Helpers;
 
 using Color = Cairo.Color;
@@ -83,8 +84,18 @@ namespace Questar.Gui.Widgets
 
         private void HitPointsChanged (object sender, HitPointsEventArgs args)
         {
-            angle = HPToRadians (hit_points);
-            base.QueueDraw ();
+            DoubleAnimation anim = new DoubleAnimation (
+                TimeSpan.FromSeconds (1.0));
+            anim.StartValue = HPToRadians (args.OldHitPoints);
+            anim.EndValue = HPToRadians (hit_points);
+            anim.NewFrame += delegate (object sender1, NewFrameEventArgs args1) {
+                //Console.WriteLine (args1.Value * (180 / Math.PI));
+                angle = args1.Value;
+                base.QueueDraw ();
+            };
+            anim.Start ();
+            //angle = HPToRadians (hit_points);
+            //base.QueueDraw ();
         }
     }
 }

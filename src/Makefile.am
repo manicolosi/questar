@@ -64,6 +64,8 @@ SOURCES = \
 	Questar.Gui/UIActions.cs \
 	Questar.Gui/WorldView.cs \
 	\
+	Questar.Gui.Animation/DoubleAnimation.cs \
+	\
 	Questar.Gui.Widgets/HitPointsWidget.cs \
 	\
 	Questar.Helpers/ColorHelper.cs \
