@@ -23,10 +23,12 @@ namespace Questar.Gui.Widgets
     public class HitPointsWidget : DrawingArea
     {
         private HitPoints hit_points;
+        private double angle;
 
         public HitPointsWidget (HitPoints hit_points)
         {
             HitPoints = hit_points;
+            angle = HPToRadians (hit_points);
         }
 
         public HitPoints HitPoints
@@ -45,9 +47,9 @@ namespace Questar.Gui.Widgets
             }
         }
 
-        private double HPToRadians ()
+        private double HPToRadians (HitPoints hp)
         {
-            return (hit_points.AsDouble * 360) * (Math.PI / 180);
+            return (hp.AsDouble * 360) * (Math.PI / 180);
         }
 
         protected override bool OnExposeEvent (EventExpose args)
@@ -61,7 +63,7 @@ namespace Questar.Gui.Widgets
                 Point center = new Point (alloc.Width / 2, alloc.Height / 2);
                 double radius = (alloc.Width - 10) / 2;
 
-                context.Arc (center.X, center.Y, radius, 0, HPToRadians ());
+                context.Arc (center.X, center.Y, radius, 0, angle);
 
                 if (!hit_points.IsFull) {
                     context.LineTo (center.X, center.Y);
@@ -81,6 +83,7 @@ namespace Questar.Gui.Widgets
 
         private void HitPointsChanged (object sender, HitPointsEventArgs args)
         {
+            angle = HPToRadians (hit_points);
             base.QueueDraw ();
         }
     }
