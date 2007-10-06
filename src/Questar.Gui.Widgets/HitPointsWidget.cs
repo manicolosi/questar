@@ -64,9 +64,10 @@ namespace Questar.Gui.Widgets
                 // StrokeAndFill (context);
                 Rectangle alloc = base.Allocation;
                 Point center = new Point (alloc.Width / 2, alloc.Height / 2);
-                double radius = (alloc.Width - 10) / 2;
+                double radius = (alloc.Width - 10) / 2; // This should be the lowest of height or width...
 
-                context.Arc (center.X, center.Y, radius, 0, angle);
+                context.Arc (center.X, center.Y, radius,
+                    -angle + (-0.5 * Math.PI), -0.5 * Math.PI);
                 context.LineTo (center.X, center.Y);
                 context.ClosePath ();
 
