@@ -24,6 +24,7 @@ namespace Questar.Gui.Animation
         private const uint frame_rate = 1000 / 30;
 
         private bool is_running;
+        private uint timeout_id;
         private int total_frames;
         private int current_frame;
 
@@ -51,6 +52,14 @@ namespace Questar.Gui.Animation
             set { end = value; }
         }
 
+        public void Stop ()
+        {
+            if (!is_running)
+                return;
+
+            Source.Remove (timeout_id);
+        }
+
         public void Start ()
         {
             is_running = true;
@@ -61,7 +70,7 @@ namespace Questar.Gui.Animation
             double value_per_frame = difference / total_frames;
             bool is_increasing = start < end;
 
-            Timeout.Add (frame_rate, delegate {
+            timeout_id = Timeout.Add (frame_rate, delegate {
                 if (!is_running)
                     return false;
 
