@@ -65,11 +65,8 @@ namespace Questar.Gui.Widgets
                 double radius = (alloc.Width - 10) / 2;
 
                 context.Arc (center.X, center.Y, radius, 0, angle);
-
-                if (!hit_points.IsFull) {
-                    context.LineTo (center.X, center.Y);
-                    context.ClosePath ();
-                }
+                context.LineTo (center.X, center.Y);
+                context.ClosePath ();
 
                 context.LineWidth = 4.0;
                 context.Color = TangoColors.Chameleon3;
@@ -88,14 +85,14 @@ namespace Questar.Gui.Widgets
                 TimeSpan.FromSeconds (1.0));
             anim.StartValue = HPToRadians (args.OldHitPoints);
             anim.EndValue = HPToRadians (hit_points);
-            anim.NewFrame += delegate (object sender1, NewFrameEventArgs args1) {
-                //Console.WriteLine (args1.Value * (180 / Math.PI));
-                angle = args1.Value;
-                base.QueueDraw ();
-            };
+            anim.NewFrame = AnimationNewFrame;
             anim.Start ();
-            //angle = HPToRadians (hit_points);
-            //base.QueueDraw ();
+        }
+
+        private void AnimationNewFrame (object sender, NewFrameEventArgs args)
+        {
+            angle = args.Value;
+            base.QueueDraw ();
         }
     }
 }
