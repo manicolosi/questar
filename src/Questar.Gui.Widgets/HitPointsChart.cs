@@ -69,7 +69,8 @@ namespace Questar.Gui.Widgets
         protected override bool OnExposeEvent (EventExpose args)
         {
             using (Context context = CairoHelper.Create (base.GdkWindow)) {
-                // Clip context to args.Area...
+                CairoHelper.Rectangle (context, args.Area);
+                context.Clip ();
 
                 CreatePath (context);
                 StrokeAndFill (context);
