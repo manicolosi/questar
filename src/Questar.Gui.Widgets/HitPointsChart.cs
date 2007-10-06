@@ -93,14 +93,17 @@ namespace Questar.Gui.Widgets
 
         private void HitPointsChanged (object sender, HitPointsEventArgs args)
         {
-            if (animation != null)
+            if (animation != null) {
                 animation.Stop ();
+                animation.NewFrame -= AnimationNewFrame;
+                animation.Completed -= AnimationCompleted;
+            }
 
             animation = new DoubleAnimation (TimeSpan.FromSeconds (1.0));
             animation.StartValue = angle;
             animation.EndValue = HPToRadians (hit_points);
-            animation.NewFrame = AnimationNewFrame;
-            animation.Completed = AnimationCompleted;
+            animation.NewFrame += AnimationNewFrame;
+            animation.Completed += AnimationCompleted;
             animation.Start ();
         }
 
