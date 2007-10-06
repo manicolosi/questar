@@ -91,19 +91,25 @@ namespace Questar.Gui.Widgets
             hit_points.Changed -= HitPointsChanged;
         }
 
+        private void RemoveAnimation ()
+        {
+            if (animation.IsRunning)
+                animation.Stop ();
+
+            animation.NewFrame -= AnimationNewFrame;
+            animation.Completed -= delegate { RemoveAnimation (); };
+            animation = null;
+        }
+
         private void HitPointsChanged (object sender, HitPointsEventArgs args)
         {
-            if (animation != null) {
-                animation.Stop ();
-                animation.NewFrame -= AnimationNewFrame;
-                animation.Completed -= AnimationCompleted;
-            }
+            if (animation != null)
+                RemoveAnimation ();
 
-            animation = new DoubleAnimation (TimeSpan.FromSeconds (1.0));
-            animation.StartValue = angle;
-            animation.EndValue = HPToRadians (hit_points);
+            animation = new DoubleAnimation (angle, HPToRadians (hit_points));
+            animation.Duration = TimeSpan.FromSeconds (animation.Difference);
             animation.NewFrame += AnimationNewFrame;
-            animation.Completed += AnimationCompleted;
+            animation.Completed += delegate { RemoveAnimation (); };
             animation.Start ();
         }
 
@@ -111,11 +117,6 @@ namespace Questar.Gui.Widgets
         {
             angle = args.Value;
             base.QueueDraw ();
-        }
-
-        private void AnimationCompleted (object sender, EventArgs args)
-        {
-            animation = null;
         }
     }
 }

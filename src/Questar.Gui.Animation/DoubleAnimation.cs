@@ -37,7 +37,29 @@ namespace Questar.Gui.Animation
 
         public DoubleAnimation (TimeSpan duration)
         {
-            this.duration = duration;
+            Duration = duration;
+        }
+
+        public DoubleAnimation (double start, double end)
+        {
+            StartValue = start;
+            EndValue = end;
+        }
+
+        public TimeSpan Duration
+        {
+            get { return duration; }
+            set { duration = value; }
+        }
+
+        public double Difference
+        {
+            get { return Math.Abs (start - end); }
+        }
+
+        public bool IsRunning
+        {
+            get { return is_running; }
         }
 
         public double StartValue
@@ -66,8 +88,7 @@ namespace Questar.Gui.Animation
             current_frame = 0;
             total_frames = (int) (fps * duration.TotalSeconds);
 
-            double difference = Math.Abs (start - end);
-            double value_per_frame = difference / total_frames;
+            double value_per_frame = Difference / total_frames;
             bool is_increasing = start < end;
 
             timeout_id = Timeout.Add (frame_rate, delegate {
