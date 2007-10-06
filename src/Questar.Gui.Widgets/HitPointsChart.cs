@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  HitPointsWidget.cs: Displays a HitPoints object graphically.
+ *  HitPointsChart.cs: Displays a HitPoints object graphically.
  *
  *  Copyright (C) 2007
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
@@ -21,13 +21,13 @@ using Rectangle = Gdk.Rectangle;
 
 namespace Questar.Gui.Widgets
 {
-    public class HitPointsWidget : DrawingArea
+    public class HitPointsChart : DrawingArea
     {
         private HitPoints hit_points;
         private DoubleAnimation animation;
         private double angle;
 
-        public HitPointsWidget (HitPoints hit_points)
+        public HitPointsChart (HitPoints hit_points)
         {
             this.hit_points = hit_points;
             this.animation = null;
