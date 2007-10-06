@@ -29,25 +29,14 @@ namespace Questar.Gui.Widgets
 
         public HitPointsWidget (HitPoints hit_points)
         {
-            HitPoints = hit_points;
-            animation = null;
-            angle = HPToRadians (hit_points);
+            this.hit_points = hit_points;
+            this.animation = null;
+            this.angle = HPToRadians (hit_points);
         }
 
         public HitPoints HitPoints
         {
             get { return hit_points; }
-            set {
-                if (hit_points != null) {
-                    hit_points.Changed -= HitPointsChanged;
-                }
-
-                hit_points = value;
-
-                if (hit_points != null) {
-                    hit_points.Changed += HitPointsChanged;
-                }
-            }
         }
 
         private double HPToRadians (HitPoints hp)
@@ -57,7 +46,6 @@ namespace Questar.Gui.Widgets
 
         protected override bool OnExposeEvent (EventExpose args)
         {
-
             using (Context context = CairoHelper.Create (base.GdkWindow)) {
                 // Clip context to args.Area...
                 // CreateChartPath (context);
@@ -80,6 +68,18 @@ namespace Questar.Gui.Widgets
             }
 
             return true;
+        }
+
+        protected override void OnRealized ()
+        {
+            base.OnRealized ();
+            hit_points.Changed += HitPointsChanged;
+        }
+
+        protected override void OnUnrealized ()
+        {
+            base.OnUnrealized ();
+            hit_points.Changed -= HitPointsChanged;
         }
 
         private void HitPointsChanged (object sender, HitPointsEventArgs args)
