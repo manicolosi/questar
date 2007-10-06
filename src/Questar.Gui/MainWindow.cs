@@ -44,7 +44,7 @@ namespace Questar.Gui
 
             Actor hero = Game.Instance.Hero;
             inventory_container.Add (new InventoryView (hero.Inventory));
-            character_container.Add (new HitPointsWidget (hero.HitPoints));
+            character_container.Add (new HitPointsChart (hero.HitPoints));
 
             base.Window.ShowAll ();
         }

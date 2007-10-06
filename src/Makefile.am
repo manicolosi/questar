@@ -66,7 +66,7 @@ SOURCES = \
 	\
 	Questar.Gui.Animation/DoubleAnimation.cs \
 	\
-	Questar.Gui.Widgets/HitPointsWidget.cs \
+	Questar.Gui.Widgets/HitPointsChart.cs \
 	\
 	Questar.Helpers/ColorHelper.cs \
 	Questar.Helpers/EventHelper.cs \
