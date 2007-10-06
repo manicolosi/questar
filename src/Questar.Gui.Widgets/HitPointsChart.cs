@@ -44,27 +44,35 @@ namespace Questar.Gui.Widgets
             return (hp.AsDouble * 360) * (Math.PI / 180);
         }
 
+        private void CreatePath (Context context)
+        {
+            Rectangle alloc = base.Allocation;
+            Point center = new Point (alloc.Width / 2, alloc.Height / 2);
+            double radius = (Math.Min (alloc.Width, alloc.Height) - 10) / 2;
+
+            context.Arc (center.X, center.Y, radius,
+                -angle + (-0.5 * Math.PI), -0.5 * Math.PI);
+            context.LineTo (center.X, center.Y);
+            context.ClosePath ();
+        }
+
+        private void StrokeAndFill (Context context)
+        {
+            context.LineWidth = 4.0;
+            context.Color = TangoColors.Chameleon3;
+            context.StrokePreserve ();
+
+            context.Color = TangoColors.Chameleon1;
+            context.Fill ();
+        }
+
         protected override bool OnExposeEvent (EventExpose args)
         {
             using (Context context = CairoHelper.Create (base.GdkWindow)) {
                 // Clip context to args.Area...
-                // CreateChartPath (context);
-                // StrokeAndFill (context);
-                Rectangle alloc = base.Allocation;
-                Point center = new Point (alloc.Width / 2, alloc.Height / 2);
-                double radius = (Math.Min (alloc.Width, alloc.Height) - 10) / 2;
 
-                context.Arc (center.X, center.Y, radius,
-                    -angle + (-0.5 * Math.PI), -0.5 * Math.PI);
-                context.LineTo (center.X, center.Y);
-                context.ClosePath ();
-
-                context.LineWidth = 4.0;
-                context.Color = TangoColors.Chameleon3;
-                context.StrokePreserve ();
-
-                context.Color = TangoColors.Chameleon1;
-                context.Fill ();
+                CreatePath (context);
+                StrokeAndFill (context);
             }
 
             return true;
