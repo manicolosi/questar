@@ -24,11 +24,13 @@ namespace Questar.Gui.Widgets
     public class HitPointsWidget : DrawingArea
     {
         private HitPoints hit_points;
+        private DoubleAnimation animation;
         private double angle;
 
         public HitPointsWidget (HitPoints hit_points)
         {
             HitPoints = hit_points;
+            animation = null;
             angle = HPToRadians (hit_points);
         }
 
@@ -81,18 +83,23 @@ namespace Questar.Gui.Widgets
 
         private void HitPointsChanged (object sender, HitPointsEventArgs args)
         {
-            DoubleAnimation anim = new DoubleAnimation (
-                TimeSpan.FromSeconds (1.0));
-            anim.StartValue = HPToRadians (args.OldHitPoints);
-            anim.EndValue = HPToRadians (hit_points);
-            anim.NewFrame = AnimationNewFrame;
-            anim.Start ();
+            animation = new DoubleAnimation (TimeSpan.FromSeconds (1.0));
+            animation.StartValue = HPToRadians (args.OldHitPoints);
+            animation.EndValue = HPToRadians (hit_points);
+            animation.NewFrame = AnimationNewFrame;
+            animation.Completed = AnimationCompleted;
+            animation.Start ();
         }
 
         private void AnimationNewFrame (object sender, NewFrameEventArgs args)
         {
             angle = args.Value;
             base.QueueDraw ();
+        }
+
+        private void AnimationCompleted (object sender, EventArgs args)
+        {
+            animation = null;
         }
     }
 }

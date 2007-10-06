@@ -32,6 +32,7 @@ namespace Questar.Gui.Animation
         private double end;
 
         public EventHandler<NewFrameEventArgs> NewFrame;
+        public EventHandler Completed;
 
         public DoubleAnimation (TimeSpan duration)
         {
@@ -65,8 +66,10 @@ namespace Questar.Gui.Animation
                     return false;
 
                 // TODO: Add Completed event
-                if (current_frame >= total_frames)
+                if (current_frame >= total_frames) {
+                    EventHelper.Raise (this, Completed);
                     return false;
+                }
 
                 EventHelper.Raise (this, NewFrame,
                     delegate (NewFrameEventArgs args) {
