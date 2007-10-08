@@ -49,7 +49,9 @@ SOURCES = \
 	Questar.Core/IdleTurnLoopDriver.cs \
 	Questar.Core/TurnLoop.cs \
 	\
+	Questar.Gui/Animation.cs \
 	Questar.Gui/AboutDialog.cs \
+	Questar.Gui/DoubleAnimation.cs \
 	Questar.Gui/GladeDialog.cs \
 	Questar.Gui/GladeWindow.cs \
 	Questar.Gui/InventoryView.cs \
@@ -63,8 +65,6 @@ SOURCES = \
 	Questar.Gui/TileSet.cs \
 	Questar.Gui/UIActions.cs \
 	Questar.Gui/WorldView.cs \
-	\
-	Questar.Gui.Animation/DoubleAnimation.cs \
 	\
 	Questar.Gui.Widgets/HitPointsChart.cs \
 	\

@@ -10,7 +10,7 @@ using System;
 
 using Questar.Helpers;
 
-namespace Questar.Gui.Animation
+namespace Questar.Gui
 {
     public class NewFrameEventArgs : EventArgs
     {

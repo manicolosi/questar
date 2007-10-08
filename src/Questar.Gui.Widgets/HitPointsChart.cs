@@ -12,7 +12,6 @@ using System;
 
 using Questar.Actors;
 using Questar.Gui;
-using Questar.Gui.Animation;
 using Questar.Helpers;
 
 using Color = Cairo.Color;
