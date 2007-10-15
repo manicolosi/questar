@@ -23,14 +23,13 @@ namespace Questar.Gui.Widgets
     public class HitPointsChart : DrawingArea
     {
         private HitPoints hit_points;
-        private DoubleAnimation animation;
-        private double angle;
+        private Animation<int> animation;
+        private int angle;
 
         public HitPointsChart (HitPoints hit_points)
         {
             this.hit_points = hit_points;
-            this.animation = null;
-            this.angle = HPToRadians (hit_points);
+            angle = HPToDegrees (hit_points);
         }
 
         public HitPoints HitPoints
@@ -38,9 +37,9 @@ namespace Questar.Gui.Widgets
             get { return hit_points; }
         }
 
-        private double HPToRadians (HitPoints hp)
+        private int HPToDegrees (HitPoints hp)
         {
-            return (hp.AsDouble * 360) * (Math.PI / 180);
+            return (int) (hp.AsDouble * 360);
         }
 
         private void CreatePath (Context context)
@@ -48,9 +47,10 @@ namespace Questar.Gui.Widgets
             Rectangle alloc = base.Allocation;
             Point center = new Point (alloc.Width / 2, alloc.Height / 2);
             double radius = (Math.Min (alloc.Width, alloc.Height) - 10) / 2;
+            double angle_in_radians = angle * (Math.PI / 180);
 
             context.Arc (center.X, center.Y, radius,
-                -angle + (-0.5 * Math.PI), -0.5 * Math.PI);
+                -angle_in_radians + (-0.5 * Math.PI), -0.5 * Math.PI);
             context.LineTo (center.X, center.Y);
             context.ClosePath ();
         }
@@ -95,7 +95,7 @@ namespace Questar.Gui.Widgets
             if (animation.IsRunning)
                 animation.Stop ();
 
-            animation.NewFrame -= AnimationNewFrame;
+            animation.NewFrame -= NewFrame;
             animation.Completed -= delegate { RemoveAnimation (); };
             animation = null;
         }
@@ -105,16 +105,32 @@ namespace Questar.Gui.Widgets
             if (animation != null)
                 RemoveAnimation ();
 
-            animation = new DoubleAnimation (angle, HPToRadians (hit_points));
-            animation.Duration = TimeSpan.FromSeconds (animation.Difference);
-            animation.NewFrame += AnimationNewFrame;
+            int start = angle;
+            int end = HPToDegrees (hit_points);
+            Console.WriteLine (start);
+            Console.WriteLine (end + "\n");
+
+            animation = new Animation<int> (TimeSpan.FromSeconds (1));
+            animation.Transform = delegate (Animation<int> anim, int frame) {
+                double difference = Math.Abs (start - end);
+                double value_per_frame = difference / animation.TotalFrames;
+                int new_val;
+
+                if (start < end)
+                    new_val = (int) (start + (value_per_frame * frame + 1));
+                else
+                    new_val = (int) (start - (value_per_frame * frame + 1));
+
+                return new_val;
+            };
+            animation.NewFrame += NewFrame;
             animation.Completed += delegate { RemoveAnimation (); };
             animation.Start ();
         }
 
-        private void AnimationNewFrame (object sender, NewFrameEventArgs args)
+        private void NewFrame (object sender, NewFrameEventArgs<int> args)
         {
-            angle = args.Value;
+            angle = args.Data;
             base.QueueDraw ();
         }
     }

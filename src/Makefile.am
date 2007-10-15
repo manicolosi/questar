@@ -51,7 +51,6 @@ SOURCES = \
 	\
 	Questar.Gui/Animation.cs \
 	Questar.Gui/AboutDialog.cs \
-	Questar.Gui/DoubleAnimation.cs \
 	Questar.Gui/GladeDialog.cs \
 	Questar.Gui/GladeWindow.cs \
 	Questar.Gui/InventoryView.cs \

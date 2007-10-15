@@ -27,7 +27,7 @@ namespace Questar.Actors
         {
             base.Tile = "hero";
             base.Name = "Hero";
-            base.HitPoints = new HitPoints (100, 400);
+            base.HitPoints = new HitPoints (100, 100);
 
             do {
                 base.Location = MapLocation.GetRandom (Game.Instance.CurrentMap);

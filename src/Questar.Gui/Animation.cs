@@ -18,6 +18,8 @@ namespace Questar.Gui
         public T Data;
     }
 
+    public delegate T TransformFunc<T> (Animation<T> animation, int frame);
+
     public class Animation<T>
     {
         private const int fps = 30;
@@ -25,6 +27,7 @@ namespace Questar.Gui
         private bool is_running;
         private T data;
         private TimeSpan duration;
+        private TransformFunc<T> transform;
 
         public EventHandler<NewFrameEventArgs<T>> NewFrame;
         public EventHandler Completed;
@@ -50,10 +53,20 @@ namespace Questar.Gui
             }
         }
 
+        public TransformFunc<T> Transform
+        {
+            set { transform = value; }
+        }
+
         public T Data
         {
             get { return data; }
             set { data = value; }
+        }
+
+        public int TotalFrames
+        {
+            get { return (int) (fps * duration.TotalSeconds); }
         }
 
         public bool IsRunning
@@ -87,7 +100,7 @@ namespace Questar.Gui
                 EventHelper.Raise (this, NewFrame,
                     delegate (NewFrameEventArgs<T> args) {
                         args.Frame = current_frame;
-                        args.Data = data;
+                        args.Data = transform (this, current_frame);
                     });
 
                 current_frame++;
