@@ -40,7 +40,7 @@ namespace Questar.Actors
                 if (new_current == current)
                     return;
 
-                HitPoints old = (HitPoints) Clone ();
+                HitPoints old = Clone ();
                 current = new_current;
                 OnChanged (old);
             }
@@ -53,7 +53,7 @@ namespace Questar.Actors
                 if (value == max)
                     return;
 
-                HitPoints old = (HitPoints) Clone ();
+                HitPoints old = Clone ();
                 max = value;
                 OnChanged (old);
             }
@@ -89,9 +89,14 @@ namespace Questar.Actors
             return String.Format ("{0}/{1}", Current, Max);
         }
 
-        public object Clone ()
+        public HitPoints Clone ()
         {
-            return base.MemberwiseClone ();
+            return (HitPoints) base.MemberwiseClone ();
+        }
+
+        object ICloneable.Clone ()
+        {
+            return Clone ();
         }
 
         public override int GetHashCode ()
