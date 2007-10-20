@@ -28,7 +28,8 @@ namespace Questar.Actors
             prefix = definition.Prefix;
 
             do {
-                base.Location = MapLocation.GetRandom (Game.Instance.CurrentMap);
+                base.Location = LocationFactory.CreateRandom (
+                    Game.Instance.CurrentMap);
             }
             while (!base.CanMoveTo (base.Location));
         }

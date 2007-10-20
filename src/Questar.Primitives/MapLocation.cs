@@ -16,12 +16,6 @@ namespace Questar.Primitives
 {
     public class MapLocation : Location
     {
-        public static Location GetRandom (Map map)
-        {
-            return new MapLocation (
-                map, Point.GetRandom (map.Width, map.Height));
-        }
-
         private Map map;
         private Point point;
 

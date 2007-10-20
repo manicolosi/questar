@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  MapLocation.cs: A Location used when an Entity is on a Map.
+ *  FactoryLocation.cs: Create Locations.
  *
  *  Copyright (C) 2007
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
@@ -30,6 +30,13 @@ namespace Questar.Primitives
         {
             return new ActorLocation (actor);
         }
+
+        public static Location CreateRandom (Map map)
+        {
+            return new MapLocation (
+                map, Point.GetRandom (map.Width, map.Height));
+        }
+
     }
 }
 
