@@ -26,6 +26,8 @@ namespace Questar.Primitives
 
         public abstract IEnumerable<Location> AdjacentLocations { get; }
         public abstract IEnumerable<Actor> AdjacentActors { get; }
+        public abstract IEnumerable<Location> LocationsInRadius (int radius);
+        public abstract IEnumerable<Actor> ActorsInRadius (int radius);
 
         public abstract Direction DirectionOf (Location loc);
 

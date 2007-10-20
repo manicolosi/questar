@@ -86,12 +86,12 @@ namespace Questar.Primitives
         public override IEnumerable<Location> AdjacentLocations
         {
             get {
-                Location adj_loc;
+                Location loc;
 
                 foreach (Direction direction in Direction.Directions) {
-                    adj_loc = direction.ApplyTo (this);
-                    if (!(adj_loc is NullLocation))
-                        yield return adj_loc;
+                    loc = direction.ApplyTo (this);
+                    if (!(loc is NullLocation))
+                        yield return loc;
                 }
             }
         }
@@ -99,10 +99,36 @@ namespace Questar.Primitives
         public override IEnumerable<Actor> AdjacentActors
         {
             get {
-                foreach (Location location in AdjacentLocations) {
-                    if (location.Actor != null)
-                        yield return location.Actor;
+                foreach (Location loc in AdjacentLocations) {
+                    if (loc.Actor != null)
+                        yield return loc.Actor;
                 }
+            }
+        }
+
+        public override IEnumerable<Location> LocationsInRadius (int radius)
+        {
+            // FIXME: Should be using a circle instead of a rectangle,
+            // but this is quick and easy...
+            int width = (radius * 2) + 1;
+            Point start = new Point (this.Point.X - radius, this.Point.Y - radius);
+            Rectangle rect = new Rectangle (start, width, width);
+
+            Location loc;
+
+            foreach (Point p in rect) {
+                loc = LocationFactory.Create (Map, p);
+
+                if (!(loc is NullLocation))
+                    yield return loc;
+            }
+        }
+
+        public override IEnumerable<Actor> ActorsInRadius (int radius)
+        {
+            foreach (Location loc in LocationsInRadius (radius)) {
+                if (loc.Actor != null)
+                    yield return loc.Actor;
             }
         }
 

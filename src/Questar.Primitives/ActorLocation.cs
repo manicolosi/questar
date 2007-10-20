@@ -69,6 +69,16 @@ namespace Questar.Primitives
             get { return actor.Location.AdjacentActors; }
         }
 
+        public override IEnumerable<Location> LocationsInRadius (int radius)
+        {
+            return actor.Location.LocationsInRadius (radius);
+        }
+
+        public override IEnumerable<Actor> ActorsInRadius (int radius)
+        {
+            return actor.Location.ActorsInRadius (radius);
+        }
+
         public override Direction DirectionOf (Location loc)
         {
             return actor.Location.DirectionOf (loc);

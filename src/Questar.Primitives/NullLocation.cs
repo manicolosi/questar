@@ -61,6 +61,16 @@ namespace Questar.Primitives
             get { return null; }
         }
 
+        public override IEnumerable<Location> LocationsInRadius (int radius)
+        {
+            return null;
+        }
+
+        public override IEnumerable<Actor> ActorsInRadius (int radius)
+        {
+            return null;
+        }
+
         public override Direction DirectionOf (Location loc)
         {
             return Direction.None;

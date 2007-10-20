@@ -98,6 +98,7 @@ SOURCES = \
 	Questar.Primitives/Entity.cs \
 	Questar.Primitives/IEntityFactory.cs \
 	Questar.Primitives/Location.cs \
+	Questar.Primitives/LocationFactory.cs \
 	Questar.Primitives/MapLocation.cs \
 	Questar.Primitives/NullLocation.cs \
 	Questar.Primitives/Point.cs \
