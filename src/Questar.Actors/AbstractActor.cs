@@ -22,6 +22,8 @@ namespace Questar.Actors
         private Inventory inventory;
         private Action action;
 
+        List<Actor> visible_actors = new List<Actor> ();
+
         public HitPoints HitPoints
         {
             get { return hit_points; }
@@ -46,6 +48,33 @@ namespace Questar.Actors
 
         public virtual void TakeTurn ()
         {
+            List<Actor> new_visible_actors = new List<Actor> ();
+
+
+            foreach (Actor actor in Location.ActorsInRadius (5)) {
+                if (actor == this)
+                    continue;
+
+                new_visible_actors.Add (actor);
+
+                if (visible_actors.Contains (actor))
+                    continue;
+
+                // sighted...
+                Console.WriteLine ("{0} sights {1}", this, actor);
+            }
+
+            foreach (Actor actor in visible_actors) {
+                if (new_visible_actors.Contains (actor))
+                    continue;
+
+                // lost sight...
+                Console.WriteLine ("{0} lost sight of {1}", this, actor);
+            }
+
+            visible_actors = new_visible_actors;
+
+            // FIXME: ai.Action.Execute ();
             Action.Execute ();
         }
 
@@ -84,37 +113,9 @@ namespace Questar.Actors
             return CanMoveTo (direction.ApplyTo (base.Location));
         }
 
-        List<Actor> visible_actors = new List<Actor> ();
-
         public void Move (Location new_location)
         {
             Location = new_location;
-            List<Actor> new_visible_actors = new List<Actor> ();
-
-            foreach (Actor actor in Location.ActorsInRadius (5)) {
-                if (actor == this)
-                    continue;
-
-                new_visible_actors.Add (actor);
-            }
-
-            foreach (Actor actor in new_visible_actors) {
-                if (visible_actors.Contains (actor))
-                    continue;
-
-                // sighted...
-                Console.WriteLine ("{0} sights {1}", this, actor);
-            }
-
-            foreach (Actor actor in visible_actors) {
-                if (new_visible_actors.Contains (actor))
-                    continue;
-
-                // lost sight...
-                Console.WriteLine ("{0} lost sight of {1}", this, actor);
-            }
-
-            visible_actors = new_visible_actors;
         }
 
         public int GetAttackDamage (Actor target)
