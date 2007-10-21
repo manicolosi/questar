@@ -17,7 +17,8 @@ namespace Questar.Actors
     {
         HitPoints HitPoints { get; }
         Inventory Inventory { get; }
-        Action Action { get; }
+
+        void TakeTurn ();
 
         bool IsAlive { get; }
         bool IsDead { get; }

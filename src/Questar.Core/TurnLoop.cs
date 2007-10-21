@@ -60,7 +60,7 @@ namespace Questar.Core
             if (!CurrentActor.IsTurnReady)
                 return false;
 
-            CurrentActor.Action.Execute ();
+            CurrentActor.TakeTurn ();
             turn_index++;
 
             if (turn_index >= actors.Count) {

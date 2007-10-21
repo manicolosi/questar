@@ -20,7 +20,6 @@ namespace Questar.Actors
 {
     public class Hero : AbstractActor
     {
-        private Action action = null;
         private DateTime last_action;
 
         public Hero ()
@@ -43,17 +42,14 @@ namespace Questar.Actors
         public override bool IsTurnReady
         {
             get {
-                return action != null;
+                return base.Action != null;
             }
         }
 
-        public override Action Action
+        public override void TakeTurn ()
         {
-            get {
-                Action current_action = action;
-                action = null;
-                return current_action;
-            }
+            base.TakeTurn ();
+            base.Action = null;
         }
 
         private void SetupHandlers ()
@@ -148,10 +144,10 @@ namespace Questar.Actors
             if ((int) (DateTime.Now - last_action).Milliseconds < 100)
                 return;
 
-            if (this.action != null)
+            if (base.Action != null)
                 return;
 
-            this.action = action;
+            base.Action = action;
             last_action = DateTime.Now;
 
             Game.Instance.Start ();

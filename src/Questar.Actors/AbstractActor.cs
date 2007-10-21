@@ -20,6 +20,7 @@ namespace Questar.Actors
     {
         private HitPoints hit_points;
         private Inventory inventory;
+        private Action action;
 
         public HitPoints HitPoints
         {
@@ -38,7 +39,15 @@ namespace Questar.Actors
             protected set { inventory = value; }
         }
 
-        public abstract Action Action { get; }
+        protected Action Action {
+            get { return action; }
+            set { action = value; }
+        }
+
+        public virtual void TakeTurn ()
+        {
+            Action.Execute ();
+        }
 
         public virtual bool IsAlive
         {
