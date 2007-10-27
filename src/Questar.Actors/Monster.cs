@@ -7,6 +7,7 @@
 
 using System;
 
+using Questar.Actors.AI;
 using Questar.Actors.Actions;
 using Questar.Core;
 using Questar.Primitives;
@@ -20,6 +21,8 @@ namespace Questar.Actors
 
         public Monster (MonsterDefinition definition)
         {
+            base.AI = new StupidAI (this);
+
             base.Name = definition.Name;
             base.Tile = definition.TileId;
             base.HitPoints = new HitPoints (definition.MaxHP);

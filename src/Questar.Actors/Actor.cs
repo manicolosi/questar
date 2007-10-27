@@ -15,8 +15,8 @@ namespace Questar.Actors
 {
     public interface Actor : Entity
     {
-        event EventHandler<ActorSightedEventArgs> ActorSighted;
-        event EventHandler<ActorLostSightEventArgs> ActorLostSight;
+        event EventHandler<ActorEventArgs> ActorSighted;
+        event EventHandler<ActorEventArgs> ActorLostSight;
 
         HitPoints HitPoints { get; }
         Inventory Inventory { get; }

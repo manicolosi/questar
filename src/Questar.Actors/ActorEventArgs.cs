@@ -13,13 +13,5 @@ namespace Questar.Actors
     {
         public Actor Actor;
     }
-
-    public class ActorSightedEventArgs : ActorEventArgs
-    {
-    }
-
-    public class ActorLostSightEventArgs : ActorEventArgs
-    {
-    }
 }
 

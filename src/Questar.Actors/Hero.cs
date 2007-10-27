@@ -48,7 +48,7 @@ namespace Questar.Actors
 
         public override void TakeTurn ()
         {
-            base.TakeTurn ();
+            base.Action.Execute ();
             base.Action = null;
         }
 

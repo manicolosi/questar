@@ -8,6 +8,7 @@
 using System;
 using System.Collections.Generic;
 
+using Questar.Actors.AI;
 using Questar.Actors.Actions;
 using Questar.Base;
 using Questar.Helpers;
@@ -18,14 +19,21 @@ namespace Questar.Actors
 {
     public abstract class AbstractActor : AbstractEntity, Actor
     {
-        public event EventHandler<ActorSightedEventArgs> ActorSighted;
-        public event EventHandler<ActorLostSightEventArgs> ActorLostSight;
+        public event EventHandler<ActorEventArgs> ActorSighted;
+        public event EventHandler<ActorEventArgs> ActorLostSight;
 
         private HitPoints hit_points;
         private Inventory inventory;
         private Action action;
+        private ArtificialIntelligence ai;
 
         List<Actor> visible_actors = new List<Actor> ();
+
+        public ArtificialIntelligence AI
+        {
+            get { return ai; }
+            protected set { ai = value; }
+        }
 
         public HitPoints HitPoints
         {
@@ -53,8 +61,7 @@ namespace Questar.Actors
         {
             CheckSight ();
 
-            // FIXME: ai.Action.Execute ();
-            Action.Execute ();
+            ai.Action.Execute ();
         }
 
         // TODO: This will later check for Items and other important
@@ -74,7 +81,7 @@ namespace Questar.Actors
                     continue;
 
                 EventHelper.Raise (this, ActorSighted,
-                    delegate (ActorSightedEventArgs args) {
+                    delegate (ActorEventArgs args) {
                         args.Actor = actor;
                     });
             }
@@ -84,7 +91,7 @@ namespace Questar.Actors
                     continue;
 
                 EventHelper.Raise (this, ActorLostSight,
-                    delegate (ActorLostSightEventArgs args) {
+                    delegate (ActorEventArgs args) {
                         args.Actor = actor;
                     });
             }
