@@ -20,9 +20,20 @@ namespace Questar.Actors.Actions
             this.direction = direction;
         }
 
+        public MoveAction (Actor actor) : base (actor)
+        {
+            this.direction = Direction.None;
+        }
+
+        public Direction Direction
+        {
+            get { return direction; }
+            set { direction = value; }
+        }
+
         public override void Execute ()
         {
-            Actor.Move (direction.ApplyTo (Actor.Location));
+            base.Actor.Move (direction.ApplyTo (base.Actor.Location));
         }
     }
 }

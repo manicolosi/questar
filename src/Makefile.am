@@ -36,6 +36,7 @@ SOURCES = \
 	Questar.Actors.Actions/DropAction.cs \
 	Questar.Actors.Actions/ImpossibleActionException.cs \
 	Questar.Actors.Actions/MoveAction.cs \
+	Questar.Actors.Actions/MoveTowardsTargetAction.cs \
 	Questar.Actors.Actions/PickUpAction.cs \
 	Questar.Actors.Actions/RandomMoveAction.cs \
 	\
