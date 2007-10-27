@@ -51,15 +51,26 @@ namespace Questar.Actors
 
         public virtual void TakeTurn ()
         {
+            CheckSight ();
+
+            // FIXME: ai.Action.Execute ();
+            Action.Execute ();
+        }
+
+        // TODO: This will later check for Items and other important
+        // things.
+        // TODO: This could be clearer...
+        public void CheckSight ()
+        {
             List<Actor> new_visible_actors = new List<Actor> ();
 
             foreach (Actor actor in Location.ActorsInRadius (5)) {
-                if (actor == this)
+                if (actor == this) // Skip this actor...
                     continue;
 
                 new_visible_actors.Add (actor);
 
-                if (visible_actors.Contains (actor))
+                if (visible_actors.Contains (actor)) // Skip actors we already see
                     continue;
 
                 EventHelper.Raise (this, ActorSighted,
@@ -69,7 +80,7 @@ namespace Questar.Actors
             }
 
             foreach (Actor actor in visible_actors) {
-                if (new_visible_actors.Contains (actor))
+                if (new_visible_actors.Contains (actor)) // Skip actor we still see
                     continue;
 
                 EventHelper.Raise (this, ActorLostSight,
@@ -79,9 +90,6 @@ namespace Questar.Actors
             }
 
             visible_actors = new_visible_actors;
-
-            // FIXME: ai.Action.Execute ();
-            Action.Execute ();
         }
 
         public virtual bool IsAlive
