@@ -18,6 +18,9 @@ namespace Questar.Actors
 {
     public abstract class AbstractActor : AbstractEntity, Actor
     {
+        public event EventHandler<ActorSightedEventArgs> ActorSighted;
+        public event EventHandler<ActorLostSightEventArgs> ActorLostSight;
+
         private HitPoints hit_points;
         private Inventory inventory;
         private Action action;
@@ -50,7 +53,6 @@ namespace Questar.Actors
         {
             List<Actor> new_visible_actors = new List<Actor> ();
 
-
             foreach (Actor actor in Location.ActorsInRadius (5)) {
                 if (actor == this)
                     continue;
@@ -60,16 +62,20 @@ namespace Questar.Actors
                 if (visible_actors.Contains (actor))
                     continue;
 
-                // sighted...
-                Console.WriteLine ("{0} sights {1}", this, actor);
+                EventHelper.Raise (this, ActorSighted,
+                    delegate (ActorSightedEventArgs args) {
+                        args.Actor = actor;
+                    });
             }
 
             foreach (Actor actor in visible_actors) {
                 if (new_visible_actors.Contains (actor))
                     continue;
 
-                // lost sight...
-                Console.WriteLine ("{0} lost sight of {1}", this, actor);
+                EventHelper.Raise (this, ActorLostSight,
+                    delegate (ActorLostSightEventArgs args) {
+                        args.Actor = actor;
+                    });
             }
 
             visible_actors = new_visible_actors;
