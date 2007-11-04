@@ -61,6 +61,7 @@ SOURCES = \
 	Questar.Gui/InventoryView.cs \
 	Questar.Gui/MainWindow.cs \
 	Questar.Gui/MessageView.cs \
+	Questar.Gui/PickupMessageWidget.cs \
 	Questar.Gui/PreferenceDialog.cs \
 	Questar.Gui/StartDialog.cs \
 	Questar.Gui/TangoColors.cs \

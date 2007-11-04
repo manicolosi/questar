@@ -24,8 +24,8 @@ namespace Questar.Core
         public event EventHandler<TurnLoop.EventArgs> NewRound;
 
         private List<Actor> actors = new List<Actor> ();
-        private int round = 0;
-        private int turn_index = 0;
+        private int round = -1;
+        private int turn_index = 10000;
 
         public TurnLoop ()
         {
@@ -54,6 +54,11 @@ namespace Questar.Core
         // Returns false when the ITurnLoopDriver should stop.
         public bool NextTurn ()
         {
+            if (turn_index >= actors.Count) {
+                turn_index = 0;
+                Round++;
+            }
+
             if (actors.Count == 0)
                 return false;
 
@@ -62,11 +67,6 @@ namespace Questar.Core
 
             CurrentActor.TakeTurn ();
             turn_index++;
-
-            if (turn_index >= actors.Count) {
-                turn_index = 0;
-                Round++;
-            }
 
             return true;
         }
