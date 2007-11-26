@@ -60,6 +60,9 @@ namespace Questar.Items
 
 		public override Item Create (string item_id)
 		{
+            if (item_id == null)
+                throw new ArgumentNullException ("item_id");
+
 			if (!definitions.ContainsKey (item_id))
 				throw new ApplicationException (String.Format (
 				    "ItemFactory doesn't contain an Item with id \"{0}\"",
