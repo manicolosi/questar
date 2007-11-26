@@ -11,8 +11,8 @@ NUNIT_DLL = $(NUNIT_PATH)/nunit.framework.dll
 NUNIT_CONSOLE = $(NUNIT_PATH)/nunit-console.exe
 
 SOURCES = \
-	$(srcdir)/Questar.UnitTests.Primitives/LocationFixture.cs \
 	$(srcdir)/Questar.UnitTests.Items/ItemFactoryFixture.cs \
+	#$(srcdir)/Questar.UnitTests.Primitives/LocationFixture.cs \
 	#$(srcdir)/TestActor.cs \
 	#$(srcdir)/TestGame.cs \
 	#$(srcdir)/TestHitPoints.cs \
