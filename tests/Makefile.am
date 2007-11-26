@@ -6,15 +6,13 @@
 ################################################################################
 
 ASSEMBLY = Questar.UnitTests.dll
-NUNIT_PATH = /home/mark/source/nunit-bin/bin
+NUNIT_PATH = /home/mark/source/nunit-src/build/linux/mono/2.0/debug
 NUNIT_DLL = $(NUNIT_PATH)/nunit.framework.dll
 NUNIT_CONSOLE = $(NUNIT_PATH)/nunit-console.exe
 
 SOURCES = \
 	$(srcdir)/Questar.UnitTests.Primitives/LocationFixture.cs \
 	$(srcdir)/Questar.UnitTests.Items/ItemFactoryFixture.cs \
-	$(srcdir)/Questar.MockObjects/MockActor.cs \
-	$(srcdir)/TestWorld.cs \
 	#$(srcdir)/TestActor.cs \
 	#$(srcdir)/TestGame.cs \
 	#$(srcdir)/TestHitPoints.cs \
@@ -46,7 +44,7 @@ $(ASSEMBLY): $(SOURCES)
 all: $(ASSEMBLY)
 
 run-tests: all
-	MONO_PATH=../src:$(NUNIT_PATH) $(NUNIT_CONSOLE) -nologo -labels $(ASSEMBLY)
+	MONO_PATH=../src:$(NUNIT_PATH) mono $(NUNIT_CONSOLE) -nologo -labels $(ASSEMBLY)
 
 EXTRA_DIST = \
 	$(SOURCES)
