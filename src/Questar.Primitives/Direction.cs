@@ -8,6 +8,7 @@
 using System;
 using System.Collections.Generic;
 
+using Questar.Extensions;
 using Questar.Maps;
 
 namespace Questar.Primitives
@@ -32,9 +33,6 @@ namespace Questar.Primitives
             new Direction ("west", -1, 0);
         public static readonly Direction NorthWest =
             new Direction ("northwest", -1, -1);
-
-        private static List<Direction> directions =
-            new List<Direction> (All);
 
         public static IEnumerable<Direction> All
         {
@@ -62,9 +60,7 @@ namespace Questar.Primitives
 
         public static Direction GetRandom (Random random)
         {
-            int index = random.Next (directions.Count);
-
-            return directions[index];
+            return All.Random (random);
         }
 
         private string name;

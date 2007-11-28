@@ -40,6 +40,22 @@ namespace Questar.Extensions
 
             return default (T);
         }
+
+        private static Random random;
+
+        public static T Random<T> (this IEnumerable<T> enumerable)
+        {
+            if (random == null)
+                random = new Random ();
+
+            return Random (enumerable, random);
+        }
+
+        public static T Random<T> (this IEnumerable<T> enumerable, Random random)
+        {
+            int i = random.Next (Count (enumerable));
+            return AsList (enumerable)[i];
+        }
     }
 }
 
