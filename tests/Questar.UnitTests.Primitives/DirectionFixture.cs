@@ -35,6 +35,26 @@ namespace Questar.UnitTests.Primitives
         {
             Assert.That (Direction.All.AsList (), Has.No.Member (Direction.None));
         }
+
+        [Test]
+        public void GetRandomIsReallyRandom ()
+        {
+            List<Direction> random_dirs = new List<Direction> {
+                Direction.GetRandom (),
+                Direction.GetRandom (),
+                Direction.GetRandom (),
+                Direction.GetRandom ()
+            };
+
+            Assert.That (random_dirs, Has.Some.Not.EqualTo (random_dirs[0]));
+        }
+
+        [Test]
+        public void GetRandomWithRandomSeed ()
+        {
+            Direction dir = Direction.GetRandom (new Random (82488));
+            Assert.That (Direction.West, Is.EqualTo (dir));
+        }
     }
 }
 

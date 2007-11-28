@@ -50,9 +50,18 @@ namespace Questar.Primitives
             }
         }
 
+        private static Random random;
+
         public static Direction GetRandom ()
         {
-            Random random = new Random ();
+            if (random == null)
+                random = new Random ();
+
+            return GetRandom (random);
+        }
+
+        public static Direction GetRandom (Random random)
+        {
             int index = random.Next (directions.Count);
 
             return directions[index];
