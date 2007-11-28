@@ -32,6 +32,14 @@ namespace Questar.Extensions
         {
             return new List<T> (enumerable);
         }
+
+        public static T First<T> (this IEnumerable<T> enumerable)
+        {
+            foreach (T t in enumerable)
+                return t;
+
+            return default (T);
+        }
     }
 }
 

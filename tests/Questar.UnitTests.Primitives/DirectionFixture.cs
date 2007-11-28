@@ -46,7 +46,7 @@ namespace Questar.UnitTests.Primitives
                 Direction.GetRandom ()
             };
 
-            Assert.That (random_dirs, Has.Some.Not.EqualTo (random_dirs[0]));
+            Assert.That (random_dirs, Has.Some.Not.EqualTo (random_dirs.First ()));
         }
 
         [Test]
