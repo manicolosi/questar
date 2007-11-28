@@ -28,6 +28,14 @@ namespace Questar.UnitTests.Primitives
             // extension method.
             Assert.AreEqual (8, new List<Direction> (Direction.Directions).Count);
         }
+
+        [Test]
+        public void DirectionsDoesNotContainNoneDirection ()
+        {
+            // FIXME: It'd be nice if this worked on IEnumerable<T>
+            // types instead of just ICollection<T> types.
+            CollectionAssert.DoesNotContain ( new List<Direction> (Direction.Directions), Direction.None);
+        }
     }
 }
 
