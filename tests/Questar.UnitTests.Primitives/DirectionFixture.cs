@@ -33,7 +33,7 @@ namespace Questar.UnitTests.Primitives
         [Test]
         public void AllDirectionsDoesNotIncludeNone ()
         {
-            Assert.That (new List<Direction> (Direction.All), Has.No.Member (Direction.None));
+            Assert.That (Direction.All.AsList (), Has.No.Member (Direction.None));
         }
     }
 }

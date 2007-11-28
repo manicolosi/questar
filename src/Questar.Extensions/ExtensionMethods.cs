@@ -27,6 +27,11 @@ namespace Questar.Extensions
 
             return count;
         }
+
+        public static List<T> AsList<T> (this IEnumerable<T> enumerable)
+        {
+            return new List<T> (enumerable);
+        }
     }
 }
 
