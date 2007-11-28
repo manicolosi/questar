@@ -8,6 +8,8 @@
 using System;
 using System.Collections.Generic;
 using NUnit.Framework;
+using NUnit.Framework.Constraints;
+using NUnit.Framework.SyntaxHelpers;
 
 using Questar.Primitives;
 
@@ -24,17 +26,13 @@ namespace Questar.UnitTests.Primitives
         [Test]
         public void EightDirectionsInAll ()
         {
-            // FIXME: This would be prettier with the Count Linq
-            // extension method.
-            Assert.AreEqual (8, new List<Direction> (Direction.All).Count);
+            Assert.That (new List<Direction> (Direction.All).Count, Is.EqualTo (8));
         }
 
         [Test]
         public void AllDirectionsDoesNotIncludeNone ()
         {
-            // FIXME: It'd be nice if this worked on IEnumerable<T>
-            // types instead of just ICollection<T> types.
-            CollectionAssert.DoesNotContain (new List<Direction> (Direction.All), Direction.None);
+            Assert.That (new List<Direction> (Direction.All), Has.No.Member (Direction.None));
         }
     }
 }
