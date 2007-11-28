@@ -13,6 +13,7 @@ NUNIT_CONSOLE = $(NUNIT_PATH)/nunit-console.exe
 SOURCES = \
 	$(srcdir)/Questar.UnitTests.Primitives/DirectionFixture.cs \
 	$(srcdir)/Questar.UnitTests.Items/ItemFactoryFixture.cs \
+	$(srcdir)/../src/Questar.Extensions/ExtensionMethods.cs \
 	#$(srcdir)/Questar.UnitTests.Primitives/LocationFixture.cs \
 	#$(srcdir)/TestActor.cs \
 	#$(srcdir)/TestGame.cs \
@@ -37,10 +38,11 @@ ASSEMBLIES = \
 	-pkg:glib-sharp-2.0 \
 	-pkg:gtk-sharp-2.0 \
 	-r:$(NUNIT_DLL) \
-	-r:../src/Questar.exe
+	-r:../src/Questar.exe \
+	-r:System.Core
 
 $(ASSEMBLY): $(SOURCES) 
-	$(MCS) -target:library -out:$@ $(SOURCES) $(ASSEMBLIES) 
+	$(MCS) -langversion:linq -target:library -out:$@ $(SOURCES) $(ASSEMBLIES) 
 
 all: $(ASSEMBLY)
 

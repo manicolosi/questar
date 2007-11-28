@@ -11,6 +11,7 @@ using NUnit.Framework;
 using NUnit.Framework.Constraints;
 using NUnit.Framework.SyntaxHelpers;
 
+using Questar.Extensions;
 using Questar.Primitives;
 
 namespace Questar.UnitTests.Primitives
@@ -26,7 +27,7 @@ namespace Questar.UnitTests.Primitives
         [Test]
         public void EightDirectionsInAll ()
         {
-            Assert.That (new List<Direction> (Direction.All).Count, Is.EqualTo (8));
+            Assert.That (Direction.All.Count (), Is.EqualTo (8));
         }
 
         [Test]

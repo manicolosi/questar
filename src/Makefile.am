@@ -54,6 +54,8 @@ SOURCES = \
 	Questar.Core/IdleTurnLoopDriver.cs \
 	Questar.Core/TurnLoop.cs \
 	\
+	Questar.Extensions/ExtensionMethods.cs \
+	\
 	Questar.Gui/Animation.cs \
 	Questar.Gui/AboutDialog.cs \
 	Questar.Gui/GladeDialog.cs \
