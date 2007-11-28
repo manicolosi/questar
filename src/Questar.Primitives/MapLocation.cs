@@ -82,7 +82,7 @@ namespace Questar.Primitives
             get {
                 Location loc;
 
-                foreach (Direction direction in Direction.Directions) {
+                foreach (Direction direction in Direction.All) {
                     loc = direction.ApplyTo (this);
                     if (!(loc is NullLocation))
                         yield return loc;

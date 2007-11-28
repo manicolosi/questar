@@ -34,9 +34,9 @@ namespace Questar.Primitives
             new Direction ("northwest", -1, -1);
 
         private static List<Direction> directions =
-            new List<Direction> (Directions);
+            new List<Direction> (All);
 
-        public static IEnumerable<Direction> Directions
+        public static IEnumerable<Direction> All
         {
             get {
                 yield return North;

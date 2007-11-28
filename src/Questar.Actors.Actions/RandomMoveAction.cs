@@ -41,7 +41,7 @@ namespace Questar.Actors.Actions
         {
             List<Direction> potentials = new List<Direction> ();
 
-            foreach (Direction direction in Direction.Directions) {
+            foreach (Direction direction in Direction.All) {
                 if (Actor.CanMoveIn (direction))
                     potentials.Add (direction);
             }

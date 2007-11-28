@@ -22,19 +22,19 @@ namespace Questar.UnitTests.Primitives
         }
 
         [Test]
-        public void EightDirections ()
+        public void EightDirectionsInAll ()
         {
             // FIXME: This would be prettier with the Count Linq
             // extension method.
-            Assert.AreEqual (8, new List<Direction> (Direction.Directions).Count);
+            Assert.AreEqual (8, new List<Direction> (Direction.All).Count);
         }
 
         [Test]
-        public void DirectionsDoesNotContainNoneDirection ()
+        public void AllDirectionsDoesNotIncludeNone ()
         {
             // FIXME: It'd be nice if this worked on IEnumerable<T>
             // types instead of just ICollection<T> types.
-            CollectionAssert.DoesNotContain ( new List<Direction> (Direction.Directions), Direction.None);
+            CollectionAssert.DoesNotContain (new List<Direction> (Direction.All), Direction.None);
         }
     }
 }

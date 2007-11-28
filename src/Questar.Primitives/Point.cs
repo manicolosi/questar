@@ -36,7 +36,7 @@ namespace Questar.Primitives
             delta.X = Math.Max (Math.Min (delta.X, 1), -1);
             delta.Y = Math.Max (Math.Min (delta.Y, 1), -1);
 
-            foreach (Direction direction in Direction.Directions) {
+            foreach (Direction direction in Direction.All) {
                 if (direction.X == delta.X && direction.Y == delta.Y)
                     return direction;
             }
