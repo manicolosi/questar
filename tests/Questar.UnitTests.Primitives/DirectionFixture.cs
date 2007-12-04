@@ -25,34 +25,48 @@ namespace Questar.UnitTests.Primitives
         }
 
         [Test]
+        public void CheckDirectionNames ()
+        {
+            Assert.That (Direction.None.Name,      Is.EqualTo ("none"));
+            Assert.That (Direction.North.Name,     Is.EqualTo ("north"));
+            Assert.That (Direction.NorthEast.Name, Is.EqualTo ("northeast"));
+            Assert.That (Direction.East.Name,      Is.EqualTo ("east"));
+            Assert.That (Direction.SouthEast.Name, Is.EqualTo ("southeast"));
+            Assert.That (Direction.South.Name,     Is.EqualTo ("south"));
+            Assert.That (Direction.SouthWest.Name, Is.EqualTo ("southwest"));
+            Assert.That (Direction.West.Name,      Is.EqualTo ("west"));
+            Assert.That (Direction.NorthWest.Name, Is.EqualTo ("northwest"));
+        }
+
+        [Test]
         public void CheckDirectionDeltas ()
         {
-            Assert.That (Direction.None.Dx, Is.EqualTo (0));
-            Assert.That (Direction.None.Dy, Is.EqualTo (0));
+            Assert.That (Direction.None.DeltaX, Is.EqualTo (0));
+            Assert.That (Direction.None.DeltaY, Is.EqualTo (0));
 
-            Assert.That (Direction.North.Dx, Is.EqualTo (0));
-            Assert.That (Direction.North.Dy, Is.EqualTo (-1));
+            Assert.That (Direction.North.DeltaX, Is.EqualTo (0));
+            Assert.That (Direction.North.DeltaY, Is.EqualTo (-1));
 
-            Assert.That (Direction.NorthEast.Dx, Is.EqualTo (1));
-            Assert.That (Direction.NorthEast.Dy, Is.EqualTo (-1));
+            Assert.That (Direction.NorthEast.DeltaX, Is.EqualTo (1));
+            Assert.That (Direction.NorthEast.DeltaY, Is.EqualTo (-1));
 
-            Assert.That (Direction.East.Dx, Is.EqualTo (1));
-            Assert.That (Direction.East.Dy, Is.EqualTo (0));
+            Assert.That (Direction.East.DeltaX, Is.EqualTo (1));
+            Assert.That (Direction.East.DeltaY, Is.EqualTo (0));
 
-            Assert.That (Direction.SouthEast.Dx, Is.EqualTo (1));
-            Assert.That (Direction.SouthEast.Dy, Is.EqualTo (1));
+            Assert.That (Direction.SouthEast.DeltaX, Is.EqualTo (1));
+            Assert.That (Direction.SouthEast.DeltaY, Is.EqualTo (1));
 
-            Assert.That (Direction.South.Dx, Is.EqualTo (0));
-            Assert.That (Direction.South.Dy, Is.EqualTo (1));
+            Assert.That (Direction.South.DeltaX, Is.EqualTo (0));
+            Assert.That (Direction.South.DeltaY, Is.EqualTo (1));
 
-            Assert.That (Direction.SouthWest.Dx, Is.EqualTo (-1));
-            Assert.That (Direction.SouthWest.Dy, Is.EqualTo (1));
+            Assert.That (Direction.SouthWest.DeltaX, Is.EqualTo (-1));
+            Assert.That (Direction.SouthWest.DeltaY, Is.EqualTo (1));
 
-            Assert.That (Direction.West.Dx, Is.EqualTo (-1));
-            Assert.That (Direction.West.Dy, Is.EqualTo (0));
+            Assert.That (Direction.West.DeltaX, Is.EqualTo (-1));
+            Assert.That (Direction.West.DeltaY, Is.EqualTo (0));
 
-            Assert.That (Direction.NorthWest.Dx, Is.EqualTo (-1));
-            Assert.That (Direction.NorthWest.Dy, Is.EqualTo (-1));
+            Assert.That (Direction.NorthWest.DeltaX, Is.EqualTo (-1));
+            Assert.That (Direction.NorthWest.DeltaY, Is.EqualTo (-1));
         }
 
         [Test]
