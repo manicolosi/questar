@@ -25,6 +25,37 @@ namespace Questar.UnitTests.Primitives
         }
 
         [Test]
+        public void CheckDirectionDeltas ()
+        {
+            Assert.That (Direction.None.Dx, Is.EqualTo (0));
+            Assert.That (Direction.None.Dy, Is.EqualTo (0));
+
+            Assert.That (Direction.North.Dx, Is.EqualTo (0));
+            Assert.That (Direction.North.Dy, Is.EqualTo (-1));
+
+            Assert.That (Direction.NorthEast.Dx, Is.EqualTo (1));
+            Assert.That (Direction.NorthEast.Dy, Is.EqualTo (-1));
+
+            Assert.That (Direction.East.Dx, Is.EqualTo (1));
+            Assert.That (Direction.East.Dy, Is.EqualTo (0));
+
+            Assert.That (Direction.SouthEast.Dx, Is.EqualTo (1));
+            Assert.That (Direction.SouthEast.Dy, Is.EqualTo (1));
+
+            Assert.That (Direction.South.Dx, Is.EqualTo (0));
+            Assert.That (Direction.South.Dy, Is.EqualTo (1));
+
+            Assert.That (Direction.SouthWest.Dx, Is.EqualTo (-1));
+            Assert.That (Direction.SouthWest.Dy, Is.EqualTo (1));
+
+            Assert.That (Direction.West.Dx, Is.EqualTo (-1));
+            Assert.That (Direction.West.Dy, Is.EqualTo (0));
+
+            Assert.That (Direction.NorthWest.Dx, Is.EqualTo (-1));
+            Assert.That (Direction.NorthWest.Dy, Is.EqualTo (-1));
+        }
+
+        [Test]
         public void EightDirectionsInAll ()
         {
             Assert.That (Direction.All.Count (), Is.EqualTo (8));
