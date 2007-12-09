@@ -63,9 +63,9 @@ namespace Questar.Primitives
             return All.Random (random);
         }
 
-        private string name;
-        private int dx;
-        private int dy;
+        private readonly string name;
+        private readonly int dx;
+        private readonly int dy;
 
         private Direction (string name, int dx, int dy)
         {
