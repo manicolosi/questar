@@ -69,34 +69,27 @@ namespace Questar.Primitives
 
         private Direction (string name, int dx, int dy)
         {
-            //dx.CheckInRange (-1, 1);
-            //dy.CheckInRange (-1, 1);
+            dx.CheckInRange ("dx", -1, 1);
+            dy.CheckInRange ("dy", -1, 1);
 
-            if (dx > 1 || dx < -1 || dy > 1 || dy < -1)
-                throw new ArgumentException (
-                    "Arguments x and y must be between -1 and 1.");
-
-            Name = name;
-            DeltaX = dx;
-            DeltaY = dy;
+            this.name = name;
+            this.dx = dx;
+            this.dy = dy;
         }
 
         public int DeltaX
         {
             get { return dx; }
-            private set { dx = value; }
         }
 
         public int DeltaY
         {
             get { return dy; }
-            private set { dy = value; }
         }
 
         public string Name
         {
             get { return name; }
-            private set { name = value; }
         }
 
         public Point ApplyTo (Point p)

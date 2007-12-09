@@ -54,6 +54,7 @@ SOURCES = \
 	Questar.Core/IdleTurnLoopDriver.cs \
 	Questar.Core/TurnLoop.cs \
 	\
+	Questar.Extensions/CheckExtensions.cs \
 	Questar.Extensions/ExtensionMethods.cs \
 	\
 	Questar.Gui/Animation.cs \
