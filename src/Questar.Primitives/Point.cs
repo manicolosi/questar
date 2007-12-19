@@ -7,6 +7,8 @@
 
 using System;
 
+using Questar.Extensions;
+
 namespace Questar.Primitives
 {
     // NOTE: This is meant to only represent grids inside a Map.
@@ -20,6 +22,15 @@ namespace Questar.Primitives
             get { return new Point (0, 0); }
         }
 
+        private static Random random;
+        public static Point GetRandom (int width, int height)
+        {
+            if (random == null)
+                random = new Random ();
+
+            return new Point (random.Next (width), random.Next (height));
+        }
+
         public int X;
         public int Y;
 
@@ -29,27 +40,20 @@ namespace Questar.Primitives
             Y = y;
         }
 
+        // NOTE: Should this go in Direction? I think a nice policy for
+        // these sort of things could be if it returns Foo it should be
+        // in Foo...
         public Direction DirectionOf (Point target)
         {
             Point delta = target - this;
 
-            delta.X = Math.Max (Math.Min (delta.X, 1), -1);
-            delta.Y = Math.Max (Math.Min (delta.Y, 1), -1);
+            int dx = Math.Max (Math.Min (delta.X, 1), -1);
+            int dy = Math.Max (Math.Min (delta.Y, 1), -1);
 
-            foreach (Direction direction in Direction.All) {
-                if (direction.DeltaX == delta.X && direction.DeltaY == delta.Y)
-                    return direction;
-            }
-
-            return Direction.None;
-        }
-
-        private static Random random;
-        public static Point GetRandom (int width, int height)
-        {
-            if (random == null)
-                random = new Random ();
-            return new Point (random.Next (width), random.Next (height));
+            return Direction.All
+                .Where (d => d.DeltaX == dx && d.DeltaY == dy)
+                .DefaultIfEmpty (Direction.None)
+                .First ();
         }
 
         public override string ToString ()

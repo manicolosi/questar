@@ -12,6 +12,15 @@ using System.Collections.Generic;
 
 namespace Questar.Extensions
 {
+#pragma warning disable 0436
+
+    // I get warning that this conflicts with an imported type (part
+    // of LINQ), but if a leave this definition out it can't find it.
+    // Probably will be fixed soon.
+    public delegate T Func<A0, T> (A0 arg0);
+
+#pragma warning restore 0436
+
     public static class ExtensionMethods
     {
         public static int Count<T> (this IEnumerable<T> enumerable)
@@ -39,6 +48,26 @@ namespace Questar.Extensions
                 return t;
 
             return default (T);
+        }
+
+        public static IEnumerable<T> Where<T> (this IEnumerable<T> enumerable,
+            Func<T, bool> filter)
+        {
+            foreach (T t in enumerable)
+                if (filter (t))
+                    yield return t;
+        }
+
+        public static IEnumerable<T> DefaultIfEmpty<T> (
+            this IEnumerable<T> enumerable, T default_value)
+        {
+            if (enumerable.Count () == 0) {
+                yield return default_value;
+                yield break;
+            }
+
+            foreach (T t in enumerable)
+                yield return t;
         }
 
         private static Random random;
