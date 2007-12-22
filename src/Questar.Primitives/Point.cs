@@ -50,10 +50,7 @@ namespace Questar.Primitives
             int dx = delta.X.Clamp (-1, 1);
             int dy = delta.Y.Clamp (-1, 1);
 
-            return Direction.All
-                .Where (d => d.DeltaX == dx && d.DeltaY == dy)
-                .DefaultIfEmpty (Direction.None)
-                .First ();
+            return Direction.GetWithDeltas (dx, dy);
         }
 
         public override string ToString ()

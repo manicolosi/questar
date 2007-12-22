@@ -48,6 +48,26 @@ namespace Questar.Primitives
             }
         }
 
+        public static IEnumerable<Direction> AllIncludingNone
+        {
+            get {
+                yield return Direction.None;
+
+                foreach (Direction d in All)
+                    yield return d;
+            }
+        }
+
+        public static Direction GetWithDeltas (int dx, int dy)
+        {
+            dx.CheckInRange ("dx", -1, 1);
+            dy.CheckInRange ("dy", -1, 1);
+
+            return Direction.AllIncludingNone
+                .Where (d => d.DeltaX == dx && d.DeltaY == dy)
+                .First ();
+        }
+
         private static Random random;
 
         public static Direction GetRandom ()

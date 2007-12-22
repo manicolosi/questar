@@ -76,9 +76,21 @@ namespace Questar.UnitTests.Primitives
         }
 
         [Test]
-        public void AllDirectionsDoesNotIncludeNone ()
+        public void AllDoesNotIncludeNone ()
         {
             Assert.That (Direction.All.AsList (), Has.No.Member (Direction.None));
+        }
+
+        [Test]
+        public void NineDirectionsInAllIncludingNone ()
+        {
+            Assert.That (Direction.AllIncludingNone.Count (), Is.EqualTo (9));
+        }
+
+        [Test]
+        public void AllIncludingNoneDoesIncludeNone ()
+        {
+            Assert.That (Direction.AllIncludingNone.AsList (), Has.Member (Direction.None));
         }
 
         [Test]
@@ -99,6 +111,20 @@ namespace Questar.UnitTests.Primitives
         {
             Direction dir = Direction.GetRandom (new Random (82488));
             Assert.That (Direction.West, Is.EqualTo (dir));
+        }
+
+        [Test]
+        public void GetWithDeltasReturnsCorrectDirection ()
+        {
+            Assert.That (Direction.GetWithDeltas (0, 0),   Is.EqualTo (Direction.None));
+            Assert.That (Direction.GetWithDeltas (0, -1),  Is.EqualTo (Direction.North));
+            Assert.That (Direction.GetWithDeltas (1, -1),  Is.EqualTo (Direction.NorthEast));
+            Assert.That (Direction.GetWithDeltas (1, 0),   Is.EqualTo (Direction.East));
+            Assert.That (Direction.GetWithDeltas (1, 1),   Is.EqualTo (Direction.SouthEast));
+            Assert.That (Direction.GetWithDeltas (0, 1),   Is.EqualTo (Direction.South));
+            Assert.That (Direction.GetWithDeltas (-1, 1),  Is.EqualTo (Direction.SouthWest));
+            Assert.That (Direction.GetWithDeltas (-1, 0),  Is.EqualTo (Direction.West));
+            Assert.That (Direction.GetWithDeltas (-1, -1), Is.EqualTo (Direction.NorthWest));
         }
     }
 }
