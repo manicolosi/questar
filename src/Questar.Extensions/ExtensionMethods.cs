@@ -85,6 +85,17 @@ namespace Questar.Extensions
             int i = random.Next (Count (enumerable));
             return AsList (enumerable)[i];
         }
+
+        public static T Clamp<T> (this T self, T low, T high)
+            where T : IComparable<T>
+        {
+            if (self.CompareTo (high) > 0)
+                return high;
+            else if (self.CompareTo (low) < 0)
+                return low;
+
+            return self;
+        }
     }
 }
 

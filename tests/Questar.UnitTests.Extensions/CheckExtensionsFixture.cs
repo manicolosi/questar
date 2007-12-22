@@ -16,7 +16,7 @@ using Questar.Extensions;
 namespace Questar.UnitTests.Extensions
 {
     [TestFixture]
-    public class CheckExtensions
+    public class CheckExtensionsFixture
     {
         [SetUp]
         public void SetUp ()

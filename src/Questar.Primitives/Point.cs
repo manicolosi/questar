@@ -47,8 +47,8 @@ namespace Questar.Primitives
         {
             Point delta = target - this;
 
-            int dx = Math.Max (Math.Min (delta.X, 1), -1);
-            int dy = Math.Max (Math.Min (delta.Y, 1), -1);
+            int dx = delta.X.Clamp (-1, 1);
+            int dy = delta.Y.Clamp (-1, 1);
 
             return Direction.All
                 .Where (d => d.DeltaX == dx && d.DeltaY == dy)

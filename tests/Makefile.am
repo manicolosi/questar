@@ -15,6 +15,7 @@ SOURCES = \
 	$(srcdir)/Questar.UnitTests.Primitives/PointFixture.cs \
 	$(srcdir)/Questar.UnitTests.Items/ItemFactoryFixture.cs \
 	$(srcdir)/Questar.UnitTests.Extensions/CheckExtensionsFixture.cs \
+	$(srcdir)/Questar.UnitTests.Extensions/ExtensionMethodsFixture.cs \
 	$(srcdir)/../src/Questar.Extensions/ExtensionMethods.cs \
 	$(srcdir)/../src/Questar.Extensions/CheckExtensions.cs \
 	#$(srcdir)/Questar.UnitTests.Primitives/LocationFixture.cs \
