@@ -91,7 +91,8 @@ namespace Questar.Extensions
         {
             if (self.CompareTo (high) > 0)
                 return high;
-            else if (self.CompareTo (low) < 0)
+
+            if (self.CompareTo (low) < 0)
                 return low;
 
             return self;
