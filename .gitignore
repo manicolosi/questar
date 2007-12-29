@@ -12,3 +12,5 @@ aclocal.m4
 install-sh
 missing
 tests/TestResult.xml
+*~
+TAGS
