@@ -19,11 +19,11 @@ SOURCES = \
 	Questar.Actors/AbstractActor.cs \
 	Questar.Actors/Actor.cs \
 	Questar.Actors/ActorEventArgs.cs \
+	Questar.Actors/ActorFactory.cs \
 	Questar.Actors/Hero.cs \
 	Questar.Actors/HitPoints.cs \
 	Questar.Actors/Monster.cs \
 	Questar.Actors/MonsterDefinition.cs \
-	Questar.Actors/MonsterFactory.cs \
 	\
 	Questar.Actors.AI/ArtificialIntelligence.cs \
 	Questar.Actors.AI/StupidAI.cs \

@@ -35,12 +35,12 @@ namespace Questar
             IMapGenerator map_gen = new StupidGenerator ();
             game.CurrentMap = map_gen.Generate ();
 
-            game.Hero = new Hero ();
+            game.Hero = ActorFactory.Instance.Create ();
 
-            MonsterFactory.Instance.Create ("imp");
-            MonsterFactory.Instance.Create ("imp");
-            MonsterFactory.Instance.Create ("troll");
-            MonsterFactory.Instance.Create ("troll");
+            ActorFactory.Instance.Create ("imp");
+            ActorFactory.Instance.Create ("imp");
+            ActorFactory.Instance.Create ("troll");
+            ActorFactory.Instance.Create ("troll");
 
             ItemFactory factory = ItemFactory.Instance;
             factory.Create ("HealLight", new MapLocation (game.CurrentMap, 5, 5));

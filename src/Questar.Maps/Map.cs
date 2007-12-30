@@ -37,7 +37,7 @@ namespace Questar.Maps
             grids = new Grid [width, height];
 
             ItemFactory.Instance.Created += OnItemCreated;
-            MonsterFactory.Instance.Created += OnActorCreated;
+            ActorFactory.Instance.Created += OnActorCreated;
         }
 
         private void OnActorCreated (object sender, EntityCreatedEventArgs args)

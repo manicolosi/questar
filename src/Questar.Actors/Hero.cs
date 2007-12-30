@@ -35,8 +35,6 @@ namespace Questar.Actors
             while (!base.CanMoveTo (base.Location));
 
             SetupHandlers ();
-
-            MonsterFactory.Instance.FireTheCreationEventHack (this);
         }
 
         public override bool IsTurnReady

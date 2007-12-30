@@ -1,6 +1,6 @@
 /*******************************************************************************
- *  MonsterFactory.cs: A factory that creates Monsters from
- *  MonsterDefinitions.
+ *  ActorFactory.cs: A factory that creates Actors (both Monsters and
+ *  the Hero).
  *
  *  Copyright (C) 2007
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
@@ -17,18 +17,18 @@ using Questar.Primitives;
 
 namespace Questar.Actors
 {
-    public class MonsterFactory : AbstractEntityFactory<Monster>
+    public class ActorFactory : AbstractEntityFactory<Actor>
     {
         private const string resource = "monsters.xml";
 
-        public static MonsterFactory Instance
+        public static ActorFactory Instance
         {
-            get { return Singleton<MonsterFactory>.Instance; }
+            get { return Singleton<ActorFactory>.Instance; }
         }
 
         private Dictionary<string, MonsterDefinition> definitions;
 
-        private MonsterFactory ()
+        private ActorFactory ()
         {
             definitions = new Dictionary<string, MonsterDefinition> ();
 
@@ -41,9 +41,11 @@ namespace Questar.Actors
             XmlNodeList nodes = document.GetElementsByTagName ("Monster");
 
             foreach (XmlNode node in nodes) {
-                foreach (XmlAttribute attribute in node.Attributes)
-                    if (attribute.Name == "Id")
+                foreach (XmlAttribute attribute in node.Attributes) {
+                    if (attribute.Name == "Id") {
                         LoadMonster (attribute.Value, node);
+                    }
+                }
             }
         }
 
@@ -72,20 +74,21 @@ namespace Questar.Actors
             definitions.Add (id, definition);
         }
 
-        public override Monster Create (string monster_id)
+        public override Actor Create (string monster_id)
         {
-            Monster monster = new Monster (definitions[monster_id]);
-            OnCreation (monster);
+            Actor actor = new Monster (definitions[monster_id]);
+            OnCreation (actor);
 
-            return monster;
+            return actor;
         }
 
-        // We need this to get the Created event fired for the Hero,
-        // too. This is need by MockActors, too.
-        public void FireTheCreationEventHack (Actor actor)
+        // TODO: Later this could take BirthOptions parameter.
+        public Actor Create ()
         {
+            Actor actor = new Hero ();
             OnCreation (actor);
+
+            return Actor;
         }
     }
 }
-

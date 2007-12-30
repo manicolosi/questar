@@ -29,8 +29,7 @@ namespace Questar.Core
 
         public TurnLoop ()
         {
-            // This event will replaced with something more generic.
-            MonsterFactory.Instance.Created += ActorCreatedHandler;
+            ActorFactory.Instance.Created += ActorCreatedHandler;
         }
 
         public int Round
