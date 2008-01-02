@@ -18,9 +18,12 @@ namespace Questar.UnitTests.Extensions
     [TestFixture]
     public class ExtensionMethodsFixture
     {
+        private int [] source;
+
         [SetUp]
         public void SetUp ()
         {
+            source = new [] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         }
 
         [Test]
@@ -66,11 +69,25 @@ namespace Questar.UnitTests.Extensions
         [Test]
         public void WhereReturnsSameListIfPredicateAlwaysReturnsTrue ()
         {
-            var source = new [] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             var result = source.Where (i => true);
 
             Assert.That (result, Is.EquivalentTo (source));
         }
+
+        [Test]
+        public void WhereReturnsEmptyListIfPredicateAlwaysReturnsFalse ()
+        {
+            var result = source.Where (i => false);
+
+            Assert.That (result, Is.Empty);
+        }
+
+        [Test]
+        public void WhereReturnsEvenIntsWithThisPredicate ()
+        {
+            var result = source.Where (i => i % 2 == 0);
+
+            Assert.That (result, Is.EquivalentTo (new [] {0, 2, 4, 6, 8}));
+        }
     }
 }
-
