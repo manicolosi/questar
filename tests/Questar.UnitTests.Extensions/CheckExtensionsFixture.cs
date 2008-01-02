@@ -37,17 +37,36 @@ namespace Questar.UnitTests.Extensions
 
         [Test]
         [ExpectedException (typeof (ArgumentException))]
-        public void CheckInRangeFails1 ()
+        public void CheckInRangeFailsWhenBelowMin ()
         {
             4.CheckInRange ("4", 5, 10);
         }
 
         [Test]
         [ExpectedException (typeof (ArgumentException))]
-        public void CheckInRangeFails2 ()
+        public void CheckInRangeFailsWhenOverMax ()
         {
             11.CheckInRange ("11", 5, 10);
         }
+
+        [Test]
+        public void AssertNotNullPassesWhenNotNull ()
+        {
+            "a string".AssertNotNull ();
+        }
+
+        [Test]
+        public void AssertNotNullPassesWhenNotNullWithParamName ()
+        {
+            "a string".AssertNotNull ("value");
+        }
+
+        [Test]
+        [ExpectedException (typeof (ArgumentNullException))]
+        public void AssertNotNullFailsWhenNull ()
+        {
+            object test = null;
+            test.AssertNotNull ();
+        }
     }
 }
-
