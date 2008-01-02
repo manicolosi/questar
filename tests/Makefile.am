@@ -6,7 +6,7 @@
 ################################################################################
 
 ASSEMBLY = Questar.UnitTests.dll
-NUNIT_PATH = /home/mark/source/nunit-src/build/linux/mono/2.0/debug
+NUNIT_PATH = /home/mark/applications/nunit/bin
 NUNIT_DLL = $(NUNIT_PATH)/nunit.framework.dll
 NUNIT_CONSOLE = $(NUNIT_PATH)/nunit-console.exe
 

@@ -78,7 +78,7 @@ namespace Questar.UnitTests.Primitives
         [Test]
         public void AllDoesNotIncludeNone ()
         {
-            Assert.That (Direction.All.AsList (), Has.No.Member (Direction.None));
+            Assert.That (Direction.All, Has.No.Member (Direction.None));
         }
 
         [Test]
@@ -90,7 +90,7 @@ namespace Questar.UnitTests.Primitives
         [Test]
         public void AllIncludingNoneDoesIncludeNone ()
         {
-            Assert.That (Direction.AllIncludingNone.AsList (), Has.Member (Direction.None));
+            Assert.That (Direction.AllIncludingNone, Has.Member (Direction.None));
         }
 
         [Test]
