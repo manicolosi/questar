@@ -50,24 +50,29 @@ namespace Questar.Extensions
             return default (T);
         }
 
-        public static IEnumerable<T> Where<T> (this IEnumerable<T> enumerable,
-            Func<T, bool> filter)
+        public static IEnumerable<T> Where<T> (this IEnumerable<T> source,
+            Func<T, bool> predicate)
         {
-            foreach (T t in enumerable)
-                if (filter (t))
-                    yield return t;
+            source.AssertNotNull ("source");
+            predicate.AssertNotNull ("predicate");
+
+            foreach (T item in source)
+                if (predicate (item))
+                    yield return item;
         }
 
         public static IEnumerable<T> DefaultIfEmpty<T> (
-            this IEnumerable<T> enumerable, T default_value)
+            this IEnumerable<T> source, T default_value)
         {
-            if (enumerable.Count () == 0) {
+            source.AssertNotNull ("source");
+
+            if (source.Count () == 0) {
                 yield return default_value;
                 yield break;
             }
 
-            foreach (T t in enumerable)
-                yield return t;
+            foreach (T item in source)
+                yield return item;
         }
 
         private static Random random;

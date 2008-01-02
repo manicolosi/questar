@@ -62,6 +62,15 @@ namespace Questar.UnitTests.Extensions
             Assert.That ("appletea".Clamp ("b", "d"), Is.EqualTo ("b"));
             Assert.That ("elephant".Clamp ("b", "d"), Is.EqualTo ("d"));
         }
+
+        [Test]
+        public void WhereReturnsSameListIfPredicateAlwaysReturnsTrue ()
+        {
+            var source = new [] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            var result = source.Where (i => true);
+
+            Assert.That (result, Is.EquivalentTo (source));
+        }
     }
 }
 
