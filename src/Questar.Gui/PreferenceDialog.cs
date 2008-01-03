@@ -2,7 +2,7 @@
  *  PreferenceDialog.cs: Provides a dialog that allows the user to
  *  customize Questar.
  *
- *  Copyright (C) 2007
+ *  Copyright (C) 2007, 2008
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
@@ -88,4 +88,3 @@ namespace Questar.Gui
         }
     }
 }
-

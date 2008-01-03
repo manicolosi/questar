@@ -1,7 +1,7 @@
 /*******************************************************************************
  *  MainWindow.cs: The main window for Questar.
  *
- *  Copyright (C) 2007
+ *  Copyright (C) 2007, 2008
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
@@ -22,12 +22,9 @@ namespace Questar.Gui
 {
     public class MainWindow : GladeWindow
     {
-        [Glade.Widget] private Notebook side_pane;
         [Glade.Widget] private Container menubar_container;
         [Glade.Widget] private Container map_view_container;
         [Glade.Widget] private Container message_view_container;
-        [Glade.Widget] private Container character_container;
-        [Glade.Widget] private Container inventory_container;
 
         public MainWindow () : base ("main_window")
         {
@@ -41,10 +38,6 @@ namespace Questar.Gui
             menubar_container.Add (UIActions.Instance.MenuBar);
             message_view_container.Add (new MessageView ());
             map_view_container.Add (new WorldView ());
-
-            Actor hero = Game.Instance.Hero;
-            inventory_container.Add (new InventoryView (hero.Inventory));
-            character_container.Add (new HitPointsChart (hero.HitPoints));
 
             base.Window.ShowAll ();
         }
@@ -125,17 +118,6 @@ namespace Questar.Gui
             UISchema.ShowMessages.Changed += delegate {
                 ((ToggleAction) UIActions.Instance["ShowMessages"]).Active =
                     UISchema.ShowMessages.Value;
-            };
-
-            ConfigurationClient.SyncToggleAction ("ShowSidePane",
-                UISchema.ShowSidePane,
-                delegate (ToggleAction action, SchemaEntry<bool> entry) {
-                    side_pane.Visible = action.Active;
-                });
-
-            UISchema.ShowSidePane.Changed += delegate {
-                ((ToggleAction) UIActions.Instance["ShowSidePane"]).Active =
-                    UISchema.ShowSidePane.Value;
             };
         }
     }

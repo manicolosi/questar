@@ -1,7 +1,9 @@
-//
-// UISchema.cs: Description Goes Here
-// Author: Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
-//
+/*******************************************************************************
+ *  UISchema.cs: The schema used for configuration.
+ *
+ *  Copyright (C) 2007, 2008
+ *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
+ ******************************************************************************/
 
 using Questar.Gui;
 
@@ -71,12 +73,6 @@ namespace Questar.Configuration
             new SchemaEntry<bool> ("user_interface", "show_messages", true,
                 "Show Messages",
                 "True if the message area should be shown, otherwise false."
-            );
-
-        public static readonly SchemaEntry<bool> ShowSidePane =
-            new SchemaEntry<bool> ("user_interface", "show_side_pane", true,
-                "Show Side Pane",
-                "True if the side pane should be shown, otherwise false."
             );
     }
 }

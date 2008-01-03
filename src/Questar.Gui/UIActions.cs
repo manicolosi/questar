@@ -1,7 +1,7 @@
 /*******************************************************************************
  *  UIActions.cs: Encapsulates Gtk.Actions.
  *
- *  Copyright (C) 2007
+ *  Copyright (C) 2007, 2008
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
@@ -62,6 +62,10 @@ namespace Questar.Gui
                     null, null),
                 new ActionEntry ("NormalSize", Stock.Zoom100, "_Normal Size",
                     "<control>0", null, null),
+                new ActionEntry ("CharacterInformation", null, "_Character Information",
+                    "<control>c", null, delegate {
+                        new CharacterDialog ();
+                    }),
 
                 new ActionEntry ("HelpMenu", null, "_Help", null, null, null),
                 new ActionEntry ("About", Stock.About, "_About",
@@ -76,8 +80,6 @@ namespace Questar.Gui
             {
                 new ToggleActionEntry ("ShowGridLines", null, "Show _Gridlines",
                     null, null, null, false),
-                new ToggleActionEntry ("ShowSidePane", null, "Show _Side Pane",
-                    "F9", null, null, true),
                 new ToggleActionEntry ("ShowMessages", null, "Show _Messages",
                     "<control>m", null, null, true),
                 new ToggleActionEntry ("FullScreen", null, "Full Screen",

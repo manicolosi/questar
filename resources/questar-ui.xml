@@ -11,12 +11,13 @@
         </menu>
         <menu action='ViewMenu'>
             <menuitem action='ShowMessages' />
-            <menuitem action='ShowSidePane' />
             <menuitem action='ShowGridLines' />
             <separator />
             <menuitem action='ZoomIn' />
             <menuitem action='ZoomOut' />
             <menuitem action='NormalSize' />
+            <separator />
+            <menuitem action='CharacterInformation' />
             <separator />
             <menuitem action='FullScreen' />
         </menu>
