@@ -23,13 +23,13 @@ namespace Questar.Extensions
 
     public static class ExtensionMethods
     {
-        public static int Count<T> (this IEnumerable<T> enumerable)
+        public static int Count<T> (this IEnumerable<T> source)
         {
             int count = 0;
 
 #pragma warning disable 0219
 
-            foreach (T t in enumerable)
+            foreach (T item in source)
                 count++;
 
 #pragma warning restore 0219
@@ -37,15 +37,15 @@ namespace Questar.Extensions
             return count;
         }
 
-        public static List<T> AsList<T> (this IEnumerable<T> enumerable)
+        public static List<T> AsList<T> (this IEnumerable<T> source)
         {
-            return new List<T> (enumerable);
+            return new List<T> (source);
         }
 
-        public static T First<T> (this IEnumerable<T> enumerable)
+        public static T First<T> (this IEnumerable<T> source)
         {
-            foreach (T t in enumerable)
-                return t;
+            foreach (T item in source)
+                return item;
 
             return default (T);
         }
@@ -77,18 +77,18 @@ namespace Questar.Extensions
 
         private static Random random;
 
-        public static T Random<T> (this IEnumerable<T> enumerable)
+        public static T Random<T> (this IEnumerable<T> source)
         {
             if (random == null)
                 random = new Random ();
 
-            return Random (enumerable, random);
+            return Random (source, random);
         }
 
-        public static T Random<T> (this IEnumerable<T> enumerable, Random random)
+        public static T Random<T> (this IEnumerable<T> source, Random random)
         {
-            int i = random.Next (Count (enumerable));
-            return AsList (enumerable)[i];
+            int i = random.Next (Count (source));
+            return AsList (source)[i];
         }
 
         public static T Clamp<T> (this T self, T low, T high)
