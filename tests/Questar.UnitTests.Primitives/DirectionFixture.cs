@@ -96,7 +96,7 @@ namespace Questar.UnitTests.Primitives
         [Test]
         public void GetRandomIsReallyRandom ()
         {
-            List<Direction> random_dirs = new List<Direction> {
+            Direction [] random_dirs = {
                 Direction.GetRandom (),
                 Direction.GetRandom (),
                 Direction.GetRandom (),
