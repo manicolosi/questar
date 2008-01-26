@@ -1,7 +1,7 @@
 ################################################################################
 #   Makefile.am: Automake source file for building Questar.exe.
 #
-#   Copyright (C) 2007
+#   Copyright (C) 2007, 2008
 #   Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
 ################################################################################
 
@@ -59,7 +59,7 @@ SOURCES = \
 	\
 	Questar.Gui/Animation.cs \
 	Questar.Gui/AboutDialog.cs \
-	Questar.Gui/CharacterInformationDialog.cs \
+	Questar.Gui/CharacterDialog.cs \
 	Questar.Gui/GladeDialog.cs \
 	Questar.Gui/GladeWindow.cs \
 	Questar.Gui/InventoryView.cs \
