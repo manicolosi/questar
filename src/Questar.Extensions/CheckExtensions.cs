@@ -27,6 +27,12 @@ namespace Questar.Extensions
                 throw new ArgumentException ();
         }
 
+        public static void AssertIsFalse (this bool self)
+        {
+            if (self != false)
+                throw new ArgumentException ();
+        }
+
         // FIXME: This should be contrained to reference types.
         public static void AssertNotNull<T> (this T self, string param_name)
         {
@@ -47,6 +53,17 @@ namespace Questar.Extensions
                     "AssertContains() does not work on non-IList<T> types");
 
             AssertIsTrue (list.Contains (item));
+        }
+
+        public static void AssertDoesNotContain<T> (this IEnumerable<T> self,
+            T item)
+        {
+            IList<T> list = self as IList<T>;
+            if (list == null)
+                throw new NotImplementedException (
+                    "AssertDoesNotContain() does not work on non-IList<T> types");
+
+            AssertIsFalse (list.Contains (item));
         }
     }
 }
