@@ -2,11 +2,12 @@
  *  CheckExtensionsFixture.cs: Unit Tests for CheckExtensions extension
  *  methods.
  *
- *  Copyright (C) 2007
+ *  Copyright (C) 2007, 2008
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
 using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
 using NUnit.Framework.SyntaxHelpers;
@@ -67,6 +68,24 @@ namespace Questar.UnitTests.Extensions
         {
             object test = null;
             test.AssertNotNull ();
+        }
+
+        [Test]
+        public void AssertContainsPassesWhenItemIsInCollection ()
+        {
+            string item = "hello";
+            string [] collection = { "hello", "world" };
+
+            collection.AssertContains (item);
+        }
+
+        [ExpectedException (typeof (ArgumentException))]
+        public void AssertContainsFailsWhenItemIsNotInCollection ()
+        {
+            string item = "goodbye";
+            string [] collection = { "hello", "world" };
+
+            collection.AssertContains (collection, item);
         }
     }
 }
