@@ -101,16 +101,12 @@ SOURCES = \
 	Questar.Maps.Generation/IMapGenerator.cs \
 	Questar.Maps.Generation/StupidGenerator.cs \
 	\
-	Questar.Primitives/ActorLocation.cs \
 	Questar.Primitives/AbstractEntity.cs \
 	Questar.Primitives/AbstractEntityFactory.cs \
 	Questar.Primitives/Direction.cs \
 	Questar.Primitives/Entity.cs \
 	Questar.Primitives/IEntityFactory.cs \
 	Questar.Primitives/Location.cs \
-	Questar.Primitives/LocationFactory.cs \
-	Questar.Primitives/MapLocation.cs \
-	Questar.Primitives/NullLocation.cs \
 	Questar.Primitives/Point.cs \
 	Questar.Primitives/Rectangle.cs
 
