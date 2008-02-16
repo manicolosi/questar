@@ -1,13 +1,14 @@
 /*******************************************************************************
  *  DrinkAction.cs: Action that drinks an Item.
  *
- *  Copyright (C) 2007
+ *  Copyright (C) 2007, 2008
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
 using System;
 
 using Questar.Actors;
+using Questar.Extensions;
 using Questar.Items;
 using Questar.Primitives;
 
@@ -24,17 +25,10 @@ namespace Questar.Actors.Actions
 
         public override void Execute ()
         {
-            if (!(item.Location is ActorLocation))
-                throw new ImpossibleActionException (
-                    "Item is not on an ActorLocation.");
-
-            if (item.Location.Actor != Actor)
-                throw new ImpossibleActionException (
-                    "Item doesn't belong this Actor.");
+            base.Actor.Inventory.AssertContains (item);
 
             Actor.Inventory.Remove (item);
             item.Drink (Actor);
-            //item.Destroy ();
         }
     }
 }

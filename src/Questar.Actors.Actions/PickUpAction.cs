@@ -1,13 +1,14 @@
 /*******************************************************************************
  *  PickUpAction.cs: Action that picks up an Item under an Actor.
  *
- *  Copyright (C) 2007
+ *  Copyright (C) 2007, 2008
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
 using System;
 
 using Questar.Actors;
+using Questar.Extensions;
 using Questar.Items;
 using Questar.Primitives;
 
@@ -24,15 +25,10 @@ namespace Questar.Actors.Actions
 
         public override void Execute ()
         {
-            if (!(item.Location is MapLocation))
-                throw new ImpossibleActionException (
-                    "Item is not on a MapLocation.");
+            base.Actor.Location.AssertEqualTo (item.Location);
 
-            if (item.Location != Actor.Location)
-                throw new ImpossibleActionException (
-                    "Item is not under Actor.");
-
-            Actor.Inventory.Add (item);
+            item.Location = null;
+            base.Actor.Inventory.Add (item);
         }
     }
 }

@@ -1,7 +1,7 @@
 /*******************************************************************************
- *  Inventory.cs: An Inventory manages a collection of items.
+ *  Inventory.cs: Manages a collection of items belonging to an Actor.
  *
- *  Copyright (C) 2007
+ *  Copyright (C) 2007, 2008
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
@@ -10,6 +10,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using Questar.Actors;
+using Questar.Extensions;
 using Questar.Helpers;
 using Questar.Primitives;
 
@@ -49,13 +50,9 @@ namespace Questar.Items
 
         public void Add (Item item)
         {
-            if (item == null)
-                throw new ArgumentNullException ("Item must not be null.");
+            item.AssertNotNull ();
+            items.AssertDoesNotContain (item);
 
-            if (Contains (item))
-                throw new ArgumentException ("An Item can't be added twice.");
-
-            item.Location = new ActorLocation (owner);
             items.Add (item);
 
             FireEvent (Added, item);
@@ -63,14 +60,10 @@ namespace Questar.Items
 
         public void Remove (Item item)
         {
-            if (item == null)
-                throw new ArgumentNullException ("Item must not be null.");
-
-            if (!Contains (item))
-                throw new ArgumentException ("Item is not in this Inventory.");
+            item.AssertNotNull ();
+            items.AssertContains (item);
 
             items.Remove (item);
-            item.Location = new NullLocation ();
 
             FireEvent (Removed, item);
         }
