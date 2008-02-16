@@ -1,7 +1,7 @@
 /*******************************************************************************
- *  Inventory.cs: An Inventory manages a collection of items.
+ *  Inventory.cs: Manages a collection of items belonging to an Actor.
  *
- *  Copyright (C) 2007
+ *  Copyright (C) 2007, 2008
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
@@ -10,6 +10,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using Questar.Actors;
+using Questar.Extensions;
 using Questar.Helpers;
 using Questar.Primitives;
 
@@ -56,7 +57,6 @@ namespace Questar.Items
         {
             get { return false; }
         }
-
         public void Add (Item item)
         {
             item.AssertNotNull ();
@@ -72,8 +72,8 @@ namespace Questar.Items
             item.AssertNotNull ();
             items.AssertContains (item);
 
-
             items.Remove (item);
+
             RaiseItemEvent (Removed, item);
         }
 
