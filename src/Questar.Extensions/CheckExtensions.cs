@@ -65,6 +65,11 @@ namespace Questar.Extensions
 
             AssertIsFalse (list.Contains (item));
         }
+
+        public static void AssertEqualTo<T> (this T self, T other)
+        {
+            AssertIsTrue (self.Equals (other));
+        }
     }
 }
 

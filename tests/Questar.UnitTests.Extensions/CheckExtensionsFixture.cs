@@ -79,13 +79,28 @@ namespace Questar.UnitTests.Extensions
             collection.AssertContains (item);
         }
 
+        [Test]
         [ExpectedException (typeof (ArgumentException))]
         public void AssertContainsFailsWhenItemIsNotInCollection ()
         {
             string item = "goodbye";
             string [] collection = { "hello", "world" };
 
-            collection.AssertContains (collection, item);
+            collection.AssertContains (item);
+        }
+
+        [Test]
+        public void AssertEqualToPassesWhenObjectsAreEqual ()
+        {
+            4.AssertEqualTo (4);
+        }
+
+        [Test]
+        [ExpectedException (typeof (ArgumentException))]
+        public void AssertEqualToFailsWhenObjectsAreNotEqual ()
+        {
+            4.AssertEqualTo (44);
         }
     }
 }
+
