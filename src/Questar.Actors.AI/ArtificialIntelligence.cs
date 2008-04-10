@@ -1,7 +1,7 @@
 /*******************************************************************************
- *  ArtificialIntelligence.cs: Control's an Actor's Actions.
+ *  ArtificialIntelligence.cs: Controls an Actor's Actions.
  *
- *  Copyright (C) 2007
+ *  Copyright (C) 2007, 2008
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
@@ -9,6 +9,8 @@ using System;
 
 using Questar.Actors;
 using Questar.Actors.Actions;
+
+using Action = Questar.Actors.Actions.Action;
 
 namespace Questar.Actors.AI
 {

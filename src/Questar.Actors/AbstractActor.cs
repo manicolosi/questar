@@ -15,6 +15,8 @@ using Questar.Helpers;
 using Questar.Items;
 using Questar.Primitives;
 
+using Action = Questar.Actors.Actions.Action;
+
 namespace Questar.Actors
 {
     public abstract class AbstractActor : AbstractEntity, Actor
