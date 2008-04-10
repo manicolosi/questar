@@ -1,12 +1,12 @@
 ################################################################################
 #   Makefile.am: Automake source file for building unit tests.
 #
-#   Copyright (C) 2007
+#   Copyright (C) 2007, 2008
 #   Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
 ################################################################################
 
 ASSEMBLY = Questar.UnitTests.dll
-NUNIT_PATH = /home/mark/applications/nunit/bin
+NUNIT_PATH = /home/mark/Applications/nunit/bin
 NUNIT_DLL = $(NUNIT_PATH)/nunit.framework.dll
 NUNIT_CONSOLE = $(NUNIT_PATH)/nunit-console.exe
 
@@ -16,6 +16,8 @@ SOURCES = \
 	$(srcdir)/Questar.UnitTests.Items/ItemFactoryFixture.cs \
 	$(srcdir)/Questar.UnitTests.Extensions/CheckExtensionsFixture.cs \
 	$(srcdir)/Questar.UnitTests.Extensions/ExtensionMethodsFixture.cs \
+	#$(srcdir)/Questar.UnitTests.Items/InventoryFixture.cs \
+	#$(srcdir)/Questar.MockObjects/MockActor.cs \
 	#$(srcdir)/Questar.UnitTests.Primitives/LocationFixture.cs \
 	#$(srcdir)/TestActor.cs \
 	#$(srcdir)/TestGame.cs \
@@ -32,7 +34,6 @@ SOURCES = \
 	#\
 	#$(srcdir)/Questar.UnitTests.Actors.Actions/PickUpActionFixture.cs \
 	#\
-	#$(srcdir)/Questar.UnitTests.Items/InventoryFixture.cs \
 	#$(srcdir)/Questar.UnitTests.Items/ItemFixture.cs
 
 

@@ -21,7 +21,7 @@ namespace Questar.Items
         public Item Item;
     }
 
-    public class Inventory : IEnumerable<Item>
+    public class Inventory : ICollection<Item>
     {
         public event EventHandler<ItemEventArgs> Added;
         public event EventHandler<ItemEventArgs> Removed;
@@ -48,6 +48,16 @@ namespace Questar.Items
             get { return items.Count == 0; }
         }
 
+        public int Count
+        {
+            get { return items.Count; }
+        }
+
+        public bool IsReadOnly
+        {
+            get { return false; }
+        }
+
         public void Add (Item item)
         {
             item.AssertNotNull ();
@@ -55,7 +65,7 @@ namespace Questar.Items
 
             items.Add (item);
 
-            FireEvent (Added, item);
+            RaiseItemEvent (Added, item);
         }
 
         public void Remove (Item item)
@@ -64,13 +74,28 @@ namespace Questar.Items
             items.AssertContains (item);
 
             items.Remove (item);
+            RaiseItemEvent (Removed, item);
+        }
 
-            FireEvent (Removed, item);
+        bool ICollection<Item>.Remove (Item item)
+        {
+            Remove (item);
+            return true;
         }
 
         public bool Contains (Item item)
         {
             return items.Contains (item);
+        }
+
+        public void Clear ()
+        {
+            items.Each (item => Remove (item));
+        }
+
+        public void CopyTo (Item[] array, int index)
+        {
+            items.CopyTo (array, index);
         }
 
         public IEnumerator<Item> GetEnumerator ()
@@ -83,7 +108,8 @@ namespace Questar.Items
             return GetEnumerator ();
         }
 
-        private void FireEvent (EventHandler<ItemEventArgs> event_handler, Item item)
+        private void RaiseItemEvent (EventHandler<ItemEventArgs> event_handler,
+            Item item)
         {
             EventHelper.Raise (this, event_handler,
                 delegate (ItemEventArgs args) {
