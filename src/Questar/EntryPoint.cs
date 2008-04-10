@@ -1,7 +1,7 @@
 /*******************************************************************************
  *  EntryPoint.cs: Questar's entry point, AKA Main().
  *
- *  Copyright (C) 2007
+ *  Copyright (C) 2007, 2008
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
@@ -43,7 +43,9 @@ namespace Questar
             MonsterFactory.Instance.Create ("troll");
 
             ItemFactory factory = ItemFactory.Instance;
-            factory.Create ("HealLight", new MapLocation (game.CurrentMap, 5, 5));
+            factory.Create ("HealLight", new Location (game.CurrentMap, 5, 5));
+            //game.CurrentMap.GetRandomGrid (g => !g.IsBlocking)
+                //.Add (factory.Create ("HealLight"));
 
             // Use an ActorLocation with the Location override of
             // ItemFactory.Create() and make the Inventory adding
