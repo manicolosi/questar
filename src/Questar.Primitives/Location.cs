@@ -144,9 +144,6 @@ namespace Questar.Primitives
 
         public override bool Equals (object o)
         {
-            if (!base.Equals (o))
-                return false;
-
             Location l = o as Location;
             if ((l != null) && (Map == l.Map) && (Position == l.Position))
                 return true;

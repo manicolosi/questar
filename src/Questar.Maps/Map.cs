@@ -90,8 +90,10 @@ namespace Questar.Maps
                 FireGridChanged (old_loc.Position);
             }
 
-            this[new_loc.Position].Item = item;
-            FireGridChanged (new_loc.Position);
+            if (new_loc != null) {
+                this[new_loc.Position].Item = item;
+                FireGridChanged (new_loc.Position);
+            }
         }
 
         private void FireGridChanged (Point point)
