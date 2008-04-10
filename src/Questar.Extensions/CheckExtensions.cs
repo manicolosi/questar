@@ -45,25 +45,14 @@ namespace Questar.Extensions
             AssertNotNull (self, null);
         }
 
-        public static void AssertContains<T> (this IEnumerable<T> self, T item)
+        public static void AssertContains<T> (this ICollection<T> self, T item)
         {
-            IList<T> list = self as IList<T>;
-            if (list == null)
-                throw new NotImplementedException (
-                    "AssertContains() does not work on non-IList<T> types");
-
-            AssertIsTrue (list.Contains (item));
+            AssertIsTrue (self.Contains (item));
         }
 
-        public static void AssertDoesNotContain<T> (this IEnumerable<T> self,
-            T item)
+        public static void AssertDoesNotContain<T> (this ICollection<T> self, T item)
         {
-            IList<T> list = self as IList<T>;
-            if (list == null)
-                throw new NotImplementedException (
-                    "AssertDoesNotContain() does not work on non-IList<T> types");
-
-            AssertIsFalse (list.Contains (item));
+            AssertIsFalse (self.Contains (item));
         }
 
         public static void AssertEqualTo<T> (this T self, T other)
