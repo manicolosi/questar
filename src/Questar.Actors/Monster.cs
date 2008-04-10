@@ -12,6 +12,8 @@ using Questar.Actors.Actions;
 using Questar.Core;
 using Questar.Primitives;
 
+using Action = Questar.Actors.Actions.Action;
+
 namespace Questar.Actors
 {
     public class Monster : AbstractActor

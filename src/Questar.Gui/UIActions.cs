@@ -10,6 +10,7 @@ using Gtk;
 using System;
 
 using Key = Gdk.Key;
+using Action = Gtk.Action;
 
 using Questar.Base;
 using Questar.Core;

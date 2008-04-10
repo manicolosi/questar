@@ -1,7 +1,7 @@
 /*******************************************************************************
- *  AbstractActor.cs: Actors that are controlled by the user.
+ *  Hero.cs: An Actor that is controlled by the player.
  *
- *  Copyright (C) 2007
+ *  Copyright (C) 2007, 2008
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
@@ -15,6 +15,8 @@ using Questar.Helpers;
 using Questar.Items;
 using Questar.Maps;
 using Questar.Primitives;
+
+using Action = Questar.Actors.Actions.Action;
 
 namespace Questar.Actors
 {
