@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 
 using Questar.Actors;
+using Questar.Extensions;
 using Questar.Items;
 using Questar.Maps;
 
@@ -26,17 +27,15 @@ namespace Questar.Primitives
 
         public Location (Map map, Point position)
         {
-            Console.WriteLine ("New Location: {0}", position);
-
-            if (map == null)
-                throw new ApplicationException ("Map is null");
+            IsValid (map, position).AssertIsTrue ();
 
             Map = map;
             Position = position;
+        }
 
-            if (GridInformation == GridInformation.Invalid)
-                throw new ApplicationException (
-                    String.Format ("{0} is an invalid Location", this));
+        private bool IsValid (Map map, Point position)
+        {
+            return map != null && map.GetGridInformation (position) != GridInformation.Invalid;
         }
 
         public Location (Map map, int x, int y) : this (map, new Point (x, y))
@@ -106,17 +105,12 @@ namespace Questar.Primitives
             // FIXME: Should be using a circle instead of a rectangle,
             // but this is quick and easy...
             int width = (radius * 2) + 1;
-            Point start = new Point (
-                this.Position.X - radius, this.Position.Y - radius);
+            Point start = new Point (this.Position.X - radius, this.Position.Y - radius);
             Rectangle rect = new Rectangle (start, width, width);
 
-            Location loc;
-
             foreach (Point p in rect) {
-                loc = new Location (Map, p);
-
-                if (loc != null)
-                    yield return loc;
+                if (IsValid (Map, p))
+                    yield return new Location (Map, p);
             }
         }
 
