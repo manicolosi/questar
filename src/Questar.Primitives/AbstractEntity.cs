@@ -2,7 +2,7 @@
  *  AbstractEntity.cs: This is an implementation of Entity that
  *  subclasses can use.
  *
- *  Copyright (C) 2007
+ *  Copyright (C) 2007, 2008
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
@@ -43,12 +43,7 @@ namespace Questar.Primitives
 
         public virtual Location Location
         {
-            get {
-                if (location == null)
-                    location = new NullLocation ();
-
-                return location;
-            }
+            get { return location; }
             set {
                 Location old_loc = Location;
                 location = value;
@@ -73,7 +68,7 @@ namespace Questar.Primitives
 
         protected void OnDestroyed ()
         {
-            Location = new NullLocation ();
+            Location = null;
 
             EventHelper.Raise (this, Destroyed);
         }

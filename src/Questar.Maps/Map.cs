@@ -1,7 +1,7 @@
 /*******************************************************************************
  *  Map.cs: Basically a 2d collection of Grids.
  *
- *  Copyright (C) 2007
+ *  Copyright (C) 2007, 2008
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
@@ -48,7 +48,7 @@ namespace Questar.Maps
             actor.Destroyed += OnActorDestroyed;
 
             if (actor.Location.Map == this)
-                this[actor.Location.Point].Actor = actor;
+                this[actor.Location.Position].Actor = actor;
         }
 
         private void OnActorDestroyed (object sender, EventArgs args)
@@ -64,15 +64,11 @@ namespace Questar.Maps
             Location new_loc = args.NewLocation;
             Location old_loc = args.OldLocation;
 
-            if (IsLocationValid (old_loc)) {
-                this[old_loc.Point].Actor = null;
-                FireGridChanged (old_loc.Point);
-            }
+            this[old_loc.Position].Actor = null;
+            FireGridChanged (old_loc.Position);
 
-            if (IsLocationValid (new_loc)) {
-                this[new_loc.Point].Actor = actor;
-                FireGridChanged (new_loc.Point);
-            }
+            this[new_loc.Position].Actor = actor;
+            FireGridChanged (new_loc.Position);
         }
 
         private void OnItemCreated (object sender, EntityCreatedEventArgs args)
@@ -85,30 +81,17 @@ namespace Questar.Maps
             LocationChangedEventArgs args)
         {
             Item item = (Item) sender;
+
             Location new_loc = args.NewLocation;
             Location old_loc = args.OldLocation;
 
-            if (IsLocationValid (old_loc)) {
-                this[old_loc.Point].Item = null;
-                FireGridChanged (old_loc.Point);
+            if (old_loc != null) {
+                this[old_loc.Position].Item = null;
+                FireGridChanged (old_loc.Position);
             }
 
-            if (IsLocationValid (new_loc)) {
-                this[new_loc.Point].Item = item;
-                FireGridChanged (new_loc.Point);
-            }
-        }
-
-        private bool IsLocationValid (Location location)
-        {
-            if (location is MapLocation) {
-                if (location.Map != this)
-                    throw new NotImplementedException ("Multiple Maps");
-
-                return true;
-            }
-
-            return false;
+            this[new_loc.Position].Item = item;
+            FireGridChanged (new_loc.Position);
         }
 
         private void FireGridChanged (Point point)

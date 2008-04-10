@@ -1,7 +1,7 @@
 /*******************************************************************************
  *  Direction.cs: Represents the eight directions.
  *
- *  Copyright (C) 2007
+ *  Copyright (C) 2007, 2008
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
@@ -119,11 +119,12 @@ namespace Questar.Primitives
 
         public Location ApplyTo (Location loc)
         {
-            Point p = ApplyTo (loc.Point);
-            if (loc.Map.GetGridInformation (p) == GridInformation.Invalid)
-                return new NullLocation ();
+            Point p = ApplyTo (loc.Position);
 
-            return new MapLocation (loc.Map, p);
+            if (loc.Map.GetGridInformation (p) == GridInformation.Invalid)
+                return null;
+
+            return new Location (loc.Map, p);
         }
 
         public override string ToString ()

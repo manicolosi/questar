@@ -1,7 +1,7 @@
 /*******************************************************************************
  *  WorldView.cs: Widget to show the current state of a World.
  *
- *  Copyright (C) 2007
+ *  Copyright (C) 2007, 2008
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
@@ -209,7 +209,7 @@ namespace Questar.Gui
             int w = base.Allocation.Width;
             int h = base.Allocation.Height;
 
-            Point center_grid = center.Location.Point;
+            Point center_grid = center.Location.Position;
             offset_x = center_grid.X - (visible_wide / 2);
             offset_y = center_grid.Y - (visible_high / 2);
 
