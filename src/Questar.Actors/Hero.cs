@@ -111,9 +111,14 @@ namespace Questar.Actors
 
         private Action CreateMoveAction (Direction direction)
         {
+            GridInformation info = GridInformation.Invalid;
             Action action = null;
-            Location loc = direction.ApplyTo (base.Location);
-            GridInformation info = loc.GridInformation;
+            Location loc = null;
+
+            if (base.CanMoveIn (direction)) {
+                loc = direction.ApplyTo (base.Location);
+                info = loc.GridInformation;
+            }
 
             switch (info)
             {

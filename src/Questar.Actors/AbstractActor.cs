@@ -128,7 +128,7 @@ namespace Questar.Actors
 
         public bool CanMoveTo (Location loc)
         {
-            return loc.IsClear;
+            return loc == null ? false : loc.IsClear;
         }
 
         public bool CanMoveIn (Direction direction)
