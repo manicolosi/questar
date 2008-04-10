@@ -2,7 +2,7 @@
  *  AboutDialog.cs: Provides a dialog that allows the user to view
  *  information about Questar and the people that helped.
  *
- *  Copyright (C) 2007
+ *  Copyright (C) 2007, 2008
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
@@ -17,7 +17,7 @@ namespace Questar.Gui
         public AboutDialog ()
         {
             base.LogoIconName = ThemeIcons.Application;
-            base.Name = ProgramInformation.Name;
+            base.ProgramName = ProgramInformation.Name;
             base.Version = ProgramInformation.Version;
             base.Copyright = "Copyright \x00a9 2006-2007 Mark A. Nicolosi";
             base.Comments = "A roguelike game for the Gnome Desktop.";
