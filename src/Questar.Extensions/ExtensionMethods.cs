@@ -23,6 +23,12 @@ namespace Questar.Extensions
 
     public static class ExtensionMethods
     {
+        public static void Each<T> (this IEnumerable<T> self, Action<T> action)
+        {
+            foreach (T item in self)
+                action (item);
+        }
+
         public static int Count<T> (this IEnumerable<T> source)
         {
             int count = 0;
