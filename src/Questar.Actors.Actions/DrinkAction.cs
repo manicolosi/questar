@@ -25,7 +25,7 @@ namespace Questar.Actors.Actions
 
         public override void Execute ()
         {
-            base.Actor.Inventory.AssertContains (item);
+            base.Actor.Inventory.AssertContains ((Item) item);
 
             Actor.Inventory.Remove (item);
             item.Drink (Actor);
