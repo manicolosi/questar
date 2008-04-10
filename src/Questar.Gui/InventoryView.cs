@@ -1,7 +1,7 @@
 /*******************************************************************************
  *  InventoryView.cs: A subclass of TreeView that displays an Inventory.
  *
- *  Copyright (C) 2007
+ *  Copyright (C) 2007, 2008
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
@@ -50,7 +50,7 @@ namespace Questar.Gui
 
             CellRendererText cell = new CellRendererText ();
             name.PackStart (cell, true);
-            name.SetCellDataFunc (cell, RenderNameCell);
+            name.SetCellDataFunc (cell, new CellLayoutDataFunc (RenderNameCell));
 
             base.AppendColumn (name);
         }
@@ -73,7 +73,7 @@ namespace Questar.Gui
             BuildStore ();
         }
 
-        private void RenderNameCell (TreeViewColumn column, CellRenderer cell,
+        private void RenderNameCell (CellLayout layout, CellRenderer cell,
             TreeModel model, TreeIter iter)
         {
             Item item = (Item) model.GetValue (iter, 0);
