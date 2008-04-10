@@ -1,7 +1,7 @@
 /*******************************************************************************
  *  AbstractActor.cs: Actors that are controlled by Questar.
  *
- *  Copyright (C) 2007
+ *  Copyright (C) 2007, 2008
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
@@ -31,8 +31,7 @@ namespace Questar.Actors
             prefix = definition.Prefix;
 
             do {
-                base.Location = LocationFactory.CreateRandom (
-                    Game.Instance.CurrentMap);
+                base.Location = Location.GetRandom (Game.Instance.CurrentMap);
             }
             while (!base.CanMoveTo (base.Location));
         }

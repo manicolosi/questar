@@ -29,8 +29,7 @@ namespace Questar.Actors
             base.HitPoints = new HitPoints (100, 100);
 
             do {
-                base.Location = LocationFactory.CreateRandom (
-                    Game.Instance.CurrentMap);
+                base.Location = Location.GetRandom (Game.Instance.CurrentMap);
             }
             while (!base.CanMoveTo (base.Location));
 
