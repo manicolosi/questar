@@ -1,26 +1,36 @@
-//
-// Tile.cs: Description Goes Here
-// Author: Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
-//
+/*******************************************************************************
+ *  Tile.cs: A structure to store information about a tile.
+ *
+ *  Copyright (C) 2007, 2008
+ *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
+ ******************************************************************************/
+
+using System;
+using System.IO;
+using System.Runtime.InteropServices;
 
 using Cairo;
 using Gdk;
 using Rsvg;
-using System;
+
+using Pixbuf = Gdk.Pixbuf;
 
 namespace Questar.Gui
 {
     public struct Tile : IDisposable
     {
-        public readonly string Filename;
-        public readonly Gdk.Pixbuf Pixbuf;
+        public readonly string FileName;
+        public readonly Pixbuf Pixbuf;
         //public readonly SvgSurface Surface;
 
-        public Tile (string filename, double zoom)
+        public Tile (string file_name, double zoom)
         {
-            Filename = filename;
-            Pixbuf = Rsvg.Pixbuf.FromFileAtZoom (filename, zoom, zoom);
-            //Surface = new SvgSurface (filename, zoom * 64, zoom * 64);
+            FileName = file_name;
+
+            Handle handle = new Handle (file_name);
+            Pixbuf = handle.Pixbuf;
+
+            //Surface = new RsvgSurface (filename);
         }
 
         public void Dispose ()

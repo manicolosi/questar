@@ -115,7 +115,7 @@ ASSEMBLIES = \
 	-pkg:glade-sharp-2.0 \
 	-pkg:gnome-sharp-2.0 \
 	-pkg:gtk-sharp-2.0 \
-	-pkg:rsvg-sharp-2.0 \
+	-r:rsvg2-sharp \
 	-r:Mono.Cairo \
 	-r:Mono.Posix \
 	-r:System.Core
