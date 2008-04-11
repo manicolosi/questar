@@ -226,11 +226,20 @@ namespace Questar.Gui
                 poffset_y += tileset.Height / 2;
         }
 
-        private void DrawTile (string tile, int x, int y)
+        private void DrawTiles (Context context, Point grid, int x, int y)
         {
-            base.GdkWindow.DrawPixbuf (base.Style.BlackGC,
-                tileset[tile].Pixbuf, 0, 0, x, y,
-                -1, -1, Gdk.RgbDither.None, 0, 0);
+            context.Save ();
+
+            double zoom = tileset.ZoomPercentage;
+            context.Scale (zoom, zoom);
+
+            context.Translate (x, y);
+
+            foreach (string tile in map[grid].Tiles) {
+                tileset[tile].Render (context);
+            }
+
+            context.Restore ();
         }
 
         private void DrawGrid (Context context, Point grid)
@@ -241,8 +250,7 @@ namespace Questar.Gui
             int x, y;
             GridPointToWindowCoords (grid, out x, out y);
 
-            foreach (string tile in map[grid].Tiles)
-                DrawTile (tile, x, y);
+            DrawTiles (context, grid, x, y);
 
             if (grid_lines) {
                 context.Color = grid_line_color;

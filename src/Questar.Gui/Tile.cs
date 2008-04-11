@@ -17,30 +17,23 @@ using Pixbuf = Gdk.Pixbuf;
 
 namespace Questar.Gui
 {
-    public struct Tile : IDisposable
+    public struct Tile
     {
-        public readonly string FileName;
-        public readonly Pixbuf Pixbuf;
-        //public readonly SvgSurface Surface;
+        private Handle handle;
+
+        public int Width;
+        public int Height;
 
         public Tile (string file_name, double zoom)
         {
-            FileName = file_name;
-
-            Handle handle = new Handle (file_name);
-            Pixbuf = handle.Pixbuf;
-
-            //Surface = new RsvgSurface (filename);
+            handle = new Handle (file_name);
+            Width = handle.Dimensions.Width;
+            Height = handle.Dimensions.Height;
         }
 
-        public void Dispose ()
+        public void Render (Context cr)
         {
-            // FIXME: This should work, but doesn't.
-            //Pixbuf.Dispose ();
-
-#pragma warning disable 0612
-            Pixbuf.Unref ();
-#pragma warning restore 0612
+            handle.RenderCairo (cr);
         }
     }
 }

@@ -1,7 +1,9 @@
-//
-// TileSet.cs: Description Goes Here
-// Author: Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
-//
+/*******************************************************************************
+ *  TileSet.cs: Manages a collection of Tile objects.
+ *
+ *  Copyright (C) 2007, 2008
+ *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
+ ******************************************************************************/
 
 using Gdk;
 using Rsvg;
@@ -94,12 +96,12 @@ namespace Questar.Gui
 
         public int Width
         {
-            get { return width; }
+            get { return tiles["default"].Width; }
         }
 
         public int Height
         {
-            get { return height; }
+            get { return tiles["default"].Width; }
         }
 
         public double ZoomPercentage
@@ -152,9 +154,6 @@ namespace Questar.Gui
             UIActions.Instance["ZoomOut"].Sensitive =
                 zoom != ZoomSetting.Smallest;
 
-            foreach (Tile tile in tiles.Values) {
-                tile.Dispose ();
-            }
             tiles.Clear ();
 
             if (!Directory.Exists (TileSetDirectory)) {
@@ -167,9 +166,6 @@ namespace Questar.Gui
                 string key = Path.GetFileNameWithoutExtension (file);
                 tiles.Add (key, new Tile (file, ZoomPercentage));
             }
-
-            width = tiles["default"].Pixbuf.Width;
-            height = tiles["default"].Pixbuf.Height;
         }
     }
 }
