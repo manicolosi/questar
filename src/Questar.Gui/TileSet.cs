@@ -45,8 +45,6 @@ namespace Questar.Gui
         private Dictionary<string, Tile> tiles =
             new Dictionary<string, Tile> ();
 
-        private int width;
-        private int height;
         private ZoomSetting zoom;
 
         private string name;
@@ -101,7 +99,7 @@ namespace Questar.Gui
 
         public int Height
         {
-            get { return tiles["default"].Width; }
+            get { return tiles["default"].Height; }
         }
 
         public double ZoomPercentage
