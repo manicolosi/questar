@@ -79,7 +79,7 @@ namespace Questar.Gui
             // UI Action Events
             UIActions.Instance["ZoomIn"].Activated += delegate {
                 if (zoom != ZoomSetting.Largest) {
-                    Zoom += (int) 25;
+                    Zoom += 25;
                 }
             };
             UIActions.Instance["ZoomOut"].Activated += delegate {
