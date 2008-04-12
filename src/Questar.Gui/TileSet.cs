@@ -57,6 +57,7 @@ namespace Questar.Gui
             name = UISchema.TileSet.Value;
 
             SetupHandlers ();
+            SetZoomActionsSensitive ();
             LoadPixbufs ();
         }
 
@@ -65,12 +66,13 @@ namespace Questar.Gui
             // Schema Notify Events
             UISchema.TileSet.Changed += delegate {
                 name = UISchema.TileSet.Value;
+                SetZoomActionsSensitive ();
                 LoadPixbufs ();
                 EventHelper.Raise (this, TileSetChanged);
             };
             UISchema.Zoom.Changed += delegate {
                 zoom = UISchema.Zoom.Value;
-                LoadPixbufs ();
+                SetZoomActionsSensitive ();
                 EventHelper.Raise (this, TileSetChanged);
             };
 
@@ -145,13 +147,16 @@ namespace Questar.Gui
             get { return Path.Combine (tile_set_directory, Name); }
         }
 
-        private void LoadPixbufs ()
+        private void SetZoomActionsSensitive ()
         {
             UIActions.Instance["ZoomIn"].Sensitive  =
                 zoom != ZoomSetting.Largest;
             UIActions.Instance["ZoomOut"].Sensitive =
                 zoom != ZoomSetting.Smallest;
+        }
 
+        private void LoadPixbufs ()
+        {
             tiles.Clear ();
 
             if (!Directory.Exists (TileSetDirectory)) {
