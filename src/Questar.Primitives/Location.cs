@@ -64,12 +64,7 @@ namespace Questar.Primitives
 
         public bool IsAdjacentTo (Location loc)
         {
-            foreach (Location adj_loc in AdjacentLocations) {
-                if (loc == adj_loc)
-                    return true;
-            }
-
-            return false;
+            return AdjacentLocations.Any (adj_loc => adj_loc == loc);
         }
 
         public bool IsClear
