@@ -56,6 +56,19 @@ namespace Questar.Extensions
             return default (T);
         }
 
+        public static bool Any<T> (this IEnumerable<T> source,
+	    Func<T, bool> predicate)
+        {
+            source.AssertNotNull ("source");
+            predicate.AssertNotNull ("predicate");
+
+	    foreach (T item in source)
+                if (predicate (item))
+                    return true;
+
+            return false;
+        }
+
         public static IEnumerable<T> Where<T> (this IEnumerable<T> source,
             Func<T, bool> predicate)
         {

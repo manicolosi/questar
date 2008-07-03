@@ -27,6 +27,19 @@ namespace Questar.UnitTests.Extensions
         }
 
         [Test]
+        [Test]
+        public void AnyReturnsTrueWhenPredicateIsTrueForAnItemInSource ()
+        {
+          Assert.That (source.Any (i => i == 5), Is.True);
+        }
+
+        [Test]
+        public void AnyReturnsFalseWhenPredicateIsFalseForAllItemsInSource ()
+        {
+          Assert.That (source.Any (i => i == 15), Is.False);
+        }
+
+        [Test]
         public void ClampReturnsHighWhenSelfGreaterThanIt ()
         {
             int result = 5.Clamp (1, 3);
