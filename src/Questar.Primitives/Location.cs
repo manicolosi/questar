@@ -75,23 +75,18 @@ namespace Questar.Primitives
         public IEnumerable<Location> AdjacentLocations
         {
             get {
-                Location loc;
-
-                foreach (Direction direction in Direction.All) {
-                    loc = direction.ApplyTo (this);
-                    if (loc != null)
-                        yield return loc;
-                }
+                return Direction.All
+                    .Select (dir => dir.ApplyTo (this))
+                    .Where (loc => loc != null);
             }
         }
 
         public IEnumerable<Actor> AdjacentActors
         {
             get {
-                foreach (Location loc in AdjacentLocations) {
-                    if (loc.Actor != null)
-                        yield return loc.Actor;
-                }
+                return AdjacentLocations
+                    .Select (loc => loc.Actor)
+                    .Where (actor => actor != null);
             }
         }
 
