@@ -27,6 +27,14 @@ namespace Questar.UnitTests.Extensions
         }
 
         [Test]
+        public void SelectWorksAsItShould ()
+        {
+            double [] result = new [] { 0.0, 1.5, 3.0, 4.5, 6.0,
+                                        7.5, 9.0, 10.5, 12, 13.5 };
+
+            Assert.That (source.Select (i => i * 1.5), Is.EquivalentTo (result));
+        }
+
         [Test]
         public void AnyReturnsTrueWhenPredicateIsTrueForAnItemInSource ()
         {

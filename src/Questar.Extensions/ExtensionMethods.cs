@@ -69,6 +69,16 @@ namespace Questar.Extensions
             return false;
         }
 
+        public static IEnumerable<TResult> Select<TSource, TResult>
+            (this IEnumerable<TSource> source, Func<TSource, TResult> selector)
+        {
+            source.AssertNotNull ("source");
+            selector.AssertNotNull ("selector");
+
+            foreach (TSource item in source)
+                yield return selector (item);
+        }
+
         public static IEnumerable<T> Where<T> (this IEnumerable<T> source,
             Func<T, bool> predicate)
         {
