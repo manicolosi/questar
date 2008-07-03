@@ -94,22 +94,21 @@ namespace Questar.Primitives
         {
             // FIXME: Should be using a circle instead of a rectangle,
             // but this is quick and easy...
-            int width = (radius * 2) + 1;
-            Point start = new Point (this.Position.X - radius, this.Position.Y - radius);
-            Rectangle rect = new Rectangle (start, width, width);
+            int diameter = radius * 2 + 1;
 
-            foreach (Point p in rect) {
-                if (IsValid (Map, p))
-                    yield return new Location (Map, p);
-            }
+            Point start = new Point (this.Position.X - radius, this.Position.Y - radius);
+            Rectangle rect = new Rectangle (start, diameter, diameter);
+
+            return rect
+                .Where (p => IsValid (Map, p))
+                .Select (p => new Location (Map, p));
         }
 
         public IEnumerable<Actor> ActorsInRadius (int radius)
         {
-            foreach (Location loc in LocationsInRadius (radius)) {
-                if (loc.Actor != null)
-                    yield return loc.Actor;
-            }
+            return LocationsInRadius (radius)
+                .Select (loc => loc.Actor)
+                .Where (actor => actor != null);
         }
 
         public Direction DirectionOf (Location loc)
