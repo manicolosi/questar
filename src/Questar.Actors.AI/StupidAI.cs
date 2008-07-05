@@ -22,16 +22,12 @@ namespace Questar.Actors.AI
             ActorEventArgs args)
         {
             base.Action = new MoveTowardsTargetAction (base.Actor, args.Actor);
-            Console.WriteLine ("{0} sees {1}",
-                base.Actor, args.Actor);
         }
 
         protected override void OnActorLostSight (object sender,
             ActorEventArgs args)
         {
             base.Action = new DoNothingAction (base.Actor);
-            Console.WriteLine ("{0} does not see {1} anymore",
-                base.Actor, args.Actor);
         }
     }
 }
