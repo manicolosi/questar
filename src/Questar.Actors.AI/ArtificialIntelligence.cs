@@ -25,6 +25,7 @@ namespace Questar.Actors.AI
 
             actor.ActorSighted += OnActorSighted;
             actor.ActorLostSight += OnActorLostSight;
+            actor.ActorAdjacent += OnActorAdjacent;
         }
 
         public Actor Actor
@@ -47,6 +48,9 @@ namespace Questar.Actors.AI
             ActorEventArgs args);
 
         protected abstract void OnActorLostSight (object sender,
+            ActorEventArgs args);
+
+        protected abstract void OnActorAdjacent (object sender,
             ActorEventArgs args);
     }
 }

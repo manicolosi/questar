@@ -18,6 +18,15 @@ namespace Questar.Actors.AI
         {
         }
 
+        private bool IsHostile (Actor target)
+        {
+            // Always hostile towards the Hero.
+            if (target is Hero)
+                return true;
+
+            return false;
+        }
+
         protected override void OnActorSighted (object sender,
             ActorEventArgs args)
         {
@@ -32,6 +41,16 @@ namespace Questar.Actors.AI
             base.Action = new DoNothingAction (base.Actor);
             Console.WriteLine ("{0} does not see {1} anymore",
                 base.Actor, args.Actor);
+        }
+
+        protected override void OnActorAdjacent (object sender,
+            ActorEventArgs args)
+        {
+            Actor target = args.Actor;
+            if (IsHostile (target)) {
+                // Create AttackAction...
+            }
+            base.Action = new DoNothingAction (base.Actor);
         }
     }
 }

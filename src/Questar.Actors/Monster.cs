@@ -45,21 +45,6 @@ namespace Questar.Actors
             }
         }
 
-        private bool IsHostile (Actor actor)
-        {
-            // Always hostile towards the Hero.
-            if (actor is Hero)
-                return true;
-
-            // We're also hostile to Monsters that have a different Id
-            // than this one.
-            Monster monster = actor as Monster;
-            if (monster != null && monster.Id != Id)
-                return true;
-
-            return false;
-        }
-
         public override void TakeTurn ()
         {
             Action action = null;

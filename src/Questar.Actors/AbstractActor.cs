@@ -23,6 +23,7 @@ namespace Questar.Actors
     {
         public event EventHandler<ActorEventArgs> ActorSighted;
         public event EventHandler<ActorEventArgs> ActorLostSight;
+        public event EventHandler<ActorEventArgs> ActorAdjacent;
 
         private HitPoints hit_points;
         private Inventory inventory;
@@ -63,7 +64,18 @@ namespace Questar.Actors
         {
             CheckSight ();
 
+            Console.WriteLine ("ai.Action: {0}", ai.Action);
             ai.Action.Execute ();
+        }
+
+        public void CheckAdjacency ()
+        {
+            foreach (Actor adj_actor in base.Location.AdjacentActors) {
+                EventHelper.Raise (this, ActorAdjacent,
+                    delegate (ActorEventArgs args) {
+                        args.Actor = adj_actor;
+                    });
+            }
         }
 
         // TODO: This will later check for Items and other important
@@ -71,6 +83,9 @@ namespace Questar.Actors
         // TODO: This could be clearer...
         public void CheckSight ()
         {
+            CheckAdjacency ();
+
+            // TODO: Refactor
             List<Actor> new_visible_actors = new List<Actor> ();
 
             foreach (Actor actor in Location.ActorsInRadius (5)) {

@@ -17,6 +17,7 @@ namespace Questar.Actors
     {
         event EventHandler<ActorEventArgs> ActorSighted;
         event EventHandler<ActorEventArgs> ActorLostSight;
+        event EventHandler<ActorEventArgs> ActorAdjacent;
 
         HitPoints HitPoints { get; }
         Inventory Inventory { get; }
