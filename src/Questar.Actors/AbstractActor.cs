@@ -64,7 +64,6 @@ namespace Questar.Actors
         {
             CheckSight ();
 
-            Console.WriteLine ("ai.Action: {0}", ai.Action);
             ai.Action.Execute ();
         }
 

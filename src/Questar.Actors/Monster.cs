@@ -45,34 +45,6 @@ namespace Questar.Actors
             }
         }
 
-        public override void TakeTurn ()
-        {
-            Action action = null;
-            Location location = base.Location;
-
-            // Possibly attack someone
-            foreach (Actor actor in location.AdjacentActors) {
-                if (IsHostile (actor))
-                    action = new AttackAction (this, actor);
-            }
-
-            // Move towards the Hero
-            if (action == null) {
-                Location target = Game.Instance.Hero.Location;
-                Direction direction = location.DirectionOf (target);
-
-                if (base.CanMoveIn (direction))
-                    action = new MoveAction (this, direction);
-            }
-
-            // Move randomly
-            if (action == null)
-                action = new RandomMoveAction (this);
-
-            base.Action = action;
-            base.TakeTurn ();
-        }
-
         public string Id
         {
             get { return monster_id; }
