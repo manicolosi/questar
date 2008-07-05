@@ -8,7 +8,6 @@
 using System;
 using System.Collections.Generic;
 
-using Questar.Actors.AI;
 using Questar.Actors.Actions;
 using Questar.Base;
 using Questar.Helpers;
@@ -27,15 +26,6 @@ namespace Questar.Actors
         private HitPoints hit_points;
         private Inventory inventory;
         private Action action;
-        private ArtificialIntelligence ai;
-
-        List<Actor> visible_actors = new List<Actor> ();
-
-        public ArtificialIntelligence AI
-        {
-            get { return ai; }
-            protected set { ai = value; }
-        }
 
         public HitPoints HitPoints
         {
@@ -61,46 +51,8 @@ namespace Questar.Actors
 
         public virtual void TakeTurn ()
         {
-            CheckSight ();
-
-            ai.Action.Execute ();
+            Action.Execute ();
         }
-
-        // TODO: This will later check for Items and other important
-        // things.
-        // TODO: This could be clearer...
-        public void CheckSight ()
-        {
-            List<Actor> new_visible_actors = new List<Actor> ();
-
-            foreach (Actor actor in Location.ActorsInRadius (5)) {
-                if (actor == this) // Skip this actor...
-                    continue;
-
-                new_visible_actors.Add (actor);
-
-                if (visible_actors.Contains (actor)) // Skip actors we already see
-                    continue;
-
-                EventHelper.Raise (this, ActorSighted,
-                    delegate (ActorEventArgs args) {
-                        args.Actor = actor;
-                    });
-            }
-
-            foreach (Actor actor in visible_actors) {
-                if (new_visible_actors.Contains (actor)) // Skip actor we still see
-                    continue;
-
-                EventHelper.Raise (this, ActorLostSight,
-                    delegate (ActorEventArgs args) {
-                        args.Actor = actor;
-                    });
-            }
-
-            visible_actors = new_visible_actors;
-        }
-
         public virtual bool IsAlive
         {
             get { return HitPoints.Current >= 0; }

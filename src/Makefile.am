@@ -25,9 +25,6 @@ SOURCES = \
 	Questar.Actors/MonsterDefinition.cs \
 	Questar.Actors/MonsterFactory.cs \
 	\
-	Questar.Actors.AI/ArtificialIntelligence.cs \
-	Questar.Actors.AI/StupidAI.cs \
-	\
 	Questar.Actors.Actions/AbstractAction.cs \
 	Questar.Actors.Actions/Action.cs \
 	Questar.Actors.Actions/AttackAction.cs \
