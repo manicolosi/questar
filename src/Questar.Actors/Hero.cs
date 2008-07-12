@@ -115,8 +115,8 @@ namespace Questar.Actors
             Action action = null;
             Location loc = null;
 
-            if (base.CanMoveIn (direction)) {
-                loc = direction.ApplyTo (base.Location);
+            loc = direction.ApplyTo (base.Location);
+            if (loc != null) {
                 info = loc.GridInformation;
             }
 

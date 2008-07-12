@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 
 using Questar.Actors;
+using Questar.Extensions;
 using Questar.Helpers;
 using Questar.Items;
 using Questar.Primitives;
@@ -40,6 +41,53 @@ namespace Questar.Maps
             MonsterFactory.Instance.Created += OnActorCreated;
         }
 
+        public int Width
+        {
+            get { return width; }
+        }
+
+        public int Height
+        {
+            get { return height; }
+        }
+
+        public Grid this[int x, int y]
+        {
+            get { return grids[x, y]; }
+            set { grids[x, y] = value; }
+        }
+
+        public Grid this[Point p]
+        {
+            get { return this[p.X, p.Y]; }
+            set { this[p.X, p.Y] = value; }
+        }
+
+        public GridInformation GetGridInformation (Point grid)
+        {
+            GridInformation info = GridInformation.Clear;
+
+            Rectangle rect = new Rectangle (width, height);
+
+            if (!rect.Contains (grid)) {
+                info = GridInformation.Invalid;
+            }
+            else if (this[grid].Terrain.IsBlocking) {
+                info = GridInformation.BlockingTerrain;
+            }
+            else if (this[grid].Actor != null) {
+                info = GridInformation.Occupied;
+            }
+
+            return info;
+        }
+
+        public bool Contains (Actor actor)
+        {
+            Rectangle rect = new Rectangle (width, height);
+            return rect.Any (p => this[p].Actor == actor);
+        }
+
         private void OnActorCreated (object sender, EntityCreatedEventArgs args)
         {
             Actor actor = (Actor) args.Entity;
@@ -47,8 +95,9 @@ namespace Questar.Maps
             actor.LocationChanged += OnActorLocationChanged;
             actor.Destroyed += OnActorDestroyed;
 
-            if (actor.Location.Map == this)
+            if (actor.Location.Map == this) {
                 this[actor.Location.Position].Actor = actor;
+            }
         }
 
         private void OnActorDestroyed (object sender, EventArgs args)
@@ -67,8 +116,10 @@ namespace Questar.Maps
             this[old_loc.Position].Actor = null;
             FireGridChanged (old_loc.Position);
 
-            this[new_loc.Position].Actor = actor;
-            FireGridChanged (new_loc.Position);
+            if (new_loc != null) {
+                this[new_loc.Position].Actor = actor;
+                FireGridChanged (new_loc.Position);
+            }
         }
 
         private void OnItemCreated (object sender, EntityCreatedEventArgs args)
@@ -102,45 +153,6 @@ namespace Questar.Maps
                 delegate (MapGridChangedEventArgs grid_args) {
                     grid_args.Grid = point;
                 });
-        }
-
-        public GridInformation GetGridInformation (Point grid)
-        {
-            GridInformation info = GridInformation.Clear;
-
-            Rectangle rect = new Rectangle (width, height);
-            if (!rect.Contains (grid))
-                info = GridInformation.Invalid;
-
-            else if (this[grid].Terrain.IsBlocking)
-                info = GridInformation.BlockingTerrain;
-
-            else if (this[grid].Actor != null)
-                info = GridInformation.Occupied;
-
-            return info;
-        }
-
-        public int Width
-        {
-            get { return width; }
-        }
-
-        public int Height
-        {
-            get { return height; }
-        }
-
-        public Grid this[int x, int y]
-        {
-            get { return grids[x, y]; }
-            set { grids[x, y] = value; }
-        }
-
-        public Grid this[Point p]
-        {
-            get { return this[p.X, p.Y]; }
-            set { this[p.X, p.Y] = value; }
         }
     }
 }
