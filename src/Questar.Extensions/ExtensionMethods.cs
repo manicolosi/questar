@@ -3,7 +3,7 @@
  *  covered by Linq, but it's not working on Mono, so they'll be removed
  *  later.
  *
- *  Copyright (C) 2007
+ *  Copyright (C) 2007, 2008
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
@@ -62,7 +62,7 @@ namespace Questar.Extensions
             source.AssertNotNull ("source");
             predicate.AssertNotNull ("predicate");
 
-	    foreach (T item in source)
+            foreach (T item in source)
                 if (predicate (item))
                     return true;
 
