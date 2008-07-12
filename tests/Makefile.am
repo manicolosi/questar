@@ -16,8 +16,9 @@ SOURCES = \
 	$(srcdir)/Questar.UnitTests.Items/ItemFactoryFixture.cs \
 	$(srcdir)/Questar.UnitTests.Extensions/CheckExtensionsFixture.cs \
 	$(srcdir)/Questar.UnitTests.Extensions/ExtensionMethodsFixture.cs \
+	$(srcdir)/Questar.UnitTests.Actors/ActorFixture.cs \
+	$(srcdir)/Questar.MockObjects/MockActor.cs \
 	#$(srcdir)/Questar.UnitTests.Items/InventoryFixture.cs \
-	#$(srcdir)/Questar.MockObjects/MockActor.cs \
 	#$(srcdir)/Questar.UnitTests.Primitives/LocationFixture.cs \
 	#$(srcdir)/TestActor.cs \
 	#$(srcdir)/TestGame.cs \

@@ -82,6 +82,12 @@ namespace Questar.Maps
             return info;
         }
 
+        public bool Contains (Actor actor)
+        {
+            Rectangle rect = new Rectangle (width, height);
+            return rect.Any (p => this[p].Actor == actor);
+        }
+
         private void OnActorCreated (object sender, EntityCreatedEventArgs args)
         {
             Actor actor = (Actor) args.Entity;
@@ -110,8 +116,10 @@ namespace Questar.Maps
             this[old_loc.Position].Actor = null;
             FireGridChanged (old_loc.Position);
 
-            this[new_loc.Position].Actor = actor;
-            FireGridChanged (new_loc.Position);
+            if (new_loc != null) {
+                this[new_loc.Position].Actor = actor;
+                FireGridChanged (new_loc.Position);
+            }
         }
 
         private void OnItemCreated (object sender, EntityCreatedEventArgs args)
