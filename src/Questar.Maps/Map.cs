@@ -64,17 +64,32 @@ namespace Questar.Maps
             set { this[p.X, p.Y] = value; }
         }
 
+        public bool IsGridValid (Point grid)
+        {
+            return area.Contains (grid);
+        }
+
+        public bool IsGridBlocking (Point grid)
+        {
+            return this[grid].IsTerrainBlocking;
+        }
+
+        public bool IsGridOccupied (Point grid)
+        {
+            return this[grid].Actor != null;
+        }
+
         public GridInformation GetGridInformation (Point grid)
         {
             GridInformation info = GridInformation.Clear;
 
-            if (!area.Contains (grid)) {
+            if (!IsGridValid (grid)) {
                 info = GridInformation.Invalid;
             }
-            else if (this[grid].IsTerrainBlocking) {
+            else if (IsGridBlocking (grid)) {
                 info = GridInformation.BlockingTerrain;
             }
-            else if (this[grid].Actor != null) {
+            else if (IsGridOccupied (grid)) {
                 info = GridInformation.Occupied;
             }
 
