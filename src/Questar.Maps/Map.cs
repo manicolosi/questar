@@ -23,19 +23,20 @@ namespace Questar.Maps
 
     public class Map
     {
-        private int width;
-        private int height;
-
         private Grid [,] grids;
+        private Rectangle area;
 
         public event EventHandler<MapGridChangedEventArgs> GridChanged;
 
         public Map (int width, int height)
         {
-            this.width = width;
-            this.height = height;
+            grids = new Grid[width, height];
 
-            grids = new Grid [width, height];
+            area = new Rectangle (width, height);
+
+            foreach (Point p in area) {
+                grids[p.X, p.Y] = new Grid ();
+            }
 
             ItemFactory.Instance.Created += OnItemCreated;
             MonsterFactory.Instance.Created += OnActorCreated;
@@ -43,12 +44,12 @@ namespace Questar.Maps
 
         public int Width
         {
-            get { return width; }
+            get { return area.Width; }
         }
 
         public int Height
         {
-            get { return height; }
+            get { return area.Height; }
         }
 
         public Grid this[int x, int y]
@@ -67,12 +68,10 @@ namespace Questar.Maps
         {
             GridInformation info = GridInformation.Clear;
 
-            Rectangle rect = new Rectangle (width, height);
-
-            if (!rect.Contains (grid)) {
+            if (!area.Contains (grid)) {
                 info = GridInformation.Invalid;
             }
-            else if (this[grid].Terrain.IsBlocking) {
+            else if (this[grid].IsTerrainBlocking) {
                 info = GridInformation.BlockingTerrain;
             }
             else if (this[grid].Actor != null) {
@@ -84,8 +83,7 @@ namespace Questar.Maps
 
         public bool Contains (Actor actor)
         {
-            Rectangle rect = new Rectangle (width, height);
-            return rect.Any (p => this[p].Actor == actor);
+            return area.Any (p => this[p].Actor == actor);
         }
 
         private void OnActorCreated (object sender, EntityCreatedEventArgs args)

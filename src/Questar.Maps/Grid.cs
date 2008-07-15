@@ -19,15 +19,19 @@ namespace Questar.Maps
         private Actor actor;
         private Item item;
 
-        public Grid (Terrain terrain)
+        public Grid ()
         {
-            this.terrain = terrain;
         }
 
         public Terrain Terrain
         {
             get { return terrain; }
             set { terrain = value; }
+        }
+
+        public bool IsTerrainBlocking
+        {
+            get { return terrain != null ? terrain.IsBlocking : false; }
         }
 
         public Actor Actor

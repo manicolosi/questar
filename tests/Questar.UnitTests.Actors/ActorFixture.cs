@@ -26,9 +26,9 @@ namespace Questar.UnitTests.Actors
         [SetUp]
         public void SetUp ()
         {
-            IMapGenerator map_gen = new StupidGenerator ();
-            actor = new MockActor (new Location (map_gen.Generate (), 2, 2));
-            actor2 = new MockActor (new Location (actor.Location.Map, 1, 2));
+            Map map = new Map (10, 10);
+            actor = new MockActor (new Location (map, 2, 2));
+            actor2 = new MockActor (new Location (map, 1, 2));
         }
 
         [Test]

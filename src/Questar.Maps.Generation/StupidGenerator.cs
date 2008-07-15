@@ -55,7 +55,7 @@ namespace Questar.Maps.Generation
 
         private void Put (Point point, string terrain)
         {
-            map[point] = new Grid (terrain_manager[terrain]);
+            map[point].Terrain = terrain_manager[terrain];
         }
     }
 }
