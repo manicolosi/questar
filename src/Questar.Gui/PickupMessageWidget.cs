@@ -6,27 +6,45 @@
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
+using Glade;
+using Gdk;
 using Gtk;
 using System;
 
 using Questar.Actors;
 using Questar.Core;
+using Questar.Helpers;
 
 namespace Questar.Gui
 {
-    public class PickupMessageWidget : VBox
+    public class PickupMessageWidget : EventBox
     {
         private bool really_show = false;
+        private bool set_background = true;
+
+        [Glade.Widget] private Container pickup_message;
+        [Glade.Widget] private Label label;
+
 
         public PickupMessageWidget ()
         {
-            BuildWidget ();
+            Glade.XML glade = new Glade.XML ("questar.glade", "pickup_message");
+            glade.Autoconnect (this);
+
+            base.Add (pickup_message);
+
             SetupHandlers ();
         }
 
-        private void BuildWidget ()
+
+        protected override void OnStyleSet (Style previous)
         {
-            base.Add (new Label ("Blah"));
+            if (set_background == true) {
+                set_background = false;
+                base.ModifyBg (StateType.Normal, base.Style.Background (StateType.Selected));
+                label.ModifyFg (StateType.Normal, base.Style.Foreground (StateType.Selected));
+            }
+            set_background = true;
         }
 
         private void SetupHandlers ()
@@ -39,8 +57,7 @@ namespace Questar.Gui
                     really_show = true;
                     base.Show ();
                 }
-                else
-                {
+                else {
                     really_show = false;
                     base.Hide ();
                 }

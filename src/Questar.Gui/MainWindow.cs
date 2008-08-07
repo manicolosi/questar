@@ -37,6 +37,8 @@ namespace Questar.Gui
         {
             menubar_container.Add (UIActions.Instance.MenuBar);
             message_view_container.Add (new MessageView ());
+
+            map_view_container.Add (new PickupMessageWidget ());
             map_view_container.Add (new WorldView ());
 
             base.Window.ShowAll ();
