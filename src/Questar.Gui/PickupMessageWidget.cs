@@ -15,6 +15,8 @@ using Questar.Actors;
 using Questar.Core;
 using Questar.Helpers;
 
+using Item = Questar.Items.Item;
+
 namespace Questar.Gui
 {
     public class PickupMessageWidget : EventBox
@@ -25,7 +27,6 @@ namespace Questar.Gui
         [Glade.Widget] private Container pickup_message;
         [Glade.Widget] private Label label;
 
-
         public PickupMessageWidget ()
         {
             Glade.XML glade = new Glade.XML ("questar.glade", "pickup_message");
@@ -35,7 +36,6 @@ namespace Questar.Gui
 
             SetupHandlers ();
         }
-
 
         protected override void OnStyleSet (Style previous)
         {
@@ -53,7 +53,12 @@ namespace Questar.Gui
             Actor hero = Game.Instance.Hero;
 
             turn_loop.NewRound += delegate {
-                if (hero.Location.Item != null) {
+                Item item = hero.Location.Item;
+                if (item != null) {
+                    label.Markup = String.Format (
+                        "There is a <b>{0}</b> here. Pick it up?",
+                        item);
+
                     really_show = true;
                     base.Show ();
                 }
