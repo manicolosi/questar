@@ -23,7 +23,7 @@ namespace Questar.Gui
     public class MainWindow : GladeWindow
     {
         [Glade.Widget] private Container menubar_container;
-        [Glade.Widget] private Container map_view_container;
+        [Glade.Widget] private Box map_view_container;
         [Glade.Widget] private Container message_view_container;
 
         public MainWindow () : base ("main_window")
@@ -38,7 +38,7 @@ namespace Questar.Gui
             menubar_container.Add (UIActions.Instance.MenuBar);
             message_view_container.Add (new MessageView ());
 
-            map_view_container.Add (new PickupMessageWidget ());
+            map_view_container.PackStart (new PickupMessageWidget (), false, false, 0);
             map_view_container.Add (new WorldView ());
 
             base.Window.ShowAll ();
