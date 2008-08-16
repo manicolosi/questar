@@ -44,6 +44,11 @@ namespace Questar
 
             ItemFactory factory = ItemFactory.Instance;
             factory.Create ("HealLight", new Location (game.CurrentMap, 5, 5));
+            factory.Create ("HealSerious", new Location (game.CurrentMap, 10, 5));
+            factory.Create ("HealCritical", new Location (game.CurrentMap, 5, 10));
+            factory.Create ("HealLight", new Location (game.CurrentMap, 20, 10));
+            factory.Create ("HealSerious", new Location (game.CurrentMap, 10, 20));
+            factory.Create ("HealCritical", new Location (game.CurrentMap, 35, 15));
             //game.CurrentMap.GetRandomGrid (g => !g.IsBlocking)
                 //.Add (factory.Create ("HealLight"));
 
