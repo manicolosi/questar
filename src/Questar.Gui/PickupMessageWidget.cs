@@ -78,7 +78,7 @@ namespace Questar.Gui
             TurnLoop turn_loop = Game.Instance.TurnLoop;
             Actor hero = Game.Instance.Hero;
 
-            turn_loop.NewRound += delegate {
+            turn_loop.NewRound += (object sender, NewRoundEventArgs args) => {
                 item = hero.Location.Item;
                 base.Visible = item != null;
             };
