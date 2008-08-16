@@ -285,7 +285,7 @@ namespace Questar.Gui
             }
         }
 
-        private void NewRoundHandler (object sender, TurnLoop.EventArgs args)
+        private void NewRoundHandler (object sender, NewRoundEventArgs args)
         {
             if (recenter) {
                 recenter = false;
