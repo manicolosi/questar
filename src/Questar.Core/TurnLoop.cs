@@ -14,14 +14,14 @@ using Questar.Primitives;
 
 namespace Questar.Core
 {
+    public class NewRoundEventArgs : System.EventArgs
+    {
+        public int Round;
+    }
+
     public class TurnLoop
     {
-        public class EventArgs : System.EventArgs
-        {
-            public int Round;
-        }
-
-        public event EventHandler<TurnLoop.EventArgs> NewRound;
+        public event EventHandler<NewRoundEventArgs> NewRound;
 
         private List<Actor> actors = new List<Actor> ();
         private int round = -1;
@@ -40,7 +40,7 @@ namespace Questar.Core
                 round = value;
 
                 EventHelper.Raise (this, NewRound,
-                    delegate (TurnLoop.EventArgs args) {
+                    delegate (NewRoundEventArgs args) {
                         args.Round = round;
                     });
             }
@@ -83,7 +83,7 @@ namespace Questar.Core
                 actors.Add (actor);
         }
 
-        private void ActorDestroyedHandler (object sender, System.EventArgs args)
+        private void ActorDestroyedHandler (object sender, EventArgs args)
         {
             actors.Remove ((Actor) sender);
         }
