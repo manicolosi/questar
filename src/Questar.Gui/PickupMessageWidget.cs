@@ -21,7 +21,7 @@ namespace Questar.Gui
 {
     public class PickupMessageWidget : EventBox
     {
-        private bool really_show = false;
+        private Item item = null;
         private bool set_background = true;
 
         [Glade.Widget] private Container pickup_message;
@@ -37,8 +37,9 @@ namespace Questar.Gui
 
         protected override void OnShown ()
         {
-            if (really_show)
-                base.OnShown ();
+            label.Markup = String.Format (
+                "There is a <b>{0}</b> here. Pick it up?", item);
+            base.OnShown ();
         }
 
         protected override void OnStyleSet (Style previous)
@@ -78,19 +79,8 @@ namespace Questar.Gui
             Actor hero = Game.Instance.Hero;
 
             turn_loop.NewRound += delegate {
-                Item item = hero.Location.Item;
-                if (item != null) {
-                    label.Markup = String.Format (
-                        "There is a <b>{0}</b> here. Pick it up?",
-                        item);
-
-                    really_show = true;
-                    base.Show ();
-                }
-                else {
-                    really_show = false;
-                    base.Hide ();
-                }
+                item = hero.Location.Item;
+                base.Visible = item != null;
             };
         }
     }
