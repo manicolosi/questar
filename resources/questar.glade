@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Thu Aug  7 02:54:23 2008 -->
+<!--Generated with glade3 3.4.5 on Sat Aug 16 01:37:21 2008 -->
 <glade-interface>
   <widget class="GtkWindow" id="main_window">
     <child>
@@ -523,11 +523,11 @@
         <property name="border_width">6</property>
         <property name="spacing">10</property>
         <child>
-          <widget class="GtkImage" id="image1">
+          <widget class="GtkImage" id="image">
             <property name="visible">True</property>
             <property name="has_tooltip">True</property>
             <property name="tooltip_markup">Broom</property>
-            <property name="stock">gtk-clear</property>
+            <property name="stock">gtk-missing-image</property>
             <property name="icon_size">5</property>
           </widget>
           <packing>
@@ -560,7 +560,7 @@
                 <property name="spacing">6</property>
                 <property name="homogeneous">True</property>
                 <child>
-                  <widget class="GtkButton" id="button2">
+                  <widget class="GtkButton" id="no_button">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -570,7 +570,7 @@
                   </widget>
                 </child>
                 <child>
-                  <widget class="GtkButton" id="button4">
+                  <widget class="GtkButton" id="yes_button">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="has_focus">True</property>
