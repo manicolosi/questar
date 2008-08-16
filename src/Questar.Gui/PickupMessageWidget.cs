@@ -29,12 +29,14 @@ namespace Questar.Gui
 
         public PickupMessageWidget ()
         {
-            Glade.XML glade = new Glade.XML ("questar.glade", "pickup_message");
-            glade.Autoconnect (this);
-
-            base.Add (pickup_message);
-
+            Build ();
             SetupHandlers ();
+        }
+
+        protected override void OnShown ()
+        {
+            if (really_show)
+                base.OnShown ();
         }
 
         protected override void OnStyleSet (Style previous)
@@ -45,6 +47,14 @@ namespace Questar.Gui
                 label.ModifyFg (StateType.Normal, base.Style.Foreground (StateType.Selected));
             }
             set_background = true;
+        }
+
+        private void Build ()
+        {
+            Glade.XML glade = new Glade.XML ("questar.glade", "pickup_message");
+            glade.Autoconnect (this);
+
+            base.Add (pickup_message);
         }
 
         private void SetupHandlers ()
@@ -67,12 +77,6 @@ namespace Questar.Gui
                     base.Hide ();
                 }
             };
-        }
-
-        protected override void OnShown ()
-        {
-            if (really_show)
-                base.OnShown ();
         }
     }
 }
