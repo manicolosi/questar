@@ -12,19 +12,16 @@ namespace Questar.Helpers
 {
     public static class EventHelper
     {
-        public delegate void SetupEventArgsHandler<T> (T args);
-
-        public static void Raise<T> (object sender,
-            EventHandler<T> event_handler,
-            SetupEventArgsHandler<T> setup_handler) where T: EventArgs, new ()
+        public static void Raise<T> (this EventHandler<T> event_handler,
+            object sender, Action<T> setup) where T: EventArgs, new ()
         {
             if (event_handler == null)
                 return;
 
             T args = new T ();
 
-            if (setup_handler != null)
-                setup_handler (args);
+            if (setup != null)
+                setup (args);
 
             try {
                 event_handler (sender, args);
@@ -34,7 +31,7 @@ namespace Questar.Helpers
             }
         }
 
-        public static void Raise (object sender, EventHandler event_handler)
+        public static void Raise (this EventHandler event_handler, object sender)
         {
             if (event_handler == null)
                 return;

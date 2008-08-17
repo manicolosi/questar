@@ -127,11 +127,11 @@ namespace Questar.Maps
             Location old_loc = args.OldLocation;
 
             this[old_loc.Position].Actor = null;
-            FireGridChanged (old_loc.Position);
+            RaiseGridChanged (old_loc.Position);
 
             if (new_loc != null) {
                 this[new_loc.Position].Actor = actor;
-                FireGridChanged (new_loc.Position);
+                RaiseGridChanged (new_loc.Position);
             }
         }
 
@@ -151,21 +151,18 @@ namespace Questar.Maps
 
             if (old_loc != null) {
                 this[old_loc.Position].Item = null;
-                FireGridChanged (old_loc.Position);
+                RaiseGridChanged (old_loc.Position);
             }
 
             if (new_loc != null) {
                 this[new_loc.Position].Item = item;
-                FireGridChanged (new_loc.Position);
+                RaiseGridChanged (new_loc.Position);
             }
         }
 
-        private void FireGridChanged (Point point)
+        private void RaiseGridChanged (Point point)
         {
-            EventHelper.Raise (this, GridChanged,
-                delegate (MapGridChangedEventArgs grid_args) {
-                    grid_args.Grid = point;
-                });
+            GridChanged.Raise (this, args => { args.Grid = point; });
         }
     }
 }

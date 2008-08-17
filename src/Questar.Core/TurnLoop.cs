@@ -39,10 +39,7 @@ namespace Questar.Core
             private set {
                 round = value;
 
-                EventHelper.Raise (this, NewRound,
-                    delegate (NewRoundEventArgs args) {
-                        args.Round = round;
-                    });
+                NewRound.Raise (this, args => { args.Round = round; });
             }
         }
 

@@ -93,15 +93,14 @@ namespace Questar.Gui
                     return false;
 
                 if (current_frame >= total_frames) {
-                    EventHelper.Raise (this, Completed);
+                    Completed.Raise (this);
                     return false;
                 }
 
-                EventHelper.Raise (this, NewFrame,
-                    delegate (NewFrameEventArgs<T> args) {
-                        args.Frame = current_frame;
-                        args.Data = transform (this, current_frame);
-                    });
+                NewFrame.Raise (this, args => {
+                    args.Frame = current_frame;
+                    args.Data = transform (this, current_frame);
+                });
 
                 current_frame++;
 

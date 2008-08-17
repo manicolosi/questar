@@ -30,8 +30,8 @@ namespace Questar.Configuration
             ShortDescription = short_description;
             LongDescription = long_description;
 
-            ConfigurationClient.Instance.AddNotify (this, (object sender, NotifyEventArgs args)
-                => EventHelper.Raise (this, Changed));
+            ConfigurationClient.Instance.AddNotify (this,
+                (object sender, NotifyEventArgs args) => Changed.Raise (this));
         }
 
         public T Value

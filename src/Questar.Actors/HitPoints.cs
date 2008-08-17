@@ -61,10 +61,7 @@ namespace Questar.Actors
 
         private void OnChanged (HitPoints old)
         {
-            EventHelper.Raise (this, Changed,
-                delegate (HitPointsEventArgs args) {
-                    args.OldHitPoints = old;
-                });
+            Changed.Raise (this, args => { args.OldHitPoints = old; });
         }
 
         public bool IsEmpty

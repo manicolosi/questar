@@ -66,12 +66,12 @@ namespace Questar.Gui
             UISchema.TileSet.Changed += delegate {
                 name = UISchema.TileSet.Value;
                 LoadPixbufs ();
-                EventHelper.Raise (this, TileSetChanged);
+                TileSetChanged.Raise (this);
             };
             UISchema.Zoom.Changed += delegate {
                 zoom = UISchema.Zoom.Value;
                 LoadPixbufs ();
-                EventHelper.Raise (this, TileSetChanged);
+                TileSetChanged.Raise (this);
             };
 
             // UI Action Events

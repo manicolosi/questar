@@ -64,7 +64,7 @@ namespace Questar.Items
 
             items.Add (item);
 
-            RaiseItemEvent (Added, item);
+            Added.Raise (this, args => { args.Item = item; });
         }
 
         public void Remove (Item item)
@@ -74,7 +74,7 @@ namespace Questar.Items
 
             items.Remove (item);
 
-            RaiseItemEvent (Removed, item);
+            Removed.Raise (this, args => { args.Item = item; });
         }
 
         bool ICollection<Item>.Remove (Item item)
@@ -106,15 +106,6 @@ namespace Questar.Items
         IEnumerator IEnumerable.GetEnumerator ()
         {
             return GetEnumerator ();
-        }
-
-        private void RaiseItemEvent (EventHandler<ItemEventArgs> event_handler,
-            Item item)
-        {
-            EventHelper.Raise (this, event_handler,
-                delegate (ItemEventArgs args) {
-                    args.Item = item;
-                });
         }
     }
 }

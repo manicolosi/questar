@@ -59,18 +59,17 @@ namespace Questar.Primitives
 
         protected void OnLocationChanged (Location old_loc, Location new_loc)
         {
-            EventHelper.Raise (this, LocationChanged,
-                delegate (LocationChangedEventArgs args) {
-                    args.OldLocation = old_loc;
-                    args.NewLocation = new_loc;
-                });
+            LocationChanged.Raise (this, args => {
+                args.OldLocation = old_loc;
+                args.NewLocation = new_loc;
+            });
         }
 
         protected void OnDestroyed ()
         {
             Location = null;
 
-            EventHelper.Raise (this, Destroyed);
+            Destroyed.Raise (this);
         }
     }
 }
