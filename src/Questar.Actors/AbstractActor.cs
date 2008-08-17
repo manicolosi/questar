@@ -109,15 +109,11 @@ namespace Questar.Actors
 
         protected virtual void OnAttacked (Actor attacker, int damage)
         {
-            string attacker_name = StringHelper.SentenceCapitalize (attacker);
-
             //EventHelper.Raise (this, Attacked);
         }
 
         protected virtual void OnDeath ()
         {
-            string attacker_name = StringHelper.SentenceCapitalize (this);
-
             OnDestroyed ();
         }
     }
