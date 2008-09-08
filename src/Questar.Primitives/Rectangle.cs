@@ -42,6 +42,15 @@ namespace Questar.Primitives
             get { return start; }
         }
 
+        public int X
+        {
+            get { return Start.X; }
+        }
+
+        public int Y
+        {
+            get { return Start.Y; }
+        }
         public int Width
         {
             get { return width; }

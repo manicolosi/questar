@@ -32,6 +32,15 @@ namespace Questar.UnitTests.Primitives
         }
 
         [Test]
+        public void XAndYPropertiesAreSameAsStartingPoint ()
+        {
+            Rectangle rect = new Rectangle (1, 2, 3, 4);
+
+            Assert.That (rect.X, Is.EqualTo (rect.Start.X));
+            Assert.That (rect.Y, Is.EqualTo (rect.Start.Y));
+        }
+
+        [Test]
         public void OneByOneRectangleHasOnePoint ()
         {
             Rectangle rect = new Rectangle (1, 1);
