@@ -13,6 +13,7 @@ NUNIT_CONSOLE = $(NUNIT_PATH)/nunit-console.exe
 SOURCES = \
 	$(srcdir)/Questar.UnitTests.Primitives/DirectionFixture.cs \
 	$(srcdir)/Questar.UnitTests.Primitives/PointFixture.cs \
+	$(srcdir)/Questar.UnitTests.Primitives/RectangleFixture.cs \
 	$(srcdir)/Questar.UnitTests.Items/ItemFactoryFixture.cs \
 	$(srcdir)/Questar.UnitTests.Extensions/CheckExtensionsFixture.cs \
 	$(srcdir)/Questar.UnitTests.Extensions/ExtensionMethodsFixture.cs \

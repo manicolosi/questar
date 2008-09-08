@@ -51,6 +51,12 @@ namespace Questar.Primitives
         {
             get { return Start.Y; }
         }
+
+        public Point End
+        {
+            get { return new Point (X + Width - 1, Y + Height - 1); }
+        }
+
         public int Width
         {
             get { return width; }
@@ -83,7 +89,7 @@ namespace Questar.Primitives
 
         public override string ToString ()
         {
-            return String.Format ("({0},{1}+{2}+{3})",
+            return String.Format ("{0}x{1}+{2}+{3}",
                 start.X, start.Y, width, height);
         }
     }
