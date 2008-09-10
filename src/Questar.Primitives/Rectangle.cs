@@ -17,14 +17,16 @@ namespace Questar.Primitives
     // Cairo.Context.
     public struct Rectangle : IEnumerable<Point>
     {
+        private const string out_of_range_message = "Must be greater than 0.";
+
         private Point start;
         private int width, height;
 
         public Rectangle (Point start, int width, int height)
         {
-            this.start = start;
-            this.width = width;
-            this.height = height;
+            Start = start;
+            Width = width;
+            Height = height;
         }
 
         public Rectangle (int width, int height) :
@@ -40,6 +42,7 @@ namespace Questar.Primitives
         public Point Start
         {
             get { return start; }
+            private set { start = value; }
         }
 
         public int X
@@ -60,11 +63,46 @@ namespace Questar.Primitives
         public int Width
         {
             get { return width; }
+            private set {
+                if (value < 1) {
+                    throw new ArgumentOutOfRangeException ("Width", value, out_of_range_message);
+                }
+
+                width = value;
+            }
         }
 
         public int Height
         {
             get { return height; }
+            private set {
+                if (value < 1) {
+                    throw new ArgumentOutOfRangeException ("Height", value, out_of_range_message);
+                }
+
+                height = value;
+            }
+        }
+
+        public Rectangle IntersectionWith (Rectangle other)
+        {
+            int x = Math.Max (X, other.X);
+            int y = Math.Max (Y, other.Y);
+
+            int w = Math.Min (End.X, other.End.X) - x + 1;
+            int h = Math.Min (End.Y, other.End.Y) - y + 1;
+
+            Rectangle rect;
+
+            try {
+                rect = new Rectangle (x, y, w, h);
+            }
+            catch (ArgumentOutOfRangeException e) {
+                throw new ArgumentException (
+                    "Rectangles do not intersect.", "other", e);
+            }
+
+            return rect;
         }
 
         public bool Contains (Point p)
