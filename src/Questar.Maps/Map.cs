@@ -42,6 +42,11 @@ namespace Questar.Maps
             MonsterFactory.Instance.Created += OnActorCreated;
         }
 
+        public Rectangle Bounds
+        {
+            get { return new Rectangle (Width, Height); }
+        }
+
         public int Width
         {
             get { return area.Width; }

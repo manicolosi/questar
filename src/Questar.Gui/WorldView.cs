@@ -233,9 +233,6 @@ namespace Questar.Gui
 
         private void DrawGrid (Context context, Point grid)
         {
-            if (map.GetGridInformation (grid) == GridInformation.Invalid)
-                return;
-
             int x, y;
             GridPointToWindowCoords (grid, out x, out y);
 
@@ -265,8 +262,10 @@ namespace Questar.Gui
                 ((h % tileset.Height) > 0 ? 1 : 0);
 
             SetOffsets (tiles_wide, tiles_high);
-            Rectangle visible = new Rectangle (offset_x, offset_y,
+            Rectangle window = new Rectangle (offset_x, offset_y,
                 tiles_wide + 1, tiles_high + 1);
+
+            Rectangle visible = window.IntersectionWith (map.Bounds);
 
             foreach (Point grid in visible)
                 DrawGrid (context, grid);
