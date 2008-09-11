@@ -102,6 +102,7 @@ SOURCES = \
 	Questar.Primitives/AbstractEntityFactory.cs \
 	Questar.Primitives/Direction.cs \
 	Questar.Primitives/Entity.cs \
+	Questar.Primitives/EventList.cs \
 	Questar.Primitives/IEntityFactory.cs \
 	Questar.Primitives/Location.cs \
 	Questar.Primitives/Point.cs \
