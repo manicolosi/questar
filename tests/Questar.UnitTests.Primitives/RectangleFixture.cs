@@ -76,7 +76,7 @@ namespace Questar.UnitTests.Primitives
         [ExpectedException (typeof (ArgumentOutOfRangeException))]
         public void RectangleSizeCannotBeSmallerThanOneByOne ()
         {
-            Rectangle a = new Rectangle (0, 0);
+            new Rectangle (0, 0);
         }
 
         [Test]
@@ -85,7 +85,7 @@ namespace Questar.UnitTests.Primitives
         {
             Rectangle a = new Rectangle (0, 0, 2, 2);
             Rectangle b = new Rectangle (2, 0, 2, 2);
-            Rectangle c = a.IntersectionWith (b);
+            a.IntersectionWith (b);
         }
 
         [Test]
