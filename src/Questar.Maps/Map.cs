@@ -44,7 +44,7 @@ namespace Questar.Maps
 
         public Rectangle Bounds
         {
-            get { return new Rectangle (Width, Height); }
+            get { return area; }
         }
 
         public int Width
