@@ -106,14 +106,16 @@ SOURCES = \
 	Questar.Primitives/IEntityFactory.cs \
 	Questar.Primitives/Location.cs \
 	Questar.Primitives/Point.cs \
-	Questar.Primitives/Rectangle.cs
+	Questar.Primitives/Rectangle.cs \
+	\
+	Questar.Wilderness/Wilderness.cs
 
 ASSEMBLIES = \
 	-pkg:gconf-sharp-2.0 \
 	-pkg:glade-sharp-2.0 \
 	-pkg:gnome-sharp-2.0 \
 	-pkg:gtk-sharp-2.0 \
-	-pkg:rsvg-sharp-2.0 \
+	-pkg:rsvg2-sharp-2.0 \
 	-r:Mono.Cairo \
 	-r:Mono.Posix \
 	-r:System.Core
