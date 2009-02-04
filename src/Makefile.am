@@ -112,7 +112,7 @@ ASSEMBLIES = \
 	-pkg:glade-sharp-2.0 \
 	-pkg:gnome-sharp-2.0 \
 	-pkg:gtk-sharp-2.0 \
-	-pkg:rsvg-sharp-2.0 \
+	-pkg:rsvg2-sharp-2.0 \
 	-r:Mono.Cairo \
 	-r:Mono.Posix \
 	-r:System.Core
@@ -128,7 +128,7 @@ RESOURCES_EMBEDDED = \
 	$(foreach res, $(RESOURCES), $(addprefix -resource:, $(res)))
 
 $(ASSEMBLY): $(SOURCES) $(SOURCES_GEN) $(RESOURCES)
-	$(MCS) -langversion:linq $(SOURCES) $(SOURCES_GEN) $(RESOURCES_EMBEDDED) $(ASSEMBLIES) -debug -target:winexe -out:$@
+	$(MCS) $(SOURCES) $(SOURCES_GEN) $(RESOURCES_EMBEDDED) $(ASSEMBLIES) -debug -target:winexe -out:$@
 
 all: $(ASSEMBLY)
 
