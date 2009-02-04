@@ -1,11 +1,12 @@
 /*******************************************************************************
  *  Actor.cs: An interface implemented by Actors.
  *
- *  Copyright (C) 2007
+ *  Copyright (C) 2007, 2009
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
 using System;
+using System.Collections.Generic;
 
 using Questar.Actors.Actions;
 using Questar.Items;
@@ -29,6 +30,8 @@ namespace Questar.Actors
         bool IsAdjacentTo (Actor target);
         bool CanMoveTo (Location location);
         bool CanMoveIn (Direction direction);
+
+        IEnumerable<Location> FieldOfView { get; }
 
         void Move (Location new_location);
         int GetAttackDamage (Actor target);

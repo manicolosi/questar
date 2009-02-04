@@ -1,7 +1,7 @@
 /*******************************************************************************
  *  WorldView.cs: Widget to show the current state of a World.
  *
- *  Copyright (C) 2007, 2008
+ *  Copyright (C) 2007, 2008, 2009
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
@@ -10,6 +10,7 @@ using Gdk;
 using Gtk;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using Questar.Actors;
 using Questar.Base;
@@ -43,6 +44,7 @@ namespace Questar.Gui
         private Color hilight_color1;
         private Color hilight_color2;
         private Color grid_line_color;
+        private Color fog_color;
 
         private int offset_x, offset_y;
         private int poffset_x, poffset_y;
@@ -161,6 +163,8 @@ namespace Questar.Gui
                 Style.Background (StateType.Selected), 0.5);
             hilight_color2 = ColorHelper.FromGdkColor (
                 Style.Background (StateType.Selected));
+
+            fog_color = new Color (0.0, 0.0, 0.0, 0.50);
         }
 
         private void SetupHandlers ()
@@ -236,8 +240,22 @@ namespace Questar.Gui
             int x, y;
             GridPointToWindowCoords (grid, out x, out y);
 
-            foreach (string tile in map[grid].Tiles)
+            foreach (string tile in map[grid].Tiles) {
                 DrawTile (tile, x, y);
+            }
+
+            bool in_fov = center.FieldOfView
+                .Select (l => l.Position).Contains (grid);
+
+            if (in_fov && map[grid].HasActor) {
+                DrawTile (map[grid].Actor.Tile, x, y);
+            }
+
+            if (!in_fov) {
+                context.Color = fog_color;
+                context.Rectangle (x, y, tileset.Width, tileset.Height);
+                context.Fill ();
+            }
 
             if (grid_lines) {
                 context.Color = grid_line_color;

@@ -1,7 +1,7 @@
 /*******************************************************************************
  *  Grid.cs: Represents a single cell of a Map.
  *
- *  Copyright (C) 2007
+ *  Copyright (C) 2007, 2009
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
@@ -46,6 +46,11 @@ namespace Questar.Maps
             set { item = value; }
         }
 
+        public bool HasActor
+        {
+            get { return actor != null; }
+        }
+
         public IEnumerable<string> Tiles
         {
             get {
@@ -54,8 +59,6 @@ namespace Questar.Maps
 
                 if (Item != null)
                     yield return Item.Tile;
-                if (Actor != null)
-                    yield return Actor.Tile;
             }
         }
     }

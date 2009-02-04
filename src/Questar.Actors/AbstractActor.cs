@@ -1,7 +1,7 @@
 /*******************************************************************************
  *  AbstractActor.cs: An abstract implementation of Actor.
  *
- *  Copyright (C) 2007
+ *  Copyright (C) 2007, 2009
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
@@ -86,6 +86,13 @@ namespace Questar.Actors
         public bool CanMoveIn (Direction direction)
         {
             return CanMoveTo (direction.ApplyTo (base.Location));
+        }
+
+        public IEnumerable<Location> FieldOfView
+        {
+            get {
+                return Location.LocationsInRadius (5);
+            }
         }
 
         public void Move (Location new_location)
