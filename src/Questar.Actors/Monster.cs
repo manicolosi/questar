@@ -1,11 +1,13 @@
 /*******************************************************************************
- *  AbstractActor.cs: Actors that are controlled by Questar.
+ *  Monster.cs: An actor that are controlled by Questar.
  *
- *  Copyright (C) 2007, 2008
+ *  Copyright (C) 2007, 2008, 2009
  *  Written by Mark A. Nicolosi <mark.a.nicolosi@gmail.com>
  ******************************************************************************/
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 using Questar.Actors.Actions;
 using Questar.Core;
@@ -57,15 +59,21 @@ namespace Questar.Actors
             return false;
         }
 
+        public IEnumerable<Actor> AdjacentHostiles
+        {
+            get {
+                return Location.AdjacentActors.Where (a => IsHostile (a));
+            }
+        }
         public override void TakeTurn ()
         {
             Action action = null;
             Location location = base.Location;
 
             // Possibly attack someone
-            foreach (Actor actor in location.AdjacentActors) {
-                if (IsHostile (actor))
-                    action = new AttackAction (this, actor);
+            Actor enemy = AdjacentHostiles.FirstOrDefault ();
+            if (enemy != null) {
+                action = new AttackAction (this, enemy);
             }
 
             // Move towards the Hero
